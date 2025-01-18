@@ -52,7 +52,7 @@ This website was based upon a number of source materials, which are elaborated u
 		<div id="slideshow"></div>
 		<!-- Instantiate main page content. All page content should be added to about.html -->
 		<div id="content">
-            <h2>Project Name:  AlphaCas 8800</h2>
+            <h2>Project Name: αCassiopeiae 8800</h2>
 			
             <h2>Project Functional Description:</h2> We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. Our product is designed to appeal to hobbyists and educators interested in low-level computer programming, targeting these specific markets. Unlike other Altair 8800 clones and low-level programming interfaces, our product stands out by offering a compact, portable, and physical interface that authentically represents early computer technology. Furthermore, it supports ongoing learning through the potential for expansion cards and software development. 
 			<br/><br/>
@@ -60,12 +60,12 @@ This website was based upon a number of source materials, which are elaborated u
             
             <h2>Project Specific Design Requirements (PSDRs):</h2></b>  
                 <ol>
-                    <li>PSDR #1 (Hardware):  Design and implementation of mechanical constraints of various PCB connections. (i.e. Front Panel to Enclosure, Front Panel to Backplane, Backplane to Card) </li>
-                    <li>PSDR #2 (Hardware): Design and Implementation of front panel user interface, its connection to the card backplane, and clock/bus control protocol.</li>
-                    <li>PSDR #3 (Hardware): Design and implementation of a backplane integrated step-down power supply (buck conversion) from a reference design to supply 3.3/5V power.</li>
-                    <li>PSDR #4 (Hardware/Software): Design and implementation of S-100-inspired 8080 bus protocol via RP2350 PIO (Master and Slave)</li>
-                    <li>PSDR #5 (Software): Design and Implementation of 8080 emulator for use on a microcontroller with support for external clock.</li>
-					<li>PSDR Stretch (Hardware/Software): Design and implementation of a UART card that allows for bi-directional communication to/from backplane bus to UART serial, allowing for the use of monitor programs.</li>
+                    <li>PSDR #1: (Software) An ability to emulate the Intel 8080 processor as a device with internal states, and which is tied to the external clock/single-step on the 8080-bus.</li>
+                    <li>PSDR #2: (Hardware) An ability to communicate between the various sub-components (cards, front panel) using an S-100-inspired 8080 bus protocol, implemented via RP2350 PIO.</li>
+                    <li>PSDR #3: (Hardware) An ability to interface with the user via front panel display (red LEDs) and switches (slide switches and tactile buttons), allowing the user to control the clock/single-step and 8080 bus signals. </li>
+                    <li>PSDR #4: (Hardware) An ability to supply 3.3/5V power from the backplane PCB to all the various components of the device using an integrated step-down power supply (buck conversion) from a reference design. </li>
+                    <li>PSDR #5: (Hardware) An ability to interface all electronic and hardware components together in a hybrid enclosure design, where the front panel PCB, acts as a front panel for the enclosure, the backplane correctly interfaces with the tray slots in the enclosure, and all edge board and FFC connectors function correctly. </li>
+					<li>PSDR Stretch: (Hardware) An ability to perform serial bi-directional communication via an additional UART card, allowing for the use of monitor programs such as Microsoft BASIC.</li>
                 </ol>
         </div>
 		<!-- Instantiate global footer. Any changes to the footer should be made through the top-level file "footer.html" -->
