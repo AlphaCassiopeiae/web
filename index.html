@@ -54,9 +54,23 @@ This website was based upon a number of source materials, which are elaborated u
 		<div id="content">
             <h2>Project Name: αCassiopeiae 8800</h2>
 			
-            <h2>Project Functional Description:</h2> We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. Our product is designed to appeal to hobbyists and educators interested in low-level computer programming, targeting these specific markets. Unlike other Altair 8800 clones and low-level programming interfaces, our product stands out by offering a compact, portable, and physical interface that authentically represents early computer technology. Furthermore, it supports ongoing learning through the potential for expansion cards and software development. 
+            <h2>Project Functional Description:</h2> We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. This device 
+			in its minimally complete form will allow the user to:
+			<ol>
+				<li>Utilize the front panel to write, read, and execute Intel 8080 instructions in memory.</li>
+				<li>Add expansion cards to allow the processor to read and write data over UART, to a disk, 
+				etc.</li>
+			</ol>
 			<br/><br/>
-			The replica will aim to maintain the functional structure of the original computer which includes an enclosure that has a front panel with switches and LEDs as a programming interface, and individual CPU and memory cards that will slot into a common backplane, which acts as an 8080-derived bus in the vein of the S-100. We will utilize the RP2350B microcontroller to emulate the functionality of the original Intel 8080 processor on the CPU card. If time permits, a UART card will be developed to enable our computer to do high speed serial interfacing. Our team will be designing each of the front, backplane, and card PCBs; the interfaces for the S-100 bus; a buck converter for power delivery; and software to emulate the Intel 8080.  
+			The front panel will contain 8 status lights to indicate the CPU’s operation, 16 address bit lights to indicate the address of the memory currently selected, 8 data bit lights to show the value at that point in memory, and 4 other CPU indicator lights. There are 16 switches for manipulating the data and address lines. These will be connected to I/O expanders that will interface directly with one of the GPIO pins on the CPU., There are 6 more switches for stopping/running the CPU, single stepping, examining a value in a memory address specified on the address line, depositing a data value at an address, resetting the CPU, and protecting memory regions. 
+		<br/><br/>
+			There will be at least 3 card slots using a DDR4 DIMM connector that users can slot expansion cards into.
+			<br/><br/>
+			Users can utilize the front panel to write i8080 programs for the computer but will typically use it to write a bootstrapper for an operating system the CPU can run. The lights can also be used as a debugging and step-through tool for programs.
+			<br/><br/>
+			Programs written or loaded will ulitize memory provided by a second base RP2350 card.
+			<br/><br/>
+			The CPU will be able to communicate with say a serial monitor over the UART card which will also be an RP2350 base card.
             
             <h2>Project Specific Design Requirements (PSDRs):</h2></b>  
                 <ol>
