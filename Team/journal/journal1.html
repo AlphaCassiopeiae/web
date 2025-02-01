@@ -82,9 +82,15 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Brian</h2>
-           
+           <h4>Table of Contents</h4>
+           <ul>
+            <li><a href="Team/journal/journal1.html#sec-prior">PRIOR</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week1">WEEK 1</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week2">WEEK 2</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week3">WEEK 3</a></li>
+           </ul>
 		    <!-- (just copy/paste for Week 3 and going forward  --> 
-    <h2>===============   PRIOR: =================</h2>
+    <h2 id="sec-prior">===============   PRIOR: =================</h2>
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
           <b>Date: November 11th, 2024</b><br>
             <b>Start Time: 6:57 PM</b><br>
@@ -104,7 +110,7 @@ contact course staff.
             <img src="Team/journal/img - member1/prior/20241112_141034.jpg" alt="doodle" width="600"></img>
 			<br>
 
-	<h2>===============   Week 1: =================</h2>
+	<h2 id="sec-week1">===============   Week 1: =================</h2>
  						
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
           <b>Date: January 15th, 2025</b><br>
@@ -150,7 +156,7 @@ contact course staff.
             - Reviewed enclosure design options<br>
 			- Worked on A1 document draft<br>
 
-	<h2>===============   Week 2: =================</h2>
+	<h2 id="sec-week2">===============   Week 2: =================</h2>
  						
 
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
@@ -171,7 +177,1129 @@ contact course staff.
             - Revised PSDRs for A1 based on feedback<br>
             - Removed power design PSDR and enclosure hw interface PSDR<br>
 
-		<!--
+  <h2 id="sec-week3">===============   Week 3: =================</h2>
+
+  <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+          <b>Date: January 27nd, 2025</b><br>
+            <b>Start Time: 10:00 AM</b><br>
+            <b>Duration: 1 hour</b><br><br>
+            - going to create a Github repo containing both a rust workspace and kicad project<br>
+            - starting work on "tram" (our bus library) using the pio library in rust<br>
+            - the library provides some macros like pio! that let us write inline PIO assembler<br>
+        <br>
+
+  <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+        <b>Date: January 27nd, 2025</b><br>
+          <b>Start Time: 3:03 PM</b><br>
+          <b>Duration: 3 hours</b><br><br>
+          - big fan on how MITS defines 8 separate "Vectored Interrupt Control Lines" and then proceeds to OR them all together into the 8080's one interrupt control pin<br>
+          - remark: the real vectored interrupt priority was the DIP switches we put on the peripherals along the way<br>
+          - I've been putting together a table of "Altair bus" pins this is referenced from the <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a><br>
+          - I've also been cross referencing some of these signals against the <a href="https://en.wikipedia.org/wiki/Intel_8080#/media/File:Intel_8080_Microprocessor.png">8080 Chip's pinout</a><br>
+          - Here's the current state of the document<br>
+          <pre>
+            - `P`: processor command/control signal
+            - `S`: processor status signal
+            - `~`: active low
+            ```
+            | Original Pin   | Name                       | Action    | 8080 Pin | PIO? | Note
+            |----------------|----------------------------|-----------|----------|------|
+            | 1   +8v        | +8 volts                   | DROP      |          |      | 3.3V unified
+            | 2   +16V       | +6 volts                   | DROP      |          |      | 3.3V unified
+            | 3   XRDY       | External Ready             | KEEP      | 23 READY | 1    | Memory RDY
+            | 4   VI0        | Vectored Interrupt Line #0 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | 5   VI1        | Vectored Interrupt Line #1 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | 6   VI2        | Vectored Interrupt Line #2 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | 7   VI3        | Vectored Interrupt Line #3 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | 8   VI4        | Vectored Interrupt Line #4 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | 9   VI5        | Vectored Interrupt Line #5 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | 10  VI6        | Vectored Interrupt Line #6 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | 11  VI7        | Vectored Interrupt Line #7 | KEEP      | 14 INT   | 1/8  | OR logic to 14
+            | ...            |                            |           |          |      |
+            | 18  ~STA DSB   | ~STATUS DISABLE            | DROP?     |          |      | Multi-master
+            | 19  ~C/C DSB   | ~COMMAND/CONTROL DISABLE   | DROP?     |          |      | Multi-master
+            | 20  UNPROT     | UNPROTECT                  | KEEP
+            | 21  SS         | SINGLE STEP                | KEEP
+            | 22  ~ADD DSB   | ~ADDRESS DISABLE           | DROP?     |          |      | Multi-master
+            | 23  ~DO DSB    | ~DATA OUT DISABLE          | DROP?     |          |      | Multi-master
+            | 24  Φ2         | Phase 2 Clock              | DROP      | 15 Φ2    |      | Not NMOS
+            | 25  Φ1         | Phase 1 Clock              | DROP      | 22 Φ1    |      | Not NMOS
+            | 26  PHLDA      | Hold Acknowledge           | KEEP      | 21 HLDA  | 1    |
+            | 27  PWAIT      | WAIT                       | KEEP      | 24 WAIT  | 1    |
+            | 28  PINTE      | INTERRUPT ENABLE           | KEEP      | 16 INTE  | 1    |
+            | 29  A5         | Address Line #5            | KEEP      | 31 A5    | 1    |
+            | 29  A4         | Address Line #4            | KEEP      | 30 A4    | 1    |
+            | 31  A3         | Address Line #3            | KEEP      | 29 A3    | 1    |
+            | 32  A15        | Address Line #15           | KEEP      | 36 A15   | 1    |
+            | 33  A12        | Address Line #12           | KEEP      | 37 A12   | 1    |
+            | 34  A9         | Address Line #9            | KEEP      | 35 A9    | 1    |
+            | 35  DO1        | Data Out Line #1           | KEEP      |  9 D1    | 1    | Bi-directional
+            | 36  DO0        | Data Out Line #0           | KEEP      | 10 D0    | 1    | Bi-directional
+            | 37  A10        | Address Line #10           | KEEP      |  1 D10   | 1    |
+            | 38  DO4        | Data Out Line #4           | KEEP      |  3 D4    | 1    | Bi-directional
+            | 39  DO5        | Data Out Line #5           | KEEP      |  4 D5    | 1    | Bi-directional
+            | 40  DO6        | Data Out Line #6           | KEEP      |  5 D6    | 1    | Bi-directional
+            | 41  DI2        | Data In Line #2            | DROP      |  8 D2    |      | Force tri-state
+            | 42  DI3        | Data In Line #3            | DROP      |  7 D3    |      | Force tri-state
+            | 43  DI7        | Data In Line #7            | DROP      |  6 D7    |      | Force tri-state
+            | 44  SM1        | M1                         | 
+            | 45  SOUT       | OUT                        | 
+            | 46  SINP       | INP                        | 
+            | 47  SMEMR      | MEMR                       | 
+            | 48  SHLTA      | HLTA                       | 
+            | 49  ~CLOCK     | ~CLOCK                     | KEEP      |          | 1    | Alternate clock
+            | 50  GND        | GROUND                     | KEEP      | 2 GND    |      |
+            | 51  +8V        | +8 volts                   | DROP
+            | 52  -16V       | -16 volts                  | DROP
+            | 53  ~SSW DSB   | ~SENSE SWITCH DISABLE      | 
+            | 54  ~EXT CLR   | ~EXTERNAL CLEAR            | 
+            | ...            |                            | 
+            | 68  MWRT       | MEMORY WRITE               | 
+            | 69  ~PS        | ~PROTECT STATUS            | 
+            | 70  PROT       | PROTECT                    | 
+            | 71  RUN        | RUN                        | 
+            | 72  PRDY       | READY                      | KEEP      | 23 READY | 1    | I/O RDY
+            | 73  ~PINT      | ~INTERRUPT REQUEST         | KEEP # TODO, Check electrical config with VI lines
+            | 74  ~PHOLD     | ~HOLD                      | KEEP      | 13 HOLD  | 1    |
+            | 75  ~PRESET    | ~RESET                     | KEEP      | 12 RESET | 1    |
+            | 76  PSYNC      | SYNC                       | KEEP      | 19 SYNC  | 1    |
+            | 77  ~PWR       | ~WRITE                     | KEEP      | 18 ~WR   | 1    |
+            | 78  PDBIN      | DATA BUS IN                | KEEP      | 17 DBIN  | 1    |
+            | 79  A0         | Address Line #0            | KEEP      | 25 A0    | 1    |
+            | 80  A1         | Address Line #1            | KEEP      | 26 A1    | 1    |
+            | 81  A2         | Address Line #2            | KEEP      | 27 A2    | 1    |
+            | 82  A6         | Address Line #6            | KEEP      | 32 A6    | 1    |
+            | 83  A7         | Address Line #7            | KEEP      | 33 A7    | 1    |
+            | 84  A8         | Address Line #8            | KEEP      | 34 A8    | 1    |
+            | 85  A13        | Address Line #13           | KEEP      | 38 A13   | 1    |
+            | 86  A14        | Address Line #14           | KEEP      | 39 A14   | 1    |
+            | 87  A11        | Address Line #11           | KEEP      | 40 A11   | 1    |
+            | 88  DO2        | Data out Line #2           | KEEP      |  8 D2    | 1    | Bi-directional
+            | 89  DO3        | Data out Line #3           | KEEP      |  7 D3    | 1    | Bi-directional
+            | 90  DO7        | Data out Line #7           | KEEP      |  6 D7    | 1    | Bi-directional
+            | 91  DI4        | Data In Line #4            | DROP      |  3 D3    |      | Force tri-state
+            | 92  DI5        | Data In Line #5            | DROP      |  4 D5    |      | Force tri-state
+            | 93  DI6        | Data In Line #6            | DROP      |  5 D6    |      | Force tri-state
+            | 94  DI1        | Data In Line #1            | DROP      |  9 D1    |      | Force tri-state
+            | 95  DI0        | Data In Line #0            | DROP      | 10 D0    |      | Force tri-state
+            | 96  SINTA      | INTA                       | KEEP
+            | 97  SWO        | WO                         | KEEP
+            | 98  SSTACK     | STACK                      | KEEP
+            | 99  ~POC       | Power-On Clear             | KEEP
+            | 100 GND        | GROUND                     | KEEP      | 2 GND    |      |
+          </pre>
+      <br>
+      - the RP2350B has 48 GPIO pins available, with the current layout, we're using 37/48 GPIO pin allocations<br>
+      - have about 11 more signals to allocation (really iffy on whether we'll have enough signals on the CPU card)<br>
+      - most likely that we will not have mutli-master support, this is fine<br>
+      - NOTE, need an additional column of Intel 8212 I/O peripheral support pins<br>
+      - i think the 8212 is mostly there to latch I/O signals (provided by from #D pins, once) when starting I/O operations<br>
+
+  <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+    <b>Date: January 27nd, 2025</b><br>
+      <b>Start Time: 9:05 PM</b><br>
+      <b>Duration: 0.5 hours</b><br><br>
+      - notes for wednesday, figure out the last features to cut (protection lines?) then set up notional 2350B package pin mappings (we want some sort of remaining serial support + USB  for programming... are we at a limit?)<br>
+      - two options: drop more lines, explore physical jumper setting of modes, or delegate some derived signals to external circuitry<br>
+      - random musing: WordStar i think has a version that ran on CP/M before getting DOS support<br>
+      - might be worth seeing, if we ever get CP/M running, if WordStar would be executable<br>
+
+
+  <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+    <b>Date: January 28nd, 2025</b><br>
+      <b>Start Time: 3:02 PM</b><br>
+      <b>Duration: 2 hours</b><br><br>
+      - setsuna recommended looking into tri-state buffers or GPIO expanders to offload the functionality of certain pins<br>
+      - maybe can fulfill some 8212 logic? or add back multimaster support<br>
+      - GPIO expanders might be useful for less time critical signals... check those (RESET?? certain S lines? P lines?)<br>
+    <br>
+      - MCP23017/MCP23S17 for I2C line config?<br>
+      - i think most front panel signals have the fewest issues with this<br>
+      - just need to make sure that those lines will not be used by e.g. memory<br>
+      - remark: need to figure out the bus timing information + reset control timing information (this will also be useful during A3, we need a state machine diagram for different parts of the timing cycle [each different piece of software])<br>
+      - alternative, use the SPI flavor, and use two of these to free up address/data lines<br>
+      - notably... 10 MHz 1-bit SPI cannot keep up with 2 MHz 16-bit parallel bus i dont think... timing information investigation should help determine good fit<br>
+
+  <h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
+    <b>Date: January 29nd, 2025</b><br>
+      <b>Start Time: 9:56 AM</b><br>
+      <b>Duration: 4 hours</b><br><br>
+      - going to also mark whether a board requires a signal or not<br>
+      - (this is mostly just for the sake of the front panel, I/O expander i realized we definitely need for UI I/O)<br>
+      - also while looking into the front panel schematic, I realized that the front panel did not have input lines to the address bus pins<br>
+      - instead, the altair panel dynamicall forces the 8080 to JMP to the correct pins<br>
+      - <a href="https://retrocomputing.stackexchange.com/questions/12194/how-did-the-altair-8800-front-panel-load-the-program-counter">relevant stackexchange article</a><br>
+      <br>
+      <strong>Continued work on pinmap, required for "tram" (our bus library)</strong><br>
+      - `P`: processor command/control signal<br>
+      - `S`: processor status signal<br>
+      - `~`: active low<br>
+      <br>
+      <table>
+        <thead>
+        <tr>
+        <th>Original Pin</th>
+        <th>Name</th>
+        <th>Action</th>
+        <th>8080 Pin</th>
+        <th>CPU?</th>
+        <th>RAM?</th>
+        <th>UI?</th>
+        <th>PIO?</th>
+        <th>Note</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td>I/O Expander</td>
+        <td>NEW</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>2</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>1   +8v</td>
+        <td>+8 volts</td>
+        <td>DROP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>3.3V unified</td>
+        </tr>
+        <tr>
+        <td>2   +16V</td>
+        <td>+6 volts</td>
+        <td>DROP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>3.3V unified</td>
+        </tr>
+        <tr>
+        <td>3   XRDY</td>
+        <td>External Ready</td>
+        <td>KEEP</td>
+        <td>23 READY</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td>Memory RDY</td>
+        </tr>
+        <tr>
+        <td>4   VI0</td>
+        <td>Vectored Interrupt Line #0</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>5   VI1</td>
+        <td>Vectored Interrupt Line #1</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>6   VI2</td>
+        <td>Vectored Interrupt Line #2</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>7   VI3</td>
+        <td>Vectored Interrupt Line #3</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>8   VI4</td>
+        <td>Vectored Interrupt Line #4</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>9   VI5</td>
+        <td>Vectored Interrupt Line #5</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>10  VI6</td>
+        <td>Vectored Interrupt Line #6</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>11  VI7</td>
+        <td>Vectored Interrupt Line #7</td>
+        <td>KEEP</td>
+        <td>14 INT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1/8</td>
+        <td>OR logic to 14</td>
+        </tr>
+        <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>18  ~STA DSB</td>
+        <td>~STATUS DISABLE</td>
+        <td>DROP?</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Multi-master</td>
+        </tr>
+        <tr>
+        <td>19  ~C/C DSB</td>
+        <td>~COMMAND/CONTROL DISABLE</td>
+        <td>DROP?</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Multi-master</td>
+        </tr>
+        <tr>
+        <td>20  UNPROT</td>
+        <td>UNPROTECT</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>21  SS</td>
+        <td>SINGLE STEP</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>I/_</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>22  ~ADD DSB</td>
+        <td>~ADDRESS DISABLE</td>
+        <td>DROP?</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Multi-master</td>
+        </tr>
+        <tr>
+        <td>23  ~DO DSB</td>
+        <td>~DATA OUT DISABLE</td>
+        <td>DROP?</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Multi-master</td>
+        </tr>
+        <tr>
+        <td>24  Φ2</td>
+        <td>Phase 2 Clock</td>
+        <td>DROP</td>
+        <td>15 Φ2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Not NMOS</td>
+        </tr>
+        <tr>
+        <td>25  Φ1</td>
+        <td>Phase 1 Clock</td>
+        <td>DROP</td>
+        <td>22 Φ1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Not NMOS</td>
+        </tr>
+        <tr>
+        <td>26  PHLDA</td>
+        <td>Hold Acknowledge</td>
+        <td>KEEP</td>
+        <td>21 HLDA</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>27  PWAIT</td>
+        <td>WAIT</td>
+        <td>KEEP</td>
+        <td>24 WAIT</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>28  PINTE</td>
+        <td>INTERRUPT ENABLE</td>
+        <td>KEEP</td>
+        <td>16 INTE</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>29  A5</td>
+        <td>Address Line #5</td>
+        <td>KEEP</td>
+        <td>31 A5</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>29  A4</td>
+        <td>Address Line #4</td>
+        <td>KEEP</td>
+        <td>30 A4</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>31  A3</td>
+        <td>Address Line #3</td>
+        <td>KEEP</td>
+        <td>29 A3</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>32  A15</td>
+        <td>Address Line #15</td>
+        <td>KEEP</td>
+        <td>36 A15</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>33  A12</td>
+        <td>Address Line #12</td>
+        <td>KEEP</td>
+        <td>37 A12</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>34  A9</td>
+        <td>Address Line #9</td>
+        <td>KEEP</td>
+        <td>35 A9</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>35  DO1</td>
+        <td>Data Out Line #1</td>
+        <td>KEEP</td>
+        <td>9 D1</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>36  DO0</td>
+        <td>Data Out Line #0</td>
+        <td>KEEP</td>
+        <td>10 D0</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>37  A10</td>
+        <td>Address Line #10</td>
+        <td>KEEP</td>
+        <td>1 D10</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>38  DO4</td>
+        <td>Data Out Line #4</td>
+        <td>KEEP</td>
+        <td>3 D4</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>39  DO5</td>
+        <td>Data Out Line #5</td>
+        <td>KEEP</td>
+        <td>4 D5</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>40  DO6</td>
+        <td>Data Out Line #6</td>
+        <td>KEEP</td>
+        <td>5 D6</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>41  DI2</td>
+        <td>Data In Line #2</td>
+        <td>DROP</td>
+        <td>8 D2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>42  DI3</td>
+        <td>Data In Line #3</td>
+        <td>DROP</td>
+        <td>7 D3</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>43  DI7</td>
+        <td>Data In Line #7</td>
+        <td>DROP</td>
+        <td>6 D7</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>44  SM1</td>
+        <td>M1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>45  SOUT</td>
+        <td>OUT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>46  SINP</td>
+        <td>INP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>47  SMEMR</td>
+        <td>MEMR</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>48  SHLTA</td>
+        <td>HLTA</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>49  ~CLOCK</td>
+        <td>~CLOCK</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td>Alternate clock</td>
+        </tr>
+        <tr>
+        <td>50  GND</td>
+        <td>GROUND</td>
+        <td>KEEP</td>
+        <td>2 GND</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>51  +8V</td>
+        <td>+8 volts</td>
+        <td>DROP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>52  -16V</td>
+        <td>-16 volts</td>
+        <td>DROP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>53  ~SSW DSB</td>
+        <td>~SENSE SWITCH DISABLE</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>I/_</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>54  ~EXT CLR</td>
+        <td>~EXTERNAL CLEAR</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>...</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>68  MWRT</td>
+        <td>MEMORY WRITE</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>I/_</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>69  ~PS</td>
+        <td>~PROTECT STATUS</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>70  PROT</td>
+        <td>PROTECT</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>71  RUN</td>
+        <td>RUN</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>I/_</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>72  PRDY</td>
+        <td>READY</td>
+        <td>KEEP</td>
+        <td>23 READY</td>
+        <td></td>
+        <td></td>
+        <td>I/_</td>
+        <td>1</td>
+        <td>I/O RDY</td>
+        </tr>
+        <tr>
+        <td>73  ~PINT</td>
+        <td>~INTERRUPT REQUEST</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>TODO, Check electrical config with VI lines</td>
+        </tr>
+        <tr>
+        <td>74  ~PHOLD</td>
+        <td>~HOLD</td>
+        <td>KEEP</td>
+        <td>13 HOLD</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>75  ~PRESET</td>
+        <td>~RESET</td>
+        <td>KEEP</td>
+        <td>12 RESET</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>76  PSYNC</td>
+        <td>SYNC</td>
+        <td>DROP</td>
+        <td>19 SYNC</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td>No dual phase</td>
+        </tr>
+        <tr>
+        <td>77  ~PWR</td>
+        <td>~WRITE</td>
+        <td>KEEP</td>
+        <td>18 ~WR</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>78  PDBIN</td>
+        <td>DATA BUS IN</td>
+        <td>KEEP</td>
+        <td>17 DBIN</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>79  A0</td>
+        <td>Address Line #0</td>
+        <td>KEEP</td>
+        <td>25 A0</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>80  A1</td>
+        <td>Address Line #1</td>
+        <td>KEEP</td>
+        <td>26 A1</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>81  A2</td>
+        <td>Address Line #2</td>
+        <td>KEEP</td>
+        <td>27 A2</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>82  A6</td>
+        <td>Address Line #6</td>
+        <td>KEEP</td>
+        <td>32 A6</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>83  A7</td>
+        <td>Address Line #7</td>
+        <td>KEEP</td>
+        <td>33 A7</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>84  A8</td>
+        <td>Address Line #8</td>
+        <td>KEEP</td>
+        <td>34 A8</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>85  A13</td>
+        <td>Address Line #13</td>
+        <td>KEEP</td>
+        <td>38 A13</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>86  A14</td>
+        <td>Address Line #14</td>
+        <td>KEEP</td>
+        <td>39 A14</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>87  A11</td>
+        <td>Address Line #11</td>
+        <td>KEEP</td>
+        <td>40 A11</td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td>1</td>
+        <td>UI Passive</td>
+        </tr>
+        <tr>
+        <td>88  DO2</td>
+        <td>Data out Line #2</td>
+        <td>KEEP</td>
+        <td>8 D2</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>89  DO3</td>
+        <td>Data out Line #3</td>
+        <td>KEEP</td>
+        <td>7 D3</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>90  DO7</td>
+        <td>Data out Line #7</td>
+        <td>KEEP</td>
+        <td>6 D7</td>
+        <td></td>
+        <td></td>
+        <td>I/O</td>
+        <td>1</td>
+        <td>Bi-directional</td>
+        </tr>
+        <tr>
+        <td>91  DI4</td>
+        <td>Data In Line #4</td>
+        <td>DROP</td>
+        <td>3 D3</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>92  DI5</td>
+        <td>Data In Line #5</td>
+        <td>DROP</td>
+        <td>4 D5</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>93  DI6</td>
+        <td>Data In Line #6</td>
+        <td>DROP</td>
+        <td>5 D6</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>94  DI1</td>
+        <td>Data In Line #1</td>
+        <td>DROP</td>
+        <td>9 D1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>95  DI0</td>
+        <td>Data In Line #0</td>
+        <td>DROP</td>
+        <td>10 D0</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Force tri-state</td>
+        </tr>
+        <tr>
+        <td>96  SINTA</td>
+        <td>INTA</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>97  SWO</td>
+        <td>WO</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>98  SSTACK</td>
+        <td>STACK</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>_/O</td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>99  ~POC</td>
+        <td>Power-On Clear</td>
+        <td>KEEP</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>100 GND</td>
+        <td>GROUND</td>
+        <td>KEEP</td>
+        <td>2 GND</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        </tbody>
+        </table>
+
+    <h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
+      <b>Date: January 31st, 2025</b><br>
+        <b>Start Time: 10:16 AM</b><br>
+        <b>Duration: 0.5 hours</b><br><br>
+        - Checked with a TA to see the status of our stamp XL orders<br>
+        - Realized that we did not order the other two stamp XLs+carrier boards + flexypins<br>
+        - <a href="https://service.purdue.edu/TDClient/32/Purdue/Requests/TicketRequests/TicketDet.aspx?TicketID=37xHbf9FXhs_">new ticket link here</a>
+        - total for the additional parts 61.52 Euros
+      <!--
 		*********************************************************************************
 		*********************************************************************************
 		*********************************************************************************
