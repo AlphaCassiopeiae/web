@@ -85,42 +85,75 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Nathan Huang</h2>
-<!-- ENTRY TEMPLATE-->
+<!-- EXAMPLE TEMPLATE-->
  <!-- Week 3, Entry 4 -->
 <!-- <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
 <b>Date: Date</b><br>
 <b>Start Time: X:XX am</b><br>
 <b>Duration: X hours</b><br><br>
 
+Today I worked on soldering the header pins onto the Raspberry Pi PICO 2 development board that we aquired for prototyping.  
+<image of the PICO 2 board before soldering>
+
+Since it has been a long time since I soldered through hole parts, I decided to find a soldering tutorial video to help remind me of the proper techniqies to follow.  I found this video on YouTube <insert link here> which shows how to solder header pins to a Raspberry Pi Zero dev board.  This video helped me remember how to tin the soldering iron, what solder iron temperature to use, and how long to hold the iron and solder to a pin to get a good solder joint.  It also showed that I should place the header pin assembly into the board then initially tack the header pin assembly in place at each end.  Then while applying pressure to the header assembly, I should reflow each tacked pin to ensure that the header assembly is fully seated and vertical.  Then the rest of the pins can be soldered one by one.  
+<an image from the soldering video, perhaps from when the tack points are being reflowed>
+
+I then grabbed two pin header assemblies from the cabinet in the lab and trimed them using diaganal cutters to the correct number of pins for the PICO 2 dev board (20 pins in each of the 2 rows).  
+<image of the cut headers laying next to the PICO 2 board>
+
+Next, I heated up my soldering iron (at our bench), tinned the tip, and then soldered the header pin assemblies to the PICO 2 dev board using the techniques from the video.  Here is an photo of the PICO 2 with the headers soldered.  
+<image of the PICO 2 dev board with the headers>
+
+Now our PICO 2 dev board is ready for prototyping and I have refreshed my soldering skills.-->
+
+<!-- Week 4 -->
+<h2>===============   Week 4: =================</h2>
+<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+<b>Date: February 5th</b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
 <b>Content</b><br>
-- <i>What did you work on?:</i>Info.<br>
-- <i>How did you work on it?:</i>Info.<br>
-- <i>What was the result and what did you learn from it?:</i>Info.<br>
-- <i>How did this contribute to the project progress?:</i>Info.<br>
-- <i>What are the next steps that must be taken?:</i>Info.<br>
+Today, I tried to get software to successfully flash onto the Raspberry Pi pico. I followed the instructions found [here](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf) to install the raspberry pi pico extension in vs code. <br>
+
+Then, I ran the example code after storing it in a proper directory. The software rebooted several times, as seen below.
+
+One thing we figured out with the dev board software was that every time we wanted to load something, we needed to disconnect and reconnect the device while holding the BOOTSEL button on the Pi.
+We also figured out to not overload the IDE with several 'run' requests, or the device would get overloaded and not work.
+
+I also realized I needed a JDK in order to successfully compile the code. Although the main.c was running without this, I figured it would be essential to have in the future. I downloaded the JDK from [here](https://www.oracle.com/java/technologies/downloads/#java17).<br>
+I created an account an downloaded the JDK, and I proceeded to make a circuit to demonstrate that we have the ability to run any software we want.
+
+To test the circuit, I refreshed my knowledge of TFT tactile switches, by watching this [link](https://www.youtube.com/watch?v=0ZXYRU9KPG8)
+I constructed a circuit to demonstrate that the pico could flash, and then showed my work to Professor Walter.
+
+Professor Walter said we needed additional description on the PSDRs, so I plan to fine tune and revise those tonight
 <br>
-<b>Detail</b><br>
-		Info.<br>
-		<div id="banner">
-			<img src="Team\journal\img - member4\week3\3.1.png"></img>
-		</div><br>
-		Info.<br>
-		<div id="banner">
-			<img src="Team\journal\img - member4\week3\3.2.png"></img>
-		</div><br>
-		Info.<br>
-		<div id="banner">
-			<img src="Team\journal\img - member4\week3\3.3.png"></img>
-		</div><br>
-		Info.<br>
 
 <b>Citations</b><br>
-Several links and sources are found below, for ease of access:<br>
-- 1: <a href="" target="_blank"></a><br>
-- 2: <a href="" target="_blank"></a><br>
-- 2: <a href="" target="_blank"></a><br>
-<br>      -->
-			
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.youtube.com/watch?v=UDdbaMk39tM" target="_blank">Solder Pins to Pi Zero</a><br>
+<br>
+
+<!-- Week 4, Entry 1 -->
+<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+<b>Date: February 3rd</b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+Today, I began looking at running software through the rust emulator. I first looked at this video to obtain an ideal of how rust emulation would work on the pi.
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\1.1.png" width = "40%" height = "auto"></img>
+</div><br>
+<br>
+
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.youtube.com/watch?v=UDdbaMk39tM" target="_blank">Solder Pins to Pi Zero</a><br>
+<br>
+
 <!-- Week 3 -->
 <h2>===============   Week 3: =================</h2>
 <!-- Week 3, Entry 5 -->
@@ -139,11 +172,11 @@ Several links and sources are found below, for ease of access:<br>
 <b>Detail</b><br>
 		I looked through an old video of an individual soldering pins to a Pi Zero.<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\5.1.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\5.1.png" width = "40%" height = "auto"></img>
 		</div><br>
 		The final product looked as below, which was pretty good and is now ready for testing
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\5.2.jpg" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\5.2.jpg" width = "40%" height = "auto"></img>
 		</div><br>
 		Now our devboard is ready for powering, future soldering, and emulation.
 
@@ -168,12 +201,12 @@ Several links and sources are found below, for ease of access:<br>
 <b>Detail</b><br>
 		I scanned through the documentation on the Altair to find the front plane found below.<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\4.1.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\4.1.png" width = "40%" height = "auto"></img>
 		</div><br>
 		I figured out that multiplexing could be the most optimal way to achieve the layout we desired. After taking with Brian, I understood that he wanted to keep the 6 LEDs and 3 switches, but the rest of the design could be modulated.<br>
 		I went through new documentation about similar projects that tried to achieve the same goal, specifically towards their PCBs
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\4.2.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\4.2.png" width = "40%" height = "auto"></img>
 		</div><br>
 		I am going to take most of these design considerations when making our final version and recording the electrical specifications.
 
@@ -199,15 +232,15 @@ Several links and sources are found below, for ease of access:<br>
 <b>Detail</b><br>
 		I worked on a better design for the linear switching regulator, based on existing documentation I found only on the chip which I used in the intial design.<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\3.1.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\3.1.png" width = "40%" height = "auto"></img>
 		</div><br>
 		This schematic has more detailed metrics on the performance. After which I did all the necessary calculations to build the new design, seen below<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\3.2.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\3.2.png" width = "40%" height = "auto"></img>
 		</div><br>
 		The new schematic had to be rerouted, which I completed. Afterwards, Professor Walter met with our team, where I completed the "Show me a thing", found below in the new 3-D Design<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\3.3.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\3.3.png" width = "40%" height = "auto"></img>
 		</div><br>
 		Professor Walter gave me some important insights on PCB design, especially towards working with the exist sketches and layouts in the datasheets. I will be sure to use this knowledge moving forward.<br>
 
@@ -234,17 +267,17 @@ Several links and sources are found below, for ease of access:<br>
 <b>Detail</b><br>
 		I wanted to set up a successful environment for the whole project, so I looked into setting up the SSH agent for ECEProg.<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\2.1.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\2.1.png" width = "40%" height = "auto"></img>
 		</div><br>
 		After setting up the SSH key, I realized that the versions of software that the server was running could not support the versions of KiCad and Rust that we required.
 		Afterwards, I switched to setup on my local machine, including the installation of rust and rustlings. It took a while and a lot of dependencies, but the installation was successful. 
 		I also discovered that Visual Studio Build Tools was very much required.<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\2.2.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\2.2.png" width = "40%" height = "auto"></img>
 		</div><br>
 		I made sure that the KiCad versions within the github were up to date such that I could work on them remotely anywhere, and tested that pushing and pulling to the EDA file was actually successful, which can be seen in the version history below<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\2.3.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\2.3.png" width = "40%" height = "auto"></img>
 		</div><br>
 		In the future, if more dependencies are needed, I will look into a dockerfile which will host a container
 
@@ -271,19 +304,19 @@ Several of the installation links are found below, for ease of access:<br>
 <b>Detail</b><br>
 	I started to relearn KiCad for the PCB design aspect of the class. I configured the following KiCad schematic file as seen below<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\1.1.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\1.1.png" width = "40%" height = "auto"></img>
 		</div><br>
 		Inside the buck converter file, I created the following schematic following the tutorial created by Phil's Lab<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\1.2.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\1.2.png" width = "40%" height = "auto"></img>
 		</div><br>
 		After spending some time rewatching the video, I layered out the PCB to avoid any interference loops and yield the best results in the PCB<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\1.3.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\1.3.png" width = "40%" height = "auto"></img>
 		</div><br>
 		Finally, after finicking with the layering and the layout of the page and PCB, the following 3-D view was accomplished<br>
 		<div id="banner">
-			<img src="Team\journal\img - member4\week3\1.4.png" width = "100%" height = "auto"></img>
+			<img src="Team\journal\img - member4\week3\1.4.png" width = "40%" height = "auto"></img>
 		</div><br>
 		I hope to bring this PCB prototype to manlab as an object to show to the TAs
 
