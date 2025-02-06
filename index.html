@@ -62,8 +62,10 @@ This website was based upon a number of source materials, which are elaborated u
 				etc.</li>
 			</ol>
 			<br/><br/>
-			The front panel will contain 8 status lights to indicate the CPU’s operation, 16 address bit lights to indicate the address of the memory currently selected, 8 data bit lights to show the value at that point in memory, and 4 other CPU indicator lights. There are 16 switches for manipulating the data and address lines. These will be connected to I/O expanders that will interface directly with one of the GPIO pins on the CPU., There are 6 more switches for stopping/running the CPU, single stepping, examining a value in a memory address specified on the address line, depositing a data value at an address, resetting the CPU, and protecting memory regions. 
-		<br/><br/>
+			The front panel will contain 8 status lights to indicate the CPU's operation, 16 address bit lights to indicate the address of the memory currently selected, 8 data bit lights to show the value at that point in memory, and 4 other CPU indicator lights. There are 16 switches for manipulating the data and address lines. These will be connected to I/O expanders that will interface directly with one of the GPIO pins on the CPU., There are 6 more switches for stopping/running the CPU, single stepping, examining a value in a memory address specified on the address line, depositing a data value at an address, resetting the CPU, and protecting memory regions. 
+			<br/><br/>
+			The user will program instructions into the computer using the front board switches. They will do this by entering a memory value into the addresses and then flipping the examine switch to write the value into memory. The user will then flip the run switch to execute the program. The user can also single step through the program by flipping the single step switch. The user can also stop the program by flipping the stop switch. The user can also reset the program by flipping the reset switch. The user can also protect memory regions by flipping the protect switch.
+			<br/><br/>
 			There will be at least 3 card slots using a DDR4 DIMM connector that users can slot expansion cards into.
 			<br/><br/>
 			Users can utilize the front panel to write i8080 programs for the computer but will typically use it to write a bootstrapper for an operating system the CPU can run. The lights can also be used as a debugging and step-through tool for programs.
@@ -74,11 +76,10 @@ This website was based upon a number of source materials, which are elaborated u
             
             <h2>Project Specific Design Requirements (PSDRs):</h2></b>  
                 <ol>
-                    <li>PSDR #1: (Software) An ability to emulate the Intel 8080 processor as a device with internal states, and which is tied to the external clock/single-step on the 8080-bus.</li>
-                    <li>PSDR #2: (Hardware) An ability to communicate between the various sub-components (cards, front panel) using an S-100-inspired 8080 bus protocol, implemented via RP2350 PIO.</li>
-                    <li>PSDR #3: (Hardware) An ability to interface with the user via front panel display (red LEDs) and switches (slide switches and tactile buttons), allowing the user to control the clock/single-step and 8080 bus signals. </li>
-                    <li>PSDR #4: (Hardware) An ability to supply 3.3/5V power from the backplane PCB to all the various components of the device using an integrated step-down power supply (buck conversion) from a reference design. </li>
-                    <li>PSDR #5: (Hardware) An ability to interface all electronic and hardware components together in a hybrid enclosure design, where the front panel PCB, acts as a front panel for the enclosure, the backplane correctly interfaces with the tray slots in the enclosure, and all edge board and FFC connectors function correctly. </li>
+                    <li>PSDR #1: (Software) Emulation of an Intel 8080 processor as a device with internal states using the RP-2350 microprocessor. It which is tied to the external clock/single-step on the 8080-bus.</li>
+                    <li>PSDR #2: (Hardware) An S-100-inspired 8080 bus protocol implemented via RP2350 PIO and hardware implementation using DDR4 DIMM connector</li>
+                    <li>PSDR #3: (Hardware) Interface between the front panel display (red LEDs) and switches (slide switches and tactile buttons) and the CPU, allowing the user to control the clock/single-step and 8080 bus signals. </li>
+                    <li>PSDR #4: (Hardware) A step-down 5V -> 3.3V power supply (buck conversion) from a reference design.</li>
 					<li>PSDR Stretch: (Hardware) An ability to perform serial bi-directional communication via an additional UART card, allowing for the use of monitor programs such as Microsoft BASIC.</li>
                 </ol>
         </div>
