@@ -80,37 +80,62 @@ Links and sources are found below, for ease of access:<br>
 
 <!-- Week 4 -->
 <h2>===============   Week 4: =================</h2>
+<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+<b>Date: February 7th </b><br>
+<b>Start Time: 7:00 pm</b><br>
+<b>Duration: 2.5 hours</b><br><br>
+
+<b>Content</b><br>
+To refresh my knowledge of formal electrical specification documentation, I reviewed the IEEE guidelines, specifically their citation and documentation resource [insert link here]. This review helped me recall the proper formatting for references, system component descriptions, and technical content structure.  It reinforced the importance of clearly defining power budgets, signal interfaces, and electrical tolerances. <br>
+I then revisited the existing Electrical Overview document, which details our project's hardware components, power requirements, and communication interfaces.  I revised the electrical implementation sections, ensuring accurate categorization of chips, sensors, and devices.  I also clarified the descriptions of data collection, software computations, and power distribution. <br>
+<br>
+Next, I detailed the power budget calculations, listing system voltages (e.g., 3.3V, 5V), the expected current draw for each component, and the resulting power consumption.  I also explicitly defined voltage and current tolerances for system safety. The table can be seen below. <br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\6.png" width = "40%" height = "auto"></img>
+</div><br>
+Finally, I enhanced the interface considerations section with specifics on data rates and protocols, including UART, I2C, and USB, ensuring alignment with our system's communication requirements. <br>
+<br>
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+<br>
+
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
 <b>Date: February 7th </b><br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br><br>
 
 <b>Content</b><br>
-Today I need to make the final edits to A5 so my team can all review it and revise it when we submit. 
-But first, I need to make sure that files A1-A4 are update to date on the website. I realized the file links were NOT working, so I had to fix them manually.
-To fix this problem, I downloaded every Ax document into my local machine, then cut them all into the repository with windows explorer. 
-I know that this is only a temporary fix, but my team needs to focus on the Documents.
+Today I need to make the final edits to A5 so my team can all review it and revise it when we submit. <br>
+But first, I need to make sure that files A1-A4 are update to date on the website. I realized the file links were NOT working, so I had to fix them manually. <br>
+To fix this problem, I downloaded every Ax document into my local machine, then cut them all into the repository with windows explorer. <br>
+I know that this is only a temporary fix, but my team needs to focus on the Documents. <br>
 <br>
-I also saved the templates to my local machine, and started working on the Component analysis.
-I began looking into three options to use for the step-down buck regulator:
-- option1
-- option2
-- option3
-
-The website download links broke for a little, but they are back up now
-I wrote the specifications for our 3-4 parts, as well as descriptions of the power source
-Next, I looked at three options for the reverse mounted LEDs. I also watched this [video]() to see how the mounting works
-- option1
-- option2
-- option3
-
-One thing which I incidentially discovered was that it may be a bad idea to use TFT mounted switches:
-
-
+I also saved the templates to my local machine, and started working on the Component analysis. <br>
+I began looking into three options to use for the step-down buck regulator:<br>
+- [AP66200](https://www.diodes.com/assets/Datasheets/AP66200.pdf)<br>
+- [TPS732](https://www.ti.com/lit/ds/symlink/tps732.pdf?ts=1738905137165)<br>
+- [MCP16639](https://www.mouser.com/datasheet/2/268/50002364A-766362.pdf?srsltid=AfmBOooVkFxeFBDgrx0sgl0E1YpkZdf0JIMJ615Z_p5xFBCXuGvBtz95)<br>
+<br>
+The website download links broke for a little, but they are back up now<br>
+I wrote the specifications for our 3-4 parts, as well as descriptions of the power source<br>
+Next, I looked at three options for the reverse mounted LEDs. I also watched this [video](https://www.youtube.com/watch?v=wkFOF71a2bk) to see how the mounting works<br>
+- [XZMDKVG45WT-9](https://www.sunledusa.com/products/spec/XZMDKVG45WT-9.pdf)<br>
+- [XZMYKVG45WT-9](https://www.sunledusa.com/products/spec/XZMYKVG45WT-9.pdf)<br>
+- [HLMP-D150A](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4128/HLMP-D%2CK.pdf)<br>
+<br>
+One thing which I incidentially discovered was that it may be a bad idea to use TFT mounted switches, as seen in the image below:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\1.5.png" width = "40%" height = "auto"></img>
+</div><br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
-
+- 1: <a href="https://www.sunledusa.com/products/spec/XZMDKVG45WT-9.pdf" target="_blank">Reverse Mounted LED 1</a><br>
+- 2: <a href="https://www.sunledusa.com/products/spec/XZMYKVG45WT-9.pdf" target="_blank">Reverse Mounted LED 2</a><br>
+- 3: <a href="https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4128/HLMP-D%2CK.pdf" target="_blank">Regular Mounted LED 3</a><br>
+- 4: <a href="https://www.diodes.com/assets/Datasheets/AP66200.pdf" target="_blank">Buck Converter 1</a><br>
+- 5: <a href="https://www.ti.com/lit/ds/symlink/tps732.pdf?ts=1738905137165" target="_blank">Buck Converter 2</a><br>
+- 6: <a href="https://www.mouser.com/datasheet/2/268/50002364A-766362.pdf?srsltid=AfmBOooVkFxeFBDgrx0sgl0E1YpkZdf0JIMJ615Z_p5xFBCXuGvBtz95" target="_blank">Buck Converter 3</a><br>
 <br>
 
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
@@ -120,24 +145,28 @@ Links and sources are found below, for ease of access:<br>
 
 <b>Content</b><br>
 Today, I tried to get software to successfully flash onto the Raspberry Pi pico. I followed the instructions found [here](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf) to install the raspberry pi pico extension in vs code. <br>
+<br>
+Then, I ran the example code after storing it in a proper directory. The software rebooted several times.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\3.png" width = "40%" height = "auto"></img>
+</div><br>
 
-Then, I ran the example code after storing it in a proper directory. The software rebooted several times, as seen below.
-
-One thing we figured out with the dev board software was that every time we wanted to load something, we needed to disconnect and reconnect the device while holding the BOOTSEL button on the Pi.
-We also figured out to not overload the IDE with several 'run' requests, or the device would get overloaded and not work.
+One thing we figured out with the dev board software was that every time we wanted to load something, we needed to disconnect and reconnect the device while holding the BOOTSEL button on the Pi.<br>
+We also figured out to not overload the IDE with several 'run' requests, or the device would get overloaded and not work.<br>
 
 I also realized I needed a JDK in order to successfully compile the code. Although the main.c was running without this, I figured it would be essential to have in the future. I downloaded the JDK from [here](https://www.oracle.com/java/technologies/downloads/#java17).<br>
-I created an account an downloaded the JDK, and I proceeded to make a circuit to demonstrate that we have the ability to run any software we want.
+I created an account an downloaded the JDK, and I proceeded to make a circuit to demonstrate that we have the ability to run any software we want.<br>
 
-To test the circuit, I refreshed my knowledge of TFT tactile switches, by watching this [link](https://www.youtube.com/watch?v=0ZXYRU9KPG8)
-I constructed a circuit to demonstrate that the pico could flash, and then showed my work to Professor Walter.
+To test the circuit, I refreshed my knowledge of TFT tactile switches, by watching this [link](https://www.youtube.com/watch?v=0ZXYRU9KPG8)<br>
+I constructed a circuit to demonstrate that the pico could flash, and then showed my work to Professor Walter.<br>
 
-Professor Walter said we needed additional description on the PSDRs, so I plan to fine tune and revise those tonight
+Professor Walter said we needed additional description on the PSDRs, so I plan to fine tune and revise those tonight.<br>
 <br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
-- 1: <a href="https://www.youtube.com/watch?v=UDdbaMk39tM" target="_blank">Solder Pins to Pi Zero</a><br>
+- 1: <a href="https://www.youtube.com/watch?v=0ZXYRU9KPG8" target="_blank">Introduction to Tactile Switches</a><br>
+- 2: <a href="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf" target="_blank">Booting into Pi</a><br>
 <br>
 
 <!-- Week 4, Entry 1 -->
@@ -147,16 +176,24 @@ Links and sources are found below, for ease of access:<br>
 <b>Duration: 2 hours</b><br><br>
 
 <b>Content</b><br>
-Today, I began looking at running software through the rust emulator. I first looked at this video to obtain an ideal of how rust emulation would work on the pi.
+Today, I began looking at running software through the rust emulator. I first looked at this [video](https://www.youtube.com/watch?v=vwFWBP0IuRU) to obtain an ideal of how rust emulation would work on the pi.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week4\1.1.png" width = "40%" height = "auto"></img>
 </div><br>
-<br>
 
+Seth began talking to me about the S100 bus, so I switched tasks to better understand the S100 bus on the original Altair. I went through the bus documentation on the datasheet, found in the image below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\2.png" width = "40%" height = "auto"></img>
+</div><br>
+
+The most important parts of the S-100 (which has 100 signals), would likely be the address bits for reading and writing data.<br>
+I took notes on what each of the ports and address bits take in through OneNote, and began thinking of the ways we would emulator the S100 bus, potential with a multiplexer to hit another PSDR.<br>
+Afterwards, I opened the electrical specifications example and migrating our power consumptions to the electrical specifications.<br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
-- 1: <a href="https://www.youtube.com/watch?v=UDdbaMk39tM" target="_blank">Solder Pins to Pi Zero</a><br>
+- 1: <a href="https://www.youtube.com/watch?v=vwFWBP0IuRU" target="_blank">Running Rust on a RP 2350</a><br>
+- 2: <a href="http://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf" target="_blank">S-100 Bus Descriptions</a><br>
 <br>
 
 <!-- Week 3 -->
