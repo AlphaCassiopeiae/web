@@ -94,7 +94,12 @@ contact course staff.
            <b>Date: Februrary 7th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 4 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			<p></p>
+			<p>First I updated our PSDRs and functional description based on weekly feedback.</p>
+			<p>Then I got to trying to figure out how to flash the pico with our Rust project code. I compiled the Pico code sucessfully using cargo and tried to flash using `cargo run` but that failed. I saw it was trying to use <a href="https://probe.rs/">probe-rs</a> which I thought I had installed, but it looks like I did not because the command was not available. I then instaleld it and tried running it again but it said no probes could be found. I then realized probe-rs is only meant to work with a dedicated/separate debugger and I would need a dedicated debugger like another Pico or ST-Link in order to use it to flash our Pico.</p>
+			<p>So because I did not have another debugger on hand, I found in the flasshing methods section of the repo that you can flash in other ways like UF2.</p>
+			<p>UF2 allows you to just upload a UF2 file to the pico over its USB file system which is triggered when you hold down the boot select. I was able to do that and it programmed sucessfully.</p>
+			<p>A debugger will be useful in the future, so I've decided I'll bring my st-link from 270 and hook it up to the SWD lines on the pico to try debugging it.</p>
+			<p>Finally I needed to work on A5 and write the justification for why we chose the RP2350 microcontroller. As part of this process, I realized I didn't have a good grasp on Program IO so I read <a href="https://hackspace.raspberrypi.com/articles/what-is-programmable-i-o-on-raspberry-pi-pico">this article</a> on how it works and how it can be programmed. I then consulted the RP2350 datasheet to further learn how PIO is supposed to be used.</p>
 
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
            <b>Date: Februrary 5th </b><br> <!--the date the project meeting or work was performed)-->
