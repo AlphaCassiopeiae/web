@@ -87,6 +87,36 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Seth Deegan</h2>
 	<!-- (just copy/paste for Week 3 and going forward  --> 
+
+	<h2>===============   Week 4: =================</h2>
+			
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+           <b>Date: Februrary 7th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 4 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<p></p>
+
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: Februrary 5th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 10am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<p>First I worked with Nathan on getting the raspi pico that we had on hand programmed.</p>
+			<p>First I tried following the <a href="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf">raspi pico getting started manual</a> and using the VSCode extension, but I was unable to get the toolchain to download on my computer. So then I had nathan do it and he was able to get it to download and flash.</p>
+			<p>Next I got started on figuring out how to setup an embedded Rust project and program our Pico with it.</p>
+			<p>I first created a rust package for "cycle", our emulator, which I wanted to run first. When creating this, I had to learn about cargo and the difference between workspaces and packages. I decided to make our emulator just a package in our monorepo since it may link with other things in the future.</p>
+			<p>Finally I needed to figure out how to use the repos in the rp-rs org to program embedded rust for our microcontroller. I came across this starter project template <a href="https://github.com/rp-rs/rp2040-project-template">https://github.com/rp-rs/rp2040-project-template</a></p>
+			<p>I also needed to learn the terms of the other types of repos in the github org like HAL, which is hardware abstraction layer, and PAC which is Peripheral Access Crate. These are the handy APIs/interfaces for manipulating our microcontroller with rust without having to change registers and stuff.</p>
+
+			
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: Februrary 3rd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 10:15am</b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<p>First I watch <a href="https://www.youtube.com/watch?v=MhOba73z-dQ">how a microcontroller starts video</a> to learn how the boot process of the program we flash is set up and how the <a href="https://github.com/rp-rs/flash-algo">Rust based flasher</a> we are using will do it as well. 
+			<p>Next I did a bit of reading of the <a href="https://docs.rust-embedded.org/book/">embedded rust book</a>, learning about how embedded rust code typically looks and what data structures/coventions we can expect.</p>
+			<p>Next I got into a bit of a read about posix/cygwin cause I noticed embedded rust code can run on a <a href="https://docs.rust-embedded.org/book/intro/no-std.html?highlight=posix#hosted-environments">variety of environments</a> like bare metal vs. hosted. We will probably only need bare metal for our project.</p>
+			<p>Finally I looked back into how platformio works since I was wondering if it supported Rust-based microcontroller development. I needed an easy way to get started with the pico we had lying around and I knew platformio was mostly C programming so I anticipated it was not available yet and I was correct. So we're going to have to stick with <a href="https://github.com/rp-rs">rp-rs</a>.</p>
+
     <h2>===============   Week 3: =================</h2>				
 	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
            <b>Date: January 31st </b><br> <!--the date the project meeting or work was performed)-->
