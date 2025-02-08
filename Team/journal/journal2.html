@@ -86,6 +86,66 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Seth Deegan</h2>
+	<!-- (just copy/paste for Week 3 and going forward  --> 
+    <h2>===============   Week 3: =================</h2>				
+	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+           <b>Date: January 31st </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<p>Today I needed to figure out how to convert the Intel hex to binary. ChatGPT pointed me to just writing a simple Rust program to this which I tried.</p>
+			<p>I realized that I need to place it in a specific part of the repository like as a binary to make the rust compiler happy because the folder I was putting it into was a cargo project and all Rust files in a project either need to be a library or a binary.</p>
+			<p>I then did ChatGPT's second suggestion of using the `srec_cat` command line utility to compile the hex to binary. I was confused how to get this CLI tool until I learned more how Debian packages work since I'm working on Debian. I took a little bit of a sidetrack into learning about Debian packages.</p>
+			<p>I learned that packages can have the same name in different repositories (debian, debian-updates, debian-security) and the package manager will chosse the package with the highest version when upgrading</p>
+			<p>I also learned about supported architectures for debian
+			and that the official ones, powerpc, arm varients, x86 64 and 32, ibm z all the packages are supported. 
+			So all the packages must be compiled to run on those architectures
+			and the maintainers of distros handle upgarding packages, not the package maintaners. 
+			And then you can have multiple versions of a package on a system and apps on a system can point to different versions of a package they need since they are dynamically linked. And then finally, Rust packages try to all be statically linked (all in the binary) but debian maintainers don't like that so they try to break up the packages.</p>
+			<p>Although this was a bit sidetracked, this helped me learn about the packaging ecosystem and how Rust works with it. It helped me tie my knowledge about dynamically linked libraries learned in OS right now to my work of how we are going to program and link our programs on our microcontroller.</p>
+			<p>I then got the actual package name for `srec_cat`, <a href="https://srecord.sourceforge.net/">Srecord</a>, and tried converting the hex, but didn't have luck. It seemed like that the assembler was not happy with my output and the assembler was not happy what I loaded into memory and tried to step over the isntructions. I wasn't fully confident why it wasn't stepping correctly and also wondered how the processor knows it's on an opcode vs value vs register/address. I need to save that for next time.</p>
+			<p>Since I now have have a good idea of how the entire repository works, I diverted my attention to getting our own repository setup. However, I realized that I didn't know really how to start and how our emulator was going to interface with the microcontroller itself and not just a human user through a terminal like the emulator in the rs80 project.</p>
+			<p>This led me beginning my research into embedded Rust. First I looked through the respositories that Brian had linked that are part of the <a href="https://github.com/rp-rs">rp-rs organization</a> that has developed tools to program RP-series microcontrollers with Rust. However, I realized I didn't know exactly what most of the repositories did and that I need more of a getting started guide.</p>
+			<p>I then looked up some embedded Rust resources. I came across this <a href="https://www.youtube.com/watch?v=7lHtXkYnip8">How to Do Embedded Development with Rust</a> which I began watching. Also began watching this <a href="https://www.youtube.com/watch?v=MhOba73z-dQ">How a Microcontroller starts</a> video because I want to get an idea how the Rust framework programs the microcontroller and how memory is laid out on a Microcontroller. Finally I found this <a href="https://www.raspberrypi.com/news/rust-on-rp2350/">Rust on RP2350 - Raspberry Pi blog post</a> which I will save for later.</p>
+			<p>The progress today has opened my research up to jumping into embedded Rust and getting started on our software development. I'm excieted to learn how to write type-safe code for our microcontroller and how to interface with the hardware. Next steps are to finish getting through those above resources and begin coding!</p>
+
+			
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+           <b>Date: January 29th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<p>I wasn't able to find the registers available in the original <a href="https://deramp.com/downloads/intel/8080%20Data%20Sheet.pdf">8080 manual</a> for computations so I found this additional <a href="https://pastraiser.com/cpu/i8080/i8080_opcodes.html">cheat sheet</a>. We could even make our own cheat sheet that is a bit more understandable like this <a href="https://dejazzer.com/coen2710/lectures/RISC-V-Reference-Data-Green-Card.pdf">RISC-V one</a> so that future people can more easily program for our emulator.</p>
+			<p>After understanding all instructions available for the 8080, I then went back to investigating how to run the <a href="https://github.com/cbiffle/rs80">rs80 8080 emulator Rust repository</a>. I found that these compiled binaries were available:</p>
+			<p>mon: a debugger that allows you to read and write to registers and load a file into memory and jump to address and then exec</p>
+			<p>asm: assembler that take 8080 instructions and turns them into 8080 ones doesn't seem to work well though rn with MOV A, M just as text in an input .asm file. Uses the <a href="https://github.com/davidly/cpm_compilers/blob/main/asm/ASM.pdf">CP/M ASM compiler</a>. The emulator actually spawns the original CP/M compiler on the emulator itself to compile the assembly code you provide on the host system and then spit it back out. I found the manual for the CP/M assembler here which gave me a better idea of its output and how to use it.</p>
+			<p>disasm: Just a disassembler</p>
+			<p>main.rs: A main runtime for the emulator for which you are supposed to provide an OS image like CP/M to execute.</p>
+			<p>From this research I determined that we will need an assembler like CP/M in order to convert our 8080 code to binary.</p>
+			<p>I also realized that the assembler only spits out Intel Hex and that the intel hex cannot just be inserted into memory using the mon debugger. Intel Hex != binary. Only part of the intel hex is the binary we need, and we need to convert the hex to binary using some tool.</p>
+			<p>Finally I learned about the tests folder that contains various test .COM (executable 8080 binary) images that are used to verify the emulator properly exeecutes all available 8080 instructions. We should incorporate such tests into our emuator as well.</p> 
+			<p>I will save the rest of converting the intel hex to 8080 for friday. This progress today got me closer to my goal to running the rs80 repo.</p>
+
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: January 28th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 7:15pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 0.75 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<p>During this time I attempted to get the <a href="https://github.com/cbiffle/rs80">rs80 8080 emulator Rust repository</a> created by cbiffle on GitHub running. I di this so that I can get an idea of how we can structure our own implementation of a repository and how to construct a Rust project since I don't have really any experience using Rust.</p>
+			<p>To understand how to run the repository, I utilized GitHub Copilot to look at the repository for me and give me an idea of what its contents, produced binaries, and available commands were.</p>
+
+			<p>I then realized I didn't have a good foundation of what the 8080 instruction set looked like so I didn't know how I could write an assembly program to run on the rs80 emulator.</p>
+			<p>I then began reading the <a href="https://deramp.com/downloads/intel/8080%20Data%20Sheet.pdf">8080 ISA datasheet</a>. I just read through the first few pages and during this time I determined how the two different clocks of the 8080 work, what cycles and states are, and read through the instruction set. I then learned that opcodes are 8 bits which take up the entire processor bus (8 bits) so it takes multiple states to execute one instruction, contrary to say RISC-V. Learning this helped me understand how I would write our own emulator to process instructions and that we don't need to emulate the entire functionality of the 8080, just be able to process the instructions according to external bus signals.</p>
+			<p>Next steps will be to continue reading the manual since I didn't get through all the instructions available.</p>
+
+			
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: January 27th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am</b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<p>I read through more of the <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 datasheet</a>.</p>
+			<p>I specifically read through the GPIO pins available and their functions. This was to determine what pins would be available to function as our S100 bus.</p>
+			<p>I then investigated the bus layout (2.1) and processor layout. This was to get an idea of how the microcontroller interfaced with its pins. Additionally how data was controlled between the RISC-V and Arm cores available and how we could use them if we wanted to choose one or the other.</p>
+			<p>Terms that I found in the document and used ChatGPT to learn about included the Always-On-Timer and Serial Wire Debug Input/Output. Reasearching these terms helped me get a wholistic view of everything that was available with the microcontroller and how we could use it for our project.</p>
+			<p>I think I am well-versed in the overall capabilities of the microcontroller we are using. I'm now going to move onto researching how to code the emulator I and Caleb will be responsible for implementing since that is a more urgent task.</p>
+
            
 		    <!-- (just copy/paste for Week 3 and going forward  --> 
     <h2>===============   Week 2: =================</h2>

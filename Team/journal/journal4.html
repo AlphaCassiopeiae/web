@@ -1,30 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-		<!--
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-
-		
-		GO DOWN TO THE JOURNAL ENTRIES SECTION BELOW
-		(look for more rows of asterisks)
-
-
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-		-->
-
-
-<!--
-This is an example weekly progress report document that team members can use to report their individual progress 
-of their ECE477 senior design projects. Weekly progress reports are expected to follow the general guidelines
-presented in the "Progress Report Policy" document, posted on Brightspace.  
-
-Please create 4 copies of this example, renaming each copy to <PurdueID>.html, where <PurdueID> corresponds to
-the Purdue ITAP Career Account ID given by Purdue to each individual team member. If you have any questions,
-contact course staff.
--->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -64,40 +39,354 @@ contact course staff.
 		<div id="banner">
 			<img src="Files/img/BannerImgExample.jpg"></img>
 		</div>
-	
-		<!-- Instantiate "tools" needed for a page. Tools are premade functional blocks that can be used to build a page,
-			and include things such as a file lister (for listing out homework assignments or tutorials)
-		-->
-		
-		<!--
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-
-		
-		JOURNAL ENTRIES BELOW
-		Make your Journal Entries in the template area below and copy/past going forward
-
-
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-		-->
-		
+			
 		<div id="content">
             <h2>Project Journal for Nathan Huang</h2>
-           
-		    <!-- (just copy/paste for Week 3 and going forward  --> 
+<!-- EXAMPLE TEMPLATE-->
+ <!-- Week 3, Entry 4 -->
+<!-- <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: Date</b><br>
+<b>Start Time: X:XX am</b><br>
+<b>Duration: X hours</b><br><br>
 
-			
+Today I worked on soldering the header pins onto the Raspberry Pi PICO 2 development board that we aquired for prototyping.  
+<image of the PICO 2 board before soldering>
+
+Since it has been a long time since I soldered through hole parts, I decided to find a soldering tutorial video to help remind me of the proper techniqies to follow.  I found this video on YouTube <insert link here> which shows how to solder header pins to a Raspberry Pi Zero dev board.  This video helped me remember how to tin the soldering iron, what solder iron temperature to use, and how long to hold the iron and solder to a pin to get a good solder joint.  It also showed that I should place the header pin assembly into the board then initially tack the header pin assembly in place at each end.  Then while applying pressure to the header assembly, I should reflow each tacked pin to ensure that the header assembly is fully seated and vertical.  Then the rest of the pins can be soldered one by one.  
+<an image from the soldering video, perhaps from when the tack points are being reflowed>
+
+I then grabbed two pin header assemblies from the cabinet in the lab and trimed them using diaganal cutters to the correct number of pins for the PICO 2 dev board (20 pins in each of the 2 rows).  
+<image of the cut headers laying next to the PICO 2 board>
+
+Next, I heated up my soldering iron (at our bench), tinned the tip, and then soldered the header pin assemblies to the PICO 2 dev board using the techniques from the video.  Here is an photo of the PICO 2 with the headers soldered.  
+<image of the PICO 2 dev board with the headers>
+
+Now our PICO 2 dev board is ready for prototyping and I have refreshed my soldering skills.-->
+
+<!-- COPY PASTE ENTRY
+<h2>===============   Week 4: =================</h2>
+<h4><b>Entry X: -----------------------------------------------------------------</b></h4>
+<b>Date: Month Day </b><br>
+<b>Start Time: X:XX am</b><br>
+<b>Duration: X hours</b><br><br>
+
+<b>Content</b><br>
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+
+<br>
+-->
+
+<!-- Week 4 -->
+<h2>===============   Week 4: =================</h2>
+<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+<b>Date: February 7th </b><br>
+<b>Start Time: 7:00 pm</b><br>
+<b>Duration: 2.5 hours</b><br><br>
+
+<b>Content</b><br>
+To refresh my knowledge of formal electrical specification documentation, I reviewed the IEEE guidelines, specifically their citation and documentation resource [insert link here]. This review helped me recall the proper formatting for references, system component descriptions, and technical content structure.  It reinforced the importance of clearly defining power budgets, signal interfaces, and electrical tolerances. <br>
+I then revisited the existing Electrical Overview document, which details our project's hardware components, power requirements, and communication interfaces.  I revised the electrical implementation sections, ensuring accurate categorization of chips, sensors, and devices.  I also clarified the descriptions of data collection, software computations, and power distribution. <br>
+<br>
+Next, I detailed the power budget calculations, listing system voltages (e.g., 3.3V, 5V), the expected current draw for each component, and the resulting power consumption.  I also explicitly defined voltage and current tolerances for system safety. The table can be seen below. <br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\6.png" width = "40%" height = "auto"></img>
+</div><br>
+Finally, I enhanced the interface considerations section with specifics on data rates and protocols, including UART, I2C, and USB, ensuring alignment with our system's communication requirements. <br>
+<br>
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+<br>
+
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: February 7th </b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+Today I need to make the final edits to A5 so my team can all review it and revise it when we submit. <br>
+But first, I need to make sure that files A1-A4 are update to date on the website. I realized the file links were NOT working, so I had to fix them manually. <br>
+To fix this problem, I downloaded every Ax document into my local machine, then cut them all into the repository with windows explorer. <br>
+I know that this is only a temporary fix, but my team needs to focus on the Documents. <br>
+<br>
+I also saved the templates to my local machine, and started working on the Component analysis. <br>
+I began looking into three options to use for the step-down buck regulator:<br>
+- [AP66200](https://www.diodes.com/assets/Datasheets/AP66200.pdf)<br>
+- [TPS732](https://www.ti.com/lit/ds/symlink/tps732.pdf?ts=1738905137165)<br>
+- [MCP16639](https://www.mouser.com/datasheet/2/268/50002364A-766362.pdf?srsltid=AfmBOooVkFxeFBDgrx0sgl0E1YpkZdf0JIMJ615Z_p5xFBCXuGvBtz95)<br>
+<br>
+The website download links broke for a little, but they are back up now<br>
+I wrote the specifications for our 3-4 parts, as well as descriptions of the power source<br>
+Next, I looked at three options for the reverse mounted LEDs. I also watched this [video](https://www.youtube.com/watch?v=wkFOF71a2bk) to see how the mounting works<br>
+- [XZMDKVG45WT-9](https://www.sunledusa.com/products/spec/XZMDKVG45WT-9.pdf)<br>
+- [XZMYKVG45WT-9](https://www.sunledusa.com/products/spec/XZMYKVG45WT-9.pdf)<br>
+- [HLMP-D150A](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4128/HLMP-D%2CK.pdf)<br>
+<br>
+One thing which I incidentially discovered was that it may be a bad idea to use TFT mounted switches, as seen in the image below:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\1.5.png" width = "40%" height = "auto"></img>
+</div><br>
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.sunledusa.com/products/spec/XZMDKVG45WT-9.pdf" target="_blank">Reverse Mounted LED 1</a><br>
+- 2: <a href="https://www.sunledusa.com/products/spec/XZMYKVG45WT-9.pdf" target="_blank">Reverse Mounted LED 2</a><br>
+- 3: <a href="https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4128/HLMP-D%2CK.pdf" target="_blank">Regular Mounted LED 3</a><br>
+- 4: <a href="https://www.diodes.com/assets/Datasheets/AP66200.pdf" target="_blank">Buck Converter 1</a><br>
+- 5: <a href="https://www.ti.com/lit/ds/symlink/tps732.pdf?ts=1738905137165" target="_blank">Buck Converter 2</a><br>
+- 6: <a href="https://www.mouser.com/datasheet/2/268/50002364A-766362.pdf?srsltid=AfmBOooVkFxeFBDgrx0sgl0E1YpkZdf0JIMJ615Z_p5xFBCXuGvBtz95" target="_blank">Buck Converter 3</a><br>
+<br>
+
+<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+<b>Date: February 5th</b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+Today, I tried to get software to successfully flash onto the Raspberry Pi pico. I followed the instructions found [here](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf) to install the raspberry pi pico extension in vs code. <br>
+<br>
+Then, I ran the example code after storing it in a proper directory. The software rebooted several times.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\3.png" width = "40%" height = "auto"></img>
+</div><br>
+
+One thing we figured out with the dev board software was that every time we wanted to load something, we needed to disconnect and reconnect the device while holding the BOOTSEL button on the Pi.<br>
+We also figured out to not overload the IDE with several 'run' requests, or the device would get overloaded and not work.<br>
+
+I also realized I needed a JDK in order to successfully compile the code. Although the main.c was running without this, I figured it would be essential to have in the future. I downloaded the JDK from [here](https://www.oracle.com/java/technologies/downloads/#java17).<br>
+I created an account an downloaded the JDK, and I proceeded to make a circuit to demonstrate that we have the ability to run any software we want.<br>
+
+To test the circuit, I refreshed my knowledge of TFT tactile switches, by watching this [link](https://www.youtube.com/watch?v=0ZXYRU9KPG8)<br>
+I constructed a circuit to demonstrate that the pico could flash, and then showed my work to Professor Walter.<br>
+
+Professor Walter said we needed additional description on the PSDRs, so I plan to fine tune and revise those tonight.<br>
+<br>
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.youtube.com/watch?v=0ZXYRU9KPG8" target="_blank">Introduction to Tactile Switches</a><br>
+- 2: <a href="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf" target="_blank">Booting into Pi</a><br>
+<br>
+
+<!-- Week 4, Entry 1 -->
+<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+<b>Date: February 3rd</b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+Today, I began looking at running software through the rust emulator. I first looked at this [video](https://www.youtube.com/watch?v=vwFWBP0IuRU) to obtain an ideal of how rust emulation would work on the pi.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\1.1.png" width = "40%" height = "auto"></img>
+</div><br>
+
+Seth began talking to me about the S100 bus, so I switched tasks to better understand the S100 bus on the original Altair. I went through the bus documentation on the datasheet, found in the image below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week4\2.png" width = "40%" height = "auto"></img>
+</div><br>
+
+The most important parts of the S-100 (which has 100 signals), would likely be the address bits for reading and writing data.<br>
+I took notes on what each of the ports and address bits take in through OneNote, and began thinking of the ways we would emulator the S100 bus, potential with a multiplexer to hit another PSDR.<br>
+Afterwards, I opened the electrical specifications example and migrating our power consumptions to the electrical specifications.<br>
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.youtube.com/watch?v=vwFWBP0IuRU" target="_blank">Running Rust on a RP 2350</a><br>
+- 2: <a href="http://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf" target="_blank">S-100 Bus Descriptions</a><br>
+<br>
+
+<!-- Week 3 -->
+<h2>===============   Week 3: =================</h2>
+<!-- Week 3, Entry 5 -->
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: January 30th</b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+- <i>What did you work on?:</i>Soldering<br>
+- <i>How did you work on it?:</i>Soldered the Dev Board<br>
+- <i>What was the result and what did you learn from it?:</i>Now the dev board is good for us to use and experiment with<br>
+- <i>How did this contribute to the project progress?:</i>Test the emulator for our 8080<br>
+- <i>What are the next steps that must be taken?:</i>Continue work on the back plane<br>
+<br>
+<b>Detail</b><br>
+		I looked through an old video of an individual soldering pins to a Pi Zero.<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\5.1.png" width = "40%" height = "auto"></img>
+		</div><br>
+		The final product looked as below, which was pretty good and is now ready for testing
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\5.2.jpg" width = "40%" height = "auto"></img>
+		</div><br>
+		Now our devboard is ready for powering, future soldering, and emulation.
+
+<b>Citations</b><br>
+Several links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.youtube.com/watch?v=UDdbaMk39tM" target="_blank">Solder Pins to Pi Zero</a><br>
+<br>
+
+<!-- Week 3, Entry 4 -->
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: January 30th</b><br>
+<b>Start Time: 5:30 pm</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+- <i>What did you work on?:</i>Front Panel PCB<br>
+- <i>How did you work on it?:</i>Analysis of Front Panel PCB<br>
+- <i>What was the result and what did you learn from it?:</i>Learned about the architecture of the front panel, figured out how the circuitry was laid out<br>
+- <i>How did this contribute to the project progress?:</i>Had a general idea of the frame we are trying to miniaturize<br>
+- <i>What are the next steps that must be taken?:</i>Need to finalize the front and back panel<br>
+<br>
+<b>Detail</b><br>
+		I scanned through the documentation on the Altair to find the front plane found below.<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\4.1.png" width = "40%" height = "auto"></img>
+		</div><br>
+		I figured out that multiplexing could be the most optimal way to achieve the layout we desired. After taking with Brian, I understood that he wanted to keep the 6 LEDs and 3 switches, but the rest of the design could be modulated.<br>
+		I went through new documentation about similar projects that tried to achieve the same goal, specifically towards their PCBs
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\4.2.png" width = "40%" height = "auto"></img>
+		</div><br>
+		I am going to take most of these design considerations when making our final version and recording the electrical specifications.
+
+<b>Citations</b><br>
+Several links and sources are found below, for ease of access:<br>
+- 1: <a href="https://altairclone.com/downloads/manuals/Altair%208800%20Operator's%20Manual.pdf" target="_blank">Old Operational Manual for the Altair</a><br>
+- 2: <a href="https://andydoz.blogspot.com/2021/12/building-altair-8800-clone.html" target="_blank">Past project for the Altair</a><br>
+<br>
+
+<!-- Week 3, Entry 3 -->
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: January 29th</b><br>
+<b>Start Time: 8:30 am</b><br>
+<b>Duration: 4 hours</b><br><br>
+
+<b>Content</b><br>
+- <i>What did you work on?:</i>Regulator and Front Panel PCB<br>
+- <i>How did you work on it?:</i>KiCad software in-lab and wiring tutorials<br>
+- <i>What was the result and what did you learn from it?:</i>Started the schematic for the front panel, and layed out a better design for the prototype PCB<br>
+- <i>How did this contribute to the project progress?:</i>Started both the front and back panel<br>
+- <i>What are the next steps that must be taken?:</i>Need to analyze the electrical schematics further and see what routing needs to be done<br>
+<br>
+<b>Detail</b><br>
+		I worked on a better design for the linear switching regulator, based on existing documentation I found only on the chip which I used in the intial design.<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\3.1.png" width = "40%" height = "auto"></img>
+		</div><br>
+		This schematic has more detailed metrics on the performance. After which I did all the necessary calculations to build the new design, seen below<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\3.2.png" width = "40%" height = "auto"></img>
+		</div><br>
+		The new schematic had to be rerouted, which I completed. Afterwards, Professor Walter met with our team, where I completed the "Show me a thing", found below in the new 3-D Design<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\3.3.png" width = "40%" height = "auto"></img>
+		</div><br>
+		Professor Walter gave me some important insights on PCB design, especially towards working with the exist sketches and layouts in the datasheets. I will be sure to use this knowledge moving forward.<br>
+
+<b>Citations</b><br>
+Several links and sources are found below, for ease of access:<br>
+- 1: <a href="https://ww1.microchip.com/downloads/en/DeviceDoc/20005308C.pdf" target="_blank">Linear Switching Regulator Datasheet</a><br>
+- 2: <a href="https://adwaterandstir.com/altair/" target="_blank">Link for finding the old dimensions of the Altair</a><br>
+- 2: <a href="https://deramp.com/downloads/altair/hardware/altair_8800c/Front%20Panel%20Manual.pdf" target="_blank">Front panel example</a><br>
+<br>
+
+<!-- Week 3, Entry 2 -->
+<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+<b>Date: January 27th</b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2.5 hours</b><br><br>
+
+<b>Content</b><br>
+- <i>What did you work on?:</i>Software Setup and SSH agent for project<br>
+- <i>How did you work on it?:</i>Used eceprog computers and lab computer for setup<br>
+- <i>What was the result and what did you learn from it?:</i>How to set up rustlings on personal computer and make ssh key<br>
+- <i>How did this contribute to the project progress?:</i>Have a convenient environment to complete the rest of the project<br>
+- <i>What are the next steps that must be taken?:</i>See if a docker container or something similar can be created to host the project<br>
+<br>
+<b>Detail</b><br>
+		I wanted to set up a successful environment for the whole project, so I looked into setting up the SSH agent for ECEProg.<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\2.1.png" width = "40%" height = "auto"></img>
+		</div><br>
+		After setting up the SSH key, I realized that the versions of software that the server was running could not support the versions of KiCad and Rust that we required.
+		Afterwards, I switched to setup on my local machine, including the installation of rust and rustlings. It took a while and a lot of dependencies, but the installation was successful. 
+		I also discovered that Visual Studio Build Tools was very much required.<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\2.2.png" width = "40%" height = "auto"></img>
+		</div><br>
+		I made sure that the KiCad versions within the github were up to date such that I could work on them remotely anywhere, and tested that pushing and pulling to the EDA file was actually successful, which can be seen in the version history below<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\2.3.png" width = "40%" height = "auto"></img>
+		</div><br>
+		In the future, if more dependencies are needed, I will look into a dockerfile which will host a container
+
+<b>Citations</b><br>
+Several of the installation links are found below, for ease of access:<br>
+- 1: <a href="https://www.rust-lang.org/learn/get-started" target="_blank">Rustlings download</a><br>
+- 2: <a href="https://www.rust-lang.org/tools/install" target="_blank">Rust installation</a><br>
+- 2: <a href="https://visualstudio.microsoft.com/downloads/?q=build+tools" target="_blank">Build tools download link used</a><br>
+<br>
+
+<!-- Week 3, Entry 1 -->
+<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+<b>Date: January 26th</b><br>
+<b>Start Time: 10:00 pm</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+- <i>What did you work on?:</i> KiCad schematic for buck converter<br>
+- <i>How did you work on it?:</i> Used KiCad schematic editor and layout editor<br>
+- <i>What was the result and what did you learn from it?:</i>Functional buck step down converter, how to follow examples in datasheet<br>
+- <i>How did this contribute to the project progress?:</i>Working converter to use in power distribution<br>
+- <i>What are the next steps that must be taken?:</i>Continue on the power distribution PCB board<br>
+<br>
+<b>Detail</b><br>
+	I started to relearn KiCad for the PCB design aspect of the class. I configured the following KiCad schematic file as seen below<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\1.1.png" width = "40%" height = "auto"></img>
+		</div><br>
+		Inside the buck converter file, I created the following schematic following the tutorial created by Phil's Lab<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\1.2.png" width = "40%" height = "auto"></img>
+		</div><br>
+		After spending some time rewatching the video, I layered out the PCB to avoid any interference loops and yield the best results in the PCB<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\1.3.png" width = "40%" height = "auto"></img>
+		</div><br>
+		Finally, after finicking with the layering and the layout of the page and PCB, the following 3-D view was accomplished<br>
+		<div id="banner">
+			<img src="Team\journal\img - member4\week3\1.4.png" width = "40%" height = "auto"></img>
+		</div><br>
+		I hope to bring this PCB prototype to manlab as an object to show to the TAs
+
+<b>Citations</b><br>
+- 1: <a href="https://www.youtube.com/watch?v=FqT_Ofd54fo" target="_blank">Phil's Lab Buck Converter</a><br>
+- 2: <a href="https://www.youtube.com/watch?v=AmfLhT5SntE" target="_blank">Buck Converter Layout</a><br>
+<br>
  						
 <!-- Week 2 -->
 <h2>===============   Week 2: =================</h2>
+<!-- Week 2, Entry 4 -->
+<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+<b>Date: January 24th</b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 3 hours</b><br><br>
+- Worked on the power converter for the Altera PCB, incorporating Professor Walter's commentary.<br>
+- Finished KiCad installation and decided not to use Altium for the board design.<br>
+- Resulted in a preliminary sketch of the buck converter we plan to use.<br>
+- This contributed to the project by providing us with a baseline PCB that we could visualize and start working on.<br>
+- The next steps will be to use videos from [PhilsLab](https://www.youtube.com/@PhilsLab) and schematics found on the Altera website to generate the miniaturized version.<br><br>
+Important Links:<br>
+- [Raspberry Pi Hardware Design with RP2350](https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf)<br>
+- [RP2350 Datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)<br><br>
 
 <!-- Week 2, Entry 3 -->
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
-<b>Date: January 24th</b><br>
-<b>Start Time: 9:30 pm</b><br>
+<b>Date: January 22th</b><br>
+<b>Start Time: 9:30 am</b><br>
 <b>Duration: 3 hours</b><br><br>
 - Worked on the power converter for the Altera PCB, incorporating Professor Walter's commentary.<br>
 - Finished KiCad installation and decided not to use Altium for the board design.<br>
@@ -110,7 +399,7 @@ Important Links:<br>
 
 <!-- Week 2, Entry 2 -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
-<b>Date: January 22th</b><br>
+<b>Date: January 21th</b><br>
 <b>Start Time: 2:00 pm</b><br>
 <b>Duration: 3 hours</b><br><br>
 - Continued on learning Rust.<br>
@@ -121,7 +410,7 @@ Important Links:<br>
 
 <!-- Week 2, Entry 1 -->
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
-<b>Date: January 22th</b><br>
+<b>Date: January 20th</b><br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 3 hours</b><br><br>
 - Worked on learning Rust and found documentation of an old project with a similar goal to ours.<br>
@@ -138,7 +427,7 @@ Important Links:<br>
 
 <!-- Week 1, Entry 3 -->
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
-<b>Date: January 24th</b><br>
+<b>Date: January 17th</b><br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 3 hours</b><br><br>
 - Worked on the parts list for our project and documented A1 and the cost for each component.<br>
@@ -169,25 +458,8 @@ Important Links:<br>
 - Learned the basics of the Altera computer, as well as how it operates and is loaded.<br>
 - Have a deeper understanding of the objective of our project, and can begin to assign roles.<br>
 - The next steps that must be taken are the project specifications and related PSDRs.<br><br>
-
-
-		<!--
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-
-		
-		JOURNAL ENTRIES ABOVE
-		Make your Journal Entries in the template area above and copy/paste going forward
-
-
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-		-->
-
-
-        </div>
+        
+</div>
 	
 		<!-- Instantiate global footer. Any changes to the footer should be made through the top-level file "footer.html" -->
 		<div id="footer"></div>

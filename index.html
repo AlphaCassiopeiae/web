@@ -54,18 +54,57 @@ This website was based upon a number of source materials, which are elaborated u
 		<div id="content">
             <h2>Project Name: αCassiopeiae 8800</h2>
 			
-            <h2>Project Functional Description:</h2> We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. Our product is designed to appeal to hobbyists and educators interested in low-level computer programming, targeting these specific markets. Unlike other Altair 8800 clones and low-level programming interfaces, our product stands out by offering a compact, portable, and physical interface that authentically represents early computer technology. Furthermore, it supports ongoing learning through the potential for expansion cards and software development. 
+            <h2>Project Functional Description:</h2> We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. This device 
+			in its minimally complete form will allow the user to:
+			<ol>
+				<li>Utilize the front panel to write, read, and execute Intel 8080 instructions in memory.</li>
+				<li>Add expansion cards to allow the processor to read and write data over UART, to a disk, 
+				etc.</li>
+			</ol>
 			<br/><br/>
-			The replica will aim to maintain the functional structure of the original computer which includes an enclosure that has a front panel with switches and LEDs as a programming interface, and individual CPU and memory cards that will slot into a common backplane, which acts as an 8080-derived bus in the vein of the S-100. We will utilize the RP2350B microcontroller to emulate the functionality of the original Intel 8080 processor on the CPU card. If time permits, a UART card will be developed to enable our computer to do high speed serial interfacing. Our team will be designing each of the front, backplane, and card PCBs; the interfaces for the S-100 bus; a buck converter for power delivery; and software to emulate the Intel 8080.  
+			<h1>Components</h1>
+			The computer will be housed in an extruded aluminum enclosure. The front and back of the enclosure will be vertical PCBs that will house the main control interface on the front PCB and the power supply on the back PCB.
+			<h2>Front panel</h2>
+			<br/><br/>
+			The front left of the PCB panel will contain 8 horizontal status lights to indicate the CPU's operation. These include: TODO
+			<br/><br/>
+			In the center of the front panel there are 16 address bit lights to indicate the address of the memory currently selected and above those and right-aligned, there are 8 data bit lights to show the value at that point in memory.
+			<br/><br/>
+			Below each of the 16 address bit lights there are 16 switches for manipulating the bits on the data and address lines.
+			<br/><br/>
+			And finally, there are 7 more switches below for turning on the computer, stopping/running the CPU, single stepping instructions, examining a value in a memory address specified on the address line, depositing a data value at an address, resetting the CPU, and protecting memory regions. 
+			<br/><br/>
+			These will be connected to I/O expanders that will interface directly with one of the GPIO pins on the CPU. 
+			<br/><br/>
+			<h2>Internal cards</h2>
+			Inside the enclosure there will be a base PCB that will hold 5 card slots using DDR4 DIMM connectors that users can slot expansion cards into. Our machine will have 2 base cards: a CPU card and a memory card, and a stretch goal will be a UART card. <b>All</b> cards will all have similar layout and use the RP2350 to emulate the functions of the card and interface with the S-100 like bus. The CPU card will connect to the front panel PCB using a cable.
+
+			<h2>Back panel</h2>
+			Our back panel power supply is based on X buck converter chip. it will have USB C power input and a cable to output the 3.3 V to the base board that will power all of the cards.
+			<br/><br/>
+
+			
+			<h1>Operation</h1>
+			Users will use the front panel to write, run, and debug i8080 programs for the computer. 
+			
+			To write a program the user will power the computer on, go to address zero, and start inserting instructions. BLAH BLAH
+			
+			but will typically use it to write a bootstrapper for an operating system the CPU can run. 
+
+			
+			The user will program instructions into the computer using the front board switches. They will do this by entering a memory value into the addresses and 
+			<br/><br/>
+			Programs written or loaded will ulitize memory provided by a second base RP2350 card.
+			<br/><br/>
+			The CPU will be able to communicate with say a serial monitor over the UART card which will also be an RP2350 base card.
             
             <h2>Project Specific Design Requirements (PSDRs):</h2></b>  
                 <ol>
-                    <li>PSDR #1: (Software) An ability to emulate the Intel 8080 processor as a device with internal states, and which is tied to the external clock/single-step on the 8080-bus.</li>
-                    <li>PSDR #2: (Hardware) An ability to communicate between the various sub-components (cards, front panel) using an S-100-inspired 8080 bus protocol, implemented via RP2350 PIO.</li>
-                    <li>PSDR #3: (Hardware) An ability to interface with the user via front panel display (red LEDs) and switches (slide switches and tactile buttons), allowing the user to control the clock/single-step and 8080 bus signals. </li>
-                    <li>PSDR #4: (Hardware) An ability to supply 3.3/5V power from the backplane PCB to all the various components of the device using an integrated step-down power supply (buck conversion) from a reference design. </li>
-                    <li>PSDR #5: (Hardware) An ability to interface all electronic and hardware components together in a hybrid enclosure design, where the front panel PCB, acts as a front panel for the enclosure, the backplane correctly interfaces with the tray slots in the enclosure, and all edge board and FFC connectors function correctly. </li>
-					<li>PSDR Stretch: (Hardware) An ability to perform serial bi-directional communication via an additional UART card, allowing for the use of monitor programs such as Microsoft BASIC.</li>
+                    <li>PSDR #1: (Software) Creating a Rust-based emulation of an Intel 8080 processor that is tied to the external clock/single-step on the 8080-bus.</li>
+                    <li>PSDR #2: (Hardware) An S-100-inspired 8080 bus protocol implemented via RP2350 PIO and hardware implementation using DDR4 DIMM connector</li>
+                    <li>PSDR #3: (Hardware) Creating a swtich and LED matrix for the switches on the front panel to communicate with the CPU over a connecting wire to the CPU card. </li>
+                    <li>PSDR #4: (Hardware) A step-down 5V -> 3.3V power supply (buck conversion) from a reference design. Input USB C output to S100 bus.</li>
+					<li>PSDR #5: (Hardware) An ability to perform serial bi-directional communication via an additional UART card. We will be writing the firmware for this to run on the RP2350. It will have an external uart port on the card to plug into.</li>
                 </ol>
         </div>
 		<!-- Instantiate global footer. Any changes to the footer should be made through the top-level file "footer.html" -->
