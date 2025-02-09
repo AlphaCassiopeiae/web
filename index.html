@@ -62,11 +62,15 @@ This website was based upon a number of source materials, which are elaborated u
 				etc.</li>
 			</ol>
 			<br/><br/>
+
+
 			<h1>Components</h1>
-			The computer will be housed in an extruded aluminum enclosure. The front and back of the enclosure will be vertical PCBs that will house the main control interface on the front PCB and the power supply on the back PCB.
-			<h2>Front panel</h2>
 			<br/><br/>
-			The front left of the PCB panel will contain 8 horizontal status lights to indicate the CPU's operation. These include: TODO
+			The computer will be housed in an extruded aluminum enclosure. The front of the enclosure will be a vertical PCB that will house the main control interface. Inside the enclosure there will be a base PCB that will hold 5 card slots and our power module.
+
+
+			<h2>Front panel</h2>
+			The front left of the PCB panel will contain 8 horizontal status lights to indicate the CPU's operation. These include: power, halt, run, single step, memory examine, memory deposit, and reset.
 			<br/><br/>
 			In the center of the front panel there are 16 address bit lights to indicate the address of the memory currently selected and above those and right-aligned, there are 8 data bit lights to show the value at that point in memory.
 			<br/><br/>
@@ -76,13 +80,16 @@ This website was based upon a number of source materials, which are elaborated u
 			<br/><br/>
 			These will be connected to I/O expanders that will interface directly with one of the GPIO pins on the CPU. 
 			<br/><br/>
+
+
 			<h2>Internal cards</h2>
-			Inside the enclosure there will be a base PCB that will hold 5 card slots using DDR4 DIMM connectors that users can slot expansion cards into. Our machine will have 2 base cards: a CPU card and a memory card, and a stretch goal will be a UART card. <b>All</b> cards will all have similar layout and use the RP2350 to emulate the functions of the card and interface with the S-100 like bus. The CPU card will connect to the front panel PCB using a cable.
-
-			<h2>Back panel</h2>
-			Our back panel power supply is based on X buck converter chip. it will have USB C power input and a cable to output the 3.3 V to the base board that will power all of the cards.
+			Inside the enclosure there will be a base PCB that will hold 5 card slots using DDR4 DIMM connectors that users can slot expansion cards into. Our machine will have 3 base cards: a CPU card, memory card, and UART card. <b>All</b> cards will all have similar layout and use the RP2350 to emulate the functions of the card and interface with the S-100 like bus. The CPU card will connect to the front panel PCB using a cable.
 			<br/><br/>
-
+			The base card will also have a power module that will take in 5V from a barrel jack and convert it to 3.3V for the RP2350 and 5V for the CPU card.
+			<br/><br/>
+			Finally, the front panel will be connected to the base board using a ZIF FFC connector and be directly connected to the bus.
+			<br/><br/>
+			S100 bus description: TODO
 			
 			<h1>Operation</h1>
 			Users will use the front panel to write, run, and debug i8080 programs for the computer. 
@@ -90,6 +97,7 @@ This website was based upon a number of source materials, which are elaborated u
 			To write a program the user will power the computer on, go to address zero, and start inserting instructions. BLAH BLAH
 			
 			but will typically use it to write a bootstrapper for an operating system the CPU can run. 
+
 
 			
 			The user will program instructions into the computer using the front board switches. They will do this by entering a memory value into the addresses and 
@@ -103,7 +111,7 @@ This website was based upon a number of source materials, which are elaborated u
                     <li>PSDR #1: (Software) Creating a Rust-based emulation of an Intel 8080 processor that is tied to the external clock/single-step on the 8080-bus.</li>
                     <li>PSDR #2: (Hardware) An S-100-inspired 8080 bus protocol implemented via RP2350 PIO and hardware implementation using DDR4 DIMM connector</li>
                     <li>PSDR #3: (Hardware) Creating a swtich and LED matrix for the switches on the front panel to communicate with the CPU over a connecting wire to the CPU card. </li>
-                    <li>PSDR #4: (Hardware) A step-down 5V -> 3.3V power supply (buck conversion) from a reference design. Input USB C output to S100 bus.</li>
+                    <li>PSDR #4: (Hardware) A step-down 5V -> 3.3V power supply (buck conversion) from a reference design. Input barrel jack output to S100 bus.</li>
 					<li>PSDR #5: (Hardware) An ability to perform serial bi-directional communication via an additional UART card. We will be writing the firmware for this to run on the RP2350. It will have an external uart port on the card to plug into.</li>
                 </ol>
         </div>
