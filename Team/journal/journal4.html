@@ -64,7 +64,7 @@ Next, I heated up my soldering iron (at our bench), tinned the tip, and then sol
 Now our PICO 2 dev board is ready for prototyping and I have refreshed my soldering skills.-->
 
 <!-- COPY PASTE ENTRY
-<h2>===============   Week 4: =================</h2>
+<h2>===============   Week X: =================</h2>
 
 ENTRY BEGINS HERE:
 <h4><b>Entry X: -----------------------------------------------------------------</b></h4>
@@ -83,6 +83,32 @@ Links and sources are found below, for ease of access:<br>
 
 
 <h2>===============   Week 5: =================</h2>
+
+<h4><b>Entry X: -----------------------------------------------------------------</b></h4>
+<b>Date: February 11 </b><br>
+<b>Start Time: 9:30 pm</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+I needed to create a prototype of the front panel on the breadboard, based on the wiring I started yesterday. There was one major issue to create it, however.<br>
+We are choosing to fix 6 of the LEDs and use some type of debouncing or multiplexing logic for the remaining 30, but I had no clue where to begin for that.<br>
+I used ChatGPT to research ways I could multiplex the front panel without interrupting any of the PIO logic. ChatGPT gave me a way to reference each of the 30 LEDs using a parallel shift register, but then I realized I did not have the necessary materials to make it.<br>
+<br>
+I decided to go with general PIO output for not, and I wired up the LEDs and switches as seen below:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\1.jpg" width = "40%" height = "auto"></img>
+</div><br>
+Each of the LEDs is wired to a GPIO pin, and each of the switches is wired to a GPIO pin. I also wired up the 3V3 and GND pins to the breadboard, so I can power the LEDs.<br>
+Switched to a new breadboard because the old one was getting crowded, and crimped all the resistors to size for a clean look.
+I looked at this [website](https://bobyewchuk.wordpress.com/2015/01/06/altair-8800/#:~:text=To%20program%20the%20Altair%2C%20you,eight%20bits%20for%20that%20byte.) to see how a breadboard implementation of the Altair would look like, which gave me a base idea of what to construct.
+I finished wiring up all of the LEDs, and began moving to the connections to the PIO pins. I choose GP0-15, because those were the easiest to connect and had the perfect size I needed.
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://bobyewchuk.wordpress.com/2015/01/06/altair-8800/#:~:text=To%20program%20the%20Altair%2C%20you,eight%20bits%20for%20that%20byte." target="_blank">Old model of altair</a><br>
+- 2: <a href="https://cloud.digilent.com/myproducts/waveform?pc=1&tab=2" target="_blank">Waveforms download link</a><br>
+
+
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: February 10th </b><br>
 <b>Start Time: 9:30 am</b><br>
@@ -106,7 +132,8 @@ I decided to download Waveforms from this [link](https://cloud.digilent.com/mypr
 </div><br>
 As seen from the photo, I have to test each of the 32 LEDs.
 
-Seth asked me to install the Rust toolchain, so I spent some time making sure the install was correct. I download a part of the Rust toolchain from this [website](https://github.com/raspberrypi/picotool), where I followed the install steps. <br>
+Seth asked me to install the Rust toolchain, so I spent some time making sure the install was correct. I download a part of the Rust toolchain from this [website](https://github.com/raspberrypi/picotool), where I followed the install steps.<br>
+I pushed my final changes to the github repository becase I had to leave for a meeting, but I let Seth finish the rest of the toolchain setup and documentation <br>
 
 
 
