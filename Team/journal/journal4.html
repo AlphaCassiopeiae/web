@@ -83,7 +83,27 @@ Links and sources are found below, for ease of access:<br>
 
 
 <h2>===============   Week 5: =================</h2>
-<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: February 12th </b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+After the preliminary meeting with Dr. Walter, I started to look into other ways to drive the LEDs. I knew that each LED needed power and ground from the 3V3 bus, but I had no idea what approach to use for getting the status of the LEDs, whether that be multiplexing, shift registers, or LED drivers. <br>
+Dr. Walter presented the idea of the LED driver, so I got a bunch of components from the shop, as seen below. I started to research the TLC59211N.
+I looked at the datasheet [here](https://www.ti.com/lit/ds/symlink/tlc59211.pdf?ts=1739310651732&ref_url=https%253A%252F%252Fwww.google.com%252F), which told me how the sink driver was to work.
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\1.jpg" width = "40%" height = "auto"></img>
+</div><br>
+I looked at the old ECE362 labs to see how they addressed the LED problem, and looked for inspiration. I realized the ECE362 setup primarily used SPI, so I needed to change my approach. While I was able to wire the new sink drivers into the breadboard, I was not able to get the software to work, the testing of the LEDs was unsuccessful as I could not get the LEDs to light up <br>
+After the first instance of the LED drivers, I knew that we had to update our project description on the website, so i began to do that.
+
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+
+
+<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
 <b>Date: February 10th </b><br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br><br>
