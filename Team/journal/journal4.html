@@ -65,6 +65,8 @@ Now our PICO 2 dev board is ready for prototyping and I have refreshed my solder
 
 <!-- COPY PASTE ENTRY
 <h2>===============   Week 4: =================</h2>
+
+ENTRY BEGINS HERE:
 <h4><b>Entry X: -----------------------------------------------------------------</b></h4>
 <b>Date: Month Day </b><br>
 <b>Start Time: X:XX am</b><br>
@@ -74,9 +76,47 @@ Now our PICO 2 dev board is ready for prototyping and I have refreshed my solder
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
+- 1: <a href="Link" target="Description</a><br>
 
 <br>
 -->
+
+
+<h2>===============   Week 5: =================</h2>
+<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+<b>Date: February 10th </b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+Today, I began prototyping the new front panel for our Altair, which would incorporate both the power inputs and the LED and switch matrices. <br>
+I had to get a bunch of components from the ECE shop in order to begin the prototyping build. I looked around the 477 Lab, but did not know where the parts I needed were, and there was no one in lab. So I went up to the ECE shop and got the parts I needed. <br>
+I obtained around 30 red LEDs, 4 switch mounts for 8 switches each, and a bunch of wires for connecting the LEDs to the bound. My collection can be seen below. <br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\1.jpg" width = "40%" height = "auto"></img>
+</div><br>
+I had to look up documentation on the [CTS 208-8 T208](https://www.ctscorp.com/Files/DataSheets/Switches/DIP-Switches/CTS-Switches-DIP-208-Series-Datasheet.pdf) 8 mount slide switches, because I was unsure how they worked with only 16 total pins. I found this part of the datasheet showing me how to connect the pins. <br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\2.png" width = "40%" height = "auto"></img>
+</div><br>
+This photo showed me how to adequately wire up the LEDs. I needed to make sure that each of the 4 8-pin SPST switches actually worked, so I needed a software to test them with, because our emulator was not 100% working yet. <br>
+I decided to download Waveforms from this [link](https://cloud.digilent.com/myproducts/waveform?pc=1&tab=2), because we already had an AD2 and a breakout in house. I then tested each of the switches, following a procedure seen below.
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\3.jpg" width = "40%" height = "auto"></img>
+</div><br>
+As seen from the photo, I have to test each of the 32 LEDs.
+
+Seth asked me to install the Rust toolchain, so I spent some time making sure the install was correct. I download a part of the Rust toolchain from this [website](https://github.com/raspberrypi/picotool), where I followed the install steps. <br>
+
+
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.ctscorp.com/Files/DataSheets/Switches/DIP-Switches/CTS-Switches-DIP-208-Series-Datasheet.pdf" target="_blank">8-pin SPST switches for testing</a><br>
+- 2: <a href="https://cloud.digilent.com/myproducts/waveform?pc=1&tab=2" target="_blank">Waveforms download link</a><br>
+
+
+<br>
 
 <!-- Week 4 -->
 <h2>===============   Week 4: =================</h2>
