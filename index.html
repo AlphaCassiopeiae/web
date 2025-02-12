@@ -87,20 +87,27 @@ This website was based upon a number of source materials, which are elaborated u
 				<div id="content">
 					<h2>Project Name: αCassiopeiae 8800</h2>
 					<h2>Project Functional Description:</h2>
-					<p>We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. This device in its minimally complete form will allow the user to:</p>
+					<p>We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. The user interface for this device is a front panel with control switches and LEDs. This device in its complete form will allow the user to:</p>
 					<ol>
-						<li>Utilize the front panel to write, read, and execute Intel 8080 instructions in memory.</li>
-						<li>Add expansion cards to allow the processor to read and write data over UART, to a disk, etc.</li>
+						<li>Write programs to run on the machine using the front panel. The front panel will provide switches and LEDs such that the user can interact with memory, this way users can read and write Intel 8080 instructions to/from memory to be executed by the CPU card.<\li>
+						<li>Add optional expansion cards to allow more advanced functionality, for example, communication over UART. These cards will be extremely similar to the CPU and memory cards, so they will simply plug into the backplane PCB using DDR4 DIMM connectors. 
+							The user should be able to add/remove these optional cards to achieve the functionality they desire. For our project, we plan on providing a working UART card with custom firmware.</li>
 					</ol>
 	
 					<h1>Components</h1>
+					
 					<h2>Front Panel</h2>
-					<p>The front panel contains 8 status lights, 16 address bit lights, and 8 data bit lights. It includes switches for CPU control, memory examination, and reset functions.</p>
+					<p>The front panel will make up the user interface of our design. It will use LEDs to display information to the user, and that will consist of 8 status lights, 16 address bit lights, and 8 data bit lights. 
+					In terms of user control, the front panel will provide various slide switches for CPU control, memory examination, and reset functions.</p>
 					
 					<h2>Internal Cards</h2>
-					<p>The enclosure houses a base PCB with 5 card slots using DDR4 DIMM connectors. It includes CPU, memory, and UART cards, all based on the RP2350 microcontroller.</p>
-					
-					<h1>Operation</h1>
+					<p>The enclosure houses a backplane PCB with 5 DDR4 DIMM connectors for functionality cards. These cards include CPU, memory, and UART cards, all based on the RP2350 microcontroller. All of these cards will have roughly the same layout, with the firmware/software driving the microcontrollers differentiating the functionality.
+					These cards must be able to operate on the bus, which is heavily inspired by the original S100 bus used in the Altair. With the exception of the CPU and memory cards, the user should be able to add/remove other cards to have the functionality they want (just a UART card for our project).</p>
+
+					<h2>Backplane PCB<h2>
+					<p></p>
+						
+					<h1>Operation</h1> 
 					<p>Users will use the front panel to write, run, and debug i8080 programs. Programs can be entered manually using switches, stored in memory, and executed via the CPU.</p>
 					
 					<h2>Project Specific Design Requirements (PSDRs):</h2>
