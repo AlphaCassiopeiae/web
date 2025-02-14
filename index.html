@@ -94,7 +94,8 @@ This website was based upon a number of source materials, which are elaborated u
 							The user should be able to add/remove these optional cards to achieve the functionality they desire. For our project, we plan on providing a working UART card with custom firmware.</li>
 						<li>Our machine will also be wall-powered, such that the user simply needs to plug it into a standard 120V wall outlet to power the machine. We plan to run all of our components on 3.3V, so we will need to implement some simple step-down voltage regulation to ensure the safety of our components. </li>
 					</ol>
-	
+					
+					<br><br>
 					<h2>Components</h2>
 					<br>
 					<h1>Front Panel</h1>
@@ -117,15 +118,16 @@ This website was based upon a number of source materials, which are elaborated u
 					<p>For powering the system, we are going to try and run everything on 3.3V DC. We also want our system to be wall powered such that the user can just plug the machine into a standard wall outlet and everything should just work. To accomplish this, we are going to use a wall adapter to take the wall power down to 5V. We will then use a buck converter 
 					to bring the 5V DC down to 3.3V DC to power our cards, bus, and front panel. The buck converter will lie on a PCB with other discrete components in a basic circuit to maintain a constant voltage level of 3.3V.</p>
 
-					<!-- probably redundant -->
+					<br<br>
 					<h2>Operation</h2> 
 					<p>Once everything is put together, users will use the front panel to write, run, and debug i8080 programs. Programs can be entered manually using switches, stored in memory, and executed via the CPU. Appropriate output can be displayed on some of the front panel LEDs, or can be sent over UART to another machine.</p>
-					
+
+					<br><br>
 					<h2>Project Specific Design Requirements (PSDRs):</h2>
 					<ol>
-						<li><b>(Software)</b> Rust-based Intel 8080 processor emulation tied to an external clock.</li>
-						<li><b>(Hardware)</b> S-100-inspired 8080 bus protocol via RP2350 PIO with DDR4 DIMM connector.</li>
-						<li><b>(Hardware)</b> Switch and LED matrix for the front panel interfacing with the CPU.</li>
+						<li><b>(Software)</b> Intel 8080 emulator written in Rust that operates from an external clock source.</li>
+						<li><b>(Hardware)</b> Bus implementation that interfaces CPU/memory/UART via RP2350 PIO with DDR4 DIMM connectors, closely mimicking the S100 bus.</li>
+						<li><b>(Hardware)</b> User-controlled slide switch and LED matrix for the front panel interfacing with the CPU.</li>
 						<li><b>(Hardware)</b> 5V to 3.3V step-down power supply using a reference design.</li>
 						<li><b>(Hardware)</b> Serial communication via a UART card with custom firmware.</li>
 					</ol>
