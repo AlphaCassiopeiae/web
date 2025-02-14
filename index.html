@@ -100,7 +100,7 @@ This website was based upon a number of source materials, which are elaborated u
 					<h1>Front Panel</h1>
 					<p>The front panel will make up the user interface of our design. It will use LEDs to display information to the user, and that will consist of 8 status lights, 16 address bit lights, and 8 data bit lights. 
 					In terms of user control, the front panel will provide various slide switches for CPU control, memory examination, and reset functions. These will mostly be slide switches to mimic the original Altair, and these switches will connect directly to the CPU card, and the CPU card will communicate on the bus to write values to memory as needed.
-					The clock generation will also be on the front panel, and will use switches/buttons to allow normal clock operation(2 MHz) and support single-step clock. </p>
+					The clock generation will also be on the front panel, and will use switches/buttons to allow normal clock operation (2 MHz) and support single-step clock. </p>
 
 					<br>
 					<h1>Internal Cards</h1>
@@ -109,7 +109,8 @@ This website was based upon a number of source materials, which are elaborated u
 					
 					<br>
 					<h1>Backplane PCB</h1>
-					<p></p>
+					<p>The backplane PCB will be the motherboard for our system, and it will use 5 DDR4 DIMM connectors to connect to the CPU, memory, and UART cards. The traces connecting the DDR4 connectors will support our bus implementation, which will be driven by the microcontrollers on the CPU/memory/UART cards using the Programmable IO feature of the RP2350.
+					The bus we're implementing is heavily inspired by the S100 bus used for the original Altair. The S100 bus used 100 pin connectors and some exotic voltage levels, including 8V, +/-16V, as well as +/-5V. We are going to try and implement everything using 3.3V, and we will use 100 out of the 288 pins that the DDR4 DIMM connector provides. The complete bus should allow communication between the CPU/memory/UART cards.</p>
 
 					<br>
 					<h1>Power Supply</h1>
