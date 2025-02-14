@@ -114,11 +114,12 @@ This website was based upon a number of source materials, which are elaborated u
 
 					<br>
 					<h1>Power Supply</h1>
-					<p></p>
+					<p>For powering the system, we are going to try and run everything on 3.3V DC. We also want our system to be wall powered such that the user can just plug the machine into a standard wall outlet and everything should just work. To accomplish this, we are going to use a wall adapter to take the wall power down to 5V. We will then use a buck converter 
+					to bring the 5V DC down to 3.3V DC to power our cards, bus, and front panel. The buck converter will lie on a PCB with other discrete components in a basic circuit to maintain a constant voltage level of 3.3V.</p>
 
 					<!-- probably redundant -->
 					<h2>Operation</h2> 
-					<p>Users will use the front panel to write, run, and debug i8080 programs. Programs can be entered manually using switches, stored in memory, and executed via the CPU.</p>
+					<p>Once everything is put together, users will use the front panel to write, run, and debug i8080 programs. Programs can be entered manually using switches, stored in memory, and executed via the CPU. Appropriate output can be displayed on some of the front panel LEDs, or can be sent over UART to another machine.</p>
 					
 					<h2>Project Specific Design Requirements (PSDRs):</h2>
 					<ol>
