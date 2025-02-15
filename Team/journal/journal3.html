@@ -92,12 +92,16 @@ contact course staff.
           <b>Date: February 14th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 6:00pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour--> 
-		Spent this time researching the S100 bus a bit, and also looked into how programming on the original Altair 8800 works. I did this by reading some of the IEEE standard for the S100 bus and watching some YouTube videos in a playlist called “Altair 8800 Instructional Videos” about how to program on the Altair 8800, which our project is trying to mimic. I learned how the various switches on the front panel operate, including the examine switch for examining memory locations and the deposit switch for putting values in memory. I also read about the voltage levels on the original S100 bus, which were some pretty exotic levels including +/-16V, 8V, and +/-5V. The modifications we will make for our project include running everything on 3.3V and using DDR4 DIMM connectors in place of the original 100-pin connectors, although we will be not be using all 288 pins that the connectors provide (less than 100 probably for our desired functionality). I'll draw a rough sketch of the backplane PCB so it is clearer in my mind, seen below.
+		Spent this time researching the S100 bus a bit, and also looked into how programming on the original Altair 8800 works. I did this by reading some of the IEEE standard for the S100 bus and watching some YouTube videos in a playlist called “Altair 8800 Instructional Videos” about how to program on the Altair 8800, which our project is trying to mimic.  I learned how the various switches on the front panel operate, including the examine switch for examining memory locations and the deposit switch for putting values in memory. I also read about the voltage levels on the original S100 bus, which were some pretty exotic levels including +/-16V, 8V, and +/-5V. The modifications we will make for our project include running everything on 3.3V and using DDR4 DIMM connectors in place of the original 100-pin connectors, although we will be not be using all 288 pins that the connectors provide (less than 100 probably for our desired functionality). I'll draw a rough sketch of the backplane PCB so it is clearer in my mind, seen below.
 			<br>
 			<img src="Team/journal/img - member3/week5/Week5J4.JPG" alt="backplane rough schematic" width="600"></img>
 			<br>
 		 Since we now have our RP2350 stamp boards, the next step is getting some Rust running on them so we can start emulating CPU/memory/UART for our functionality cards.
-			<br><br>
+			<br>
+		<a href="http://www.s100computers.com/General%20Images/ieee696spec.pdf">Link to IEEE standard of S100 bus</a>
+			<br>
+		<a href="https://www.youtube.com/watch?v=suyiMfzmZKs&list=PLB3mwSROoJ4KLWM8KwK0cD1dhX35wILBj">Link to Altair 8800 tutorials</a>
+			<br><br><br><br>
 			
 	<!--  Week 5, Entry 3  -->
 	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
@@ -109,7 +113,7 @@ contact course staff.
 			<img src="Team/journal/img - member3/week5/Week5J3.JPG" alt="backplane rough schematic" width="600"></img>
 			<br>
 		Since I don’t think any of us know super specific details about the bus for our project, I plan on doing some research later today on how the S100 bus actually functions and how we need to modify it for our project.
-			<br><br>
+			<br><br><br><br>
 	<!--  Week 5, Entry 2  -->
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
            <b>Date: February 12th </b><br> <!--the date the project meeting or work was performed)-->
@@ -126,10 +130,12 @@ contact course staff.
             <b>Duration: 1.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 		Having learned Rust in the last few weeks, I spent more time reading through the rs80 repository that we are using as reference to better understand how to use Rust for CPU emulation. As a result I have a better understanding of the data types we will be using and how they will work together to emulate the Intel 8080 instruction set. I have an exam later this week so I’m not super focused on doing too much work for our project for the first half of this week, but I will be doing a lot more research later this week to figure out how we are going to emulate CPU, RAM, and UART as I’m sure they will be handled slightly differently.
 			<br>
+		<a href="https://github.com/cbiffle/rs80">Link to reference Rust emulator</a>
 			<br>
-			<br><br>
+			<br><br><br>
 			
 		    <!-- (just copy/paste for Week 3 and going forward  --> 
+			
 			<h2>===============   Week 4: =================</h2>				
 	<!--  Week 4, Entry 3 (just copy/paste this entry section template for the many more enties this week) -->
 	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
@@ -158,6 +164,7 @@ contact course staff.
             <b>Duration: 3 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 		I spent a good amount of time reading and understanding the specs of the RP2350B microcontroller, which we will be using for our project. I did so by reading the datasheet online. As a result I have a better understanding of how our MCUs will interface with other components of our project, and I have a better idea of how to approach our S100-inspired bus. This contributes to our progress because we can now start working on the finer details of bus implementation. We should start prototypying once we get our MCUs and get working on our emulator next. 
 			<br>
+		
 			<br>
 			<br><br>
 			    <h2>===============   Week 3: =================</h2>
