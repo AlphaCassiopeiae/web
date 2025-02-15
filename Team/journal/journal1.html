@@ -89,6 +89,7 @@ contact course staff.
             <li><a href="Team/journal/journal1.html#sec-week2">WEEK 2</a></li>
             <li><a href="Team/journal/journal1.html#sec-week3">WEEK 3</a></li>
             <li><a href="Team/journal/journal1.html#sec-week4">WEEK 4</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week5">WEEK 5</a></li>
            </ul>
 		    <!-- (just copy/paste for Week 3 and going forward  --> 
     <h2 id="sec-prior">===============   PRIOR: =================</h2>
@@ -1334,6 +1335,49 @@ contact course staff.
     <br>
     goodbye all, going to set finish some final bus pin research work next time, and then i can go forward on getting a bus layout done.<br>
 
+    <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+    <b>Date: Feburary 10th, 2025</b><br>
+      <b>Start Time: 1:39 PM</b><br>
+      <b>Duration: 0.5 hours</b><br><br>
+
+      hi all, good afternoon<br>
+      real quickly going to finish mapping out the pin allocations based on the work already done<br>
+      since we'd like to get the card schematics etc. done as soon as we can, i need to finish this mapping as soon as possible<br>
+      i'm laying out the final strategy ill be using to determine the pin count: 16 address pins, 8 data pins, up to 20 pins for timing critical bus control, and 4 pins for SPI control of a MCP23S17 I/O expander for U/I and non timing critical pins<br>
+
+      <strong>1:58 PM</strong><br>
+      - switch to MCP23017 for SCL/SDA 2 pin<br>
+      <br>
+      - A0-A15 (16 pins)<br>
+      - D0-D7 (8 pins)<br>
+      - XRDY (memory ready) (1 pin)<br>
+      - PWAIT (mem/IO wait) (1 pin)<br>
+      - PRDY (IO ready) (1 pin)<br>
+      - PINTE (interrupt enable) (1 pin)<br>
+      - ~PINT (interrupt request) (1 pin)<br>
+      - SINTA (interrupt acknowledge) (1 pin)<br>
+      - ~CLOCK (bus clock) (1 pin)<br>
+      - ~PRESET (reset) (1 pin)<br>
+      - ~PHOLD ("hold" bus control) (1 pin)<br>
+      - UNPROT (memory protection unprotect) (1 pin)<br>
+      - SM1 (first machine cycle of instruction flag) (1 pin)<br>
+      - SOUT (ouput IO cycle) (1 pin)<br>
+      - SINP (input IO cycle) (1 pin)<br>
+      - SMEMR (memory read strobe) (1 pin)<br>
+      - SHLTA (halt) (1 pin)<br>
+      - MWRT (memory write strobe) (1 pin)<br>
+      - ~PWR (write strobe) (1 pin)<br>
+      - PDBIN (data bus in)  (1 pin)<br>
+      - SWO (write-out) (1 pin)<br>
+      - SSTACK (stack operation) (1 pin)<br>
+      - ~POC (clear state) (1 pin)<br>
+      <br>
+      (I/O expander)<br>
+      - SCL (1 pin)<br>
+      - SDA (1 pin)<br>
+      <br>
+      this looks good. at least, it's flexible enough that i think we have the means to go forward.<br>
+      looks like I can start to work on schematic and layout soon.<br>
       <!--
 		*********************************************************************************
 		*********************************************************************************
