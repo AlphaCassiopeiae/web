@@ -1310,6 +1310,30 @@ contact course staff.
         - Due to travel to IEEE ICSC 2025 starting on Feburary 2nd to today at 10 PM, I did not have time to work on the lab project, as I was preoccupied with the conference<br>
         - Checked with team on the specific things worked on this week. Specifically interested in the hardware work with getting the Pico flashed<br>
 
+    <h2 id="sec-week5">===============   Week 5: =================</h2>
+    
+    <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+    <b>Date: Feburary 8th, 2025</b><br>
+      <b>Start Time: 5:30 PM</b><br>
+      <b>Duration: 1.5 hours</b><br><br>
+
+      hi all, good evening<br>
+      just checking in for a short bit...<br>
+      i'd like to get some additional work done on the pin mapping, for which pins we'd actually want taking up PIO pins<br>
+
+      <strong>6:26 PM</strong><br>
+      - i went ahread and dropped all of the VI (vectored interrupt) lines<br>
+      - it wasn't entirely clear to me whether these lines are ever actually used by the CPU in the original Altair<br>
+      - cross referencing the original
+      <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a>,
+      I genuinely cannot find any mention of VI0 through VI7 in any of the schematics, so I can only assume that it's the role of some sort of programmable interrupt controller like the 8259A series<br>
+      <strong>6:49 PM</strong><br>
+      - remark: the 8259A is mentioned in the <a href="https://ia903200.us.archive.org/21/items/Mcs80_85FamilyUsersManual/mcs%208080%20%26%208085%20family%20users%20manual.pdf">Manual for MCS-80/MCS-85</a>,
+      which, from what I understand was a new branding scheme that intel used to group all their existing microcomputer component portfolios together.<br>
+      - the MCS-80 descriptions on that manual are genuinely quite useful for timing/bus information, and may serve as a good future reference.<br>
+    <br>
+    goodbye all, going to set finish some final bus pin research work next time, and then i can go forward on getting a bus layout done.<br>
+
       <!--
 		*********************************************************************************
 		*********************************************************************************
