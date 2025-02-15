@@ -1378,6 +1378,139 @@ contact course staff.
       <br>
       this looks good. at least, it's flexible enough that i think we have the means to go forward.<br>
       looks like I can start to work on schematic and layout soon.<br>
+
+    <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+    <b>Date: Feburary 10th, 2025</b><br>
+      <b>Start Time: 4:30 PM</b><br>
+      <b>Duration: 1.5 hours</b><br><br>
+    
+      hi all, good evening<br>
+      im working on a schematic for our Card Board<br>
+      this is because i want to confirm my priors that we actually have all of the parts/pins we need<br>
+      this should also allow us to make a PCB layout, which can help confirm sizing (height) of the DIMMs<br>
+      i dont want us to commit to buying an enclosure if it wouldnt be able to fit the height of our DIMMs.<br>
+      <br>
+      <strong>5:09 PM</strong><br>
+      <img src="Team/journal/img - member1/week5/dimmsketch.png" alt="sketch of a DDR4 DIMM" width="600"></img>
+      <br>
+      - ABM8-272-T3 (reference oscillator) and W25Q128JVS (reference QSPI flash) are chosen<br>
+      <img src="Team/journal/img - member1/week5/gpiotable.png" alt="screenshot of GPIO function table" width="600"></img>
+      <br>
+      - GPIO pins 0 and 1 are reserved for board specific functionality<br>
+      - (above screenshot from Table 3 (Section 1.2.3) of the <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 datasheet</a>)<br>
+      - notionally, if an MCP23017 (I2C) is populated on the board, then the 16 I/O expander signals on the board are active<br>
+      - otherwise if a JST connector is populated, those two pins are connected to the JST connector<br>
+      - this can determine of a board will use those pins for additional lanes (F3 on 0 and 1), or as a UART transceiver (F2 on 0 and 1)<br>
+      - providing this flexibility will reduce the total number of boards that will need to be designed<br>
+      - we are intending on keeping this number at 3 (front, backplane, card)<br>
+      <br>
+      <strong>5:23 PM</strong><br>
+      - according to <a href="https://www.jedec.org/sites/default/files/docs/MO-309E.pdf">JEDEC MO-309E</a>,
+      the nominal board thickness is 1.2 milimeters. it also has a bevy of other details about the board outline. i'll use this when setting up the board outline during PCB layout<br>
+      - for convenience, I've obtained a copy of the standard using my JEDEC account, and shared it with my team members<br>
+      <br>
+      <strong>5:41 PM</strong><br>
+      - for the 22 other pins im consider routing 20 of them into vias<br>
+      - where you can either jumper them to the front or rear contact of the board<br>
+      - and for the last 2 pins to also have the design optionality to jumper those two into a 2nd I/O expander for... reasons (let's call it prototype flexibility)<br>
+      - shouldnt be an issue with signalling but ill need to do some minimal modelling at least<br>
+      <br>
+      <strong>5:56 PM</strong><br>
+      - remark: how mountable are ddr4 dimm connectors?<br>
+      - would choosing a connector with a higher pitch be nicer? we dont need 200+ connections<br>
+      <br>
+      did some research on the part selection and some other additional design decisions id need for the schematic. next step is to actually start putting the art down<br>
+
+    <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+    <b>Date: Feburary 12th, 2025</b><br>
+      <b>Start Time: 5:00 AM</b><br>
+      <b>Duration: 4.5 hours</b><br><br>
+    
+      good morning<br>
+      going to start laying out the RP2350 (card DIMM board schematic), based on the info from previous sessions<br>
+      i'm most interested in seeing how this validates my priors, and also this should pave the way to PCB design, where we can validate the height of the DIMM<br>
+      <br>
+      <strong>5:30 AM</strong><br>
+      <img src="Team/journal/img - member1/week5/sch01.png" alt="schematic symbol of RP2350B" width="600"></img>
+      <br>
+      - rp2350 QFN 80 is not in the base kicad std lib<br>
+      - imported the symbol from the reference design<br>
+      <br>
+      <strong>5:52 AM</strong><br>
+      - on the topic of decoupling:<br>
+      <img src="Team/journal/img - member1/week5/sch02.png" alt="decoupling capacitor schematic" width="600"></img>
+      <br>
+      - section 2.2.1 of the <a href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">hardware design guide</a> recommends 11 100 nF decoupling caps for each VDD<br>
+      - they say 53,54 and 68,69 can be doubled up to use the same cap in case of space constraints on single sided population boards, so i've done that<br>
+      - i've also added a 10 uF bulk cap to the schematic (not in guidance) to be place close, but slightly farther away from the chip<br>
+      - we do not use the ADC so i will not be making specific consideration to a filtered power plane a la 3V3A filtered w/ ferrite bead etc.<br>
+      <br>
+      <strong>6:09 AM</strong><br>
+      misc internal voltage regulation design (referenced)<br>
+      <img src="Team/journal/img - member1/week5/sch03.png" alt="vreg support discretes schematic" width="600"></img>
+      <br>
+      <br>
+      <strong>6:40 AM</strong><br>
+      <img src="Team/journal/img - member1/week5/sch04.png" alt="vreg support discretes schematic" width="600"></img>
+      <br>
+      misc wiring for the W25Q128JVS QSPI chip<br>
+      the reference board allows for 2 QSPI chips, with the chip select determined by GPIO0<br>
+      we dont need this, so while reference has a lot of optionality w/ DNF (do not fit) jumpers, this design can be simpler is this case<br>
+      <br>
+      <strong>6:57 AM</strong><br>
+      external oscillator (referenced)<br>
+      <img src="Team/journal/img - member1/week5/sch05.png" alt="external oscillator schematic" width="600"></img>
+      <br>
+      <br>
+      <strong>7:16 AM</strong><br>
+      <img src="Team/journal/img - member1/week5/usbccc.png" alt="usb-c spec screenshot" width="600"></img>
+      <br>
+      USB C CC line passive Rd resistor specification (see 4.5.1.2.1 on <a href="https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf">usb-c specification</a><br>
+      <img src="Team/journal/img - member1/week5/sch06.png" alt="usb connector schematic" width="600"></img>
+      <br>
+      USB CC 5.1k pulldown (NOTE: do not short CCs prior to pulldown! was an issue on rpi4 launch to <a href="https://www.scorpia.co.uk/2019/06/28/pi4-not-working-with-some-chargers-or-why-you-need-two-cc-resistors/">great publicity</a>)<br>
+      <br>
+      <strong>8:18 AM</strong><br>
+      <img src="Team/journal/img - member1/week5/sch07.png" alt="gpio jumpers schematic" width="600"></img>
+      <br>
+      - working on GPIO mapping<br>
+      - 4 pins can jumper to either exposed signals (2 I2C buses, or 1 I2C bus and 1 UART tx/rx), or straight to bus<br>
+      - 12 other pins can be configured between bus lines<br>
+      <br>
+      <strong>8:33 AM</strong><br>
+      <img src="Team/journal/img - member1/week5/sch08.png" alt="schematic overview" width="600"></img>
+      <br>
+      initial schematic without external connectors<br>
+      things to review:<br>
+      - check NCP1117 handling in the case where the 3V3 side isnt passive (situation where USB is plugged in while entire device is under external [other] power source..)<br>
+      - check edge board substrate thickness, pitch, etc.... is it easy to route? can we fit the jumper vias with the current pitch? swap from DDR4?<br>
+      - find proper JST connector for GPIO pins 0-3<br>
+      <br>
+      remark: check errata... do we need bias on GPIO40-GPIO47 due to weak/faulty internal tri-state?<br>
+      remark: reel supply of RP2350A/B not reliable, look for options<br>
+      remark: 4.7u guidance assumes pin 32 is far away from voltage regulation... check this assertion later<br>
+      remark: consider making the 12 latter jumpers have copper trace defaults<br>
+      cutting/scoring as an exception may be less annoying than jumping always<br>
+      <br>
+      <strong>9:14 AM</strong><br>
+      - digi key doesnt have footprint for the ZTE connector we were looking at<br>
+      - might switch over to <a href="https://www.digikey.com/en/products/detail/amphenol-cs-fci/10145226-0241N13LF/10233356?utm_source=snapeda&utm_medium=aggregator&utm_campaign=buynow">this connector</a> b/c i really really cannot find these symbols and footprints<br>
+      <br>
+      <strong>9:22 AM</strong><br>
+      - DIMMs have a weird outline (for insertion/rocking reasons, whatever), but will need to create the outline for this<br>
+      - likely easier to make a sketch in a CAD tool and import the generated DXF solve into KiCAD for the final board outline later<br>
+      - remark: i thought there would ne 288 available signals on a DIMM, but it seems only 77 are available? i guess some are doubled up<br>
+      - i've done the schematic generously (36 bus signals, 32 extended signals, 16 address signals, 8 data signals, totaling 92 signals). this might be too much for the current connector choice <br>
+      - i really like DIMMs because they're locking connectors, if this isnt possible we'll need to find another locking connector form factor<br>
+      <br>
+      <strong>9:32 AM</strong><br>
+      - yeah like... i cant find documentation supporting the "77 pins" idea<br>
+      - maybe the symbol is just weird?<br>
+      - remark: i need to find a symbol from another DDR4 DIMM connector to compare. maybe molex's makes more sense<br>
+      <br>
+      i'm really happy with the work i've done so far with the schematic.<br>
+      in terms of further work on this, i need to connect all the I/O nets to the appropriate edge board connector (i may need to make a custom symbol for this)<br>
+      i also need to figure out parts for our other connectors like the USB-C connector and the JST connector for our UART functionality<br>
       <!--
 		*********************************************************************************
 		*********************************************************************************
