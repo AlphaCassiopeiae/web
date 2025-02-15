@@ -86,7 +86,90 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Seth Deegan</h2>
-	<!-- (just copy/paste for Week 3 and going forward  --> 
+
+		
+			<h2>===============   Week 5: =================</h2>
+
+			<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
+				   <b>Date: Februrary 14 </b><br> <!--the date the project meeting or work was performed)-->
+					<b>Start Time: 1:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+					<b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<div>Today instead of getting embassy to work, I went back to researching on how to implement the emulator because I now get how to implement the CPU. You can make the CPU a struct with methods like step(instruction) that will parse the instruction, and modify the registers/execute memory transactions based on the instruction.</div>
+			<div>Now that I knew this, I then looked through the <a href="https://deramp.com/downloads/intel/8080%20Data%20Sheet.pdf">Intel 8080 datasheet</a> again to look at how the opcodes for each instruciton are formated. As I read, I realized that the opcodes were actually the same for multiple different instructions and that only register values of a different arrangement of bits differentiated them. 8080i is not like RISC-V where the opcode is the entire instruction. This means that I will need to write a parser that will take the opcode and the register values and determine what instruction to execute based on the opcode and the register values.</div>
+			<div>After understanding this, I then looked at the <a href="https://github.com/cbiffle/rs80">rs80 emulator</a> again to see how he implemented parsing the instructions. 
+			
+			<div>My next steps will be to </div>
+			
+
+			<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+				   <b>Date: Februrary 12 </b><br> <!--the date the project meeting or work was performed)-->
+					<b>Start Time: 12:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+					<b>Duration: 1 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<div>As a continuation of this time on the 12th, I asked ChatGPT a variety of questions about RTOSes and how interrupts/allocating CPU time between proceses work to better understand how process switching works in operating systems. This wasn't exactly relavant to our project, however it gave me a better perspective on how interrupts work and when they are executed so I knew their differnce with classic polling loops for this reason I think we will do interrupts to step through/run/stop the CPU.</div>
+			<div><b>Thy questions/answers:</b></div>
+			<div>
+				does px4 autopilot use an rtos when it runs on a pixhawk? yes nuxtt os
+				<br>
+				<br>what's happens between when a person clicks a button on a keyboard and the program recieves it on linux? what syscalls or whatever are involved? x11/wayland, can use poll, read syscalls. poll freezes execution of a program. can spawn multiple threads to wait for things in an os.
+				<br>
+				<br>can you manipulate cpu time, the scheduling method, etc. in linux? yes cgroups
+				<br>can you cahnge scheduling type in windows? kinda ya you can set priority
+				<br>
+				<br>can i see the list of processes and their ids in linux? ya
+				<br>
+				<br>what does %cpu usage mean in task manager technically? isn't the cpuu techincally running at 100% most of the time beause it's running monitoring loops? it's the percent of time the cpu is active with user requests. most programs just wait for interrupts triggered from syscalls to resume execution. they don't need to run 24/7. only if you make a while (1) loop will it run 24/7.
+				<br>
+				<br>what's the diff between proceses, subprocesses, and ids in windows task manager cpu. ids mean all threads
+				<br>
+				<br>does rust have a callback queue/event loop like js? no it just spawns threaded runtimes
+				<br>
+				<br>when you write a driver for linux do you interact with syscalls? are syscalls the only interface/api to a kernal? no you use kernal space interfaces. kernal interfadce links hardware to os. syscalls link os to program. open() syscall will call the open function defined in the driver. same with read() write().
+			</div>
+
+			<div><b>END Q/A</b></div>
+
+			<div>Finally I learned about memory ICs and broswed digikey on how to find them. I later learned Brian had already selected one, however this gave me the opprotunity to understand what was available out there, the sizes of memory ICs, and the different protocols they used.</div>
+			
+			<div>My next steps will be to try to get the embassy crate to work with our Pico repository so that we can program our microcontroller with Rust using that.</div>
+			
+			
+			<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+				   <b>Date: Februrary 12 </b><br> <!--the date the project meeting or work was performed)-->
+					<b>Start Time: 10am </b><br> <!--the time you began the meeting/work for this entry-->
+					<b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+					<div>Today because I now shifted my focus from coding to emulator to coding for the microcontroller, I decided to create a new package in our main Rust repository dedicated to just programming the Pico. I did this instead of just starting on a Rust repo because the Pico was just our development board and was not going to have the same layout/interface/board abstraction layer as our final board design. I then added the cargo dependencies from the example <a href="https://github.com/rp-rs/rp-hal/tree/main/rp235x-hal-examples">RP2350 example repository</a> that I used previously to first progam the RP2350 with Rust. I ran into some missing linker files which I added from the original repo to mine, however even after adding those I ran into other linker errors that did not relate to missing files. This is the one I got stuck on:</div>
+					<div>rust-lld: error: undefined symbol: _critical_section_1_0_release␍
+					</div>
+					<div>I think it got stuck because the rp235x-hal package is not correctly built for the version that is published on Cargo.</div>
+					<div>I was unable to fix this so instead of trying to further debug how to get the rp235x-hal package to work, I researched again if any other Raspberry Pi microcontroller HAL cargo crates existed. I came across this <a href="https://www.raspberrypi.com/news/rust-on-rp2350/">Rust on the RP2350 blog post again</a> and in addition to mentioning the rp-rs project that publishes the  rp235x-hal, they also mentioned another project called <a href="https://embassy.dev/">Embassy</a>.</div>
+					<div>I looked at Embassy's website and realized it had the unique property of async/await which I was familiar with Javascript. I used ChatGPT to help me understand how async/await worked in Rust vs how it did in Javascript. I learned that in Rust, async/await is compiled to a bunch of state machines and the order of execution/waiting hands idle time over to following instructions. I also learned difference between concurrent and cooperative running. I also learned what rust runtimes like tokio do. Finally, I learned what RTOSes do and how they differ from regular operating systems. I did this because the Embassy project noted that it was a faster alternative to traditional Real Time Operating Systems at the cost of maybe more code. RTOSes are more lightweight than traditional operating systems and directly use interrupts to handle events and poll for new event priorities maybe every 5 or so insturctions vs time-based CPU slicing which traditional OSes do.</div>
+					<div>This was all of interest to our project because I wanted to know if async/await or RTOS would be a better/easier implentation for our emulator/microcontroller over standard interrupts/polling loop. I determined async/await would be okay and that we could proceed with embassy.</div>
+
+					
+		
+			<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+				   <b>Date: Februrary 10 </b><br> <!--the date the project meeting or work was performed)-->
+					<b>Start Time: 10am </b><br> <!--the time you began the meeting/work for this entry-->
+					<b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<div>Today I focused on beginning writing the emulator because I thought that would be easier than starting directly on the embedded interface code. Because I have not coded in Rust a awhile, I needed to review data structures so that I knew how to implement the data structures to hold the registers for the emulated CPU and methods to perform operatoins on the CPU. I began going through the beginning of the <a href="https://doc.rust-lang.org/book">Rust Book</a> again. I recalled how structs, enums, mutability, ownership, and implements work. These functions of the language should be enough for me to be able to program the emulator.</div>
+			<div>I also realized when beginning to write the emulator that we would need separate code for our memory card that was to also operate on a clock cycle and send signals from our bus on the GPIO pins over SPI to a memory module on our memory board. Because of this I started another Rust package in our workspace for the memory and drafted memory get/recieve methods.</div>
+			<div>Midway through drafting the architecture, I got confused how our Rust package for the emulator was going to react to clock signals. I thought implemting the code needed for our microcontroller from the top down (GPIO signals first, emulator second) would help clear this up.</div>
+			<div>Now that I switched to thinking about how the emulator would handle clock signals, I was researching whether we should use just an infinite loop to poll for external clock signals or create interrupt functions. This led me to do more research on their differences and review what actually happens during an interrupt routine as we learned in 362.</div>
+			<div>I ran out of the time for the day so I decided to leave this research of interrupts vs loop for the next day.</div>
+					
+		
+					
+			<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+				   <b>Date: Feb 8 </b><br> <!--the date the project meeting or work was performed)-->
+					<b>Start Time: 9:30</b><br> <!--the time you began the meeting/work for this entry-->
+					<b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+
+			<div>Today I focused on debugging why the pico was not flashing with <a href="https://github.com/rp-rs/rp-hal/tree/main/rp235x-hal-examples">example Rust-based code</a>.</div>
+			<div>I was trying to flash it using the elf2uf2-rs tool, however, I found a Github issue that said the elf2uf2-rs tool cannot flash the RP2350 yet and that I should use picotool instead. So I downloaded picotool and changed what tool was being used to flash in the `.cargo/config.toml` file and ran `cargo run --target thumbv8m.main-none-eabihf` and it worked!</div>
+			<div>What's annoying is that you have to unplug and replugin the USB every time and hold the BOOTSEL button when flashing in order to get it into flashing mode for UF2. However, once it flashes, the program runs immedeately.</div>
+			<div>Now that we can program the microcontroller with Rust, we can begin writing the Rust code to listen to bus signals on the GPIO pins as well as begin integrating it with basic emulator code to say enter instructions with switches and trigger a clock signal with the push of a button. That will be my next step.</div>
+					
+		 
 
 	<h2>===============   Week 4: =================</h2>
 			
