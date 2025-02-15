@@ -96,9 +96,19 @@ contact course staff.
 					<b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			<div>Today instead of getting embassy to work, I went back to researching on how to implement the emulator because I now get how to implement the CPU. You can make the CPU a struct with methods like step(instruction) that will parse the instruction, and modify the registers/execute memory transactions based on the instruction.</div>
 			<div>Now that I knew this, I then looked through the <a href="https://deramp.com/downloads/intel/8080%20Data%20Sheet.pdf">Intel 8080 datasheet</a> again to look at how the opcodes for each instruciton are formated. As I read, I realized that the opcodes were actually the same for multiple different instructions and that only register values of a different arrangement of bits differentiated them. 8080i is not like RISC-V where the opcode is the entire instruction. This means that I will need to write a parser that will take the opcode and the register values and determine what instruction to execute based on the opcode and the register values.</div>
-			<div>After understanding this, I then looked at the <a href="https://github.com/cbiffle/rs80">rs80 emulator</a> again to see how he implemented parsing the instructions. 
+			<div>After understanding this, I then looked at the <a href="https://github.com/cbiffle/rs80">rs80 emulator</a> again to see how he implemented parsing the instructions. He had a custom txt file format that stored all the instructions and their format and what rust code to execute for them. This txt file was then ingested by a separate package from the emulator that was responsible for code genning all of Rust code to handle the instructions. As he notes in his documentation, there are "256 possible 8-bit opcodes. Instead, the input file contains 59 instruction definitions which are processed and specialized." This is a great approach and probably what we should do for our project. In fact, how he implemented the emulator is exactly what we should do for our project so I then freaked out a bit how we could possibly make our emulator different.</div>
+			<div>After talking with Brian, Brian reminded me that the rs80 emulator did not handle memory wait, waiting for actual memory to respond and that in our emulator we would need to do that.</div>
+			<div>Therefore, I came up with my next steps which will be:</div>
+			<ul>
+				<li>I think I'm just going to get the Emulator programming on the Pi</li>
+				<li>Run and hook up the RS80 simulator to our embedded code</li>
+				<li>Simulate bus signals on the GPIO pins</li>
+				<li>Hook it up to the pins and LEDs on the board</li>
+				<li>Then use the IO expander we have to expand the signals like we will do on our final board.</li>
+				<li>Modify the rs80 code to handle memory waiting stages so that is is machine-cycle based and not instruction-cycle based.</li>
+			</ul>
+			<div>And that's our software development plan!</div>
 			
-			<div>My next steps will be to </div>
 			
 
 			<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
