@@ -1335,6 +1335,18 @@ contact course staff.
     <br>
     goodbye all, going to set finish some final bus pin research work next time, and then i can go forward on getting a bus layout done.<br>
 
+    <h4>==== Mini-summary ====</h4>
+    <strong>What did you work on?</strong><br>
+    I did additional research on the pins that we need for the bus.<br>
+    <strong>How did you work on it?</strong><br>
+    I consulted with the Altair 8800's <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a> and the intel <a href="https://ia903200.us.archive.org/21/items/Mcs80_85FamilyUsersManual/mcs%208080%20%26%208085%20family%20users%20manual.pdf">Manual for MCS-80/MCS-85</a>.<br>
+    <strong>What was the result and what did you learn from it?</strong><br>
+    We made some additional changes (like dropping the VI lines), and I learned about the role of the 8259 in a more general MCS-80 system.<br>
+    <strong>How did this contribute to the project progress?</strong><br>
+    In order to progress on creating the schematic for any of the boards, we need to get our communication bus defined. This pin research helps finalize some of that.<br>
+    <strong>What are the next steps that must be taken?</strong><br>
+    We need to finish up the initial bus pin mapping, such that we can get to the schematic, and eventually PCB design.<br>
+
     <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
     <b>Date: Feburary 10th, 2025</b><br>
       <b>Start Time: 1:39 PM</b><br>
@@ -1378,7 +1390,19 @@ contact course staff.
       <br>
       this looks good. at least, it's flexible enough that i think we have the means to go forward.<br>
       looks like I can start to work on schematic and layout soon.<br>
-
+      
+      <h4>==== Mini-summary ====</h4>
+      <strong>What did you work on?</strong><br>
+      I finalized work on our initial pin mappings (what specific function we assign to each of the RP2350's 48 GPIO pins).<br>
+      <strong>How did you work on it?</strong><br>
+      I cross-referenced against older notes I made, and continued to make use of the 8800's <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a>.<br>
+      <strong>What was the result and what did you learn from it?</strong><br>
+      All of our initial pin mappings are done, and now I have a clearer idea about which processor status lines are critical for real time operation, and which status lines are really only useful for the front panel.<br>
+      <strong>How did this contribute to the project progress?</strong><br>
+      Now that the pin mapping are done, I can go forward and set up the schematic for the card, which is the hardware design that I'd like to start with. Making the schematic for the card will also help with the schematics of the front panel board, which also needs a RP2350B chip.<br>
+      <strong>What are the next steps that must be taken?</strong><br>
+      The very next step is to work on the schematic and PCB layout for the card board<br>
+  
     <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
     <b>Date: Feburary 10th, 2025</b><br>
       <b>Start Time: 4:30 PM</b><br>
@@ -1420,7 +1444,19 @@ contact course staff.
       - would choosing a connector with a higher pitch be nicer? we dont need 200+ connections<br>
       <br>
       did some research on the part selection and some other additional design decisions id need for the schematic. next step is to actually start putting the art down<br>
-
+      
+      <h4>==== Mini-summary ====</h4>
+      <strong>What did you work on?</strong><br>
+      I made a sketch to get a rough idea of what size and layout I want the card PCB DIMM to have. I made some part selections for our schematic, based on the RP2350B's reference hardware design. Additionally, I also made some design decisions, such as including solder jumpers, and allowing for a second I/O expander to be populated, to increase our I/O flexibility, and allow for the same board design to be used for different purposes.<br>
+      <strong>How did you work on it?</strong><br>
+      I referenced the <a href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Hardware design with RP2350 manual</a>, the <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 datasheet</a> itself, and <a href="https://www.jedec.org/sites/default/files/docs/MO-309E.pdf">JEDEC MO-309E</a> for details on DDR4 DIMMs.<br>
+      <strong>What was the result and what did you learn from it?</strong><br>
+      I finalized some additional design decisions related to part selection and solder jumpers, and learned about some specifics to hardware design with the RP2350B, and some mechanical constraints related to DDR4 DIMMs.<br>
+      <strong>How did this contribute to the project progress?</strong><br>
+      With this done, I pretty much have all the information I need to start laying out the schematic uninterrupted.<br>
+      <strong>What are the next steps that must be taken?</strong><br>
+      The very next step? Work on the schematic! finally! and i would love to get the PCB layout, and at least some of the routing done soon.
+  
     <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
     <b>Date: Feburary 12th, 2025</b><br>
       <b>Start Time: 5:00 AM</b><br>
@@ -1511,7 +1547,20 @@ contact course staff.
       i'm really happy with the work i've done so far with the schematic.<br>
       in terms of further work on this, i need to connect all the I/O nets to the appropriate edge board connector (i may need to make a custom symbol for this)<br>
       i also need to figure out parts for our other connectors like the USB-C connector and the JST connector for our UART functionality<br>
-
+      <h4>==== Mini-summary ====</h4>
+      <strong>What did you work on?</strong><br>
+      I made a good first pass on the schematic, setting up all the decoupling caps, the voltage regulator support circuits, the QSPI flash, the I/O expanders, the USB-C port, the development voltage regulator, and followed all their design requirements.<br>
+      <strong>How did you work on it?</strong><br>
+      For working on the RP2350B, I referenced the <a href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Hardware design with RP2350 manual</a>, and the <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 datasheet</a>. I also heavily referenced the <a href="https://datasheets.raspberrypi.com/rp2350/Minimal-KiCAD.zip">reference KiCAD design</a>.<br>
+      For setting up the pull-down CC lines on the USB port, I referenced the <a href="https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf">USB-C specification</a>.<br>
+      For writing up of the MCP23017 I/O expanders, I referenced <a href="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf">its datasheet</a>.<br>
+      <strong>What was the result and what did you learn from it?</strong><br>
+      The core of the schematic is done! I learned a lot about the specifics of designing with the RP2350B, since I've only designed boards for the STM32F0 series previously.<br>
+      <strong>How did this contribute to the project progress?</strong><br>
+      This is a big step to getting the schematic completely finished! A good stepping stone to that juicy PCB layout.<br>
+      <strong>What are the next steps that must be taken?</strong><br>
+      I need to recheck all the remarks I made, check the GPIO40-47 errata, check the chip supply, check the 4.7u capacitor placement guidance, try making the solder jumpers have defaults. I also need to add connectors to the schematic, and I may need to make a custom symbol for our edge connector.<br>
+  
     <h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
     <b>Date: Feburary 12th, 2025</b><br>
       <b>Start Time: 10:14 AM (during ManLab)</b><br>
@@ -1542,7 +1591,8 @@ contact course staff.
     <strong>10:23 AM</strong><br>
     remark, i did mention to the course staff about possible supply issues with the RP2350B chips. we may need to consider a backup plan<br>
     writing down here that setsuna did recommend possibly using multiple time steps of some lines to assert bus control signals, essentially serializing the bus control, something we can do with the RP2040's pin count.<br>
-    if it comes to that, that's an avenue we can pursue, since ripping chips off of evaluation boards in undesireable.
+    if it comes to that, that's an avenue we can pursue, since ripping chips off of evaluation boards in undesireable.<br>
+    <br>
     <strong>10:01 AM</strong><br>
     Logical connections (for PSDRs):<br>
     - CPU <-> RAM (memory strobe messages, memory ready messages, memory WAIT messages)<br>
@@ -1554,23 +1604,48 @@ contact course staff.
     <br>
     I ended up talking to Dr. Walter, and he made a very good point about the fact that we are basically designing 3 different boards.<br>
     if we create detailed enough functional specifications for each board, then they could all constitute a PSDR. I will work on this.<br>
+    
+    <h4>==== Mini-summary ====</h4>
+    <strong>What did you work on?</strong><br>
+    I worked on coming up with ideas for our PSDRs, and also coming up with an initial backup plan for if RP2350 supply doesn't work out.<br>
+    <strong>How did you work on it?</strong><br>
+    I talked with course staff (primarily Setsuna, and Dr. Walter) about what changes we should make to our PSDRs, and ideas of what to do if we only have RP2040s available.<br>
+    <strong>What was the result and what did you learn from it?</strong><br>
+    I think we have a stronger plan of what to do for the PSDR changes, and a good idea for our backup plan.
+    <strong>How did this contribute to the project progress?</strong><br>
+    Our PSDRs need to be revamped, since they're too simple right now. I've taken charge of rewriting them, and this is a good brainstorming session towards that.<br>
+    <strong>What are the next steps that must be taken?</strong><br>
+    I need to formalize our PSDRs and write detailed functional descriptions of each of our cards that we can use as PSDRs.<br>
 
-  <h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
+  <h4><b>Quick Remark: -----------------------------------------------------------------</b></h4>
   <b>Date: Feburary 13th, 2025</b><br>
-    <b>Start Time: 9:50 AM</b><br>
-    <b>Duration: 0 hours</b><br><br>
-    remark: ugh the pullup here for MCP23017's nReset is duped<br>
+    <b>9:50 AM</b><br>
+    remark: ugh the pullup resistors for the two different MCP23017's nReset are duped<br>
     they're different nets but they could be the same one<br>
 
-  <h4><b>Entry 7: -----------------------------------------------------------------</b></h4>
+  <h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
   <b>Date: Feburary 14th, 2025</b><br>
     <b>Start Time: 7:32 PM</b><br>
     <b>Duration: 4 hours </b><br><br>
+    - our RP2350 Stamp XLs and Stamp carrier boards arrived! they look to all be in good condition<br>
     - working on transposing my journal from Discord over to the team website<br>
     - i talked a bit with seth, and we agreed that to reduce the amount of time that journals take to transpose (hours sometimes), we want to switch over to using Notion for our jounrals.<br>
     - this journal transition will happen next week<br>
     - i am also iterating through the more specific PSDR descriptions. I'm following the recommendation to create a PSDR for each card implementation.<br>
     - please refer to the team website for the PSDR changes<br>
+    
+    <h4>==== Mini-summary ====</h4>
+    <strong>What did you work on?</strong><br>
+    I worked on transposing my journal from Discord over to the journal website. I also started writing functional descriptions for our boards (to be used in PSDRs).
+    <strong>How did you work on it?</strong><br>
+    I mostly copy over my Discord notes with their relevant timestamps, and then add/modify an additional mini summary of what happened in that entry to be more clear.<br>
+    <strong>What was the result and what did you learn from it?</strong><br>
+    That this journal transposing process takes way too long, we need to find some other way of publishing project journals.<br>
+    <strong>How did this contribute to the project progress?</strong><br>
+    Now that my journals are up on the website, me and my team can now reference them on the site, instead of having to go to the Discord server.<br>
+    <strong>What are the next steps that must be taken?</strong><br>
+    Seth and I came up with a plan to transition all of our team journals over to Notion, this plan will be enacted during next week, where we'll migrate all of our jounrals.<br>
+
       <!--
 		*********************************************************************************
 		*********************************************************************************
