@@ -1511,6 +1511,66 @@ contact course staff.
       i'm really happy with the work i've done so far with the schematic.<br>
       in terms of further work on this, i need to connect all the I/O nets to the appropriate edge board connector (i may need to make a custom symbol for this)<br>
       i also need to figure out parts for our other connectors like the USB-C connector and the JST connector for our UART functionality<br>
+
+    <h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
+    <b>Date: Feburary 12th, 2025</b><br>
+      <b>Start Time: 10:14 AM (during ManLab)</b><br>
+      <b>Duration: 1 hour</b><br><br>
+    hi, good morning<br>
+    - after some discussion in ManLab, looks like we should get all of our PSDR ducks in a row.<br>
+    - since i'm the one who is most familiar with our design requirements, i'll start to work on iterating the different design requirements of our system<br>
+    - hopefully we can pluck out some descriptions to use as better and more complete PSDRs<br>
+    <br>
+    here's some of my notes about what i think is some functionality not currently described in PSDRs we can use.<br>
+    - this computer is something that requires a lot of different boards to talk to each other<br>
+    - we want design 3 boards: the front panel, the backplane, and the generic card<br>
+    - the backplane is responsible for converting some unregulated voltage source into 3.3V power, which can then be distributed to the rest of the system<br>
+    - let's lock this in, let's take 5V 3A power from a USB-C port on the back of the backplane board, which we then need to distribute throughout the backplane<br>
+    - remark: we may need multiple voltage regulator blocks throughout the backplane, because of the distance that power and signals will need to traverse (we'd like to step 5V to 3.3V as close to the module connector as possible, but this is mutually exclusive from having multiple module connectors. the solution? multiple voltage regulators across the backplane)<br>
+    - our bus is inspired by the Altair 8800's original 8080-based bus, but with some changes for ease of implementation<br>
+    on the bus, we map:<br>
+    - 8 data signals DATA{0-7}<br>
+    - 16 address signals ADDR{00-15}<br>
+    - 36 bus control signals BUS{00-25} (bus control signals {04-07, 20-23} are always mapped to the same PIOs, the others can be swapped depending on the use case) remark: elaborate<br>
+    - 32 non-real time signals (16 managed by 1 I/O expander, 16 managed by another I/O expander)<br>
+    there's a couple of non-trivial interfaces that we care about:<br>
+    - since we have so many UI elements (more than 20 switches and LEDs each), the front panel should use expanders to address LEDs, and matrices to detect switch presses.<br>
+    - the front panel must be able to throw the correct instruction onto the bus in sequence to both jump and modify the 8080 CPU's program counter<br>
+    - the front panel must be able to perform both glitchless clock activation/deactivation, and be able to assert signals for single-stepping mode. the CPU and memory boards must be able to understand these signals<br>
+    - when the CPU talks to memory, the CPU must be able to understand memory ready, I/O ready, and memory WAIT signals with memory strobes to allow for I/O operations to complete<br>
+    <br>
+    <strong>10:23 AM</strong><br>
+    remark, i did mention to the course staff about possible supply issues with the RP2350B chips. we may need to consider a backup plan<br>
+    writing down here that setsuna did recommend possibly using multiple time steps of some lines to assert bus control signals, essentially serializing the bus control, something we can do with the RP2040's pin count.<br>
+    if it comes to that, that's an avenue we can pursue, since ripping chips off of evaluation boards in undesireable.
+    <strong>10:01 AM</strong><br>
+    Logical connections (for PSDRs):<br>
+    - CPU <-> RAM (memory strobe messages, memory ready messages, memory WAIT messages)<br>
+    - Panel <-> CPU (assert bus control [via interrupt acknowledge message], set jmp instruction, set program counter)<br>
+    - Panel <-> CPU (drive clock signal, receive clock signal, receive single-step mode, drive single-step mode)<br>
+    - Panel <-> LEDs (LEDs driven via I/O expansion [I2C])<br>
+    - Panel <-> Switches (Switches polled via matrix) <br>
+    these can all be validated regardless of if the other feature works<br>
+    <br>
+    I ended up talking to Dr. Walter, and he made a very good point about the fact that we are basically designing 3 different boards.<br>
+    if we create detailed enough functional specifications for each board, then they could all constitute a PSDR. I will work on this.<br>
+
+  <h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
+  <b>Date: Feburary 13th, 2025</b><br>
+    <b>Start Time: 9:50 AM</b><br>
+    <b>Duration: 0 hours</b><br><br>
+    remark: ugh the pullup here for MCP23017's nReset is duped<br>
+    they're different nets but they could be the same one<br>
+
+  <h4><b>Entry 7: -----------------------------------------------------------------</b></h4>
+  <b>Date: Feburary 14th, 2025</b><br>
+    <b>Start Time: 7:32 PM</b><br>
+    <b>Duration: 4 hours </b><br><br>
+    - working on transposing my journal from Discord over to the team website<br>
+    - i talked a bit with seth, and we agreed that to reduce the amount of time that journals take to transpose (hours sometimes), we want to switch over to using Notion for our jounrals.<br>
+    - this journal transition will happen next week<br>
+    - i am also iterating through the more specific PSDR descriptions. I'm following the recommendation to create a PSDR for each card implementation.<br>
+    - please refer to the team website for the PSDR changes<br>
       <!--
 		*********************************************************************************
 		*********************************************************************************
