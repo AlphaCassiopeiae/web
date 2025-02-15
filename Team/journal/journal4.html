@@ -83,27 +83,125 @@ Links and sources are found below, for ease of access:<br>
 
 
 <h2>===============   Week 5: =================</h2>
+<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+<b>Date: February 14th </b><br>
+<b>Start Time: 6:30 pm</b><br>
+<b>Duration: 2 hours</b><br><br>
+
+<b>Content</b><br>
+I needed to refresh my soldering skills, since I was rusty with soldering without the use of Flux, and the last time I had soldered without it was five months ago, during my Co-Op.<br>
+I decided to watch this video, which showed me how to solder without flux, and how to properly tin the soldering iron. I also learned how to properly clean the soldering iron, which I had not done before.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\4.1.png" width = "40%" height = "auto"></img>
+</div><br>
+Since I was still unsure of my abilities, I decided to take an old PCB and solder some header pins without flux to practice. I went to a solder station, heated up the iron, and got to work soldering.<br>
+One of the things I figured out quite quickly was that although the iron was hot enough, I needed to let the solder sit for a very exactly amount of time, or it would either group up or not set.<br>
+There was a method I began to employ, where I would heat the pad for exactly 2 seconds, put the solder and other things, and wait exactly 1 second, before removing the solder. This allowed me to consistently solder, with very little error.<br>
+An image of me soldering is found below:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\4.2.jpg" width = "40%" height = "auto"></img>
+</div><br>
+Another thing I found quite quickly without flux was that the solder smoke would quickly rise. I needed to offset this by adding a fan pushing the smoke away from me at all times.<br>
+After I employed both these tactics and protected myself thoroughly through eye and mask protection (from the smoke), I was able to solder 16 pins onto a practice PCB, successfully learning how to solder without flux.<br>
+The prototype PCB I soldered is found below, with the 16 pins I soldered completely attached:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\4.3.jpg" width = "40%" height = "auto"></img>
+</div><br>
+Another thing which I had to do after the practice PCB was complete was check for connectivity. This would make sure all the solder points actually attached where they were supposed to.<br>
+After testing all 16 points, they all beeped when I attached the multimeters' probes to them, so I knew that the soldering was successful.<br>
+While soldering, I noticed that the heat distribution on the pad was inconsistent, leading to uneven solder joints. To fix this, I adjusted the tip angle of the soldering iron to ensure full contact with the pad before applying solder. This significantly improved joint consistency. <br>
+Another challenge I faced was that some pins were not wicking solder properly. I realized this was due to oxidation on the header pins. To resolve this, I lightly sanded the pins with fine-grit sandpaper before soldering, which helped the solder flow better. <br>
+To further refine my technique, I experimented with different solder wire thicknesses. I found that using a thinner 0.6mm solder wire gave me better control over the amount of solder applied, preventing excessive buildup on the pads. <br>
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.youtube.com/shorts/SCFWatyjGHQ" target="_blank">Soldering a PCB without Flux: Precautions and procedure</a><br>
+- 2: <a href="https://www.instructables.com/How-to-solder/" target="_blank">Refreshing myself on how to solder effectively</a><br>
+<br>
+
+<!-- ENTRY -->
+
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: February 14th </b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 3 hours</b><br><br>
+
+<b>Content</b><br>
+I began finishing the prototype for the front panel of the Altair. I had to make sure that the LEDs and switches were properly connected to the breadboard, and that the power was properly connected to the breadboard. <br>
+I decided to switch from the PSU to the AD2 for digital testing, because the AD2 would stop any short circuits from interfering with my work. The PSU I used is show below, which was the one which might have malfunctioned my chips. <br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\3.1.jpg" width = "40%" height = "auto"></img>
+</div><br>
+I had to fix the sink driver issue, so I tried to make it on one specific part of the breadboard to isolate it.<br>
+The sink driver was acting up again, so I decided to watch this [video](https://www.youtube.com/shorts/jXq5t6bl6MM) on how to properly wire up the sink driver, but when searching online, I could not find anything outside of a support document which was published.<br>
+<br>
+I found this old documenation of a similar issue being documentated, but it was not relevant to our situation.<br>
+I talked to Niraj and he told me it was likely a breadboard issue, but we could also switch to the TLC59210IN, which would also drive the clk as well as the pins, so we will look into that.<br>
+Afterwards, I wired the breadboard based on the schematic below, which I knew would work. However, when I went to try it, only one LED would light at a time, so I went back to the drawing board.<br>
+When we actually go to create the board, I will be sure to install the TLC59210IN, because it is a better alternative to the TLC59211IN, which is known to have issues.<br>
+This is the new chip I will install, seen below, rather than the TLC59211IN, which is known to have issues.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\3.2.png" width = "40%" height = "auto"></img>
+</div><br>
+For now, I need to isolate the issue with the sink driver. Because I thought that the breadboard was the issue, whether that be a stray wire or extra impedance interfering with the digital signals, I moved back to the original, smaller breadboard.<br>
+Below are my attempts to isolate the issue with the sink driver, by testing one LED and a time and gradually adding more.
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\3.3.jpg" width = "40%" height = "auto"></img>
+</div><br>
+I plan to make a concrete schematic of this circuit on post it to our Github schematic page later.
+I noticed that even after switching to the smaller breadboard, the issue with the sink driver persisted. To rule out a potential power delivery issue, I measured the voltage at different points in the circuit. I found that the voltage drop across some connections was higher than expected, indicating poor contact in certain areas. <br>
+To further isolate the problem, I used a logic analyzer to monitor the signals going into the TLC59211IN. The clock and data signals appeared clean, but the latch signal was occasionally unstable. This suggested that there could be noise interference or timing issues in the circuit. <br>
+Before moving forward with the TLC59210IN, I plan to compare its timing requirements with the TLC59211IN to ensure that it will integrate smoothly into our circuit without requiring major redesigns. <br>
+
+<b>Citations</b><br>
+Links and sources are found below, for ease of access:<br>
+- 1: <a href="https://www.youtube.com/shorts/jXq5t6bl6MM" target="_blank">Circuit to try to isolate broken sink driver</a><br>
+- 2: <a href="https://e2e.ti.com/support/power-management-group/power-management/f/power-management-forum/1345987/tlc59211-seeking-tlc59211in-alternatives?tisearch=e2e-quicksearch&keymatch=tlc59211" target="_blank">Old issue with TLC59211IN</a><br>
+- 3: <a href="https://www.ti.com/lit/ds/symlink/tlc59210.pdf?ts=1739589660843&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTLC59210" target="_blank">New TI chip for use in actual PCB</a><br>
+- 4: <a href="https://modwiggler.com/forum/viewtopic.php?t=235049" target="_blank">Instructions on creating a better front panel</a><br>
+<br>
+
+<!-- ENTRY -->
+
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
-<b>Date: February 12th </b><br>
+<b>Date: February 14th </b><br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br><br>
 
 <b>Content</b><br>
-I began finishing the prototype for the front panel of the Altair. I had to make sure that the LEDs and switches were properly connected to the breadboard, and that the power was properly connected to the breadboard. <br>
-I decided to switch from the PSU to the AD2 for digital testing, because the AD2 would stop any short circuits from interfering with my work. <br>
-I had to fix the sink driver issue, so I tried to make it on one specific part of the breadboard to isolate it.<br>
-The sink driver was acting up again, so I decided to watch a video on how to properly wire up the sink driver, but I could not find anything.<br>
-I found this old documenation of a similar issue being documentated, but it was not relevant to our situation.<br>
-I talked to Niraj and he told me it was likely a breadboard issue, but we could also switch to the TLC59210IN, which would also drive the clk as well as the pins, so we will look into that.<br>
-
+I began to work on the prototype for the Front panel with the sink drivers, LEDs, and the shift registers.<br>
+Most importantly, I needed to find a way to test the sink drivers, because I was unsure if they were working properly. I found this portion on the datasheet, which was a useful reference and an example on how to wire up LEDS successfully.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\2.1.png" width = "40%" height = "auto"></img>
+</div><br>
+I wired it up like in the example, and used the wire crimpers to get the optional length of resistors such that the components would fix exactly onto our board.<br>
+Since we are going for a minimal design, I thought it would be best to start that practice, even with the breadboards.<br>
+My work can be seen below:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\2.2.jpg" width = "40%" height = "auto"></img>
+</div><br>
+I knew that I needed to minimize the use of wiring, so I revisited some old ECE362 Labs in order to see how the circuit was wired optimally, because the circuit in ECE362 was quite large and a hassle to keep neat.<br>
+I also needed to consider the pinout of the TLC59211IN, which I found that the voltage and ground pins were strangely connected, unlike most LED drivers. This can be seen below in the datasheet references.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\2.3.png" width = "40%" height = "auto"></img>
+</div><br>
+I also watched this video on best wiring practices and layout practices for PCB design, because I knew I needed to improve my skills if we want to create something that small which still works.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\2.4.png" width = "40%" height = "auto"></img>
+</div><br>
+I am likely going to return to the lab to test the sink drivers and recrimp the LEDs, because I am unsure if they are working properly.<br>
+I ran into an issue where some LEDs were not lighting up as expected, despite being wired according to the datasheet. After debugging, I realized that some connections were not making proper contact with the breadboard. I used a multimeter to check continuity and identified a few loose crimps that needed to be redone. <br>
+To further test the sink drivers, I used an oscilloscope to probe the output pins while toggling input signals. The voltage levels confirmed that the drivers were switching correctly, but I noticed a slight delay in response time. This could indicate a need for pull-down resistors to stabilize the inputs. <br>
+I experimented with different resistor values to determine the optimal configuration for balancing brightness and current draw. A 1kΩ pull-down resistor seemed to provide a stable signal without excessive current consumption. <br>
+Since PCB layout will be critical, I started drafting an initial schematic in KiCad to visualize how the components will be positioned and connected. This helped me identify potential routing challenges early on. <br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
-- 1: <a href="https://e2e.ti.com/support/power-management-group/power-management/f/power-management-forum/1345987/tlc59211-seeking-tlc59211in-alternatives?tisearch=e2e-quicksearch&keymatch=tlc59211" target="_blank">Old issue with TLC59211IN</a><br>
-- 2: <a href="https://e2e.ti.com/support/power-management-group/power-management/f/power-management-forum/1345987/tlc59211-seeking-tlc59211in-alternatives?tisearch=e2e-quicksearch&keymatch=tlc59211" target="_blank">Old issue with TLC59211IN</a><br>
-
+- 1: <a href = "https://www.ti.com/lit/ds/symlink/tlc59211.pdf?ts=1739519117322&ref_url=https%253A%252F%252Fwww.mouser.at%252F" target="_blank">Datasheet for TLC59211IN, a sink driver</a><br>
+- 2: <a href = "https://www.youtube.com/shorts/3qbz26m9SPA" target="_blank">Proper wiring tutorial found on youtube.</a><br>
 <br>
 
+<!-- ENTRY -->
 
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: February 10th </b><br>
@@ -115,31 +213,39 @@ Today, I began prototyping the new front panel for our Altair, which would incor
 I had to get a bunch of components from the ECE shop in order to begin the prototyping build. I looked around the 477 Lab, but did not know where the parts I needed were, and there was no one in lab. So I went up to the ECE shop and got the parts I needed. <br>
 I obtained around 30 red LEDs, 4 switch mounts for 8 switches each, and a bunch of wires for connecting the LEDs to the bound. My collection can be seen below. <br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week5\1.jpg" width = "40%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week5\1.1.jpg" width = "40%" height = "auto"></img>
 </div><br>
 I had to look up documentation on the [CTS 208-8 T208](https://www.ctscorp.com/Files/DataSheets/Switches/DIP-Switches/CTS-Switches-DIP-208-Series-Datasheet.pdf) 8 mount slide switches, because I was unsure how they worked with only 16 total pins. I found this part of the datasheet showing me how to connect the pins. <br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week5\2.png" width = "40%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week5\1.2.png" width = "40%" height = "auto"></img>
 </div><br>
 This photo showed me how to adequately wire up the LEDs. I needed to make sure that each of the 4 8-pin SPST switches actually worked, so I needed a software to test them with, because our emulator was not 100% working yet. <br>
 I decided to download Waveforms from this [link](https://cloud.digilent.com/myproducts/waveform?pc=1&tab=2), because we already had an AD2 and a breakout in house. I then tested each of the switches, following a procedure seen below.
 <div id="banner">
-	<img src="Team\journal\img - member4\week5\3.jpg" width = "40%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week5\1.3.jpg" width = "40%" height = "auto"></img>
 </div><br>
 As seen from the photo, I have to test each of the 32 LEDs.
 
 Seth asked me to install the Rust toolchain, so I spent some time making sure the install was correct. I download a part of the Rust toolchain from this [website](https://github.com/raspberrypi/picotool), where I followed the install steps.<br>
 I pushed my final changes to the github repository becase I had to leave for a meeting, but I let Seth finish the rest of the toolchain setup and documentation <br>
-
-
+The tool chain I had to install is found below, which I had to install on my local machine. <br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week5\1.4.png" width = "40%" height = "auto"></img>
+</div><br>
+I encountered an issue while wiring the switches to the LEDs because the pinout on the CTS 208-8 T208 was slightly different from what I initially expected. I had to use a multimeter to confirm connectivity before proceeding. <br>
+While testing the LEDs, I noticed that some of them had inconsistent brightness. After checking the resistances, I found that a few of the LEDs had higher forward voltages than expected, so I replaced them with spares. <br>
+I also experimented with different resistor values to optimize brightness while maintaining power efficiency. A 150Ω resistor seemed to provide a good balance. <br>
+During the Rust toolchain setup, I ran into a dependency issue where <code>cargo</code> failed to locate <code>rustc</code>. I fixed this by ensuring that my <code>PATH</code> variable included the correct installation directory. <br>
+Before pushing to GitHub, I verified that my changes did not interfere with existing build scripts by running <code>cargo check</code>, ensuring the Rust environment was correctly set up. <br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
 - 1: <a href="https://www.ctscorp.com/Files/DataSheets/Switches/DIP-Switches/CTS-Switches-DIP-208-Series-Datasheet.pdf" target="_blank">8-pin SPST switches for testing</a><br>
 - 2: <a href="https://cloud.digilent.com/myproducts/waveform?pc=1&tab=2" target="_blank">Waveforms download link</a><br>
-
-
+- 3: <a href="https://github.com/raspberrypi/picotool" target="_blank">Picotool necessary for testing our RP on Rust</a><br>
 <br>
+
+<!-- WEEK 4 BEGINS -->
 
 <!-- Week 4 -->
 <h2>===============   Week 4: =================</h2>
