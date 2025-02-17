@@ -89,6 +89,7 @@ Links and sources are found below, for ease of access:<br>
 <div id="content">
    <h4>Table of Contents</h4>
    <ul>
+	   <!-- <li><a href="Team/journal/journal4.html#week6">Week 6 (February 15 - 21)</a></li> -->
 	   <li><a href="Team/journal/journal4.html#week6">Week 6 (February 15 - 21)</a></li>
 	   <li><a href="Team/journal/journal4.html#week5">Week 5 (February 8 - 14)</a></li>
 	   <li><a href="Team/journal/journal4.html#week4">Week 4 (February 1 - 7)</a></li>
@@ -114,21 +115,34 @@ The issue found with the multiple accounts can be seen below.<br>
 	<img src="Team\journal\img - member4\week6\1.1.png" width = "33%" height = "auto"></img>
 </div><br>
 Next, I decided to do some research on how an I/O expander works. I knew that with 36 ports, we would eventually need at least one for our design.<br>
-I decided to research the [MCP23008](https://www.microchip.com/wwwproducts/en/MCP23008) I/O expander, because it was a common I/O expander. Although we might not use it in the final design, it will be good to know.<br>
+I decided to research the <a href="" target="_blank">MCP23008</a> I/O expander, because it was a common I/O expander. Although we might not use it in the final design, it will be good to know.<br>
 From the datasheet, I was able to figure out that the 8 ports on the chip were all bidirectional, so we could use the 8 ports as inputs to the RP2350.<br>
 The datasheet can be seen below, with bidirectional ports.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week6\1.2.png" width = "33%" height = "auto"></img>
 </div><br>
-I also found this [video](https://www.youtube.com/watch?v=LyRON_EK8Q4) online, detailing how to use an I/O expander for an application where the GPIO pins outnumber the ports.
+I also found a video online, detailing how to use an I/O expander for an application where the GPIO pins outnumber the ports. I watched this video, and some important parts are below.<br>
+After this, I was able to find another video on YouTube that was actually using a RP pico, so I able to gain incredible insight with that.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week6\1.3.png" width = "33%" height = "auto"></img>
+</div><br>
+I was scared because an older video mentioned that GP7 could be write only, which would mess up our plans. When I started wiring, I made sure to wire right to left such that the rightmost switch was GP0 and the leftmost was GP15.<br>
+I also noticed during the video that a maximum of 8 I/O expanders could be used, so I made sure to keep that in mind. We probably won't hit that limit, but it is good to know.<br>
+I will likely be EXACTLY mimicing the image seen below for the hardware prototype. After I am done with this, we will do all the software testing on this and there will not be a substantial need for another prototype board, for now.<br>
+The image I will be mimicing is seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\1.4.png" width = "33%" height = "auto"></img>
+</div><br>
+Also, for each of the 3 DP switch segments, I will need to create a level shifter for each of the segments. This will look like below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\1.5.png" width = "33%" height = "auto"></img>
 </div><br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
-- 1: <a href="https://ww1.microchip.com/downloads/en/devicedoc/21919e.pdf" target="_blank">Datasheet for MCP23008</a><br>
+- 1: <a href="https://www.microchip.com/wwwproducts/en/MCP23008" target="_blank">Datasheet for MCP23008</a><br>
 - 2: <a href="https://www.youtube.com/watch?v=LyRON_EK8Q4" target="_blank">How to use MCP23008 to expand GPIO</a><br>
+- 3: <a href="https://www.youtube.com/watch?v=BtAAOXPCuHc" target="_blank">MCP23008 expander with raspberry pi</a><br>
 <br>
 
 <h2 id = "week5">===============   Week 5: =================</h2>
