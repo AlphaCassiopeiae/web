@@ -123,6 +123,8 @@ This website was based upon a number of source materials, which are elaborated u
 						<li><b>(Hardware)</b> An ability to provide a regulated power supply is fulfilled by the backplane board, which includes a 5V to 3.3V step-down power supply using a reference buck converter design.</li>
 						<li><b>(Software)</b> An ability to emulate the Intel 8080 processor in software is achieved by the emulator software, written in Rust to decode and execute the full instruction set with accurate cycle timing and interrupt management. Unline many other emulators, which simulate instructions serially, this emulator is designed to emulate 8080 machine cycles, which respect concepts such as waiting for I/O operations. The system is called by, and makes calls to, various parallel bus PIO assembler routines.</li>
 						<li><b>(Software)</b> An ability to manage parallel bus data exchange is provided by the communications software, which is implemented as a series of PIO assembler routines, to be assembled and processed by client software (such as the CPU, RAM, and front panel software). The PIO assembler is able to perform clock recovery off of the bus, provide calls to emulator code at the start of bus transactions, and allow for multi-device control of the same data lines on the bus.</li>
+						<br>
+						<li><b>(Stretch, Hardware)</b>An ability for a UART card to implement the UART protocol, using I/O control lines (separate from memory control lines), and tranceive the information to an external UART port.</li>
 					</ol>
 				</div>
 				
