@@ -87,21 +87,23 @@ This website was based upon a number of source materials, which are elaborated u
 				<div id="content">
 					<h2>Project Name: αCassiopeiae 8800</h2>
 					<h2>Project Functional Description:</h2>
-					<p>We plan to create a miniaturized version of the Altair 8800, one of the first microcomputers. The user interface for this device is a front panel with control switches and LEDs. This device in its complete form will provide the following functionality:</p>
+					<p>We plan to create a miniaturized version of the Altair 8800, one of the first personal microcomputers. Our system is implemented as 4 different PCBs, which are comprised of 3 unique PCB designs. </p>
 					<ol>
-						<li>The front panel will provide the ability to write programs to run on the machine using the front panel. The front panel will provide switches and LEDs such that the user can interact with memory, this way users can read and write Intel 8080 instructions to/from memory to be executed by the CPU card.</li>
-						<li>The user should be able to add optional expansion cards to allow more advanced functionality, for example, communication over UART. These cards will be extremely similar to the CPU and memory cards, so they will simply plug into the backplane PCB using DDR4 DIMM connectors. 
-							The user should be able to add/remove these optional cards to achieve the functionality they desire. For our project, we plan on providing a working UART card with custom firmware.</li>
-						<li>Our machine will also be wall-powered, such that the user simply needs to plug it into a standard 120V wall outlet to power the machine. We plan to run all of our components on 3.3V, so we will need to implement some simple step-down voltage regulation to ensure the safety of our components. </li>
+						<li>The design is comprised of a Front Panel PCB, a backplane PCB, and a multi-function card PCB.</li>
+						<li>A 44-pin bus interface provides 16-address lines, 8 data lines, and 20 bus control lines. The bus implementation is driven by the Programmable I/O (PIO) feature of Raspberry Pi microcontrollers, which allows for the configuration of state machines to allow for custom serial and parallel I/O.</li>
+						<li>Delivery of bus signals and 3.3V power is facilitated by the backplane PCB. The backplane PCB connects to each card PCB via a DDR4 DIMM connector, and to the front panel PCB via a series of flat flex connectors.</li>
+						<li>The user should be able to add optional expansion cards to allow more advanced functionality, for example, communication over UART. These additional cards interface with the same bus interface as the other cards do.	The user should be able to add/remove these optional cards to achieve the functionality they desire. For our project, as a stretch goal, we plan on providing a working UART card with custom firmware, using the same PCB design as our CPU and RAM cards.</li>
+						<li>Our machine will be powered via a USB-C 5V/3A rated power supply. The USB-C connector connects to a receptacle on the backplane board, which regulates it down to the 3.3V level required for our system.</li>
 					</ol>
-					
-					<br><br>
 					<h2>Components</h2>
-					<br>
 					<h1>Front Panel</h1>
-					<p>The front panel will make up the user interface of our design. It will use LEDs to display information to the user, and that will consist of 8 status lights, 16 address bit lights, and 8 data bit lights. 
-					In terms of user control, the front panel will provide various slide switches for CPU control, memory examination, and reset functions. These will mostly be slide switches to mimic the original Altair, and these switches will connect directly to the CPU card, and the CPU card will communicate on the bus to write values to memory as needed.
-					The clock generation will also be on the front panel, and will use switches/buttons to allow normal clock operation (2 MHz) and support single-step clock. </p>
+					<p>The front panel will make up the user interface of our design. It will use an array of reverse mounted SMT LEDs (such as the KingBright AA3528SECKT) to display information to the user, of which consists of 16 address bit lights, 8 data bit lights, and up to 8 different status lights.<br>
+					The front panel is implemented using an RP2350B, making use of an ABM8-272-T3 external crystal oscialltor, and W25Q128JVS 128MB external flash.<br>
+					In terms of user control, the front panel will provide various slide switches for CPU control, memory examination, and reset functions. For the toggle dual-throw interface on the original Altair 8800, these will be implemented using slide switches. Whereas, the momentary dual-throw switches will be each implemented using two (2) tactile button switches.<br>
+					The address and data LEDs can either be driven off of the bus directly, or via the microcontroller (to reflect the current state of each slide switch), which is chosen via a selection chip (based on the device's examine, single-step state).<br>
+					The clock generation will also be on the front panel, and will use switches/buttons to allow normal clock operation (2 MHz) and support single-step clock (asserting the single-step signal in this mode). In order to assert address control, the front panel must begin a routine, where it asserts an interrupt, and drives the data lines to form a JMP instruction on-the-fly.<br>
+					This board is intended to be mounted externally, meaning that the solder mask and silkscreen will be exposed at the front of the device. The front panel features a layout and silkscreen design that is reminiscent of the original Altair 8800's front panel to a reasonable level of aesthetic fidelity.<br>
+					The board connects to the backplane via a series of flat flex connectors.</p>
 
 					<br>
 					<h1>Internal Cards</h1>
