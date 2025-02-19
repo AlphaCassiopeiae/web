@@ -107,8 +107,9 @@ This website was based upon a number of source materials, which are elaborated u
 
 					<br>
 					<h1>Internal Cards</h1>
-					<p>The enclosure houses a backplane PCB with 5 DDR4 DIMM connectors for functionality cards. These cards include CPU, memory, and UART cards, all based on the RP2350 microcontroller. All of these cards will have roughly the same layout, with the firmware/software driving the microcontrollers differentiating the functionality.
-					These cards must be able to operate on the bus, which is heavily inspired by the original S100 bus used in the Altair. With the exception of the CPU and memory cards, the user should be able to add/remove the UART card if they want that functionality or not.</p>
+					<p>
+						For this project, the PCB design for the CPU, RAM, and UART cards is identical, and the functionality is differentiated on the matter of the firmware loaded, the state of various jumpers on the PCB (to allow for the changing of I/O circuits), and the population of certain components (such as I/O expanders, UART connectors, etc.). Each board integrates the RP2350B microcontroller (with an external ABM8-272-T3 crystal oscillator and W25Q128JVS 128MB external flash). Each board features an internal USB-C connector, allowing for the board to be optionally self-powered during UF2 programming scenarios. Each board also features an SWD connector to allow for external programming. Bus and power signals are broken out into a DDR4 DIMM edge connector, which interfaces with the DDR4 DIMM receptacle on the backplane PCB. Based on the firmware implementation, the device can emulate either an the Intel 8080 processor OR providing at least 4 KB of addressable memory for program execution (for example for use with 4K BASIC) OR a UART device that responds to I/O bus operations, and tranceives them to an external UART port.
+					</p>
 					
 					<br>
 					<h1>Backplane PCB</h1>
