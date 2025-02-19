@@ -94,6 +94,7 @@ This website was based upon a number of source materials, which are elaborated u
 						<li>Delivery of bus signals and 3.3V power is facilitated by the backplane PCB. The backplane PCB connects to each card PCB via a DDR4 DIMM connector, and to the front panel PCB via a series of flat flex connectors.</li>
 						<li>The user should be able to add optional expansion cards to allow more advanced functionality, for example, communication over UART. These additional cards interface with the same bus interface as the other cards do.	The user should be able to add/remove these optional cards to achieve the functionality they desire. For our project, as a stretch goal, we plan on providing a working UART card with custom firmware, using the same PCB design as our CPU and RAM cards.</li>
 						<li>Our machine will be powered via a USB-C 5V/3A rated power supply. The USB-C connector connects to a receptacle on the backplane board, which regulates it down to the 3.3V level required for our system.</li>
+						<li>All components are mounted on a two-piece alumiunum extruded enclosure, with the front panel mounted with machine screws on the front, the backplane riding on the mounting "ribs" within the alumiunum shell, each card mounted on the DIMM receptacles of the backplane, and two separate mechanical-only rear plates mounted with machine screws on the back of the device, separate as to allow for the two parts of the enclosure to slide apart even after assembly, with the removal to the top two front panel machine screws.</li>
 					</ol>
 					<h2>Components</h2>
 					<h1>Front Panel</h1>
@@ -111,19 +112,10 @@ This website was based upon a number of source materials, which are elaborated u
 						For this project, the PCB design for the CPU, RAM, and UART cards is identical, and the functionality is differentiated on the matter of the firmware loaded, the state of various jumpers on the PCB (to allow for the changing of I/O circuits), and the population of certain components (such as I/O expanders, UART connectors, etc.). Each board integrates the RP2350B microcontroller (with an external ABM8-272-T3 crystal oscillator and W25Q128JVS 128MB external flash). Each board features an internal USB-C connector, allowing for the board to be optionally self-powered during UF2 programming scenarios. Each board also features an SWD connector to allow for external programming. Bus and power signals are broken out into a DDR4 DIMM edge connector, which interfaces with the DDR4 DIMM receptacle on the backplane PCB. Based on the firmware implementation, the device can emulate either an the Intel 8080 processor OR providing at least 4 KB of addressable memory for program execution (for example for use with 4K BASIC) OR a UART device that responds to I/O bus operations, and tranceives them to an external UART port.
 					</p>
 					
-					<br>
 					<h1>Backplane PCB</h1>
-					<p>The backplane PCB will be the motherboard for our system, and it will use 5 DDR4 DIMM connectors to connect to the CPU, memory, and UART cards. The traces connecting the DDR4 connectors will support our bus implementation, which will be driven by the microcontrollers on the CPU/memory/UART cards using the Programmable IO feature of the RP2350.
-					The bus we're implementing is heavily inspired by the S100 bus used for the original Altair. The S100 bus used 100 pin connectors and some exotic voltage levels, including 8V, +/-16V, as well as +/-5V. We are going to try and implement everything using 3.3V, and we will use 100 out of the 288 pins that the DDR4 DIMM connector provides. The complete bus should allow communication between the CPU/memory/UART cards.</p>
-
-					<br>
-					<h1>Power Supply</h1>
-					<p>For powering the system, we are going to try and run everything on 3.3V DC. We also want our system to be wall powered such that the user can just plug the machine into a standard wall outlet and everything should just work. To accomplish this, we are going to use a wall adapter to take the wall power down to 5V. We will then use a buck converter 
-					to bring the 5V DC down to 3.3V DC to power our cards, bus, and front panel. The buck converter will lie on a PCB with other discrete components in a basic circuit to maintain a constant voltage level of 3.3V.</p>
-
-					<br><br>
-					<h2>Operation</h2> 
-					<p>Once everything is put together, users will use the front panel to write, run, and debug i8080 programs. Programs can be entered manually using switches, stored in memory, and executed via the CPU. Appropriate output can be displayed on some of the front panel LEDs, or can be sent over UART to another machine.</p>
+					<p>
+						The backplane PCB is mounted internally to the enclosure, and features as least 3 DDR4 DIMM receptacles.<br>
+						The PCB provides a regulated power supply, which includes a 5V to 3.3V step-down power supply using a reference buck converter design. 5V/3A power is provided externally via a USB-C connector mounted on the backplane board. This ensures stable voltage levels for all onboard components, preventing overvoltage damage while maintaining efficient power delivery to the CPU, memory, front panel, and any expansion cards. The backplane facilitates power delivery to the CPU and RAM cards via DDR4 DIMMs, and to the front panel via a series of FFC connectors. The board is laid out in such a way that there is even power/voltage distribution throughout the board.</p>
 
 					<br><br>
 					<h2>Project Specific Design Requirements (PSDRs):</h2>
