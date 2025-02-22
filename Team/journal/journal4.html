@@ -111,25 +111,33 @@ Links and sources are found below, for ease of access:<br>
 <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
 <b>Date: February 21 </b><br>
 <b>Start Time: 9:30 am</b><br>
-<b>Duration: X hours</b><br><br>
+<b>Duration: 2 hours</b><br><br>
 
 <b>Content</b><br>
 The third Raspbery Pi Stamp XL board came today, so I had to spent some time making sure it was operable because it looks like some of the pins were soldered already.<br>
 I initially put the flexy pins in the breadboard as instructed from their website, but I realized that it would not match the configuration we were desiring, so I removed the flexy pins to put them in the right way. A photo of the initial incorrect configuration is seen below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week6\X.X.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week6\4.1.jpg" width = "33%" height = "auto"></img>
 </div><br>
 I realized that I had to desolder the pins to ensure there would be no conflicts in the future, so I began learning how to do so. I first watched the following video below:<br>
+Below is a photo of me following the procedure for desoldering with solder wick.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week6\X.X.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week6\4.2.jpg" width = "33%" height = "auto"></img>
 </div><br>
 I was able to desolder some of the pins, but I realized halfway through that the pins were already electrically connected, so there was no point in soldering them. After which, I choose to resolder all of the pins in the proper mounting positions.<br>
 I then put the flexy pins in the breadboard in the correct configuration, and I was able to get the RP to work with the breadboard. I will likely be using this configuration for the final prototype board.<br>
+After which, I started to update the website with the appropriate schematics.<br>
+I started finalizing the hardware prototype, using WaveForms and staticIO as my debugging tools of choice.<br>
+I put in all the I2C lines and got everything working, through trial and error with testing each switch, sink driver line, and I/O expansion port.<br>
+The final prototype looks as below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week6\X.X.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week6\4.3.jpg" width = "33%" height = "auto"></img>
 </div><br>
-After which, I started to update the website with the appropriate schematics and documents, as well as references.
-
+I got started on the KiCad schematic for the whole front panel, which I had to redo because my initial prototype was incorrect. However, I ran out of time as I had to leave for another meeting.<br>
+With the Raspberry Pi Stamp XL properly configured and operational, the next step involved verifying its communication with peripheral components. The I2C bus was a primary focus, as its stability would determine the success of interfacing with the I/O expanders. Initial tests with the oscilloscope confirmed signal integrity, but occasional noise indicated a need for better grounding and shielding.<br>
+To improve signal stability, additional capacitors were placed near the data lines, and the pull-up resistors were adjusted based on recommended values from the datasheets. A series of test scripts were run to confirm that all expected devices responded correctly. Debugging was aided by using a logic analyzer to capture transactions, ensuring address recognition and proper ACK responses.<br>
+Once I2C communication was stable, the focus shifted to integrating the front panel controls. LED indications were tested under different load conditions to confirm expected brightness levels, and switch debouncing strategies were considered. The overall design was reviewed to ensure future PCB integration would be straightforward.<br>
+With these improvements, the hardware prototype is progressing toward finalization. The next step will involve refining the software for more efficient polling and considering interrupt-based methods for handling switch inputs. This will further optimize the response time of the interface.<br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
@@ -137,48 +145,90 @@ Links and sources are found below, for ease of access:<br>
 - 2: <a href="https://www.youtube.com/watch?v=bG7yW9FigJA" target="_blank">Tutorial for desoldering pads</a><br>
 <br>
 
-<!-- ENTRY BEGINS HERE -->
+<!-- ENTRY BEGINS HERE: DONE-->
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
 <b>Date: February 20 </b><br>
 <b>Start Time: 10:00 am</b><br>
 <b>Duration: 3 hours</b><br><br>
 
 <b>Content</b><br>
-
-[PHOTO]
+During this session, I really needed to finish the hardware prototype, because as Professor Walter stated, we were very behind on prototyping and should have been creating PCBs at the given time.<br>
+First, I needed to find the proper resistors to get the sink driver to work as intended. The old resistor values, the 150 Ω resistors, were not drawing nearly enough power to control the 592TLC11IN, so I needed to find a new value.<br>
+I revisited the datasheet for the 592TLC11IN, and found that the maximum current draw was 200 mA, so I needed to find a resistor that would draw that much current or less. I found that an equation detailed in the datasheet [1] that would meet my exact specifications, so I needed to do the math to calculate the proper values.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week6\3.3.png" width = "33%" height = "auto"></img>
 </div><br>
+I found that the resistor values I needed was closest to 220 or 330 Ω, Because they were the closest to my specifcations. I found this interesting graph on the datasheet [1] showcasing the performance of the sink driver with different resistor values.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\3.1.png" width = "33%" height = "auto"></img>
+</div><br>
+I swapped out the final resistors, and the final decision was operable for the LEDs and switches.<br>
+Next, I needed to make room for the I2C serial data and clock, so I connected wires to where these segments would go, in white.<br>
+I knew that I had my LED segments done, but I still needed a I/O expander for the 16 switches on the front panel, as well as the 8 switches for bus operations.<br>
+I went back to the ECE shop to look for spare I/O expanders and was able to find 3 spare ones.<br>
+After the I/O expanders were installed, I decided to work with a smaller resistance value, the one given in the datasheets, there were some good resources showing me the switching characteristics of the sink driver, as seen below [1].<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\3.4.png" width = "33%" height = "auto"></img>
+</div><br>
+These values set a good benchmark for me, and I was able to implement the proper resistors and know the expected results of the sink driver. This will be very useful, as I am certain that proper resistance will play a key factor in our project, and slight differences might cause errors.<br>
+Although I was fairly certain on my resistor values, I still needed to verify, so I decided to use the support website they had for engineering applications, found in the datasheet and seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\3.2.png" width = "33%" height = "auto"></img>
+</div><br>
+I created a discussion post and installed all 24 220Ω resistors, so our board could progress.
+With the LED driver circuit functioning as expected, the next challenge was ensuring that switch inputs could be properly registered. This required integrating the I/O expanders with the microcontroller and setting up communication over I2C. The initial wiring seemed correct, but testing revealed inconsistencies in signal transmission, suggesting that the I2C pull-up resistors might not be ideal.<br>
+A logic analyzer helped visualize the data on the I2C lines, and an oscilloscope confirmed irregular voltage levels. Adjusting the pull-up resistors brought the signals within an acceptable range, allowing reliable communication between the expander and the Raspberry Pi Pico. A few test scripts verified that each switch press was correctly interpreted, though some inconsistencies pointed to the need for additional software adjustments.<br>
+With inputs now properly received, the next steps involve refining the software to handle signal stability. Debouncing needs to be addressed, and an interrupt-driven approach would likely improve efficiency over continuous polling. Once these refinements are in place, attention can shift toward full integration of the panel’s functionality.<br>
 
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://www.ti.com/lit/ds/symlink/tlc59211.pdf?ts=1740190473624&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTLC59211%252Fpart-details%252FTLC59211IN" target="_blank">Sink Driver specifications</a><br>
+- 2: <a href="https://e2e.ti.com/" target="_blank">Peer to peer engineering forum for TI</a><br>
 <br>
 
-<!-- ENTRY BEGINS HERE: -->
+<!-- ENTRY BEGINS HERE: DONE -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
 <b>Date: February 19 </b><br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br><br>
 
 <b>Content</b><br>
-First, I needed to 
-
-[PHOTO]
+During this mandatory lab section, I wanted to make sure everything we got from the staff was properly soldered. I also wanted to work (and almost complete) our hardware development board, such that I could show it to the 477 Staff during "Show me a thing".<br>
+We got two Raspberry Pi stamp boards from the staff, but neither came with pins installed. I decided to install most of the connecters needed for the board to function properly.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week6\2.1.jpg" width = "33%" height = "auto"></img>
 </div><br>
 
+The first connectors I needed to install were the male to female connectors [2], as seen below. I needed to use the wire crimpers to cut the connectors to the right length, or look for the proper size in the lab.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\2.2.jpg" width = "33%" height = "auto"></img>
+</div><br>
+There were also the two row variants of these connectors, which were exactly as they sound like, with two of the same rows. There were objects known as flexy pins, which were to connect the RP stamp board to the printed circuit board. I also noticed the presence of several external connectors, such as USB, LiPo, and UART. For now, we will have to put in wires for the LiPo interface.<br>
+I connected the flexy pins based on the documentation that solder party had on their website [1], and I was able to get the RP stamp board to work with the breadboard. This taught me how the flexy pins normally work, and the mechanics behind them.<br>
+After all of the flexy pins were installed, I made sure that the stamp was securely connected to the breadboard, and I was able to get the RP stamp board to work with the breadboard. To do this, I conducted a connectivity test with each of the 60 flexy pins.<br>
+For the other Stamp board, Brian and Seth helped to assemble the boards, as well as the necessary components on board.
+After which, I continued working on the hardware prototype of the breadboard. I still needed to crimp some of the resistors and LEDs, because I only wanted to make the breadboard once, through ample testing, and make sure I didn't have to reroute any of the wires on the breadboard.<br>
+I installed the I/O expanders, and wired up the proper pins. After which, the hardware prototype looked as below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\2.3.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I showed my work to the 477 staff, and our team got some good feedback from Professor Walter on how our team should approach the following two weeks. Our PSDRs needed to be condensed, but still with an appropriate level of detail.<br>
+After which, I updated our team website with the appropriate images and html formatting, as well as the documents and schematic downloads. In the following weeks, I will need to change my directive towards PCB design primarily.<br>
+One of the challenges I addressed was the precise alignment of the flexy pins during soldering. Misalignment could prevent the RP stamp board from seating properly, leading to functional issues. To overcome this, I utilized alignment jigs to maintain accurate spacing and ensure the connectors fit as intended. This approach not only resolved the alignment issue but also reinforced the importance of precision in hardware assembly.<br>
+These efforts directly contribute to the project's progress by establishing a solid foundation for the hardware setup. Reliable connections and proper alignment are critical for the overall functionality of the system, and addressing these aspects early helps prevent potential issues during later stages of development.<br>
+Looking ahead, the next steps involve completing the final wiring for the I/O expanders and initiating preliminary testing of the GPIO functionality. This will include verifying voltage levels, assessing signal integrity, and identifying any potential sources of interference. Additionally, I plan to integrate a logic analyzer to monitor and validate data transmission between the RP stamp board and external peripherals, ensuring seamless communication and further advancing the project toward full functionality.<br>
+<br>
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://www.solder.party/docs/flexypin/" target="_blank">Flexy Pin Installation</a><br>
+- 2: <a href="https://www.digikey.com/en/products/detail/samtec-inc/SSW-104-02-G-S/1112449?gclsrc=aw.ds&&utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax_Product_Connectors%2C%20Interconnects&utm_term=&utm_content=&utm_id=go_cmp-20461032180_adg-_ad-__dev-c_ext-_prd-1112449_sig-CjwKCAiA5eC9BhAuEiwA3CKwQvpH8SNQ2OiBtkXZWuLmaHsp1iZ8hi5xkY5AlS1i1Gpg4RVTXOvaHRoCc0QQAvD_BwE&gad_source=1&gclid=CjwKCAiA5eC9BhAuEiwA3CKwQvpH8SNQ2OiBtkXZWuLmaHsp1iZ8hi5xkY5AlS1i1Gpg4RVTXOvaHRoCc0QQAvD_BwE&gclsrc=aw.ds" target="_blank">Male Header Reference Datasheet</a><br>
 <br>
 
-<!-- ENTRY BEGINS HERE: -->
+<!-- ENTRY BEGINS HERE: DONE -->
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: February 17 </b><br>
 <b>Start Time: 9:30 am</b><br>
-<b>Duration: 2.5 hours</b><br><br>
+<b>Duration: 3 hours</b><br><br>
 
 <b>Content</b><br>
 First, I needed to fix a repository issue between the desktop computer I was working with in the senior design lab.<br>
@@ -190,18 +240,18 @@ The issue found with the multiple accounts can be seen below.<br>
 	<img src="Team\journal\img - member4\week6\1.1.png" width = "33%" height = "auto"></img>
 </div><br>
 Next, I decided to do some research on how an I/O expander works. I knew that with 36 ports, we would eventually need at least one for our design.<br>
-I decided to research the <a href="" target="_blank">MCP23008</a> I/O expander, because it was a common I/O expander. Although we might not use it in the final design, it will be good to know.<br>
+I decided to research the MCP23008 I/O expander [1], because it was a common I/O expander. Although we might not use it in the final design, it will be good to know.<br>
 From the datasheet, I was able to figure out that the 8 ports on the chip were all bidirectional, so we could use the 8 ports as inputs to the RP2350.<br>
 The datasheet can be seen below, with bidirectional ports.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week6\1.2.png" width = "33%" height = "auto"></img>
 </div><br>
-I also found a video online, detailing how to use an I/O expander for an application where the GPIO pins outnumber the ports. I watched this video, and some important parts are below.<br>
-After this, I was able to find another video on YouTube that was actually using a RP pico, so I able to gain incredible insight with that.<br>
+I also found a video online [2], detailing how to use an I/O expander for an application where the GPIO pins outnumber the ports. I watched this video, and some important parts are below.<br>
+After this, I was able to find another video on YouTube that was actually using a RP pico, so I able to gain incredible insight with that, which taught me that the GPIO expander was very usable with most microcontrollers.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week6\1.3.png" width = "33%" height = "auto"></img>
 </div><br>
-I was scared because an older video mentioned that GP7 could be write only, which would mess up our plans. When I started wiring, I made sure to wire right to left such that the rightmost switch was GP0 and the leftmost was GP15.<br>
+I was scared because an older video [3] mentioned that GP7 could be write only, which would mess up our plans. When I started wiring, I made sure to wire right to left such that the rightmost switch was GP0 and the leftmost was GP15. I learned from the video the basic setup of the I/O expander.<br>
 I also noticed during the video that a maximum of 8 I/O expanders could be used, so I made sure to keep that in mind. We probably won't hit that limit, but it is good to know.<br>
 I will likely be EXACTLY mimicing the image seen below for the hardware prototype. After I am done with this, we will do all the software testing on this and there will not be a substantial need for another prototype board, for now.<br>
 The image I will be mimicing is seen below.<br>
@@ -212,12 +262,18 @@ Also, for each of the 3 DP switch segments, I will need to create a level shifte
 <div id="banner">
 	<img src="Team\journal\img - member4\week6\1.5.png" width = "33%" height = "auto"></img>
 </div><br>
+After creating this level shifter, I with need to make sure the DC buck converter is working properly, so I will need to create the schematic I found online [4] in the buck converter datasheet on the breadboard, making sure it actually regulates the output. From this datasheet, I was able to learn several approaches on how to create a working buck converter, as well as their efficieny levels.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week6\1.6.png" width = "33%" height = "auto"></img>
+</div><br>
 
+<br>
 <b>Citations</b><br>
 Links and sources are found below, for ease of access:<br>
 - 1: <a href="https://www.microchip.com/wwwproducts/en/MCP23008" target="_blank">Datasheet for MCP23008</a><br>
 - 2: <a href="https://www.youtube.com/watch?v=LyRON_EK8Q4" target="_blank">How to use MCP23008 to expand GPIO</a><br>
 - 3: <a href="https://www.youtube.com/watch?v=BtAAOXPCuHc" target="_blank">MCP23008 expander with raspberry pi</a><br>
+- 4: <a href="https://ww1.microchip.com/downloads/en/DeviceDoc/20005308C.pdf" target="_blank">Buck converter datasheet for hardware prototype</a><br>
 <br>
 
 <h2 id = "week5">===============   Week 5: =================</h2>
