@@ -104,7 +104,7 @@ contact course staff.
             <b>Duration: 3.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			After realizing that we will need to emulate memory as well instead of using normal memory chips, I started thinking about how to emulate memory. The simplest approach seems to be using another RP2350B chip on a board exactly like the CPU card, but running a memory emulator instead. I read through the rs80 repository some more, then made a basic flowchart for the memory emulator operation, seen below.
 			<br>
-			<img src="Team/journal/img - member3/week6/Week5J2.JPG" alt="mem flowchart" width="600"></img>
+			<img src="Team/journal/img - member3/week6/Week5J2_memflow.JPG" alt="mem flowchart" width="600"></img>
 			<br>
 			We probably will be using a basic stack-allocated array to act as memory, but the emulator will need to respond to bus signals to control reads/writes. Tomorrow I am going to start coding the emulator a bit, hopefully I can get basic read/write functionality done. Getting the memory emulator done would allow us to start using our test harness to figure out our bus implementation
 			<br><br><br><br>
