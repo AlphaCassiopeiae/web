@@ -86,6 +86,37 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
+			<h2>===============   Week 6: =================</h2>				
+	<!--  Week 6, Entry 3 (just copy/paste this entry section template for the many more enties this week) -->
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+          <b>Date: February 21st </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 2:00pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour--> 
+			Started coding the emulator that will run on our memory card. Using Rust, I wrote some code to execute the read/write functions of memory. Using test functions, I am able to read and write to “addresses” in memory, which are really just indexes to a stack allocated array that holds bytes. The read() function takes a 16 bit address as an argument, and returns the byte located at that address (8 bits). The write() function takes an 8 bit value to write and a 16 bit address, and updates the array with the input byte at the index provided (no return value). Since the read and write functions work, the next step is to get the emulator to use bus signals to call read/write so it can actually function as memory for our system. I will need to look into the S100 bus a bit more deeply to figure out which signals need to be asserted by the CPU/memory emulators to handle reads/writes.		
+			<br>
+			<br>
+			<br><br>
+			
+	<!--  Week 6, Entry 2  -->
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: February 20th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 4:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			After realizing that we will need to emulate memory as well instead of using normal memory chips, I started thinking about how to emulate memory. The simplest approach seems to be using another RP2350B chip on a board exactly like the CPU card, but running a memory emulator instead. I read through the rs80 repository some more, then made a basic flowchart for the memory emulator operation, seen below.
+			<br>
+			<img src="Team/journal/img - member3/week6/Week5J2.JPG" alt="mem flowchart" width="600"></img>
+			<br>
+			We probably will be using a basic stack-allocated array to act as memory, but the emulator will need to respond to bus signals to control reads/writes. Tomorrow I am going to start coding the emulator a bit, hopefully I can get basic read/write functionality done. Getting the memory emulator done would allow us to start using our test harness to figure out our bus implementation
+			<br><br><br><br>
+	<!--  Week 6, Entry 1  -->
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: February 18th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			During this lab section, we met with the instructors and figured out that our PSDRs were still not up to standard, and that we all have a slightly different idea of how our project is going to function. I spent a good amount of time talking with Seth about how we are going to handle software, and realized that we need an emulator for memory to run on a second card. I really didn’t get much work done during this time, but I feel like talking with the group changed the way I am going to approach the software implementation. Seth explained our test harness, which is two RP2350s hooked up to a breadboard, so we can run one with the CPU emulator and one with the memory emulator, so we can easily debug our emulators/bus. I’ll probably start thinking about the memory emulator implementation soon.
+			<br>
+			<br>
+			<br><br>	
 			<h2>===============   Week 5: =================</h2>				
 	<!--  Week 5, Entry 4 (just copy/paste this entry section template for the many more enties this week) -->
 	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
