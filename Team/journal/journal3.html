@@ -96,7 +96,7 @@ contact course staff.
 			<br>
 			<img src="Team/journal/img - member3/week6/Week6J3.JPG" alt="mem flowchart" width="600"></img>
 			<br>
- 			I will also be looking at the IEEE standard to guide my implementation, link below
+ 			I will need to figure out which IO pins we are putting MWrite, PWR, SMEMR, and PDBIN on and write my code accordingly. I will also be looking at the IEEE standard to guide my implementation, link below
 			<br>
 			<a href="http://www.s100computers.com/General%20Images/ieee696spec.pdf">IEEE standard of S100 bus</a>
 			<br>
@@ -108,11 +108,11 @@ contact course staff.
            <b>Date: February 20th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 4:30pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 3.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			After realizing that we will need to emulate memory as well instead of using normal memory chips, I started thinking about how to emulate memory. The simplest approach seems to be using another RP2350B chip on a board exactly like the CPU card, but running a memory emulator instead. I read through the rs80 repository some more, then made a basic flowchart for the memory emulator operation, seen below.
+			After realizing that we will need to emulate memory as well instead of using normal memory chips, I started thinking about how to emulate memory. The simplest approach seems to be using another RP2350B chip on a board exactly like the CPU card, but running a memory emulator instead. I read through the rs80 repository (linked in week 5 journal) some more, then made a basic flowchart for the memory emulator operation, seen below. The emulator will need to listen to the bus for read/write signals, then respond accordingly. Unlike the CPU emulator, the memory emulator will have its own clock so that it can constantly listen to bus signals.
 			<br>
 			<img src="Team/journal/img - member3/week6/Week5J2_memflow.JPG" alt="mem flowchart" width="600"></img>
 			<br>
-			We probably will be using a basic stack-allocated array to act as memory, but the emulator will need to respond to bus signals to control reads/writes. Tomorrow I am going to start coding the emulator a bit, hopefully I can get basic read/write functionality done. Getting the memory emulator done would allow us to start using our test harness to figure out our bus implementation
+			We probably will be using a basic stack-allocated array to act as memory, but the emulator will need to respond to bus signals to control reads/writes. Keeping the emulator as simple as possible (basically just an array) will hopefully help us with easy debugging. Tomorrow I am going to start coding the emulator a bit, hopefully I can get basic read/write functionality done. Getting the memory emulator done would allow us to start using our test harness to figure out our bus implementation.
 			<br><br><br><br>
 	<!--  Week 6, Entry 1  -->
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
