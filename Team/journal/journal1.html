@@ -95,6 +95,99 @@ contact course staff.
           <div class="week-content">
             <h2 id="sec-week6">=============== Week 6: =================</h2>
             <h4>
+              <b>Entry 6: -----------------------------------------------------------------</b>
+            </h4>
+            <div class="entry-metadata">
+              <p><b>Date:</b> February 21st, 2025</p>
+              <p><b>Start Time:</b> 5:46 PM</p>
+              <p><b>Duration:</b> 6.5 hours</p>
+            </div>
+            <div class="entry-content">
+              <div class="section">
+                <p><strong>What did you work on?</strong></p>
+                <p>
+                  I'm hunkering down and working on crimping and wiring in the prototype wiring
+                  harnesses. These are required so that we can get on with testing the bus signal
+                  communication. I'm expecting this work to continue into tommorrow.
+                </p>
+                <p>
+                  Additionally, on a meta note, I've reformatted my journal such that the entries
+                  are in the correct order, and have made some internal changes such that it's
+                  easier to make journal entires. Hopefully this process is smoother from here on
+                  out.
+                </p>
+
+                <p><strong>How did you work on it?</strong></p>
+                <ul>
+                  <li>
+                    In the lab, there's this reel of ribbon cable that I plan to use. It's got the
+                    <a href="https://www.digikey.com/en/products/detail/3m/3801-40-100/9479007"
+                      >DigiKey Part Number 3M157956-10-ND</a
+                    >
+                  </li>
+                  <li>
+                    In particular, this reel was an AWG of 26, which is appropriate for crimping
+                    Dupont connectors, and has 40 conductors that I can split into smaller segments.
+                  </li>
+                  <li>
+                    <div class="image-section">
+                      <img
+                        src="Team/journal/img - member1/week6/phone9.png"
+                        alt="ribbon cable split out into multiple sections"
+                        height="600"
+                      />
+                    </div>
+                    <p>
+                        I've split out 24 conductors from the 40 conductor ribbon and have split it apart in the following arrangement.
+                    </p>
+                    <p>
+                        From top left to top right:
+                    </p>
+                    <ul>
+                        <li>8 (male) pin block (for A0-A7)</li>
+                        <li>8 (male) pin block (for A8-A15)</li>
+                        <li>8 (male) pin block (for D0-D7)</li>
+                    </ul>
+                    <p>From bottom left to bottom right:</p>
+                    <ul>
+                        <li>2 (male) pin block (for GPIO 24-25, right hand side headers)</li>
+                        <li>4 (male) pin block (for GPIO 26-29, left hand side headers)</li>
+                        <li>2 (male) pin block (for GPIO 30-31, right hand side headers)</li>
+                        <li>4 (male) pin block (for GPIO 32-35, right hand side headers, reverse)</li>
+                        <li>4 (female) pin block (for GPIO 36-39, bottom header block, top row)</li>
+                        <li>4 (female) pin block (for GPIO 40-43, bottom header block, bottom row)</li>
+                        <li>4 (male) pin block (for GPIO 44-47, left hand side headers)</li>
+                    </ul>
+                  </li>
+                  <li>The decisions that went into splitting up the cable like this were made based on the <a href="https://www.solder.party/docs/rp2xxx-stamp-related/rp2xxx-stamp-carrier-xl/downloads/">carrier board diagram</a>, and my schematic diagram with bus labels.</li>
+                  <li>Seth found a SN-28B crimper in the lab, so I no longer need to go to the ECE shop to crimp my connectors. I'm working on doing that right now.</li>
+                </ul>
+
+                <p>
+                  <strong>What was the result and what did you learn from it?</strong>
+                </p>
+
+                <p>I'm still continuing to work on this, but I've crimped up the data and address ribbon cables. I learned how to properly use a Dupont crimping tool from <a href="https://www.instructables.com/Dupont-Crimp-Tool-Tutorial/">this tutorial</a>.</p>
+
+                <p>
+                  <strong>How did this contribute to the project progress?</strong>
+                </p>
+
+                <p>
+                    Since this project requires the prototyping of our bus interface, the ribbon cable is a good way to jump all those signals onto a breadboard that we can connect and probe. In that way, it contributes to the project that facilitating the prototyping process.
+                </p>
+
+                <p>
+                  <strong>What are the next steps that must be taken?</strong>
+                </p>
+                <ul>
+                  <li>I need to create the ribbon cable for the twenty (20) bus control signals.</li>
+                  <li>I still need to find the schematic symbols and layout footprints for the connectors we need for the card PCB in KiCAD.</li>
+                </ul>
+              </div>
+            </div>
+
+            <h4>
               <b>Entry 5: -----------------------------------------------------------------</b>
             </h4>
             <div class="entry-metadata">
@@ -103,16 +196,24 @@ contact course staff.
               <p><b>Duration:</b> 0 hours</p>
             </div>
             <div class="entry-content">
-                <div class="image-section">
-                    <img
-                      src="Team/journal/img - member1/week6/phone9.png"
-                      alt="box of crimp connectors"
-                      height="600"
-                    />
-                  </div>
+              <div class="image-section">
+                <img
+                  src="Team/journal/img - member1/week6/phone9.png"
+                  alt="box of crimp connectors"
+                  height="600"
+                />
+              </div>
               <div class="section">
-                <p>I dropped off a box of Dupont crimp connectors that I had at my apartment. I went earlier to the ECE Shop, where they had an SN-28B ratcheting crimper that is compatible. I can't take that tool out of the ECE Shop however. The crimper on the table is not compatible.</p>
-                <p>These crimp connectors are necessary to put together the communication ribbon cables for prototyping, and I will be assembling the ribbon cables soon.</p>
+                <p>
+                  I dropped off a box of Dupont crimp connectors that I had at my apartment. I went
+                  earlier to the ECE Shop, where they had an SN-28B ratcheting crimper that is
+                  compatible. I can't take that tool out of the ECE Shop however. The crimper on the
+                  table is not compatible.
+                </p>
+                <p>
+                  These crimp connectors are necessary to put together the communication ribbon
+                  cables for prototyping, and I will be assembling the ribbon cables soon.
+                </p>
               </div>
             </div>
 
