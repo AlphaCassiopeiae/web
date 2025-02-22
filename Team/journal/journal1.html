@@ -95,6 +95,98 @@ contact course staff.
           <div class="week-content">
             <h2 id="sec-week6">=============== Week 6: =================</h2>
             <h4>
+              <b>Entry 2: -----------------------------------------------------------------</b>
+            </h4>
+            <div class="entry-metadata">
+              <p><b>Date:</b> February 17th, 2025</p>
+              <p><b>Start Time:</b> 7:34 PM</p>
+              <p><b>Duration:</b> 2.5 hours</p>
+            </div>
+            <div class="entry-content">
+              <div class="section">
+                <p><strong>What did you work on?</strong></p>
+                <p>
+                  Seth asked me to come into lab today to help with an issue that he was having;
+                  namely, he was trying to get Serial Wire Debug (SWD) working on the stamps, such that
+                  each stamp could be programmed without needing to press the board's reset button,
+                  and also allow for setting breakpoints and line stepping debugging commands.
+                </p>
+                <p><strong>How did you work on it?</strong></p>
+                <p>
+                    I did two main things:
+                    <ul>
+                        <li>Acting as a <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">"rubber ducky"</a> debugging assistant for Seth.</li>
+                        <li>Did some hardware work to build out Seth's testing setup onto a breadboard; into something that could be further expanded into a larger prototype.</li>
+                    </ul> 
+                </p>
+                <p>
+                    More specifically:
+                    <ul>
+                        <li>Seth explained that any Raspberry Pi Pico could be turned into an SWD debugging probe, by loading the <a href="https://github.com/raspberrypi/debugprobe"><code>debugprobe</code> firmware</a> onto it. This Pico probe can then be wired into the target board's SWD port, where it would supposedly "just work"</li>
+                        <li>In particular, the instructions we were following were "Appendix A: Debugprobe" of the <a href="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf">Getting Started with Raspberry Pi Pico-series</a> manual</li>
+                        <li>We tried to connect the bench oscilloscope to the <code>SWCLK</code> and <code>SWDIO</code> lines on the board, but when attemping to communicate with the board using both of the tools that we tried (the Raspberry Pi fork of <code>openocd</code>, and <code>probe-rs</code>), the probe was unable to communicate, and the oscilloscope signals remained steady.</li>
+                        <li>I suspected that one potential issue with the setup was that the setup wasn't stable enough for SWD (the current test setup were two boards on the table, with two jumpers from the Pico jammed into the SWD holes on the carrier board. The reason we did not use a connector is because the carrier board only exposes SWD via a small JST connector, which we did not have on hand).</li>
+                        <li>To try to rectify this, I tried to do two things:
+                            <ul>
+                                <li>
+                                    <div class="image-section">
+                                        <img
+                                          src="Team/journal/img - member1/week6/phone10.png"
+                                          alt="two cables, which have clamping probes on one end, and male Dupont connectors on the other side"
+                                          width="600"
+                                        />
+                                    </div>
+                                    <p>
+                                        I dug through the spare table box to find a pair of Dupont cables, and a pair of probes, which I then spliced together into a pair of single cables. Instead of jamming the male Duponts directly into the header vias, I instead used these new cables to to hook onto the FlexyPins, hopefully providing a more secure connection.
+                                    </p>
+                                </li>
+                                <li>
+                                    <div class="image-section">
+                                        <img
+                                          src="Team/journal/img - member1/week6/phone2.png"
+                                          alt="a prototype breadboard with two stamp carriers and a pico mounted on it"
+                                          width="600"
+                                        />
+                                    </div>
+                                    <p>
+                                        I dug through the breadboard box, and found a breadboard, where I added foam tape as a base layer, double sided table on top of that, and added hot glue in small spots to attach each dev board into the breadboard, so we can move every dev board together all as one. Then, I replicated the debug circuit on this new setup.
+                                    </p>
+                                </li>
+                            </ul>
+                            <p>This new setup did not work either. We ran into the same no communication errors, and the same flatline on the oscilloscope as we did earlier.</p>
+                        </li>
+                        <li>After some more time debugging, and reading the Getting Started manual, Seth realized that we had been connecting the SWD of the Pico with the SWD of the stamp, where in reality on a closer reading, we should be connecting <code>GP2</code> and <code>GP3</code>. Upon some fiddling, the debugger started to work, and we could flash programs via SWD.</li>
+                    </ul>
+                </p>
+
+                <p>
+                  <strong>What was the result and what did you learn from it?</strong>
+                </p>
+
+                <p>
+                    We got Serial Wire Debug (SWD) working by using a Raspberry Pi Pico as a debug probe, and were able to program a Stamp XL using it. I learned about specifics of SWD, debugging with a "Pico Probe", and to pay attention to the manual.
+                </p>
+
+                <p>
+                  <strong>How did this contribute to the project progress?</strong>
+                </p>
+
+                <p>
+                    By getting SWD working, we can more quickly iterate on programs for the RP2350, because we don't need to reach over and press the reset button to program each Stamp. This also allows for us to program in automated testing suites.
+                </p>
+
+                <p>
+                  <strong>What are the next steps that must be taken?</strong>
+                  <ul>
+                    <li>I'd like to bring over my own breadboard from ECE 362 to replace this breadboard, since the contacts appear to have been worn out (continuity did not pass on certain lines on the breadboard, so we had to switch to different parts of it)</li>
+                    <li>I'd like to set up a wiring harness between the two breadboards, so that the two Stamp XLs can directly communicate.</li>
+                    <li>I still need to investigate the issue with the vertical looking pins on one of the stamp carriers. When testing som of its pins of continuity, they did not pass. So, we could not use this carrier for SWD, and had to use the other one.</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+
+            <h4>
               <b>Entry 1: -----------------------------------------------------------------</b>
             </h4>
             <div class="entry-metadata">
@@ -128,7 +220,8 @@ contact course staff.
                 <p>
                   I then went ahead and soldered down the FlexyPins for each carrier board. Then the
                   "Arduino Mega" style female pin headers, then the extra pin headers, then the DC
-                  barrel plug.
+                  barrel plug. Nathan was also there, and he helped to solder the header pins on one
+                  of the boards.
                 </p>
                 <p>Finally, I did a test fit of the Stamp XL boards on their carrier boards.</p>
 
@@ -143,6 +236,9 @@ contact course staff.
                   />
                 </div>
                 <p>
+                    The two boards are fully assembled!
+                </p>
+                <p>
                   One of the stamp carriers had a greater angle to its FlexyPins, while the other's
                   FlexyPins appeared to stand straight up. For the one with the pins that appeared
                   to have an angle (about 45 degrees), the Stamp XL fit easily and snugly in the
@@ -155,7 +251,7 @@ contact course staff.
                 <p>
                   Because the Stamp XLs are the only dev boards that expose all 48 GPIO pins on the
                   RP2350B, being able to use them is crucial if we want to be able to create a
-                  prototype of our (fairly waide bus). Putting the dev boards (carrier boards)
+                  prototype of our (fairly wide bus). Putting the dev boards (carrier boards)
                   together is another step towards that.
                 </p>
 
@@ -173,20 +269,6 @@ contact course staff.
                   </li>
                 </ul>
               </div>
-              <!--
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-
-		
-		JOURNAL ENTRIES ABOVE
-		Make your Journal Entries in the template area above and copy/paste going forward
-
-
-		*********************************************************************************
-		*********************************************************************************
-		*********************************************************************************
-		-->
             </div>
           </div>
 
