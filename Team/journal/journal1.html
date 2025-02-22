@@ -83,12 +83,12 @@ contact course staff.
           <h2>Project Journal for Brian</h2>
           <h4>Table of Contents</h4>
           <ul>
-              <li><a href="Team/journal/journal1.html#sec-week6">WEEK 6</a></li>
-              <li><a href="Team/journal/journal1.html#sec-week5">WEEK 5</a></li>
-              <li><a href="Team/journal/journal1.html#sec-week4">WEEK 4</a></li>
-              <li><a href="Team/journal/journal1.html#sec-week3">WEEK 3</a></li>
-              <li><a href="Team/journal/journal1.html#sec-week2">WEEK 2</a></li>
-              <li><a href="Team/journal/journal1.html#sec-week1">WEEK 1</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week6">WEEK 6</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week5">WEEK 5</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week4">WEEK 4</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week3">WEEK 3</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week2">WEEK 2</a></li>
+            <li><a href="Team/journal/journal1.html#sec-week1">WEEK 1</a></li>
             <li><a href="Team/journal/journal1.html#sec-prior">PRIOR</a></li>
           </ul>
 
@@ -100,49 +100,78 @@ contact course staff.
             <div class="entry-metadata">
               <p><b>Date:</b> February 15th, 2025</p>
               <p><b>Start Time:</b> 12:00 AM</p>
-              <p><b>Duration:</b> 5 hours</p>
+              <p><b>Duration:</b> 4.5 hours</p>
             </div>
             <div class="entry-content">
               <div class="section">
-                <ul>
-                  <li>Because our</li>
-                </ul>
-              </div>
-
-              <div class="section">
-                <h4>==== Mini-summary ====</h4>
                 <p><strong>What did you work on?</strong></p>
                 <p>
-                  I worked on transposing my journal from Discord over to the journal website. I also started writing functional descriptions for our
-                  boards (to be used in PSDRs).
+                  Two of our RP2350B
+                  <a href="https://www.solder.party/docs/rp2350-stamp-xl/">Stamp XLs</a> and their
+                  <a href="https://www.solder.party/docs/rp2xxx-stamp-carrier-xl/"
+                    >respective carrier boards</a
+                  >
+                  arrived yesterday, but they're not assembled. The header pins, and mounting method
+                  are not soldered on. I will be working on putting these boards together, since
+                  they're crucial for communication bus prototyping.
                 </p>
 
                 <p><strong>How did you work on it?</strong></p>
                 <p>
-                  I mostly copy over my Discord notes with their relevant timestamps, and then add/modify an additional mini summary of what happened
-                  in that entry to be more clear.
+                  In addition to the stamps and their carrier boards, we also ordered two (2) bags
+                  of one hundred (100)
+                  <a href="https://www.solder.party/docs/flexypin/">FlexyPins</a>, which should
+                  allow us to place or remove the stamps on the board. Seth was also in the lab that
+                  day, so I worked with him to install the FlexyPins onto the board, which need to
+                  be inserted one-by-one.
                 </p>
+                <p>
+                  I then went ahead and soldered down the FlexyPins for each carrier board. Then the
+                  "Arduino Mega" style female pin headers, then the extra pin headers, then the DC
+                  barrel plug.
+                </p>
+                <p>Finally, I did a test fit of the Stamp XL boards on their carrier boards.</p>
 
                 <p>
                   <strong>What was the result and what did you learn from it?</strong>
                 </p>
-                <p>That this journal transposing process takes way too long, we need to find some other way of publishing project journals.</p>
+                <div class="image-section">
+                  <img
+                    src="Team/journal/img - member1/week6/phone1.png"
+                    alt="two assembled stamp carrier boards with stamp XLs on them"
+                    width="600"
+                  />
+                </div>
+                <p>
+                  One of the stamp carriers had a greater angle to its FlexyPins, while the other's
+                  FlexyPins appeared to stand straight up. For the one with the pins that appeared
+                  to have an angle (about 45 degrees), the Stamp XL fit easily and snugly in the
+                  carrier. It was more difficult to attach the Stamp XL to the other carrier board.
+                </p>
 
                 <p>
                   <strong>How did this contribute to the project progress?</strong>
                 </p>
                 <p>
-                  Now that my journals are up on the website, me and my team can now reference them on the site, instead of having to go to the
-                  Discord server.
+                  Because the Stamp XLs are the only dev boards that expose all 48 GPIO pins on the
+                  RP2350B, being able to use them is crucial if we want to be able to create a
+                  prototype of our (fairly waide bus). Putting the dev boards (carrier boards)
+                  together is another step towards that.
                 </p>
 
                 <p>
                   <strong>What are the next steps that must be taken?</strong>
                 </p>
-                <p>
-                  Seth and I came up with a plan to transition all of our team journals over to Notion, this plan will be enacted during next week,
-                  where we'll migrate all of our journals.
-                </p>
+                <ul>
+                  <li>
+                    We need to put these boards together into a development setup, such that their
+                    GPIO pins are connected together so they can communicate.
+                  </li>
+                  <li>
+                    I'd like to check up the carrier board that has the vertical-ish pins, to see if
+                    there are any continuity issues.
+                  </li>
+                </ul>
               </div>
               <!--
 		*********************************************************************************
@@ -174,16 +203,20 @@ contact course staff.
             <div class="entry-content">
               <div class="section">
                 <ul>
-                  <li>our RP2350 Stamp XLs and Stamp carrier boards arrived! they look to all be in good condition</li>
+                  <li>
+                    our RP2350 Stamp XLs and Stamp carrier boards arrived! they look to all be in
+                    good condition
+                  </li>
                   <li>working on transposing my journal from Discord over to the team website</li>
                   <li>
-                    i talked a bit with seth, and we agreed that to reduce the amount of time that journals take to transpose (hours sometimes), we
-                    want to switch over to using Notion for our journals.
+                    i talked a bit with seth, and we agreed that to reduce the amount of time that
+                    journals take to transpose (hours sometimes), we want to switch over to using
+                    Notion for our journals.
                   </li>
                   <li>this journal transition will happen next week</li>
                   <li>
-                    i am also iterating through the more specific PSDR descriptions. I'm following the recommendation to create a PSDR for each card
-                    implementation.
+                    i am also iterating through the more specific PSDR descriptions. I'm following
+                    the recommendation to create a PSDR for each card implementation.
                   </li>
                   <li>please refer to the team website for the PSDR changes</li>
                 </ul>
@@ -193,47 +226,56 @@ contact course staff.
                 <h4>==== Mini-summary ====</h4>
                 <p><strong>What did you work on?</strong></p>
                 <p>
-                  I worked on transposing my journal from Discord over to the journal website. I also started writing functional descriptions for our
-                  boards (to be used in PSDRs).
+                  I worked on transposing my journal from Discord over to the journal website. I
+                  also started writing functional descriptions for our boards (to be used in PSDRs).
                 </p>
 
                 <p><strong>How did you work on it?</strong></p>
                 <p>
-                  I mostly copy over my Discord notes with their relevant timestamps, and then add/modify an additional mini summary of what happened
-                  in that entry to be more clear.
+                  I mostly copy over my Discord notes with their relevant timestamps, and then
+                  add/modify an additional mini summary of what happened in that entry to be more
+                  clear.
                 </p>
 
                 <p>
                   <strong>What was the result and what did you learn from it?</strong>
                 </p>
-                <p>That this journal transposing process takes way too long, we need to find some other way of publishing project journals.</p>
+                <p>
+                  That this journal transposing process takes way too long, we need to find some
+                  other way of publishing project journals.
+                </p>
 
                 <p>
                   <strong>How did this contribute to the project progress?</strong>
                 </p>
                 <p>
-                  Now that my journals are up on the website, me and my team can now reference them on the site, instead of having to go to the
-                  Discord server.
+                  Now that my journals are up on the website, me and my team can now reference them
+                  on the site, instead of having to go to the Discord server.
                 </p>
 
                 <p>
                   <strong>What are the next steps that must be taken?</strong>
                 </p>
                 <p>
-                  Seth and I came up with a plan to transition all of our team journals over to Notion, this plan will be enacted during next week,
-                  where we'll migrate all of our journals.
+                  Seth and I came up with a plan to transition all of our team journals over to
+                  Notion, this plan will be enacted during next week, where we'll migrate all of our
+                  journals.
                 </p>
               </div>
             </div>
 
-            <h4><b>Quick Remark: -----------------------------------------------------------------</b></h4>
+            <h4>
+              <b>Quick Remark: -----------------------------------------------------------------</b>
+            </h4>
             <div class="entry-metadata">
               <p><b>Date:</b> February 13th, 2025</p>
               <p><b>9:50 AM</b></p>
             </div>
             <div class="entry-content">
               <div class="section">
-                <p>remark: ugh the pullup resistors for the two different MCP23017's nReset are duped</p>
+                <p>
+                  remark: ugh the pullup resistors for the two different MCP23017's nReset are duped
+                </p>
                 <p>they're different nets but they could be the same one</p>
               </div>
             </div>
@@ -250,47 +292,70 @@ contact course staff.
               <div class="section">
                 <p>hi, good morning</p>
                 <ul>
-                  <li>after some discussion in ManLab, looks like we should get all of our PSDR ducks in a row.</li>
                   <li>
-                    since i'm the one who is most familiar with our design requirements, i'll start to work on iterating the different design
-                    requirements of our system
+                    after some discussion in ManLab, looks like we should get all of our PSDR ducks
+                    in a row.
                   </li>
-                  <li>hopefully we can pluck out some descriptions to use as better and more complete PSDRs</li>
+                  <li>
+                    since i'm the one who is most familiar with our design requirements, i'll start
+                    to work on iterating the different design requirements of our system
+                  </li>
+                  <li>
+                    hopefully we can pluck out some descriptions to use as better and more complete
+                    PSDRs
+                  </li>
                 </ul>
               </div>
 
               <div class="section">
-                <p>here's some of my notes about what i think is some functionality not currently described in PSDRs we can use.</p>
+                <p>
+                  here's some of my notes about what i think is some functionality not currently
+                  described in PSDRs we can use.
+                </p>
                 <ul>
-                  <li>this computer is something that requires a lot of different boards to talk to each other</li>
-                  <li>we want design 3 boards: the front panel, the backplane, and the generic card</li>
                   <li>
-                    the backplane is responsible for converting some unregulated voltage source into 3.3V power, which can then be distributed to the
-                    rest of the system
+                    this computer is something that requires a lot of different boards to talk to
+                    each other
                   </li>
                   <li>
-                    let's lock this in, let's take 5V 3A power from a USB-C port on the back of the backplane board, which we then need to distribute
-                    throughout the backplane
+                    we want design 3 boards: the front panel, the backplane, and the generic card
                   </li>
                   <li>
-                    remark: we may need multiple voltage regulator blocks throughout the backplane, because of the distance that power and signals
-                    will need to traverse (we'd like to step 5V to 3.3V as close to the module connector as possible, but this is mutually exclusive
-                    from having multiple module connectors. the solution? multiple voltage regulators across the backplane)
+                    the backplane is responsible for converting some unregulated voltage source into
+                    3.3V power, which can then be distributed to the rest of the system
+                  </li>
+                  <li>
+                    let's lock this in, let's take 5V 3A power from a USB-C port on the back of the
+                    backplane board, which we then need to distribute throughout the backplane
+                  </li>
+                  <li>
+                    remark: we may need multiple voltage regulator blocks throughout the backplane,
+                    because of the distance that power and signals will need to traverse (we'd like
+                    to step 5V to 3.3V as close to the module connector as possible, but this is
+                    mutually exclusive from having multiple module connectors. the solution?
+                    multiple voltage regulators across the backplane)
                   </li>
                 </ul>
               </div>
 
               <div class="section">
-                <p>our bus is inspired by the Altair 8800's original 8080-based bus, but with some changes for ease of implementation</p>
+                <p>
+                  our bus is inspired by the Altair 8800's original 8080-based bus, but with some
+                  changes for ease of implementation
+                </p>
                 <p>on the bus, we map:</p>
                 <ul>
                   <li>8 data signals DATA{0-7}</li>
                   <li>16 address signals ADDR{00-15}</li>
                   <li>
-                    36 bus control signals BUS{00-25} (bus control signals {04-07, 20-23} are always mapped to the same PIOs, the others can be
-                    swapped depending on the use case) remark: elaborate
+                    36 bus control signals BUS{00-25} (bus control signals {04-07, 20-23} are always
+                    mapped to the same PIOs, the others can be swapped depending on the use case)
+                    remark: elaborate
                   </li>
-                  <li>32 non-real time signals (16 managed by 1 I/O expander, 16 managed by another I/O expander)</li>
+                  <li>
+                    32 non-real time signals (16 managed by 1 I/O expander, 16 managed by another
+                    I/O expander)
+                  </li>
                 </ul>
               </div>
 
@@ -298,20 +363,23 @@ contact course staff.
                 <p>there's a couple of non-trivial interfaces that we care about:</p>
                 <ul>
                   <li>
-                    since we have so many UI elements (more than 20 switches and LEDs each), the front panel should use expanders to address LEDs, and
-                    matrices to detect switch presses.
+                    since we have so many UI elements (more than 20 switches and LEDs each), the
+                    front panel should use expanders to address LEDs, and matrices to detect switch
+                    presses.
                   </li>
                   <li>
-                    the front panel must be able to throw the correct instruction onto the bus in sequence to both jump and modify the 8080 CPU's
-                    program counter
+                    the front panel must be able to throw the correct instruction onto the bus in
+                    sequence to both jump and modify the 8080 CPU's program counter
                   </li>
                   <li>
-                    the front panel must be able to perform both glitchless clock activation/deactivation, and be able to assert signals for
-                    single-stepping mode. the CPU and memory boards must be able to understand these signals
+                    the front panel must be able to perform both glitchless clock
+                    activation/deactivation, and be able to assert signals for single-stepping mode.
+                    the CPU and memory boards must be able to understand these signals
                   </li>
                   <li>
-                    when the CPU talks to memory, the CPU must be able to understand memory ready, I/O ready, and memory WAIT signals with memory
-                    strobes to allow for I/O operations to complete
+                    when the CPU talks to memory, the CPU must be able to understand memory ready,
+                    I/O ready, and memory WAIT signals with memory strobes to allow for I/O
+                    operations to complete
                   </li>
                 </ul>
               </div>
@@ -319,22 +387,36 @@ contact course staff.
               <div class="section">
                 <strong>10:23 AM</strong>
                 <p>
-                  remark, i did mention to the course staff about possible supply issues with the RP2350B chips. we may need to consider a backup plan
+                  remark, i did mention to the course staff about possible supply issues with the
+                  RP2350B chips. we may need to consider a backup plan
                 </p>
                 <p>
-                  writing down here that setsuna did recommend possibly using multiple time steps of some lines to assert bus control signals,
-                  essentially serializing the bus control, something we can do with the RP2040's pin count.
+                  writing down here that setsuna did recommend possibly using multiple time steps of
+                  some lines to assert bus control signals, essentially serializing the bus control,
+                  something we can do with the RP2040's pin count.
                 </p>
-                <p>if it comes to that, that's an avenue we can pursue, since ripping chips off of evaluation boards in undesireable.</p>
+                <p>
+                  if it comes to that, that's an avenue we can pursue, since ripping chips off of
+                  evaluation boards in undesireable.
+                </p>
               </div>
 
               <div class="section">
                 <strong>10:01 AM</strong>
                 <p>Logical connections (for PSDRs):</p>
                 <ul>
-                  <li>CPU <-> RAM (memory strobe messages, memory ready messages, memory WAIT messages)</li>
-                  <li>Panel <-> CPU (assert bus control [via interrupt acknowledge message], set jmp instruction, set program counter)</li>
-                  <li>Panel <-> CPU (drive clock signal, receive clock signal, receive single-step mode, drive single-step mode)</li>
+                  <li>
+                    CPU <-> RAM (memory strobe messages, memory ready messages, memory WAIT
+                    messages)
+                  </li>
+                  <li>
+                    Panel <-> CPU (assert bus control [via interrupt acknowledge message], set jmp
+                    instruction, set program counter)
+                  </li>
+                  <li>
+                    Panel <-> CPU (drive clock signal, receive clock signal, receive single-step
+                    mode, drive single-step mode)
+                  </li>
                   <li>Panel <-> LEDs (LEDs driven via I/O expansion [I2C])</li>
                   <li>Panel <-> Switches (Switches polled via matrix)</li>
                 </ul>
@@ -343,10 +425,12 @@ contact course staff.
 
               <div class="section">
                 <p>
-                  I ended up talking to Dr. Walter, and he made a very good point about the fact that we are basically designing 3 different boards.
+                  I ended up talking to Dr. Walter, and he made a very good point about the fact
+                  that we are basically designing 3 different boards.
                 </p>
                 <p>
-                  if we create detailed enough functional specifications for each board, then they could all constitute a PSDR. I will work on this.
+                  if we create detailed enough functional specifications for each board, then they
+                  could all constitute a PSDR. I will work on this.
                 </p>
               </div>
 
@@ -354,33 +438,40 @@ contact course staff.
                 <h4>==== Mini-summary ====</h4>
                 <p><strong>What did you work on?</strong></p>
                 <p>
-                  I worked on coming up with ideas for our PSDRs, and also coming up with an initial backup plan for if RP2350 supply doesn't work
-                  out.
+                  I worked on coming up with ideas for our PSDRs, and also coming up with an initial
+                  backup plan for if RP2350 supply doesn't work out.
                 </p>
 
                 <p><strong>How did you work on it?</strong></p>
                 <p>
-                  I talked with course staff (primarily Setsuna, and Dr. Walter) about what changes we should make to our PSDRs, and ideas of what to
-                  do if we only have RP2040s available.
+                  I talked with course staff (primarily Setsuna, and Dr. Walter) about what changes
+                  we should make to our PSDRs, and ideas of what to do if we only have RP2040s
+                  available.
                 </p>
 
                 <p>
                   <strong>What was the result and what did you learn from it?</strong>
                 </p>
-                <p>I think we have a stronger plan of what to do for the PSDR changes, and a good idea for our backup plan.</p>
+                <p>
+                  I think we have a stronger plan of what to do for the PSDR changes, and a good
+                  idea for our backup plan.
+                </p>
 
                 <p>
                   <strong>How did this contribute to the project progress?</strong>
                 </p>
                 <p>
-                  Our PSDRs need to be revamped, since they're too simple right now. I've taken charge of rewriting them, and this is a good
-                  brainstorming session towards that.
+                  Our PSDRs need to be revamped, since they're too simple right now. I've taken
+                  charge of rewriting them, and this is a good brainstorming session towards that.
                 </p>
 
                 <p>
                   <strong>What are the next steps that must be taken?</strong>
                 </p>
-                <p>I need to formalize our PSDRs and write detailed functional descriptions of each of our cards that we can use as PSDRs.</p>
+                <p>
+                  I need to formalize our PSDRs and write detailed functional descriptions of each
+                  of our cards that we can use as PSDRs.
+                </p>
               </div>
             </div>
             <h4>
@@ -394,17 +485,24 @@ contact course staff.
             <div class="entry-content">
               <div class="section">
                 <p>good morning</p>
-                <p>going to start laying out the RP2350 (card DIMM board schematic), based on the info from previous sessions</p>
                 <p>
-                  i'm most interested in seeing how this validates my priors, and also this should pave the way to PCB design, where we can validate
-                  the height of the DIMM
+                  going to start laying out the RP2350 (card DIMM board schematic), based on the
+                  info from previous sessions
+                </p>
+                <p>
+                  i'm most interested in seeing how this validates my priors, and also this should
+                  pave the way to PCB design, where we can validate the height of the DIMM
                 </p>
               </div>
 
               <div class="section">
                 <strong>5:30 AM</strong>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch01.png" alt="schematic symbol of RP2350B" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch01.png"
+                    alt="schematic symbol of RP2350B"
+                    width="600"
+                  />
                 </div>
                 <ul>
                   <li>rp2350 QFN 80 is not in the base kicad std lib</li>
@@ -416,24 +514,32 @@ contact course staff.
                 <strong>5:52 AM</strong>
                 <p>on the topic of decoupling:</p>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch02.png" alt="decoupling capacitor schematic" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch02.png"
+                    alt="decoupling capacitor schematic"
+                    width="600"
+                  />
                 </div>
                 <ul>
                   <li>
                     section 2.2.1 of the
-                    <a href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">hardware design guide</a>
+                    <a
+                      href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf"
+                      >hardware design guide</a
+                    >
                     recommends 11 100 nF decoupling caps for each VDD
                   </li>
                   <li>
-                    they say 53,54 and 68,69 can be doubled up to use the same cap in case of space constraints on single sided population boards, so
-                    i've done that
+                    they say 53,54 and 68,69 can be doubled up to use the same cap in case of space
+                    constraints on single sided population boards, so i've done that
                   </li>
                   <li>
-                    i've also added a 10 uF bulk cap to the schematic (not in guidance) to be place close, but slightly farther away from the chip
+                    i've also added a 10 uF bulk cap to the schematic (not in guidance) to be place
+                    close, but slightly farther away from the chip
                   </li>
                   <li>
-                    we do not use the ADC so i will not be making specific consideration to a filtered power plane a la 3V3A filtered w/ ferrite bead
-                    etc.
+                    we do not use the ADC so i will not be making specific consideration to a
+                    filtered power plane a la 3V3A filtered w/ ferrite bead etc.
                   </li>
                 </ul>
               </div>
@@ -442,19 +548,31 @@ contact course staff.
                 <strong>6:09 AM</strong>
                 <p>misc internal voltage regulation design (referenced)</p>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch03.png" alt="vreg support discretes schematic" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch03.png"
+                    alt="vreg support discretes schematic"
+                    width="600"
+                  />
                 </div>
               </div>
 
               <div class="section">
                 <strong>6:40 AM</strong>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch04.png" alt="vreg support discretes schematic" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch04.png"
+                    alt="vreg support discretes schematic"
+                    width="600"
+                  />
                 </div>
                 <p>misc wiring for the W25Q128JVS QSPI chip</p>
-                <p>the reference board allows for 2 QSPI chips, with the chip select determined by GPIO0</p>
                 <p>
-                  we dont need this, so while reference has a lot of optionality w/ DNF (do not fit) jumpers, this design can be simpler is this case
+                  the reference board allows for 2 QSPI chips, with the chip select determined by
+                  GPIO0
+                </p>
+                <p>
+                  we dont need this, so while reference has a lot of optionality w/ DNF (do not fit)
+                  jumpers, this design can be simpler is this case
                 </p>
               </div>
 
@@ -462,25 +580,42 @@ contact course staff.
                 <strong>6:57 AM</strong>
                 <p>external oscillator (referenced)</p>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch05.png" alt="external oscillator schematic" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch05.png"
+                    alt="external oscillator schematic"
+                    width="600"
+                  />
                 </div>
               </div>
 
               <div class="section">
                 <strong>7:16 AM</strong>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/usbccc.png" alt="usb-c spec screenshot" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/usbccc.png"
+                    alt="usb-c spec screenshot"
+                    width="600"
+                  />
                 </div>
                 <p>
                   USB C CC line passive Rd resistor specification (see 4.5.1.2.1 on
-                  <a href="https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf">usb-c specification</a>
+                  <a
+                    href="https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf"
+                    >usb-c specification</a
+                  >
                 </p>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch06.png" alt="usb connector schematic" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch06.png"
+                    alt="usb connector schematic"
+                    width="600"
+                  />
                 </div>
                 <p>
-                  USB CC 5.1k pulldown (NOTE: do not short CCs prior to pulldown! was an issue on rpi4 launch to
-                  <a href="https://www.scorpia.co.uk/2019/06/28/pi4-not-working-with-some-chargers-or-why-you-need-two-cc-resistors/"
+                  USB CC 5.1k pulldown (NOTE: do not short CCs prior to pulldown! was an issue on
+                  rpi4 launch to
+                  <a
+                    href="https://www.scorpia.co.uk/2019/06/28/pi4-not-working-with-some-chargers-or-why-you-need-two-cc-resistors/"
                     >great publicity</a
                   >)
                 </p>
@@ -489,11 +624,18 @@ contact course staff.
               <div class="section">
                 <strong>8:18 AM</strong>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch07.png" alt="gpio jumpers schematic" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch07.png"
+                    alt="gpio jumpers schematic"
+                    width="600"
+                  />
                 </div>
                 <ul>
                   <li>working on GPIO mapping</li>
-                  <li>4 pins can jumper to either exposed signals (2 I2C buses, or 1 I2C bus and 1 UART tx/rx), or straight to bus</li>
+                  <li>
+                    4 pins can jumper to either exposed signals (2 I2C buses, or 1 I2C bus and 1
+                    UART tx/rx), or straight to bus
+                  </li>
                   <li>12 other pins can be configured between bus lines</li>
                 </ul>
               </div>
@@ -501,26 +643,37 @@ contact course staff.
               <div class="section">
                 <strong>8:33 AM</strong>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/sch08.png" alt="schematic overview" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/sch08.png"
+                    alt="schematic overview"
+                    width="600"
+                  />
                 </div>
                 <p>initial schematic without external connectors</p>
                 <p>things to review:</p>
                 <ul>
                   <li>
-                    check NCP1117 handling in the case where the 3V3 side isnt passive (situation where USB is plugged in while entire device is under
-                    external [other] power source..)
+                    check NCP1117 handling in the case where the 3V3 side isnt passive (situation
+                    where USB is plugged in while entire device is under external [other] power
+                    source..)
                   </li>
                   <li>
-                    check edge board substrate thickness, pitch, etc.... is it easy to route? can we fit the jumper vias with the current pitch? swap
-                    from DDR4?
+                    check edge board substrate thickness, pitch, etc.... is it easy to route? can we
+                    fit the jumper vias with the current pitch? swap from DDR4?
                   </li>
                   <li>find proper JST connector for GPIO pins 0-3</li>
                 </ul>
                 <p>remarks:</p>
                 <ul>
-                  <li>check errata... do we need bias on GPIO40-GPIO47 due to weak/faulty internal tri-state?</li>
+                  <li>
+                    check errata... do we need bias on GPIO40-GPIO47 due to weak/faulty internal
+                    tri-state?
+                  </li>
                   <li>reel supply of RP2350A/B not reliable, look for options</li>
-                  <li>4.7u guidance assumes pin 32 is far away from voltage regulation... check this assertion later</li>
+                  <li>
+                    4.7u guidance assumes pin 32 is far away from voltage regulation... check this
+                    assertion later
+                  </li>
                   <li>consider making the 12 latter jumpers have copper trace defaults</li>
                   <li>cutting/scoring as an exception may be less annoying than jumping always</li>
                 </ul>
@@ -544,20 +697,26 @@ contact course staff.
               <div class="section">
                 <strong>9:22 AM</strong>
                 <ul>
-                  <li>DIMMs have a weird outline (for insertion/rocking reasons, whatever), but will need to create the outline for this</li>
                   <li>
-                    likely easier to make a sketch in a CAD tool and import the generated DXF solve into KiCAD for the final board outline later
+                    DIMMs have a weird outline (for insertion/rocking reasons, whatever), but will
+                    need to create the outline for this
                   </li>
                   <li>
-                    remark: i thought there would ne 288 available signals on a DIMM, but it seems only 77 are available? i guess some are doubled up
+                    likely easier to make a sketch in a CAD tool and import the generated DXF solve
+                    into KiCAD for the final board outline later
                   </li>
                   <li>
-                    i've done the schematic generously (36 bus signals, 32 extended signals, 16 address signals, 8 data signals, totaling 92 signals).
-                    this might be too much for the current connector choice
+                    remark: i thought there would ne 288 available signals on a DIMM, but it seems
+                    only 77 are available? i guess some are doubled up
                   </li>
                   <li>
-                    i really like DIMMs because they're locking connectors, if this isnt possible we'll need to find another locking connector form
-                    factor
+                    i've done the schematic generously (36 bus signals, 32 extended signals, 16
+                    address signals, 8 data signals, totaling 92 signals). this might be too much
+                    for the current connector choice
+                  </li>
+                  <li>
+                    i really like DIMMs because they're locking connectors, if this isnt possible
+                    we'll need to find another locking connector form factor
                   </li>
                 </ul>
               </div>
@@ -567,18 +726,22 @@ contact course staff.
                 <ul>
                   <li>yeah like... i cant find documentation supporting the "77 pins" idea</li>
                   <li>maybe the symbol is just weird?</li>
-                  <li>remark: i need to find a symbol from another DDR4 DIMM connector to compare. maybe molex's makes more sense</li>
+                  <li>
+                    remark: i need to find a symbol from another DDR4 DIMM connector to compare.
+                    maybe molex's makes more sense
+                  </li>
                 </ul>
               </div>
 
               <div class="section">
                 <p>i'm really happy with the work i've done so far with the schematic.</p>
                 <p>
-                  in terms of further work on this, i need to connect all the I/O nets to the appropriate edge board connector (i may need to make a
-                  custom symbol for this)
+                  in terms of further work on this, i need to connect all the I/O nets to the
+                  appropriate edge board connector (i may need to make a custom symbol for this)
                 </p>
                 <p>
-                  i also need to figure out parts for our other connectors like the USB-C connector and the JST connector for our UART functionality
+                  i also need to figure out parts for our other connectors like the USB-C connector
+                  and the JST connector for our UART functionality
                 </p>
               </div>
 
@@ -586,47 +749,67 @@ contact course staff.
                 <h4>==== Mini-summary ====</h4>
                 <p><strong>What did you work on?</strong></p>
                 <p>
-                  I made a good first pass on the schematic, setting up all the decoupling caps, the voltage regulator support circuits, the QSPI
-                  flash, the I/O expanders, the USB-C port, the development voltage regulator, and followed all their design requirements.
+                  I made a good first pass on the schematic, setting up all the decoupling caps, the
+                  voltage regulator support circuits, the QSPI flash, the I/O expanders, the USB-C
+                  port, the development voltage regulator, and followed all their design
+                  requirements.
                 </p>
 
                 <p><strong>How did you work on it?</strong></p>
                 <p>
                   For working on the RP2350B, I referenced the
-                  <a href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Hardware design with RP2350 manual</a>, and the
-                  <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 datasheet</a>. I also heavily referenced the
-                  <a href="https://datasheets.raspberrypi.com/rp2350/Minimal-KiCAD.zip">reference KiCAD design</a>.
+                  <a
+                    href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf"
+                    >Hardware design with RP2350 manual</a
+                  >, and the
+                  <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"
+                    >RP2350 datasheet</a
+                  >. I also heavily referenced the
+                  <a href="https://datasheets.raspberrypi.com/rp2350/Minimal-KiCAD.zip"
+                    >reference KiCAD design</a
+                  >.
                 </p>
                 <p>
                   For setting up the pull-down CC lines on the USB port, I referenced the
-                  <a href="https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf">USB-C specification</a>.
+                  <a
+                    href="https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf"
+                    >USB-C specification</a
+                  >.
                 </p>
                 <p>
                   For writing up of the MCP23017 I/O expanders, I referenced
-                  <a href="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf">its datasheet</a>.
+                  <a href="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf"
+                    >its datasheet</a
+                  >.
                 </p>
 
                 <p>
                   <strong>What was the result and what did you learn from it?</strong>
                 </p>
                 <p>
-                  The core of the schematic is done! I learned a lot about the specifics of designing with the RP2350B, since I've only designed
-                  boards for the STM32F0 series previously.
+                  The core of the schematic is done! I learned a lot about the specifics of
+                  designing with the RP2350B, since I've only designed boards for the STM32F0 series
+                  previously.
                 </p>
 
                 <p>
                   <strong>How did this contribute to the project progress?</strong>
                 </p>
-                <p>This is a big step to getting the schematic completely finished! A good stepping stone to that juicy PCB layout.</p>
+                <p>
+                  This is a big step to getting the schematic completely finished! A good stepping
+                  stone to that juicy PCB layout.
+                </p>
 
                 <p>
                   <strong>What are the next steps that must be taken?</strong>
                 </p>
                 <p>
-                  I need to recheck all the remarks I made, the voltage regulators handling if the other side isn't passive, recheck edge board
-                  constraints, find proper connectors (for UART), check the GPIO40-47 errata, check the chip supply, check the 4.7u capacitor
-                  placement guidance, try making the solder jumpers have defaults. I also need to add connectors to the schematic, and I may need to
-                  make a custom symbol for our edge connector.
+                  I need to recheck all the remarks I made, the voltage regulators handling if the
+                  other side isn't passive, recheck edge board constraints, find proper connectors
+                  (for UART), check the GPIO40-47 errata, check the chip supply, check the 4.7u
+                  capacitor placement guidance, try making the solder jumpers have defaults. I also
+                  need to add connectors to the schematic, and I may need to make a custom symbol
+                  for our edge connector.
                 </p>
               </div>
             </div>
@@ -642,22 +825,42 @@ contact course staff.
               <div class="section">
                 <p>hi all, good evening</p>
                 <p>im working on a schematic for our Card Board</p>
-                <p>this is because i want to confirm my priors that we actually have all of the parts/pins we need</p>
-                <p>this should also allow us to make a PCB layout, which can help confirm sizing (height) of the DIMMs</p>
-                <p>i dont want us to commit to buying an enclosure if it wouldnt be able to fit the height of our DIMMs.</p>
+                <p>
+                  this is because i want to confirm my priors that we actually have all of the
+                  parts/pins we need
+                </p>
+                <p>
+                  this should also allow us to make a PCB layout, which can help confirm sizing
+                  (height) of the DIMMs
+                </p>
+                <p>
+                  i dont want us to commit to buying an enclosure if it wouldnt be able to fit the
+                  height of our DIMMs.
+                </p>
               </div>
               <div class="section">
                 <strong>5:09 PM</strong>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/dimmsketch.png" alt="sketch of a DDR4 DIMM" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/dimmsketch.png"
+                    alt="sketch of a DDR4 DIMM"
+                    width="600"
+                  />
                 </div>
               </div>
               <div class="section">
                 <ul>
-                  <li>ABM8-272-T3 (reference oscillator) and W25Q128JVS (reference QSPI flash) are chosen</li>
+                  <li>
+                    ABM8-272-T3 (reference oscillator) and W25Q128JVS (reference QSPI flash) are
+                    chosen
+                  </li>
                 </ul>
                 <div class="image-section">
-                  <img src="Team/journal/img - member1/week5/gpiotable.png" alt="screenshot of GPIO function table" width="600" />
+                  <img
+                    src="Team/journal/img - member1/week5/gpiotable.png"
+                    alt="screenshot of GPIO function table"
+                    width="600"
+                  />
                 </div>
               </div>
               <div class="section">
@@ -665,14 +868,26 @@ contact course staff.
                   <li>GPIO pins 0 and 1 are reserved for board specific functionality</li>
                   <li>
                     (above screenshot from Table 3 (Section 1.2.3) of the
-                    <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 datasheet</a>)
+                    <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"
+                      >RP2350 datasheet</a
+                    >)
                   </li>
-                  <li>notionally, if an MCP23017 (I2C) is populated on the board, then the 16 I/O expander signals on the board are active</li>
-                  <li>otherwise if a JST connector is populated, those two pins are connected to the JST connector</li>
                   <li>
-                    this can determine of a board will use those pins for additional lanes (F3 on 0 and 1), or as a UART transceiver (F2 on 0 and 1)
+                    notionally, if an MCP23017 (I2C) is populated on the board, then the 16 I/O
+                    expander signals on the board are active
                   </li>
-                  <li>providing this flexibility will reduce the total number of boards that will need to be designed</li>
+                  <li>
+                    otherwise if a JST connector is populated, those two pins are connected to the
+                    JST connector
+                  </li>
+                  <li>
+                    this can determine of a board will use those pins for additional lanes (F3 on 0
+                    and 1), or as a UART transceiver (F2 on 0 and 1)
+                  </li>
+                  <li>
+                    providing this flexibility will reduce the total number of boards that will need
+                    to be designed
+                  </li>
                   <li>we are intending on keeping this number at 3 (front, backplane, card)</li>
                 </ul>
               </div>
@@ -681,73 +896,99 @@ contact course staff.
                 <ul>
                   <li>
                     according to
-                    <a href="https://www.jedec.org/sites/default/files/docs/MO-309E.pdf">JEDEC MO-309E</a>, the nominal board thickness is 1.2
-                    milimeters. it also has a bevy of other details about the board outline. i'll use this when setting up the board outline during
-                    PCB layout
+                    <a href="https://www.jedec.org/sites/default/files/docs/MO-309E.pdf"
+                      >JEDEC MO-309E</a
+                    >, the nominal board thickness is 1.2 milimeters. it also has a bevy of other
+                    details about the board outline. i'll use this when setting up the board outline
+                    during PCB layout
                   </li>
-                  <li>for convenience, I've obtained a copy of the standard using my JEDEC account, and shared it with my team members</li>
+                  <li>
+                    for convenience, I've obtained a copy of the standard using my JEDEC account,
+                    and shared it with my team members
+                  </li>
                 </ul>
               </div>
               <div class="section">
                 <strong>5:41 PM</strong>
                 <ul>
                   <li>for the 22 other pins im consider routing 20 of them into vias</li>
-                  <li>where you can either jumper them to the front or rear contact of the board</li>
                   <li>
-                    and for the last 2 pins to also have the design optionality to jumper those two into a 2nd I/O expander for... reasons (let's call
-                    it prototype flexibility)
+                    where you can either jumper them to the front or rear contact of the board
                   </li>
-                  <li>shouldnt be an issue with signalling but ill need to do some minimal modelling at least</li>
+                  <li>
+                    and for the last 2 pins to also have the design optionality to jumper those two
+                    into a 2nd I/O expander for... reasons (let's call it prototype flexibility)
+                  </li>
+                  <li>
+                    shouldnt be an issue with signalling but ill need to do some minimal modelling
+                    at least
+                  </li>
                 </ul>
               </div>
               <div class="section">
                 <strong>5:56 PM</strong>
                 <ul>
                   <li>remark: how mountable are ddr4 dimm connectors?</li>
-                  <li>would choosing a connector with a higher pitch be nicer? we dont need 200+ connections</li>
+                  <li>
+                    would choosing a connector with a higher pitch be nicer? we dont need 200+
+                    connections
+                  </li>
                 </ul>
               </div>
               <div class="section">
                 <p>
-                  did some research on the part selection and some other additional design decisions id need for the schematic. next step is to
-                  actually start putting the art down
+                  did some research on the part selection and some other additional design decisions
+                  id need for the schematic. next step is to actually start putting the art down
                 </p>
               </div>
               <div class="section">
                 <h4>==== Mini-summary ====</h4>
                 <p><strong>What did you work on?</strong></p>
                 <p>
-                  I made a sketch to get a rough idea of what size and layout I want the card PCB DIMM to have. I made some part selections for our
-                  schematic, based on the RP2350B's reference hardware design. Additionally, I also made some design decisions, such as including
-                  solder jumpers, and allowing for a second I/O expander to be populated, to increase our I/O flexibility, and allow for the same
+                  I made a sketch to get a rough idea of what size and layout I want the card PCB
+                  DIMM to have. I made some part selections for our schematic, based on the
+                  RP2350B's reference hardware design. Additionally, I also made some design
+                  decisions, such as including solder jumpers, and allowing for a second I/O
+                  expander to be populated, to increase our I/O flexibility, and allow for the same
                   board design to be used for different purposes.
                 </p>
                 <p><strong>How did you work on it?</strong></p>
                 <p>
                   I referenced the
-                  <a href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Hardware design with RP2350 manual</a>, the
-                  <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 datasheet</a>
+                  <a
+                    href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf"
+                    >Hardware design with RP2350 manual</a
+                  >, the
+                  <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"
+                    >RP2350 datasheet</a
+                  >
                   itself, and
-                  <a href="https://www.jedec.org/sites/default/files/docs/MO-309E.pdf">JEDEC MO-309E</a>
+                  <a href="https://www.jedec.org/sites/default/files/docs/MO-309E.pdf"
+                    >JEDEC MO-309E</a
+                  >
                   for details on DDR4 DIMMs.
                 </p>
                 <p>
                   <strong>What was the result and what did you learn from it?</strong>
                 </p>
                 <p>
-                  I finalized some additional design decisions related to part selection and solder jumpers, and learned about some specifics to
-                  hardware design with the RP2350B, since I've only designed boards for the STM32F0 series previously.
+                  I finalized some additional design decisions related to part selection and solder
+                  jumpers, and learned about some specifics to hardware design with the RP2350B,
+                  since I've only designed boards for the STM32F0 series previously.
                 </p>
                 <p>
                   <strong>How did this contribute to the project progress?</strong>
                 </p>
-                <p>With this done, I pretty much have all the information I need to start laying out the schematic uninterrupted.</p>
+                <p>
+                  With this done, I pretty much have all the information I need to start laying out
+                  the schematic uninterrupted.
+                </p>
                 <p>
                   <strong>What are the next steps that must be taken?</strong>
                 </p>
                 <p>
-                  The very next step? Work on the schematic! finally! and i would love to get the PCB layout, and at least some of the routing done
-                  soon.
+                  The very next step? Work on the schematic! finally! and i would love to get the
+                  PCB layout, and at least some of the routing done soon.
                 </p>
               </div>
             </div>
@@ -762,11 +1003,19 @@ contact course staff.
             <div class="entry-content">
               <div class="section">
                 <p>hi all, good afternoon</p>
-                <p>real quickly going to finish mapping out the pin allocations based on the work already done</p>
-                <p>since we'd like to get the card schematics etc. done as soon as we can, i need to finish this mapping as soon as possible</p>
                 <p>
-                  i'm laying out the final strategy ill be using to determine the pin count: 16 address pins, 8 data pins, up to 20 pins for timing
-                  critical bus control, and 4 pins for SPI control of a MCP23S17 I/O expander for U/I and non timing critical pins
+                  real quickly going to finish mapping out the pin allocations based on the work
+                  already done
+                </p>
+                <p>
+                  since we'd like to get the card schematics etc. done as soon as we can, i need to
+                  finish this mapping as soon as possible
+                </p>
+                <p>
+                  i'm laying out the final strategy ill be using to determine the pin count: 16
+                  address pins, 8 data pins, up to 20 pins for timing critical bus control, and 4
+                  pins for SPI control of a MCP23S17 I/O expander for U/I and non timing critical
+                  pins
                 </p>
               </div>
               <div class="section">
@@ -810,37 +1059,51 @@ contact course staff.
                 </ul>
               </div>
               <div class="section">
-                <p>this looks good. at least, it's flexible enough that i think we have the means to go forward.</p>
+                <p>
+                  this looks good. at least, it's flexible enough that i think we have the means to
+                  go forward.
+                </p>
                 <p>looks like I can start to work on schematic and layout soon.</p>
               </div>
               <div class="section">
                 <h4>==== Mini-summary ====</h4>
                 <p><strong>What did you work on?</strong></p>
-                <p>I finalized work on our initial pin mappings (what specific function we assign to each of the RP2350's 48 GPIO pins).</p>
+                <p>
+                  I finalized work on our initial pin mappings (what specific function we assign to
+                  each of the RP2350's 48 GPIO pins).
+                </p>
                 <p><strong>How did you work on it?</strong></p>
                 <p>
-                  I cross-referenced against older notes I made, and continued to make use of the 8800's
-                  <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a>.
+                  I cross-referenced against older notes I made, and continued to make use of the
+                  8800's
+                  <a
+                    href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf"
+                    >Theory of Operation Manual</a
+                  >.
                 </p>
                 <p>
                   <strong>What was the result and what did you learn from it?</strong>
                 </p>
                 <p>
-                  All of our initial pin mappings are done, and now I have a clearer idea about which processor status lines are critical for real
-                  time operation, and which status lines are really only useful for the front panel.
+                  All of our initial pin mappings are done, and now I have a clearer idea about
+                  which processor status lines are critical for real time operation, and which
+                  status lines are really only useful for the front panel.
                 </p>
                 <p>
                   <strong>How did this contribute to the project progress?</strong>
                 </p>
                 <p>
-                  Now that the pin mapping are done, I can go forward and set up the schematic for the card, which is the hardware design that I'd
-                  like to start with. Making the schematic for the card will also help with the schematics of the front panel board, which also needs
-                  a RP2350B chip.
+                  Now that the pin mapping are done, I can go forward and set up the schematic for
+                  the card, which is the hardware design that I'd like to start with. Making the
+                  schematic for the card will also help with the schematics of the front panel
+                  board, which also needs a RP2350B chip.
                 </p>
                 <p>
                   <strong>What are the next steps that must be taken?</strong>
                 </p>
-                <p>The very next step is to work on the schematic and PCB layout for the card board</p>
+                <p>
+                  The very next step is to work on the schematic and PCB layout for the card board
+                </p>
               </div>
             </div>
 
@@ -856,18 +1119,27 @@ contact course staff.
               <div class="section">
                 <p>hi all, good evening</p>
                 <p>just checking in for a short bit...</p>
-                <p>i'd like to get some additional work done on the pin mapping, for which pins we'd actually want taking up PIO pins</p>
+                <p>
+                  i'd like to get some additional work done on the pin mapping, for which pins we'd
+                  actually want taking up PIO pins
+                </p>
               </div>
               <div class="section">
                 <strong>6:26 PM</strong>
                 <ul>
                   <li>i went ahread and dropped all of the VI (vectored interrupt) lines</li>
-                  <li>it wasn't entirely clear to me whether these lines are ever actually used by the CPU in the original Altair</li>
+                  <li>
+                    it wasn't entirely clear to me whether these lines are ever actually used by the
+                    CPU in the original Altair
+                  </li>
                   <li>
                     cross referencing the original
-                    <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a>, I genuinely
-                    cannot find any mention of VI0 through VI7 in any of the schematics, so I can only assume that it's the role of some sort of
-                    programmable interrupt controller like the 8259A series
+                    <a
+                      href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf"
+                      >Theory of Operation Manual</a
+                    >, I genuinely cannot find any mention of VI0 through VI7 in any of the
+                    schematics, so I can only assume that it's the role of some sort of programmable
+                    interrupt controller like the 8259A series
                   </li>
                 </ul>
               </div>
@@ -876,20 +1148,22 @@ contact course staff.
                 <ul>
                   <li>
                     remark: the 8259A is mentioned in the
-                    <a href="https://ia903200.us.archive.org/21/items/Mcs80_85FamilyUsersManual/mcs%208080%20%26%208085%20family%20users%20manual.pdf"
+                    <a
+                      href="https://ia903200.us.archive.org/21/items/Mcs80_85FamilyUsersManual/mcs%208080%20%26%208085%20family%20users%20manual.pdf"
                       >Manual for MCS-80/MCS-85</a
-                    >, which, from what I understand was a new branding scheme that intel used to group all their existing microcomputer component
-                    portfolios together.
+                    >, which, from what I understand was a new branding scheme that intel used to
+                    group all their existing microcomputer component portfolios together.
                   </li>
                   <li>
-                    the MCS-80 descriptions on that manual are genuinely quite useful for timing/bus information, and may serve as a good future
-                    reference.
+                    the MCS-80 descriptions on that manual are genuinely quite useful for timing/bus
+                    information, and may serve as a good future reference.
                   </li>
                 </ul>
               </div>
               <div class="section">
                 <p>
-                  goodbye all, going to set finish some final bus pin research work next time, and then i can go forward on getting a bus layout done.
+                  goodbye all, going to set finish some final bus pin research work next time, and
+                  then i can go forward on getting a bus layout done.
                 </p>
               </div>
               <div class="section">
@@ -899,9 +1173,13 @@ contact course staff.
                 <p><strong>How did you work on it?</strong></p>
                 <p>
                   I consulted with the Altair 8800's
-                  <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a>
+                  <a
+                    href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf"
+                    >Theory of Operation Manual</a
+                  >
                   and the intel
-                  <a href="https://ia903200.us.archive.org/21/items/Mcs80_85FamilyUsersManual/mcs%208080%20%26%208085%20family%20users%20manual.pdf"
+                  <a
+                    href="https://ia903200.us.archive.org/21/items/Mcs80_85FamilyUsersManual/mcs%208080%20%26%208085%20family%20users%20manual.pdf"
                     >Manual for MCS-80/MCS-85</a
                   >.
                 </p>
@@ -909,20 +1187,23 @@ contact course staff.
                   <strong>What was the result and what did you learn from it?</strong>
                 </p>
                 <p>
-                  We made some additional changes (like dropping the VI lines), and I learned about the role of the 8259 in a more general MCS-80
-                  system.
+                  We made some additional changes (like dropping the VI lines), and I learned about
+                  the role of the 8259 in a more general MCS-80 system.
                 </p>
                 <p>
                   <strong>How did this contribute to the project progress?</strong>
                 </p>
                 <p>
-                  In order to progress on creating the schematic for any of the boards, we need to get our communication bus defined. This pin
-                  research helps finalize some of that.
+                  In order to progress on creating the schematic for any of the boards, we need to
+                  get our communication bus defined. This pin research helps finalize some of that.
                 </p>
                 <p>
                   <strong>What are the next steps that must be taken?</strong>
                 </p>
-                <p>We need to finish up the initial bus pin mapping, such that we can get to the schematic, and eventually PCB design.</p>
+                <p>
+                  We need to finish up the initial bus pin mapping, such that we can get to the
+                  schematic, and eventually PCB design.
+                </p>
               </div>
             </div>
           </div>
@@ -941,12 +1222,13 @@ contact course staff.
               <div class="section">
                 <ul>
                   <li>
-                    Due to travel to IEEE ICSC 2025 starting on February 2nd to today at 10 PM, I did not have time to work on the lab project, as I
-                    was preoccupied with the conference
+                    Due to travel to IEEE ICSC 2025 starting on February 2nd to today at 10 PM, I
+                    did not have time to work on the lab project, as I was preoccupied with the
+                    conference
                   </li>
                   <li>
-                    Checked with team on the specific things worked on this week. Specifically interested in the hardware work with getting the Pico
-                    flashed
+                    Checked with team on the specific things worked on this week. Specifically
+                    interested in the hardware work with getting the Pico flashed
                   </li>
                 </ul>
               </div>
@@ -967,9 +1249,13 @@ contact course staff.
               <div class="section">
                 <ul>
                   <li>Checked with a TA to see the status of our stamp XL orders</li>
-                  <li>Realized that we did not order the other two stamp XLs+carrier boards + flexypins</li>
                   <li>
-                    <a href="https://service.purdue.edu/TDClient/32/Purdue/Requests/TicketRequests/TicketDet.aspx?TicketID=37xHbf9FXhs_"
+                    Realized that we did not order the other two stamp XLs+carrier boards +
+                    flexypins
+                  </li>
+                  <li>
+                    <a
+                      href="https://service.purdue.edu/TDClient/32/Purdue/Requests/TicketRequests/TicketDet.aspx?TicketID=37xHbf9FXhs_"
                       >new ticket link here</a
                     >
                   </li>
@@ -990,14 +1276,20 @@ contact course staff.
               <div class="section">
                 <ul>
                   <li>going to also mark whether a board requires a signal or not</li>
-                  <li>(this is mostly just for the sake of the front panel, I/O expander i realized we definitely need for UI I/O)</li>
                   <li>
-                    also while looking into the front panel schematic, I realized that the front panel did not have input lines to the address bus
-                    pins
+                    (this is mostly just for the sake of the front panel, I/O expander i realized we
+                    definitely need for UI I/O)
                   </li>
-                  <li>instead, the altair panel dynamicall forces the 8080 to JMP to the correct pins</li>
                   <li>
-                    <a href="https://retrocomputing.stackexchange.com/questions/12194/how-did-the-altair-8800-front-panel-load-the-program-counter"
+                    also while looking into the front panel schematic, I realized that the front
+                    panel did not have input lines to the address bus pins
+                  </li>
+                  <li>
+                    instead, the altair panel dynamicall forces the 8080 to JMP to the correct pins
+                  </li>
+                  <li>
+                    <a
+                      href="https://retrocomputing.stackexchange.com/questions/12194/how-did-the-altair-8800-front-panel-load-the-program-counter"
                       >relevant stackexchange article</a
                     >
                   </li>
@@ -1986,20 +2278,30 @@ contact course staff.
             <div class="entry-content">
               <div class="section">
                 <ul>
-                  <li>Setsuna recommended looking into tri-state buffers or GPIO expanders to offload the functionality of certain pins</li>
+                  <li>
+                    Setsuna recommended looking into tri-state buffers or GPIO expanders to offload
+                    the functionality of certain pins
+                  </li>
                   <li>Maybe can fulfill some 8212 logic? Or add back multimaster support</li>
-                  <li>GPIO expanders might be useful for less time critical signals... check those (RESET?? certain S lines? P lines?)</li>
+                  <li>
+                    GPIO expanders might be useful for less time critical signals... check those
+                    (RESET?? certain S lines? P lines?)
+                  </li>
                   <li>MCP23017/MCP23S17 for I2C line config?</li>
                   <li>I think most front panel signals have the fewest issues with this</li>
                   <li>Just need to make sure that those lines will not be used by e.g. memory</li>
                   <li>
-                    Remark: Need to figure out the bus timing information + reset control timing information (this will also be useful during A3, we
-                    need a state machine diagram for different parts of the timing cycle [each different piece of software])
+                    Remark: Need to figure out the bus timing information + reset control timing
+                    information (this will also be useful during A3, we need a state machine diagram
+                    for different parts of the timing cycle [each different piece of software])
                   </li>
-                  <li>Alternative, use the SPI flavor, and use two of these to free up address/data lines</li>
                   <li>
-                    Notably... 10 MHz 1-bit SPI cannot keep up with 2 MHz 16-bit parallel bus I don't think... timing information investigation should
-                    help determine good fit
+                    Alternative, use the SPI flavor, and use two of these to free up address/data
+                    lines
+                  </li>
+                  <li>
+                    Notably... 10 MHz 1-bit SPI cannot keep up with 2 MHz 16-bit parallel bus I
+                    don't think... timing information investigation should help determine good fit
                   </li>
                 </ul>
               </div>
@@ -2016,14 +2318,22 @@ contact course staff.
               <div class="section">
                 <ul>
                   <li>
-                    Notes for Wednesday: Figure out the last features to cut (protection lines?) then set up notional 2350B package pin mappings (we
-                    want some sort of remaining serial support + USB for programming... are we at a limit?)
+                    Notes for Wednesday: Figure out the last features to cut (protection lines?)
+                    then set up notional 2350B package pin mappings (we want some sort of remaining
+                    serial support + USB for programming... are we at a limit?)
                   </li>
                   <li>
-                    Two options: Drop more lines, explore physical jumper setting of modes, or delegate some derived signals to external circuitry
+                    Two options: Drop more lines, explore physical jumper setting of modes, or
+                    delegate some derived signals to external circuitry
                   </li>
-                  <li>Random musing: WordStar I think has a version that ran on CP/M before getting DOS support</li>
-                  <li>Might be worth seeing, if we ever get CP/M running, if WordStar would be executable</li>
+                  <li>
+                    Random musing: WordStar I think has a version that ran on CP/M before getting
+                    DOS support
+                  </li>
+                  <li>
+                    Might be worth seeing, if we ever get CP/M running, if WordStar would be
+                    executable
+                  </li>
                 </ul>
               </div>
             </div>
@@ -2038,17 +2348,26 @@ contact course staff.
             <div class="entry-content">
               <div class="section">
                 <p>
-                  Big fan on how MITS defines 8 separate "Vectored Interrupt Control Lines" and then proceeds to OR them all together into the 8080's
-                  one interrupt control pin
+                  Big fan on how MITS defines 8 separate "Vectored Interrupt Control Lines" and then
+                  proceeds to OR them all together into the 8080's one interrupt control pin
                 </p>
-                <p>Remark: The real vectored interrupt priority was the DIP switches we put on the peripherals along the way</p>
+                <p>
+                  Remark: The real vectored interrupt priority was the DIP switches we put on the
+                  peripherals along the way
+                </p>
                 <p>
                   I've been putting together a table of "Altair bus" pins referenced from the
-                  <a href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf">Theory of Operation Manual</a>
+                  <a
+                    href="https://vtda.org/docs/computing/MITS/MITS_Altair8800TheoryOperation_1975.pdf"
+                    >Theory of Operation Manual</a
+                  >
                 </p>
                 <p>
                   Cross referenced signals against the
-                  <a href="https://en.wikipedia.org/wiki/Intel_8080#/media/File:Intel_8080_Microprocessor.png">8080 Chip's pinout</a>
+                  <a
+                    href="https://en.wikipedia.org/wiki/Intel_8080#/media/File:Intel_8080_Microprocessor.png"
+                    >8080 Chip's pinout</a
+                  >
                 </p>
                 <p>Current state of the document:</p>
               </div>
@@ -2152,11 +2471,20 @@ contact course staff.
               <br />
               <div class="section">
                 <ul>
-                  <li>the RP2350B has 48 GPIO pins available, with the current layout, we're using 37/48 GPIO pin allocations</li>
-                  <li>have about 11 more signals to allocation (really iffy on whether we'll have enough signals on the CPU card)</li>
+                  <li>
+                    the RP2350B has 48 GPIO pins available, with the current layout, we're using
+                    37/48 GPIO pin allocations
+                  </li>
+                  <li>
+                    have about 11 more signals to allocation (really iffy on whether we'll have
+                    enough signals on the CPU card)
+                  </li>
                   <li>most likely that we will not have mutli-master support, this is fine</li>
                   <li>NOTE, need an additional column of Intel 8212 I/O peripheral support pins</li>
-                  <li>i think the 8212 is mostly there to latch I/O signals (provided by from #D pins, once) when starting I/O operations</li>
+                  <li>
+                    i think the 8212 is mostly there to latch I/O signals (provided by from #D pins,
+                    once) when starting I/O operations
+                  </li>
                 </ul>
               </div>
             </div>
@@ -2170,9 +2498,13 @@ contact course staff.
             </div>
             <div class="entry-content">
               <div class="section">
-                <p>Going to create a Github repo containing both a rust workspace and kicad project</p>
+                <p>
+                  Going to create a Github repo containing both a rust workspace and kicad project
+                </p>
                 <p>Starting work on "tram" (our bus library) using the pio library in rust</p>
-                <p>The library provides some macros like pio! that let us write inline PIO assembler</p>
+                <p>
+                  The library provides some macros like pio! that let us write inline PIO assembler
+                </p>
               </div>
             </div>
           </div>
@@ -2209,7 +2541,11 @@ contact course staff.
                 <p>Worked on A2 documentation</p>
               </div>
               <div class="image-section">
-                <img src="Team/journal/img - member1/week2/Functional Block Description.drawio.png" alt="functional block diagram" width="600" />
+                <img
+                  src="Team/journal/img - member1/week2/Functional Block Description.drawio.png"
+                  alt="functional block diagram"
+                  width="600"
+                />
               </div>
             </div>
           </div>
@@ -2284,20 +2620,31 @@ contact course staff.
                     Discussed 8080 bus implementation requirements:
                     <ul>
                       <li>Front panel needs to support single-stepping and clock attachment</li>
-                      <li>CPU card needs to handle program counter, instructions, and bus access</li>
+                      <li>
+                        CPU card needs to handle program counter, instructions, and bus access
+                      </li>
                       <li>RAM card needs proper address space handling</li>
                     </ul>
                   </li>
                   <li>Researched RP2350 microcontroller capabilities for 8080 emulation</li>
-                  <li>Verified PIO peripheral support for 8080 parallel bus (section 1.11 of the datasheet)</li>
+                  <li>
+                    Verified PIO peripheral support for 8080 parallel bus (section 1.11 of the
+                    datasheet)
+                  </li>
                   <li>Confirmed RP2350 PIO block can interface with 48 GPIO pins</li>
                   <li>Reviewed PIO examples for clocked input and parallel bus implementation</li>
-                  <li>Designed front panel aesthetics using black solder mask and white silkscreen</li>
+                  <li>
+                    Designed front panel aesthetics using black solder mask and white silkscreen
+                  </li>
                   <li>Created custom "α" mark using exposed mask technique</li>
                 </ul>
               </div>
               <div class="image-section">
-                <img src="Team/journal/img - member1/week1/boardcassiopeiae.png" alt="black pcb with design" width="600" />
+                <img
+                  src="Team/journal/img - member1/week1/boardcassiopeiae.png"
+                  alt="black pcb with design"
+                  width="600"
+                />
               </div>
             </div>
           </div>
@@ -2321,7 +2668,11 @@ contact course staff.
                 </ul>
               </div>
               <div class="image-section">
-                <img src="Team/journal/img - member1/prior/20241112_141034.jpg" alt="doodle" width="600" />
+                <img
+                  src="Team/journal/img - member1/prior/20241112_141034.jpg"
+                  alt="doodle"
+                  width="600"
+                />
               </div>
             </div>
 
@@ -2338,11 +2689,22 @@ contact course staff.
                 <ul>
                   <li>
                     Researched aluminum enclosures for electronic components on
-                    <a href="https://www.alibaba.com/product-detail/83-120-155mm-Aluminum-Electronic-Enclosures_1601184393467.html">Alibaba</a>
+                    <a
+                      href="https://www.alibaba.com/product-detail/83-120-155mm-Aluminum-Electronic-Enclosures_1601184393467.html"
+                      >Alibaba</a
+                    >
                   </li>
-                  <li>Found 83*120*155mm Aluminum Electronic Enclosures Case suitable for project</li>
-                  <li>Discussed reverse-mounted SMT LED devices and tactile switches for front panel design</li>
-                  <li>Explored options for reverse-mounted slide switches, considering custom SLA printed switch caps as alternative</li>
+                  <li>
+                    Found 83*120*155mm Aluminum Electronic Enclosures Case suitable for project
+                  </li>
+                  <li>
+                    Discussed reverse-mounted SMT LED devices and tactile switches for front panel
+                    design
+                  </li>
+                  <li>
+                    Explored options for reverse-mounted slide switches, considering custom SLA
+                    printed switch caps as alternative
+                  </li>
                 </ul>
               </div>
             </div>
