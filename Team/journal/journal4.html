@@ -113,7 +113,7 @@ Links and sources are found below, for ease of access:<br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br><br>
 
-<b>Content</b><br>
+<b>Content:</b><br>
 The third Raspbery Pi Stamp XL board came today, so I had to spent some time making sure it was operable because it looks like some of the pins were soldered already.<br>
 I initially put the flexy pins in the breadboard as instructed from their website, but I realized that it would not match the configuration we were desiring, so I removed the flexy pins to put them in the right way. A photo of the initial incorrect configuration is seen below.<br>
 <div id="banner">
@@ -135,11 +135,10 @@ The final prototype looks as below.<br>
 </div><br>
 I got started on the KiCad schematic for the whole front panel, which I had to redo because my initial prototype was incorrect. However, I ran out of time as I had to leave for another meeting.<br>
 With the Raspberry Pi Stamp XL properly configured and operational, the next step involved verifying its communication with peripheral components. The I2C bus was a primary focus, as its stability would determine the success of interfacing with the I/O expanders. Initial tests with the oscilloscope confirmed signal integrity, but occasional noise indicated a need for better grounding and shielding.<br>
-To improve signal stability, additional capacitors were placed near the data lines, and the pull-up resistors were adjusted based on recommended values from the datasheets. A series of test scripts were run to confirm that all expected devices responded correctly. Debugging was aided by using a logic analyzer to capture transactions, ensuring address recognition and proper ACK responses.<br>
-Once I2C communication was stable, the focus shifted to integrating the front panel controls. LED indications were tested under different load conditions to confirm expected brightness levels, and switch debouncing strategies were considered. The overall design was reviewed to ensure future PCB integration would be straightforward.<br>
-With these improvements, the hardware prototype is progressing toward finalization. The next step will involve refining the software for more efficient polling and considering interrupt-based methods for handling switch inputs. This will further optimize the response time of the interface.<br>
+With stable I2C communication achieved, the focus transitioned to integrating the front panel controls. LED behavior was tested under varying load conditions to validate brightness levels, and debouncing strategies for switches were evaluated. The design was also reviewed to ensure seamless integration into the final PCB layout.<br>
+These advancements have moved the hardware prototype closer to finalization. The next steps will involve refining the software to implement more efficient polling mechanisms and exploring interrupt-based approaches for handling switch inputs. These optimizations will enhance the interface's responsiveness and overall performance<br>
 
-<b>Citations</b><br>
+<b>Citations:</b><br>
 Links and sources are found below, for ease of access:<br>
 - 1: <a href="https://www.solder.party/docs/flexypin/" target="_blank">Flexy pins documentation for installation</a><br>
 - 2: <a href="https://www.youtube.com/watch?v=bG7yW9FigJA" target="_blank">Tutorial for desoldering pads</a><br>
@@ -151,7 +150,7 @@ Links and sources are found below, for ease of access:<br>
 <b>Start Time: 10:00 am</b><br>
 <b>Duration: 3 hours</b><br><br>
 
-<b>Content</b><br>
+<b>Content:</b><br>
 During this session, I really needed to finish the hardware prototype, because as Professor Walter stated, we were very behind on prototyping and should have been creating PCBs at the given time.<br>
 First, I needed to find the proper resistors to get the sink driver to work as intended. The old resistor values, the 150 Ω resistors, were not drawing nearly enough power to control the 592TLC11IN, so I needed to find a new value.<br>
 I revisited the datasheet for the 592TLC11IN, and found that the maximum current draw was 200 mA, so I needed to find a resistor that would draw that much current or less. I found that an equation detailed in the datasheet [1] that would meet my exact specifications, so I needed to do the math to calculate the proper values.<br>
@@ -179,8 +178,8 @@ I created a discussion post and installed all 24 220Ω resistors, so our board c
 With the LED driver circuit functioning as expected, the next challenge was ensuring that switch inputs could be properly registered. This required integrating the I/O expanders with the microcontroller and setting up communication over I2C. The initial wiring seemed correct, but testing revealed inconsistencies in signal transmission, suggesting that the I2C pull-up resistors might not be ideal.<br>
 A logic analyzer helped visualize the data on the I2C lines, and an oscilloscope confirmed irregular voltage levels. Adjusting the pull-up resistors brought the signals within an acceptable range, allowing reliable communication between the expander and the Raspberry Pi Pico. A few test scripts verified that each switch press was correctly interpreted, though some inconsistencies pointed to the need for additional software adjustments.<br>
 With inputs now properly received, the next steps involve refining the software to handle signal stability. Debouncing needs to be addressed, and an interrupt-driven approach would likely improve efficiency over continuous polling. Once these refinements are in place, attention can shift toward full integration of the panel’s functionality.<br>
-
-<b>Citations</b><br>
+<br>
+<b>Citations:</b><br>
 Links and sources are found below, for ease of access:<br>
 - 1: <a href="https://www.ti.com/lit/ds/symlink/tlc59211.pdf?ts=1740190473624&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTLC59211%252Fpart-details%252FTLC59211IN" target="_blank">Sink Driver specifications</a><br>
 - 2: <a href="https://e2e.ti.com/" target="_blank">Peer to peer engineering forum for TI</a><br>
@@ -192,7 +191,7 @@ Links and sources are found below, for ease of access:<br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br><br>
 
-<b>Content</b><br>
+<b>Content:</b><br>
 During this mandatory lab section, I wanted to make sure everything we got from the staff was properly soldered. I also wanted to work (and almost complete) our hardware development board, such that I could show it to the 477 Staff during "Show me a thing".<br>
 We got two Raspberry Pi stamp boards from the staff, but neither came with pins installed. I decided to install most of the connecters needed for the board to function properly.<br>
 <div id="banner">
@@ -218,7 +217,7 @@ One of the challenges I addressed was the precise alignment of the flexy pins du
 These efforts directly contribute to the project's progress by establishing a solid foundation for the hardware setup. Reliable connections and proper alignment are critical for the overall functionality of the system, and addressing these aspects early helps prevent potential issues during later stages of development.<br>
 Looking ahead, the next steps involve completing the final wiring for the I/O expanders and initiating preliminary testing of the GPIO functionality. This will include verifying voltage levels, assessing signal integrity, and identifying any potential sources of interference. Additionally, I plan to integrate a logic analyzer to monitor and validate data transmission between the RP stamp board and external peripherals, ensuring seamless communication and further advancing the project toward full functionality.<br>
 <br>
-<b>Citations</b><br>
+<b>Citations:</b><br>
 Links and sources are found below, for ease of access:<br>
 - 1: <a href="https://www.solder.party/docs/flexypin/" target="_blank">Flexy Pin Installation</a><br>
 - 2: <a href="https://www.digikey.com/en/products/detail/samtec-inc/SSW-104-02-G-S/1112449?gclsrc=aw.ds&&utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax_Product_Connectors%2C%20Interconnects&utm_term=&utm_content=&utm_id=go_cmp-20461032180_adg-_ad-__dev-c_ext-_prd-1112449_sig-CjwKCAiA5eC9BhAuEiwA3CKwQvpH8SNQ2OiBtkXZWuLmaHsp1iZ8hi5xkY5AlS1i1Gpg4RVTXOvaHRoCc0QQAvD_BwE&gad_source=1&gclid=CjwKCAiA5eC9BhAuEiwA3CKwQvpH8SNQ2OiBtkXZWuLmaHsp1iZ8hi5xkY5AlS1i1Gpg4RVTXOvaHRoCc0QQAvD_BwE&gclsrc=aw.ds" target="_blank">Male Header Reference Datasheet</a><br>
@@ -230,7 +229,7 @@ Links and sources are found below, for ease of access:<br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 3 hours</b><br><br>
 
-<b>Content</b><br>
+<b>Content:</b><br>
 First, I needed to fix a repository issue between the desktop computer I was working with in the senior design lab.<br>
 The problem was that nothing was syncing correct, and I did not have access to the repository I was working within.<br>
 I discovered that the lab computer was actually two separate accounts, the desktop and my huan1811 user account, so I needed to be very careful with the account I actually was using.<br>
