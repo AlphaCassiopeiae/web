@@ -98,13 +98,13 @@ This website was based upon a number of source materials, which are elaborated u
 					</ol>
 					<h2>Components</h2>
 					<h1>Front Panel</h1>
-					<p>The front panel will make up the user interface of our design. It will use an array of reverse mounted SMT LEDs (such as the KingBright AA3528SECKT) to display information to the user, of which consists of 16 address bit lights, 8 data bit lights, and up to 8 different status lights.<br>
-					The front panel is implemented using an RP2350B, making use of an ABM8-272-T3 external crystal oscialltor, and W25Q128JVS 128MB external flash.<br>
-					As a user interface, the front panel will provide various slide switches for CPU control, memory examination, and reset functions. For the toggle dual-throw interface on the original Altair 8800, these will be implemented using slide switches. Whereas, the momentary dual-throw switches will be each implemented using two (2) tactile button switches.<br>
-					The address and data LEDs can either be driven off of the bus directly, or via the microcontroller (to reflect the current state of each slide switch), which is chosen via a selection chip (based on the device's examine, single-step state).<br>
-					The clock generation will also be on the front panel, and will use switches/buttons to allow normal clock operation (2 MHz) and support single-step clock (asserting the single-step signal in this mode). In order to assert address control, the front panel must begin a routine, where it asserts an interrupt, and drives the data lines to form a JMP instruction on-the-fly.<br>
-					This board is intended to be mounted externally, meaning that the solder mask and silkscreen will be exposed at the front of the device. The front panel features a layout and silkscreen design that is reminiscent of the original Altair 8800's front panel to a reasonable level of aesthetic fidelity.<br>
-					The board connects to the backplane via a series of flat flex connectors.</p>
+						<p>The front panel will make up the user interface of our design. It will use an array of reverse mounted SMT LEDs (such as the KingBright AA3528SECKT) to display information to the user, of which consists of 16 address bit lights, 8 data bit lights, and up to 8 different status lights.<br>
+						The front panel is implemented using an RP2350B, making use of an ABM8-272-T3 external crystal oscialltor, and W25Q128JVS 128MB external flash.<br>
+						As a user interface, the front panel will provide various slide switches for CPU control, memory examination, and reset functions. For the toggle dual-throw interface on the original Altair 8800, these will be implemented using slide switches. Whereas, the momentary dual-throw switches will be each implemented using two (2) tactile button switches.<br>
+						The address and data LEDs can either be driven off of the bus directly, or via the microcontroller (to reflect the current state of each slide switch), which is chosen via a selection chip (based on the device's examine, single-step state).<br>
+						The clock generation will also be on the front panel, and will use switches/buttons to allow normal clock operation (2 MHz) and support single-step clock (asserting the single-step signal in this mode). In order to assert address control, the front panel must begin a routine, where it asserts an interrupt, and drives the data lines to form a JMP instruction on-the-fly.<br>
+						This board is intended to be mounted externally, meaning that the solder mask and silkscreen will be exposed at the front of the device. The front panel features a layout and silkscreen design that is reminiscent of the original Altair 8800's front panel to a reasonable level of aesthetic fidelity.<br>
+						The board connects to the backplane via a series of flat flex connectors.</p>
 					<h1>Internal Cards</h1>
 					<p>
 						For this project, the PCB design for the CPU, RAM, and UART cards is identical, and the functionality is differentiated on the matter of the firmware loaded, the state of various jumpers on the PCB (to allow for the changing of I/O circuits), and the population of certain components (such as I/O expanders, UART connectors, etc.). Each board integrates the RP2350B microcontroller (with an external ABM8-272-T3 crystal oscillator and W25Q128JVS 128MB external flash). Each board features an internal USB-C connector, allowing for the board to be optionally self-powered during UF2 programming scenarios. Each board also features an SWD connector to allow for external programming. Bus and power signals are broken out into a DDR4 DIMM edge connector, which interfaces with the DDR4 DIMM receptacle on the backplane PCB. Based on the firmware implementation, the device can emulate either an the Intel 8080 processor OR providing at least 4 KB of addressable memory for program execution (for example for use with 4K BASIC) OR a UART device that responds to I/O bus operations, and tranceives them to an external UART port.
@@ -114,8 +114,31 @@ This website was based upon a number of source materials, which are elaborated u
 					<p>
 						The backplane PCB is mounted internally to the enclosure, and features as least 3 DDR4 DIMM receptacles.<br>
 						The PCB provides a regulated power supply, which includes a 5V to 3.3V step-down power supply using a reference buck converter design. 5V/3A power is provided externally via a USB-C connector mounted on the backplane board. This ensures stable voltage levels for all onboard components, preventing overvoltage damage while maintaining efficient power delivery to the CPU, memory, front panel, and any expansion cards. The backplane facilitates power delivery to the CPU and RAM cards via DDR4 DIMMs, and to the front panel via a series of FFC connectors. The board is laid out in such a way that there is even power/voltage distribution throughout the board.</p>
-
-					<br><br>
+					<h2>Bus specification</h2>
+					<ul>
+						<li>A0-A15 (16 pins)</li>
+						<li>D0-D7 (8 pins)</li>
+						<li>XRDY (memory ready) (1 pin)</li>
+						<li>PWAIT (mem/IO wait) (1 pin)</li>
+						<li>PRDY (IO ready) (1 pin)</li>
+						<li>PINTE (interrupt enable) (1 pin)</li>
+						<li>~PINT (interrupt request) (1 pin)</li>
+						<li>SINTA (interrupt acknowledge) (1 pin)</li>
+						<li>~CLOCK (bus clock) (1 pin)</li>
+						<li>~PRESET (reset) (1 pin)</li>
+						<li>~PHOLD ("hold" bus control) (1 pin)</li>
+						<li>UNPROT (memory protection unprotect) (1 pin)</li>
+						<li>SM1 (first machine cycle of instruction flag) (1 pin)</li>
+						<li>SOUT (ouput IO cycle) (1 pin)</li>
+						<li>SINP (input IO cycle) (1 pin)</li>
+						<li>SMEMR (memory read strobe) (1 pin)</li>
+						<li>SHLTA (halt) (1 pin)</li>
+						<li>MWRT (memory write strobe) (1 pin)</li>
+						<li>~PWR (write strobe) (1 pin)</li>
+						<li>PDBIN (data bus in) (1 pin)</li>
+						<li>SWO (write-out) (1 pin)</li>
+						<li>SSTACK (stack operation) (1 pin)</li>
+					</ul>
 					<h2>Project Specific Design Requirements (PSDRs):</h2>
 					<ol>
 						<li><b>(Hardware)</b> An ability to dimorphize the functionality of CPU and RAM cards through a common PCB design, based on the optional population of 2 I2C-based MCP23017 I/O expanders, and jumper connectors.</li>
