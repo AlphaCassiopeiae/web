@@ -135,21 +135,52 @@ contact course staff.
         <div class="week-content">
           <h2 id="sec-week7">=============== Week 7: =================</h2>
           <h4>
-            <b>Entry X: -----------------------------------------------------------------</b>
+            <b>Entry 1: -----------------------------------------------------------------</b>
           </h4>
           <div class="entry-metadata">
-            <p><b>Date:</b> Month Day, Year</p>
-            <p><b>Start Time:</b> x:xx TM</p>
+            <p><b>Date:</b> February 22, 2025</p>
+            <p><b>Start Time:</b> 3:38 PM</p>
             <p><b>Duration:</b> 0.0 hours</p>
           </div>
           <div class="entry-content">
             <div class="section">
               <p><strong>What did you work on?</strong></p>
-              <p></p>
+              <p>
+                I'm working on completing and verifying all of the cable harnesses (ribbon cables) that we need for
+                communication between two boards. Currently, a pair of cables of complete, each of which has 24
+                conductors. These represent the 16 address lines, plus the 8 data lines of the bus. Today, I'll try to
+                verify that the circuit for these two 24 conductor cables in good, and also work on the 20 conductor
+                cable, which connects the clock and bus control signals.
+              </p>
 
               <p><strong>How did you work on it?</strong></p>
               <ul>
-                <li></li>
+                <li>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/phone01.png" alt="ribbon cables installed on breadboard"
+                      height="600" />
+                  </div>
+                  <p>
+                    First, I installed both ribbon cables to the breadboard setup using the notes I had taken yesterday,
+                    the <a
+                      href="https://www.solder.party/docs/rp2xxx-stamp-related/rp2xxx-stamp-carrier-xl/downloads/">carrier
+                      board diagram</a>, and my schematic.
+                  </p>
+                </li>
+                <li>
+                  Next, I decided to probe for continuity using the benchtop multimeter, between the pad contacts
+                  directly on each Stamp XL. This tests that the connection between the GPIO pins that I'm interested in
+                  (<code>GPIO24</code> thhrough <code>GPIO47</code>), is good.
+                  <ul>
+                    <li>To figure out which pins to test, I used the <a
+                        href="https://www.solder.party/docs/rp2xxx-stamp-related/rp2350-stamp-xl/downloads/">Stamp XL's
+                        leaflet diagram</a>, and probed GPIOs 24-47.</li>
+                    <li>Pins 24-29, which are on the bottom on the leaflet diagram, pass continuity</li>
+                    <li>Pin 30 does not pass continuity. Pins 31-39 pass continuity. These pins are on the right side of the leaflet diagram.</li>
+                    <li>Pins 40-47, which are on the top on the leaflet diagram, pass continuity</li>
+                  </ul>
+                </li>
+                <li>I will need to investigate which part is causing the connection between the Pin 30s to misbehave. This connection fault could be in the FlexyPin, the header pins, the crimp in the ribbon cable, the cable itself, or the breadboard. I'll eliminate these potential faults one-by-one.</li>
               </ul>
 
               <p>
