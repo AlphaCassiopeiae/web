@@ -129,30 +129,39 @@ This website was based upon a number of source materials, which are elaborated u
 						The backplane PCB is mounted internally to the enclosure, and features as least 3 DDR4 DIMM receptacles.<br>
 						The PCB provides a regulated power supply, which includes a 5V to 3.3V step-down power supply using a reference buck converter design. 5V/3A power is provided externally via a USB-C connector mounted on the backplane board. This ensures stable voltage levels for all onboard components, preventing overvoltage damage while maintaining efficient power delivery to the CPU, memory, front panel, and any expansion cards. The backplane facilitates power delivery to the CPU and RAM cards via DDR4 DIMMs, and to the front panel via a series of FFC connectors. The board is laid out in such a way that there is even power/voltage distribution throughout the board.</p>
 					<h2>Bus specification</h2>
-					<ul>
-						<li>A0-A15 (16 pins)</li>
-						<li>D0-D7 (8 pins)</li>
-						<li>XRDY (memory ready) (1 pin)</li>
-						<li>PWAIT (mem/IO wait) (1 pin)</li>
-						<li>PRDY (IO ready) (1 pin)</li>
-						<li>PINTE (interrupt enable) (1 pin)</li>
-						<li>~PINT (interrupt request) (1 pin)</li>
-						<li>SINTA (interrupt acknowledge) (1 pin)</li>
-						<li>~CLOCK (bus clock) (1 pin)</li>
-						<li>~PRESET (reset) (1 pin)</li>
-						<li>~PHOLD ("hold" bus control) (1 pin)</li>
-						<li>UNPROT (memory protection unprotect) (1 pin)</li>
-						<li>SM1 (first machine cycle of instruction flag) (1 pin)</li>
-						<li>SOUT (ouput IO cycle) (1 pin)</li>
-						<li>SINP (input IO cycle) (1 pin)</li>
-						<li>SMEMR (memory read strobe) (1 pin)</li>
-						<li>SHLTA (halt) (1 pin)</li>
-						<li>MWRT (memory write strobe) (1 pin)</li>
-						<li>~PWR (write strobe) (1 pin)</li>
-						<li>PDBIN (data bus in) (1 pin)</li>
-						<li>SWO (write-out) (1 pin)</li>
-						<li>SSTACK (stack operation) (1 pin)</li>
-					</ul>
+					<table>
+						<thead>
+							<tr>
+								<th>Line</th>
+								<th>Usage</th>
+								<th>Pincount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td>A0-A15</td><td>Address (CPU driven)</td><td>16</td></tr>
+							<tr><td>A0-D7</td><td>Data (tri-state)</td><td>8</td></tr>
+							<tr><td>XRDY</td><td>memory ready</td><td>1</td></tr>
+							<tr><td>PWAIT</td><td>mem/IO wait</td><td>1</td></tr>
+							<tr><td>PRDY</td><td>IO ready</td><td>1</td></tr>
+							<tr><td>PINTE</td><td>interrupt enable</td><td>1</td></tr>
+							<tr><td>~PINT</td><td>interrupt request</td><td>1</td></tr>
+							<tr><td>SINTA</td><td>interrupt acknowledge</td><td>1</td></tr>
+							<tr><td>~CLOCK</td><td>bus clock</td><td>1</td></tr>
+							<tr><td>~PRESET</td><td>reset</td><td>1</td></tr>
+							<tr><td>~PHOLD</td><td>"hold" bus control</td><td>1</td></tr>
+							<tr><td>UNPROT</td><td>memory protection unprotect</td><td>1</td></tr>
+							<tr><td>SM1</td><td>first machine cycle of instruction flag</td><td>1</td></tr>
+							<tr><td>SOUT</td><td>ouput IO cycle</td><td>1</td></tr>
+							<tr><td>SINP</td><td>input IO cycle</td><td>1</td></tr>
+							<tr><td>SMEMR</td><td>memory read strobe</td><td>1</td></tr>
+							<tr><td>SHLTA</td><td>halt</td><td>1</td></tr>
+							<tr><td>MWRT</td><td>memory write strobe</td><td>1</td></tr>
+							<tr><td>~PWR</td><td>write strobe</td><td>1</td></tr>
+							<tr><td>PDBIN</td><td>data bus in</td><td>1</td></tr>
+							<tr><td>SWO</td><td>write-out</td><td>1</td></tr>
+							<tr><td>SSTACK</td><td>stack operation</td><td>1</td></tr>
+						</tbody>
+					</table>
 					<h2>Project Specific Design Requirements (PSDRs):</h2>
 					<ol>
 						<li><b>(Hardware)</b> An ability to dimorphize the functionality of CPU and RAM cards through a common PCB design, based on the optional population of 2 I2C-based MCP23017 I/O expanders, and jumper connectors.</li>
