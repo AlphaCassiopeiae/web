@@ -147,7 +147,7 @@ contact course staff.
               <p><strong>What did you work on?</strong></p>
               <p>
                 I'm working on completing and verifying all of the cable harnesses (ribbon cables) that we need for
-                communication between two boards. Currently, a pair of cables of complete, each of which has 24
+                communication between two boards. Currently, a pair of cables is complete, each of which has 24
                 conductors. These represent the 16 address lines, plus the 8 data lines of the bus. Today, I'll try to
                 verify that the circuit for these two 24 conductor cables in good, and also work on the 20 conductor
                 cable, which connects the clock and bus control signals.
@@ -176,11 +176,34 @@ contact course staff.
                         href="https://www.solder.party/docs/rp2xxx-stamp-related/rp2350-stamp-xl/downloads/">Stamp XL's
                         leaflet diagram</a>, and probed GPIOs 24-47.</li>
                     <li>Pins 24-29, which are on the bottom on the leaflet diagram, pass continuity</li>
-                    <li>Pin 30 does not pass continuity. Pins 31-39 pass continuity. These pins are on the right side of the leaflet diagram.</li>
+                    <li>Pin 30 does not pass continuity. Pins 31-39 pass continuity. These pins are on the right side of
+                      the leaflet diagram.</li>
                     <li>Pins 40-47, which are on the top on the leaflet diagram, pass continuity</li>
                   </ul>
                 </li>
-                <li>I will need to investigate which part is causing the connection between the Pin 30s to misbehave. This connection fault could be in the FlexyPin, the header pins, the crimp in the ribbon cable, the cable itself, or the breadboard. I'll eliminate these potential faults one-by-one.</li>
+                <li>
+                  <p>I will need to investigate which part is causing the connection between the Pin 30s to misbehave.
+                    This connection fault could be in the FlexyPin, the header pins, the crimp in the ribbon cable, the
+                    cable itself, or the breadboard. I'll eliminate these potential faults one-by-one.</p>
+                  <ul>
+                    <li>I've eliminated the possibility of it being a FlexyPin issue by probing between the carrier
+                      board and the Stamp XL</li>
+                    <li>I've eliminated the possibility of it being a header pin issue by probing between the Stamp XL,
+                      and a jumper cable connected to the suspected header pin</li>
+                    <li>I've eliminated the possibility of it being a breadboard issue by moving the connections to a
+                      different part of the breadboard, and reprobing the entire bevy of pins.</li>
+                    <li>
+                      <div class="image-section">
+                        <img src="Team/journal/img - member1/week7/phone02.png" alt="the probing process" width="600" />
+                      </div>
+                      <p>I've found that the continuity issue is a fault with a cable. In particular the cable harness
+                        used on the left stamp carrier board. This was found by placing a spring probe on the breadboard
+                        side of the ribbon cable, and probing Pin 30 of the Stamp XL on the other side. While the right
+                        setup passes the continuity test, the left setup does not.</p>
+                    </li>
+
+                  </ul>
+                </li>
               </ul>
 
               <p>
