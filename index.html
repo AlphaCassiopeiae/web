@@ -10,37 +10,39 @@ This website was based upon a number of source materials, which are elaborated u
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<!--Reconfigurable base tag; used to modify the site root location for root-relative links-->
-<!-- Python SimpleHTTPServer Testing -->
-<!--<base href="/http://localhost:8000/" />-->
-<!-- ECE477 preview URL -->
-<!--<base href="/https://engineering.purdue.edu/ece477/preview/" />-->
-<!-- ECE477 final URL -->
-<!--<base href="/https://engineering.purdue.edu/ece477/" />-->
-<!--<base href="https://engineering.purdue.edu/ece477/StudentWebTemplate/" />-->
-    <base href="https://engineering.purdue.edu/477grp15/" /> <!-- Replace the 25 with your team number-->
-	
-<!--Content-->
-<title>ECE477 Homepage</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta name="author" content="Phil Walter">
-<meta name = "format-detection" content = "telephone=no" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<!--Reconfigurable base tag; used to modify the site root location for root-relative links-->
+	<!-- Python SimpleHTTPServer Testing -->
+	<!--<base href="/http://localhost:8000/" />-->
+	<!-- ECE477 preview URL -->
+	<!--<base href="/https://engineering.purdue.edu/ece477/preview/" />-->
+	<!-- ECE477 final URL -->
+	<!--<base href="/https://engineering.purdue.edu/ece477/" />-->
+	<!--<base href="https://engineering.purdue.edu/ece477/StudentWebTemplate/" />-->
+	<base href="https://engineering.purdue.edu/477grp15/" /> <!-- Replace the 25 with your team number-->
 
-<!--CSS-->
-<link rel="stylesheet" href="css/default.css" type="text/css" media="all" />
-<link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/content.css">
-<!--[if IE 6]>
+	<!--Content-->
+	<title>ECE477 Homepage</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="Phil Walter">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	<!--CSS-->
+	<link rel="stylesheet" href="css/default.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/content.css">
+	<!--[if IE 6]>
 <link href="/default_ie6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 
 </head>
+
 <body>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 	<!--
@@ -51,6 +53,7 @@ This website was based upon a number of source materials, which are elaborated u
 	License: Released under a Creative Commons Attribution 2.5 License
 	-->
 	<html xmlns="http://www.w3.org/1999/xhtml">
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="" />
@@ -58,82 +61,662 @@ This website was based upon a number of source materials, which are elaborated u
 		<meta name="author" content="Phil Walter" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-	
+
 		<title>ECE477 Homepage</title>
-	
+
 		<!-- CSS -->
 		<link rel="stylesheet" href="css/default.css" type="text/css" media="all" />
 		<link rel="stylesheet" href="css/responsive.css" />
 		<link rel="stylesheet" href="css/styles.css" />
 		<link rel="stylesheet" href="css/content.css" />
-	
+
 		<!--[if IE 6]>
 		<link href="/default_ie6.css" rel="stylesheet" type="text/css" />
 		<![endif]-->
 	</head>
+
 	<body>
 		<div id="wrapper_site">
 			<div id="wrapper_page">
 				<!-- Header -->
 				<div id="header"></div>
-				
+
 				<!-- Navigation Menu -->
 				<div id="menu"></div>
-				
+
 				<!-- Slideshow -->
 				<div id="slideshow"></div>
-				
+
 				<!-- Main Content -->
 				<div id="content">
 					<h2>Project Name: αCassiopeiae 8800</h2>
 					<h2>Project Functional Description:</h2>
-					<p>We plan to create a miniaturized version of the Altair 8800, one of the first personal microcomputers. Our system is implemented as 4 different PCBs, which are comprised of 3 unique PCB designs. </p>
+					<p>We plan to create a miniaturized version of the Altair 8800, one of the first personal
+						microcomputers. Our system is implemented as 4 different PCBs, which are comprised of 3 unique
+						PCB designs. </p>
 					<ol>
-						<li>The design is comprised of a Front Panel PCB, a backplane PCB, and a multi-function card PCB.</li>
-						<li>A 44-pin bus interface provides 16-address lines, 8 data lines, and 20 bus control lines. The bus implementation is driven by the Programmable I/O (PIO) feature of Raspberry Pi microcontrollers, which allows for the configuration of state machines to allow for custom serial and parallel I/O.</li>
-						<li>Delivery of bus signals and 3.3V power is facilitated by the backplane PCB. The backplane PCB connects to each card PCB via a DDR4 DIMM connector, and to the front panel PCB via a series of flat flex connectors.</li>
-						<li>The user should be able to add optional expansion cards to allow more advanced functionality, for example, communication over UART. These additional cards interface with the same bus interface as the other cards do.	The user should be able to add/remove these optional cards to achieve the functionality they desire. For our project, as a stretch goal, we plan on providing a working UART card with custom firmware, using the same PCB design as our CPU and RAM cards.</li>
-						<li>Our machine will be powered via a USB-C 5V/3A rated power supply. The USB-C connector connects to a receptacle on the backplane board, which regulates it down to the 3.3V level required for our system.</li>
-						<li>All components are mounted on a two-piece alumiunum extruded enclosure, with the front panel mounted with machine screws on the front, the backplane riding on the mounting "ribs" within the alumiunum shell, each card mounted on the DIMM receptacles of the backplane, and two separate mechanical-only rear plates mounted with machine screws on the back of the device, separate as to allow for the two parts of the enclosure to slide apart even after assembly, with the removal to the top two front panel machine screws.</li>
+						<li>The design is comprised of a Front Panel PCB, a backplane PCB, and a multi-function card
+							PCB.</li>
+						<li>A 44-pin bus interface provides 16-address lines, 8 data lines, and 20 bus control lines.
+							The bus implementation is driven by the Programmable I/O (PIO) feature of Raspberry Pi
+							microcontrollers, which allows for the configuration of state machines to allow for custom
+							serial and parallel I/O.</li>
+						<li>Delivery of bus signals and 3.3V power is facilitated by the backplane PCB. The backplane
+							PCB connects to each card PCB via a DDR4 DIMM connector, and to the front panel PCB via a
+							series of flat flex connectors.</li>
+						<li>The user should be able to add optional expansion cards to allow more advanced
+							functionality, for example, communication over UART. These additional cards interface with
+							the same bus interface as the other cards do. The user should be able to add/remove these
+							optional cards to achieve the functionality they desire. For our project, as a stretch goal,
+							we plan on providing a working UART card with custom firmware, using the same PCB design as
+							our CPU and RAM cards.</li>
+						<li>Our machine will be powered via a USB-C 5V/3A rated power supply. The USB-C connector
+							connects to a receptacle on the backplane board, which regulates it down to the 3.3V level
+							required for our system.</li>
+						<li>All components are mounted on a two-piece alumiunum extruded enclosure, with the front panel
+							mounted with machine screws on the front, the backplane riding on the mounting "ribs" within
+							the alumiunum shell, each card mounted on the DIMM receptacles of the backplane, and two
+							separate mechanical-only rear plates mounted with machine screws on the back of the device,
+							separate as to allow for the two parts of the enclosure to slide apart even after assembly,
+							with the removal to the top two front panel machine screws.</li>
 					</ol>
 					<h2>Components</h2>
 					<h1>Front Panel</h1>
 					<p>
-						The front panel will make up the user interface of our design. It will use an array of reverse mounted SMT LEDs (such as the KingBright AA3528SECKT) to display information to the user, of which consists of 16 address bit lights, 8 data bit lights, and up to 8 different status lights.
+						The front panel will make up the user interface of our design. It will use an array of reverse
+						mounted SMT LEDs (such as the KingBright AA3528SECKT) to display information to the user, of
+						which consists of 16 address bit lights, 8 data bit lights, and up to 8 different status lights.
 					</p>
 					<p>
-						The front panel is implemented using an RP2350B, making use of an ABM8-272-T3 external crystal oscialltor, and W25Q128JVS 128MB external flash.
+						The front panel is implemented using an RP2350B, making use of an ABM8-272-T3 external crystal
+						oscialltor, and W25Q128JVS 128MB external flash.
 					</p>
 					<p>
-						As a user interface, the front panel will provide various slide switches for CPU control, memory examination, and reset functions. For the toggle dual-throw interface on the original Altair 8800, these will be implemented using slide switches. Whereas, the momentary dual-throw switches will be each implemented using two (2) tactile button switches.
+						As a user interface, the front panel will provide various slide switches for CPU control, memory
+						examination, and reset functions. For the toggle dual-throw interface on the original Altair
+						8800, these will be implemented using slide switches. Whereas, the momentary dual-throw switches
+						will be each implemented using two (2) tactile button switches.
 					</p>
 					<p>
-						The address and data LEDs can either be driven off of the bus directly, or via the microcontroller (to reflect the current state of each slide switch), which is chosen via a selection chip (based on the device's examine, single-step state).
+						The address and data LEDs can either be driven off of the bus directly, or via the
+						microcontroller (to reflect the current state of each slide switch), which is chosen via a
+						selection chip (based on the device's examine, single-step state).
 					</p>
 					<p>
-						The clock generation will also be on the front panel, and will use switches/buttons to allow normal clock operation (2 MHz) and support single-step clock (asserting the single-step signal in this mode). In order to assert address control, the front panel must begin a routine, where it asserts an interrupt, and drives the data lines to form a JMP instruction on-the-fly.
+						The clock generation will also be on the front panel, and will use switches/buttons to allow
+						normal clock operation (2 MHz) and support single-step clock (asserting the single-step signal
+						in this mode). In order to assert address control, the front panel must begin a routine, where
+						it asserts an interrupt, and drives the data lines to form a JMP instruction on-the-fly.
 					</p>
 					<p>
-						This board is intended to be mounted externally, meaning that the solder mask and silkscreen will be exposed at the front of the device. The front panel features a layout and silkscreen design that is reminiscent of the original Altair 8800's front panel to a reasonable level of aesthetic fidelity.
+						This board is intended to be mounted externally, meaning that the solder mask and silkscreen
+						will be exposed at the front of the device. The front panel features a layout and silkscreen
+						design that is reminiscent of the original Altair 8800's front panel to a reasonable level of
+						aesthetic fidelity.
 					</p>
 					<p>
 						The board connects to the backplane via a series of flat flex connectors.
 					</p>
-					<h4>LED Blocks</h4>
-					<ul>
-						<li>
-							<h5>Status</h5>
-						</li>
-					</ul>
+					<h4>LEDs and Switches Detail</h4>
+					<style type="text/css">
+						.tg {
+							border-collapse: collapse;
+							border-spacing: 0;
+						}
+
+						.tg td {
+							border-style: solid;
+							border-width: 0px;
+							font-family: Arial, sans-serif;
+							font-size: 14px;
+							overflow: hidden;
+							padding: 10px 5px;
+							word-break: normal;
+						}
+
+						.tg th {
+							border-style: solid;
+							border-width: 0px;
+							font-family: Arial, sans-serif;
+							font-size: 14px;
+							font-weight: normal;
+							overflow: hidden;
+							padding: 10px 5px;
+							word-break: normal;
+						}
+
+						.tg .tg-0pky {
+							border-color: inherit;
+							text-align: left;
+							vertical-align: top
+						}
+
+						.tg .tg-8m24 {
+							background-color: #000000;
+							text-align: left;
+							vertical-align: top
+						}
+					</style>
+					<table class="tg">
+						<thead>
+							<tr>
+								<th class="tg-0pky" colspan="4">LEDs</th>
+								<th class="tg-8m24"></th>
+								<th class="tg-0pky" colspan="6">Switches</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="tg-0pky">Group</td>
+								<td class="tg-0pky">Sub-Group</td>
+								<td class="tg-0pky">Label</td>
+								<td class="tg-0pky">Description</td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Group</td>
+								<td class="tg-0pky">Sub-Group</td>
+								<td class="tg-0pky">Sub-Group</td>
+								<td class="tg-0pky">Type</td>
+								<td class="tg-0pky">Label</td>
+								<td class="tg-0pky">Description</td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">INTE</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Power</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">ON/OFF</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">PROT</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">6th Address Octal</td>
+								<td class="tg-0pky">3rd Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">15</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">MEMR</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">5th Address Octal</td>
+								<td class="tg-0pky">3rd Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">14</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">INP</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">5th Address Octal</td>
+								<td class="tg-0pky">2nd Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">13</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">M1</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">5th Address Octal</td>
+								<td class="tg-0pky">2nd Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">12</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">OUT</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">4th Address Octal</td>
+								<td class="tg-0pky">2nd Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">11</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">HLTA</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">4th Address Octal</td>
+								<td class="tg-0pky">1st Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">10</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">STACK</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">4th Address Octal</td>
+								<td class="tg-0pky">1st Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">9</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">WO</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">3rd Address Octal</td>
+								<td class="tg-0pky">1st Sense Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">8</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Status</td>
+								<td class="tg-0pky">Silkscreen</td>
+								<td class="tg-0pky">INT</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">3rd Address Octal</td>
+								<td class="tg-0pky">3rd Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">7</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Run State</td>
+								<td class="tg-0pky">WAIT</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">3rd Address Octal</td>
+								<td class="tg-0pky">3rd Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">6</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Run State</td>
+								<td class="tg-0pky">HLDA</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">2nd Address Octal</td>
+								<td class="tg-0pky">2nd Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">5</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">6th Octal</td>
+								<td class="tg-0pky">A15</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">2nd Address Octal</td>
+								<td class="tg-0pky">2nd Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">4</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">5th Octal</td>
+								<td class="tg-0pky">A14</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">2nd Address Octal</td>
+								<td class="tg-0pky">2nd Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">3</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">5th Octal</td>
+								<td class="tg-0pky">A13</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">1st Address Octal</td>
+								<td class="tg-0pky">1st Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">2</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">5th Octal</td>
+								<td class="tg-0pky">A12</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">1st Address Octal</td>
+								<td class="tg-0pky">1st Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">1</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">4th Octal</td>
+								<td class="tg-0pky">A11</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Data/Address</td>
+								<td class="tg-0pky">1st Address Octal</td>
+								<td class="tg-0pky">1st Data Octal</td>
+								<td class="tg-0pky">Toggle</td>
+								<td class="tg-0pky">0</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">4th Octal</td>
+								<td class="tg-0pky">A10</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Run State</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">STOP</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">4th Octal</td>
+								<td class="tg-0pky">A9</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Run State</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">RUN</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">3rd Octal</td>
+								<td class="tg-0pky">A8</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Run State</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">SINGLE STEP</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">3rd Octal</td>
+								<td class="tg-0pky">A7</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Examine</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">EXAMINE</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">3rd Octal</td>
+								<td class="tg-0pky">A6</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Examine</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">EXAMINE NEXT</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">2nd Octal</td>
+								<td class="tg-0pky">A5</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Deposit</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">DEPOSIT</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">2nd Octal</td>
+								<td class="tg-0pky">A4</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Deposit</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">DEPOSIT NEXT</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">2nd Octal</td>
+								<td class="tg-0pky">A3</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Run State</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">RESET</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">1st Octal</td>
+								<td class="tg-0pky">A2</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Run State</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">CLR</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">1st Octal</td>
+								<td class="tg-0pky">A1</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Protection</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">PROTECT</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Address</td>
+								<td class="tg-0pky">1st Octal</td>
+								<td class="tg-0pky">A0</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Protection</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">UNPROTECT</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">3rd Octal</td>
+								<td class="tg-0pky">D7</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Auxiliary</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">AUX1</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">3rd Octal</td>
+								<td class="tg-0pky">D6</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky">Control</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky">Auxiliary</td>
+								<td class="tg-0pky">Momentary</td>
+								<td class="tg-0pky">AUX2</td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">2nd Octal</td>
+								<td class="tg-0pky">D5</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">2nd Octal</td>
+								<td class="tg-0pky">D4</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">2nd Octal</td>
+								<td class="tg-0pky">D3</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">1st Octal</td>
+								<td class="tg-0pky">D2</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">1st Octal</td>
+								<td class="tg-0pky">D1</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+							</tr>
+							<tr>
+								<td class="tg-0pky">Data</td>
+								<td class="tg-0pky">1st Octal</td>
+								<td class="tg-0pky">D0</td>
+								<td class="tg-0pky"></td>
+								<td class="tg-8m24"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+								<td class="tg-0pky"></td>
+							</tr>
+						</tbody>
+					</table>
 					<h1>Internal Cards</h1>
 					<p>
-						For this project, the PCB design for the CPU, RAM, and UART cards is identical, and the functionality is differentiated on the matter of the firmware loaded, the state of various jumpers on the PCB (to allow for the changing of I/O circuits), and the population of certain components (such as I/O expanders, UART connectors, etc.). Each board integrates the RP2350B microcontroller (with an external ABM8-272-T3 crystal oscillator and W25Q128JVS 128MB external flash). Each board features an internal USB-C connector, allowing for the board to be optionally self-powered during UF2 programming scenarios. Each board also features an SWD connector to allow for external programming. Bus and power signals are broken out into a DDR4 DIMM edge connector, which interfaces with the DDR4 DIMM receptacle on the backplane PCB. Based on the firmware implementation, the device can emulate either an the Intel 8080 processor OR providing at least 4 KB of addressable memory for program execution (for example for use with 4K BASIC) OR a UART device that responds to I/O bus operations, and tranceives them to an external UART port.
+						For this project, the PCB design for the CPU, RAM, and UART cards is identical, and the
+						functionality is differentiated on the matter of the firmware loaded, the state of various
+						jumpers on the PCB (to allow for the changing of I/O circuits), and the population of certain
+						components (such as I/O expanders, UART connectors, etc.). Each board integrates the RP2350B
+						microcontroller (with an external ABM8-272-T3 crystal oscillator and W25Q128JVS 128MB external
+						flash). Each board features an internal USB-C connector, allowing for the board to be optionally
+						self-powered during UF2 programming scenarios. Each board also features an SWD connector to
+						allow for external programming. Bus and power signals are broken out into a DDR4 DIMM edge
+						connector, which interfaces with the DDR4 DIMM receptacle on the backplane PCB. Based on the
+						firmware implementation, the device can emulate either an the Intel 8080 processor OR providing
+						at least 4 KB of addressable memory for program execution (for example for use with 4K BASIC) OR
+						a UART device that responds to I/O bus operations, and tranceives them to an external UART port.
 					</p>
-					
+
 					<h1>Backplane PCB</h1>
 					<p>
-						The backplane PCB is mounted internally to the enclosure, and features as least 3 DDR4 DIMM receptacles.<br>
-						The PCB provides a regulated power supply, which includes a 5V to 3.3V step-down power supply using a reference buck converter design. 5V/3A power is provided externally via a USB-C connector mounted on the backplane board. This ensures stable voltage levels for all onboard components, preventing overvoltage damage while maintaining efficient power delivery to the CPU, memory, front panel, and any expansion cards. The backplane facilitates power delivery to the CPU and RAM cards via DDR4 DIMMs, and to the front panel via a series of FFC connectors. The board is laid out in such a way that there is even power/voltage distribution throughout the board.</p>
+						The backplane PCB is mounted internally to the enclosure, and features as least 3 DDR4 DIMM
+						receptacles.<br>
+						The PCB provides a regulated power supply, which includes a 5V to 3.3V step-down power supply
+						using a reference buck converter design. 5V/3A power is provided externally via a USB-C
+						connector mounted on the backplane board. This ensures stable voltage levels for all onboard
+						components, preventing overvoltage damage while maintaining efficient power delivery to the CPU,
+						memory, front panel, and any expansion cards. The backplane facilitates power delivery to the
+						CPU and RAM cards via DDR4 DIMMs, and to the front panel via a series of FFC connectors. The
+						board is laid out in such a way that there is even power/voltage distribution throughout the
+						board.</p>
 					<h2>Bus specification</h2>
 					<table>
 						<thead>
@@ -144,61 +727,169 @@ This website was based upon a number of source materials, which are elaborated u
 							</tr>
 						</thead>
 						<tbody>
-							<tr><td>~CLOCK</td><td>bus clock</td><td>1</td></tr>
-	
-							
-							<tr><td>A0-A15</td><td>Address (CPU driven)</td><td>16</td></tr>
-							<tr><td>A0-D7</td><td>Data (tri-state)</td><td>8</td></tr>
-							<tr><td>PINTE</td><td>interrupt enable</td><td>1</td></tr>
-							<tr><td>PROT</td><td>memory protection</td><td>1</td></tr>
-							<tr><td>SMEMR</td><td>memory read strobe</td><td>1</td></tr>
-							<tr><td>SINP</td><td>input IO cycle</td><td>1</td></tr>
-							<tr><td>SM1</td><td>first machine cycle of instruction flag</td><td>1</td></tr>
-							<tr><td>SOUT</td><td>ouput IO cycle</td><td>1</td></tr>
-							<tr><td>SHLTA</td><td>halt</td><td>1</td></tr>
-							<tr><td>SSTACK</td><td>stack operation</td><td>1</td></tr>
-							<tr><td>SWO</td><td>write-out</td><td>1</td></tr>
-							<tr><td>SINTA</td><td>interrupt acknowledge</td><td>1</td></tr>
-							
-							<tr><td>XRDY</td><td>memory ready</td><td>1</td></tr>
-							
-							<tr><td>PWAIT</td><td>mem/IO wait</td><td>1</td></tr>
-							<tr><td>PRDY</td><td>IO ready</td><td>1</td></tr>
-							<tr><td>~PINT</td><td>interrupt request</td><td>1</td></tr>
-							<tr><td>~PRESET</td><td>reset</td><td>1</td></tr>
-							<tr><td>~PHOLD</td><td>"hold" bus control</td><td>1</td></tr>
-							<tr><td>PDBIN</td><td>data bus in</td><td>1</td></tr>
+							<tr>
+								<td>~CLOCK</td>
+								<td>bus clock</td>
+								<td>1</td>
+							</tr>
 
-							<tr><td>MWRT</td><td>memory write strobe</td><td>1</td></tr>
-							<tr><td>SS</td><td>single-step mode</td><td>1</td></tr>
-							
-							
+
+							<tr>
+								<td>A0-A15</td>
+								<td>Address (CPU driven)</td>
+								<td>16</td>
+							</tr>
+							<tr>
+								<td>A0-D7</td>
+								<td>Data (tri-state)</td>
+								<td>8</td>
+							</tr>
+							<tr>
+								<td>PINTE</td>
+								<td>interrupt enable</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>PROT</td>
+								<td>memory protection</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SMEMR</td>
+								<td>memory read strobe</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SINP</td>
+								<td>input IO cycle</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SM1</td>
+								<td>first machine cycle of instruction flag</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SOUT</td>
+								<td>ouput IO cycle</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SHLTA</td>
+								<td>halt</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SSTACK</td>
+								<td>stack operation</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SWO</td>
+								<td>write-out</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SINTA</td>
+								<td>interrupt acknowledge</td>
+								<td>1</td>
+							</tr>
+
+							<tr>
+								<td>XRDY</td>
+								<td>memory ready</td>
+								<td>1</td>
+							</tr>
+
+							<tr>
+								<td>PWAIT</td>
+								<td>mem/IO wait</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>PRDY</td>
+								<td>IO ready</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>~PINT</td>
+								<td>interrupt request</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>~PRESET</td>
+								<td>reset</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>~PHOLD</td>
+								<td>"hold" bus control</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>PDBIN</td>
+								<td>data bus in</td>
+								<td>1</td>
+							</tr>
+
+							<tr>
+								<td>MWRT</td>
+								<td>memory write strobe</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>SS</td>
+								<td>single-step mode</td>
+								<td>1</td>
+							</tr>
+
+
 						</tbody>
 					</table>
 					<h1>Diagram</h1>
-					<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/mIreLoKpSHAxyEdUPpXdqf/CASS?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+					<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450"
+						src="https://embed.figma.com/board/mIreLoKpSHAxyEdUPpXdqf/CASS?node-id=0-1&embed-host=share"
+						allowfullscreen></iframe>
 					<h2>Project Specific Design Requirements (PSDRs):</h2>
 					<ol>
-						<li><b>(Hardware)</b> An ability to dimorphize the functionality of CPU and RAM cards through a common PCB design, based on the optional population of 2 I2C-based MCP23017 I/O expanders, and jumper connectors.</li>
-						<li><b>(Hardware)</b> An ability for the Front Panel Card to accept user input via a series of tactile and slide switches, which are polled in a matrix to reduce I/O pin usage, by a I2C-based MCP23017 I/O expander.</li>
-						<li><b>(Hardware)</b> An ability to provide a regulated power supply is fulfilled by the backplane board, which includes a 5V to 3.3V step-down power supply using a reference buck converter design.</li>
-						<li><b>(Software)</b> An ability to emulate the Intel 8080 processor in software is achieved by the emulator software, written in Rust to decode and execute the full instruction set with accurate cycle timing and interrupt management. Unline many other emulators, which simulate instructions serially, this emulator is designed to emulate 8080 machine cycles, which respect concepts such as waiting for I/O operations. The system is called by, and makes calls to, various parallel bus PIO assembler routines.</li>
-						<li><b>(Software)</b> An ability to manage parallel bus data exchange is provided by the communications software, which is implemented as a series of PIO assembler routines, to be assembled and processed by client software (such as the CPU, RAM, and front panel software). The PIO assembler is able to perform clock recovery off of the bus, provide calls to emulator code at the start of bus transactions, and allow for multi-device control of the same data lines on the bus.</li>
+						<li><b>(Hardware)</b> An ability to dimorphize the functionality of CPU and RAM cards through a
+							common PCB design, based on the optional population of 2 I2C-based MCP23017 I/O expanders,
+							and jumper connectors.</li>
+						<li><b>(Hardware)</b> An ability for the Front Panel Card to accept user input via a series of
+							tactile and slide switches, which are polled in a matrix to reduce I/O pin usage, by a
+							I2C-based MCP23017 I/O expander.</li>
+						<li><b>(Hardware)</b> An ability to provide a regulated power supply is fulfilled by the
+							backplane board, which includes a 5V to 3.3V step-down power supply using a reference buck
+							converter design.</li>
+						<li><b>(Software)</b> An ability to emulate the Intel 8080 processor in software is achieved by
+							the emulator software, written in Rust to decode and execute the full instruction set with
+							accurate cycle timing and interrupt management. Unline many other emulators, which simulate
+							instructions serially, this emulator is designed to emulate 8080 machine cycles, which
+							respect concepts such as waiting for I/O operations. The system is called by, and makes
+							calls to, various parallel bus PIO assembler routines.</li>
+						<li><b>(Software)</b> An ability to manage parallel bus data exchange is provided by the
+							communications software, which is implemented as a series of PIO assembler routines, to be
+							assembled and processed by client software (such as the CPU, RAM, and front panel software).
+							The PIO assembler is able to perform clock recovery off of the bus, provide calls to
+							emulator code at the start of bus transactions, and allow for multi-device control of the
+							same data lines on the bus.</li>
 						<br>
-						<li><b>(Stretch, Hardware)</b> An ability for a UART card to implement the UART protocol, using I/O control lines (separate from memory control lines), and tranceive the information to an external UART port.</li>
+						<li><b>(Stretch, Hardware)</b> An ability for a UART card to implement the UART protocol, using
+							I/O control lines (separate from memory control lines), and tranceive the information to an
+							external UART port.</li>
 					</ol>
 				</div>
-				
+
 				<!-- Footer -->
 				<div id="footer"></div>
 			</div>
 		</div>
-	
+
 		<!-- JavaScript -->
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery-migrate-1.1.1.js"></script>
 		<script>
-			$(document).ready(function() {
+			$(document).ready(function () {
 				$("#header").load("header.html");
 				$("#menu").load("navbar.html");
 				$("#slideshow").load("slideshow.html");
@@ -206,22 +897,24 @@ This website was based upon a number of source materials, which are elaborated u
 			});
 		</script>
 	</body>
+
 	</html>
-	
 
-<!--JS-->
-<script src="js/jquery.js"></script>
-<script src="js/jquery-migrate-1.1.1.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#header").load("header.html");
-	$("#menu").load("navbar.html");
-	$("#slideshow").load("slideshow.html");
-	//$("#content").load("about.html");
-	$("#footer").load("footer.html");
-});
-</script>
+	<!--JS-->
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-migrate-1.1.1.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#header").load("header.html");
+			$("#menu").load("navbar.html");
+			$("#slideshow").load("slideshow.html");
+			//$("#content").load("about.html");
+			$("#footer").load("footer.html");
+		});
+	</script>
 
 </body>
+
 </html>
