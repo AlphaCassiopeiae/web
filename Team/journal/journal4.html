@@ -101,11 +101,11 @@ Links and sources are found below:<br>
 	   <li><a href="Team/journal/journal4.html#week8">Week 8  (March 1 - 7)</a></li> -->
 	   <li><a href="Team/journal/journal4.html#week7">Week 7  (February 22 - 28)</a></li>
 	   <li><a href="Team/journal/journal4.html#week6">Week 6  (February 15 - 21)</a></li>
-	   <li><a href="Team/journal/journal4.html#week5">Week 5  (February 8 - 14)</a></li>
-	   <li><a href="Team/journal/journal4.html#week4">Week 4  (February 1 - 7)</a></li>
-	   <li><a href="Team/journal/journal4.html#week3">Week 3  (January 25 - 31)</a></li>
-	   <li><a href="Team/journal/journal4.html#week2">Week 2  (January 18 - 24)</a></li>
-	   <li><a href="Team/journal/journal4.html#week1">Week 1  (January 11 - 17)</a></li>
+	   <li><a href="Team/journal/journal4.html#week5">Week 5  (February 8  - 14)</a></li>
+	   <li><a href="Team/journal/journal4.html#week4">Week 4  (February 1  - 7 )</a></li>
+	   <li><a href="Team/journal/journal4.html#week3">Week 3  (January  25 - 31)</a></li>
+	   <li><a href="Team/journal/journal4.html#week2">Week 2  (January  18 - 24)</a></li>
+	   <li><a href="Team/journal/journal4.html#week1">Week 1  (January  11 - 17)</a></li>
 	</ul>
 
 <h2 id = "week7">===============   Week 7: =================</h2>
@@ -116,18 +116,54 @@ Links and sources are found below:<br>
 <b>Start Time: 9:30 am</b><br>
 <b>Duration: 4 hours</b><br>
 <br>
+
 <b>Content:</b><br>
 Today, I needed to update the team's website, because some of the changes I made yesterday did not stick. I first updated the documents page with A8, which Seth completed last night. I pulled this document from the teams and put it inside the Github repository.<br>
-I replaced the existing A8 with the new one, and reuploaded the photo to create the working slideshow. The reason it failed last time was because the file was of the wrong format.
-
-[PHOTO]
+I replaced the existing A8 with the new one. I tried to get the front photo to work, but it was not functioning properly. I thought that the reason it failed last time was because the file was of the wrong format.<br>
+I migrated over to working on the PCB design, and first needed to find a working model for the TLC59211IN sink driver to use in the KiCad schematics. I found this model online [1], which was an exact match for the one we needed.<br>
+I put a photo of the existing Altair onto our schematic, just so we could always reference what the old one looked like. It looked as below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\7.1.png" width = "33%" height = "auto"></img>
 </div><br>
-<br>
+Afterwards, I tried to fix the footprint libraries, but because Brian had imported them and there was no real documentation within the KiCad, I could not make heads or tails of it. It just shows how important documentation is.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.2.png" width = "33%" height = "auto"></img>
+</div><br>
+I wanted to use GitHub desktop to make it easier to push changes to the ECad files, so I went ahead and installed that and set the default repository to our repo. I thought that I would run into issues with the installation because I was using a lab computer, but there were no issues.<br>
+The use of GitHub desktop on the lab computer is seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.3.png" width = "33%" height = "auto"></img>
+</div><br>
+I decided to add global labels to each of the signals in the schematic, based on the photo of the Altair, so I created and power flagged all 44 signals.<br>
+Additionally, I added a new sheet to the schematic with references, such that we could stay organized. I started adding the datasheets to the components we knew we were going to use. I hope that the other members of my team follow suit.<br>
+Afterwards, I saw that the MCP23017 I/O Expander, the expander that we are actually using, came, so I decided to take a break and solder all the pins to the MCP23017. I followed these instructions online [2], where I learned what the appropriate mounts for the solder are.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.4.jpg" width = "33%" height = "auto"></img>
+</div><br>
+The process to solder the pins was much smoother than the first time(s) I soldered, because I had more experience soldering and I was using a better soldering iron. I was able to get the pins soldered in about 30 minutes. I needed to solder a total of 16 pins, so I went one by one, following the process of heating the pad, applying the solder, and then quickly removing the pen. I did not run into any issues while doing this, and afterwards I went pin by pin and checked its appropriate connectivity to its pin across the board, as well as its non-existent connectivity to its neighbors. All the pins were soldered properly, and none of the pins were connected to their neighbors.<br>
+I made the correct solder mounts and the final product looked as below, very similarly mimicing the picture above.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.5.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I realized that some of the pins on the Stamp XL board were connected together, causing a virtual short circuit whenever they were used. I needed to fix this, so I needed to go back and desolder/resolder the pins which needed it. I followed a very thorough process to do so, following advice I found online [3]. This tutorial taught me even more ways to desolder, and even gave me a streamlined process to follow.<br>
+I went counterclockwise around the center pins, making sure each pin was not connected to its neighbors but making sure that it was indeed connected to the pins across the board from it. There were several pins that did not match this specifically, so I had to resolder them and then using the connectivity probes on the multimeter to ensure that they were working. After I did this for all of the pins, I moved to the edge pins. These edge pins were easier, and I followed the same procedure, and I was eventually able to verify that every pin was working.
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.6.jpg" width = "33%" height = "auto"></img>
+</div><br>
+However, while desoldering and resoldering 5 of the pins which were not functionally, I accidently bumped my pen into the male to the pin headers, which caused the plastic to melt. I removed the plastic via clamps, but I will have to resolder each of these pins again, a painful process I will likely do in the next entry. However, this was a meaningful learning experience, because I now know just how careful you have to be when soldering, and how you cannot make any mistakes.<br>
+The removed pins, and the 16 pins I must resolder, are seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.7.jpg" width = "33%" height = "auto"></img>
+</div><br>
+Finally,
+
 <b>Citations:</b><br>
+
 Links and sources are found below:<br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://www.digikey.com/en/models/2183120" target="_blank">TLC59211IN ECad Model for KiCad</a><br>
+- 2: <a href="https://www.robotics.org.za/W15391" target="_blank">How to solder MCP23017 SMD</a><br>
+- 2: <a href="https://www.instructables.com/The-Ultimate-Guide-to-Desoldering/" target="_blank">Steps to properly Desolder</a><br>
+
 <br>
 
 <!-- 7.1 -->
