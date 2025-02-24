@@ -119,6 +119,12 @@ This website was based upon a number of source materials, which are elaborated u
 					<p>
 						The board connects to the backplane via a series of flat flex connectors.
 					</p>
+					<h4>LED Blocks</h4>
+					<ul>
+						<li>
+							<h5>Status</h5>
+						</li>
+					</ul>
 					<h1>Internal Cards</h1>
 					<p>
 						For this project, the PCB design for the CPU, RAM, and UART cards is identical, and the functionality is differentiated on the matter of the firmware loaded, the state of various jumpers on the PCB (to allow for the changing of I/O circuits), and the population of certain components (such as I/O expanders, UART connectors, etc.). Each board integrates the RP2350B microcontroller (with an external ABM8-272-T3 crystal oscillator and W25Q128JVS 128MB external flash). Each board features an internal USB-C connector, allowing for the board to be optionally self-powered during UF2 programming scenarios. Each board also features an SWD connector to allow for external programming. Bus and power signals are broken out into a DDR4 DIMM edge connector, which interfaces with the DDR4 DIMM receptacle on the backplane PCB. Based on the firmware implementation, the device can emulate either an the Intel 8080 processor OR providing at least 4 KB of addressable memory for program execution (for example for use with 4K BASIC) OR a UART device that responds to I/O bus operations, and tranceives them to an external UART port.
@@ -138,28 +144,35 @@ This website was based upon a number of source materials, which are elaborated u
 							</tr>
 						</thead>
 						<tbody>
+							<tr><td>~CLOCK</td><td>bus clock</td><td>1</td></tr>
+	
+							
 							<tr><td>A0-A15</td><td>Address (CPU driven)</td><td>16</td></tr>
 							<tr><td>A0-D7</td><td>Data (tri-state)</td><td>8</td></tr>
-							<tr><td>XRDY</td><td>memory ready</td><td>1</td></tr>
-							<tr><td>PWAIT</td><td>mem/IO wait</td><td>1</td></tr>
-							<tr><td>PRDY</td><td>IO ready</td><td>1</td></tr>
 							<tr><td>PINTE</td><td>interrupt enable</td><td>1</td></tr>
-							<tr><td>~PINT</td><td>interrupt request</td><td>1</td></tr>
-							<tr><td>SINTA</td><td>interrupt acknowledge</td><td>1</td></tr>
-							<tr><td>~CLOCK</td><td>bus clock</td><td>1</td></tr>
-							<tr><td>~PRESET</td><td>reset</td><td>1</td></tr>
-							<tr><td>~PHOLD</td><td>"hold" bus control</td><td>1</td></tr>
-							<tr><td>UNPROT</td><td>memory protection unprotect</td><td>1</td></tr>
+							<tr><td>PROT</td><td>memory protection</td><td>1</td></tr>
+							<tr><td>SMEMR</td><td>memory read strobe</td><td>1</td></tr>
+							<tr><td>SINP</td><td>input IO cycle</td><td>1</td></tr>
 							<tr><td>SM1</td><td>first machine cycle of instruction flag</td><td>1</td></tr>
 							<tr><td>SOUT</td><td>ouput IO cycle</td><td>1</td></tr>
-							<tr><td>SINP</td><td>input IO cycle</td><td>1</td></tr>
-							<tr><td>SMEMR</td><td>memory read strobe</td><td>1</td></tr>
 							<tr><td>SHLTA</td><td>halt</td><td>1</td></tr>
-							<tr><td>MWRT</td><td>memory write strobe</td><td>1</td></tr>
-							<tr><td>~PWR</td><td>write strobe</td><td>1</td></tr>
-							<tr><td>PDBIN</td><td>data bus in</td><td>1</td></tr>
-							<tr><td>SWO</td><td>write-out</td><td>1</td></tr>
 							<tr><td>SSTACK</td><td>stack operation</td><td>1</td></tr>
+							<tr><td>SWO</td><td>write-out</td><td>1</td></tr>
+							<tr><td>SINTA</td><td>interrupt acknowledge</td><td>1</td></tr>
+							
+							<tr><td>XRDY</td><td>memory ready</td><td>1</td></tr>
+							
+							<tr><td>PWAIT</td><td>mem/IO wait</td><td>1</td></tr>
+							<tr><td>PRDY</td><td>IO ready</td><td>1</td></tr>
+							<tr><td>~PINT</td><td>interrupt request</td><td>1</td></tr>
+							<tr><td>~PRESET</td><td>reset</td><td>1</td></tr>
+							<tr><td>~PHOLD</td><td>"hold" bus control</td><td>1</td></tr>
+							<tr><td>PDBIN</td><td>data bus in</td><td>1</td></tr>
+
+							<tr><td>MWRT</td><td>memory write strobe</td><td>1</td></tr>
+							<tr><td>SS</td><td>single-step mode</td><td>1</td></tr>
+							
+							
 						</tbody>
 					</table>
 					<h1>Diagram</h1>
