@@ -68,7 +68,7 @@ Now our PICO 2 dev board is ready for prototyping and I have refreshed my solder
 <!-- COPY PASTE ENTRY
 <h2>===============   Week X: =================</h2>
 
-ENTRY BEGINS HERE: (PUT THIS IN BARS)
+X.X
 <h4><b>Entry X: -----------------------------------------------------------------</b></h4>
 <b>Date: Month Day </b><br>
 <b>Start Time: X:XX am</b><br>
@@ -109,6 +109,41 @@ Links and sources are found below:<br>
 	</ul>
 
 <h2 id = "week7">===============   Week 7: =================</h2>
+<!-- 7.3 -->
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+<b>Date: February 25 </b><br>
+<b>Start Time: 11:00 pm</b><br>
+<b>Duration: 3 hours</b><br>
+<br>
+<b>Content:</b><br>
+This evening, I needed to finish the PCB layout of all the cards on our PCB. This meant assigning and create footprints for all the boards on our KiCad Schematic, and making sure that the schematic passed the electrical rules check.<br>
+First, I made sure that the PCB was up to date by pulling on Github desktop. KiCad 8.0 was still installed on my computer, and we migrated everything over to KiCad 9.0, so I uninstalled KiCad 8.0 from my computer.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.8.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I was still unsure on how to create nets in KiCad, which would streamline the wiring process, so I watched a video on YouTube [1] showing me how to do so. After watching this video, I learned more about creating a net in KiCad.<br>
+I was looking for a fast way to change reference numbers, because I know that we would have to be doing a lot of that for our very large PCB, so I asked ChatGPT how to change reference numbers quickly.<br>
+I started changing all the reference designators for our project, which I knew would take a long time. We have over 100 resistors and 50 capacitors, as well as a bunch of switches, so changing all the numbers took very long.<br>
+Next, I began to look into protection diodes to make sure our project would NEVER overcurrent or short circuit. I looked at the old Altair circuit diagrams [2] for inspiration.<br>
+Additionally, I also had to find out how to find a certain net within a KiCad schematic, so I looked it up on Google and found this article [2]. 
+It was presented to me that we would have to use matrices to register button presses, so I started looking back into the ECE 362 matrix scanner to see how we could implement it with the 24 switches.
+I decided to annotate the existing power electronics that Brian conducted in order to make the schematic more organized before we go into Layout.<br>
+I also wanted to learn how to make the components in the schematic equally spaced, so I looked up a tutorial on that. The tutorial can be found here [3]. This was very useful, as I could now align the components to a grid.<br>
+In total, the keypad we will create will look something like below, with 4 rows and 6 columns for scanning, only using 10 of the 16 I/O pins on our expanders.<br>
+I talked with Brian about the whole layout of our board, and he told me that he was still selecting parts for use in the DIM connectors and bus lanes. I think I will organize the footprint library and try to fix the ERC errors for now.<br>
+After successfully fixing all of the ERC errors, I needed to fit the reverse mounted LED footprint such that it would fit on the back of our PCB.<br>
+This footprint was found on the digikey website [3], and I downloaded the KiCad version.
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\7.9.jpg" width = "33%" height = "auto"></img>
+</div><br>
+
+
+<b>Citations:</b><br>
+Links and sources are found below:<br>
+- 1: <a href="https://www.youtube.com/watch?v=x4gjpgTBGTo" target="_blank">How to create nets</a><br>
+- 2: <a href="https://docs.kicad.org/master/en/eeschema/eeschema_schematic_creation_and_editing.html" target="_blank">Finding net names in KiCad, with other tricks</a><br>
+- 3: <a href="https://forum.kicad.info/t/align-parts-to-grid-in-layout/47336" target="_blank">Aligning to grid in KiCad</a><br>
+<br>
 
 <!-- 7.2 -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
@@ -130,7 +165,7 @@ Afterwards, I tried to fix the footprint libraries, but because Brian had import
 	<img src="Team\journal\img - member4\week7\7.2.png" width = "33%" height = "auto"></img>
 </div><br>
 I wanted to use GitHub desktop to make it easier to push changes to the ECad files, so I went ahead and installed that and set the default repository to our repo. I thought that I would run into issues with the installation because I was using a lab computer, but there were no issues.<br>
-The use of GitHub desktop on the lab computer is seen below.<br>
+The use of GitHub desktop [4] on the lab computer is seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week7\7.3.png" width = "33%" height = "auto"></img>
 </div><br>
@@ -162,12 +197,13 @@ Finally,
 Links and sources are found below:<br>
 - 1: <a href="https://www.digikey.com/en/models/2183120" target="_blank">TLC59211IN ECad Model for KiCad</a><br>
 - 2: <a href="https://www.robotics.org.za/W15391" target="_blank">How to solder MCP23017 SMD</a><br>
-- 2: <a href="https://www.instructables.com/The-Ultimate-Guide-to-Desoldering/" target="_blank">Steps to properly Desolder</a><br>
+- 3: <a href="https://www.instructables.com/The-Ultimate-Guide-to-Desoldering/" target="_blank">Steps to properly Desolder</a><br>
+- 4: <a href="https://desktop.github.com/download/" target="_blank">Github desktop installer</a><br>
 
 <br>
 
 <!-- 7.1 -->
-<h4><b>Entry X: -----------------------------------------------------------------</b></h4>
+<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: Month Day </b><br>
 <b>Start Time: X:XX am</b><br>
 <b>Duration: X hours</b><br><br>
