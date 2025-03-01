@@ -83,7 +83,6 @@ X.X
 
 <br>
 <b>Citations:</b><br>
-Links and sources are found below:<br>
 - 1: <a href="link" target="_blank">description</a><br>
 <br>
 -->
@@ -109,24 +108,102 @@ Links and sources are found below:<br>
 	</ul>
 
 <h2 id = "week7">===============   Week 7: =================</h2>
-<!-- 7.3 -->
+<!-- 7.5 F -->
 <b>Date: February 27 </b><br>
 <b>Start Time: 9:00 am</b><br>
 <b>Duration: 3 hours</b><br>
-
+<br>
+<b>Content:</b><br>
 First, I needed to get working Hardware prototypes of the front and back panel, so we could put the issue to rest and consolidate the rest of our efforts on PCB design and manufacturing. I got these new(ish) Breadboards from the closest in the ECE 47700 Lab, and went to the ECE shop to get more components.<br>
+The original breadboards looked like below, but I had to start over because our layout had changed.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.1.jpg" width = "33%" height = "auto"></img>
+</div><br>
 I went around the lab looking for wire kits and breadboard rubber boards, so I asked lab staff where I could find these materials.<br>
 There were no rubber bumpers in the ECE 47700 Lab, and I got some male to male jumpers from the TA.<br>
-I started wiring up the ground planes of the breadboard.
+I started wiring up the ground planes of the breadboard, which looked like below after they were finished.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.2.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I found two new breadboards in the storage drawers, and decided to use one breadboard for the new front panel and keep the existing front panel on the breadboard, just in case. I also decided to keep the spare just in case we needed it. A photo of all the breadboards can be seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.3.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I went to the ECE shop and got a variety of parts. The parts I obtained were needed for the front panel, which included: 3 DIP switches, 3 592TLC11IN Sink Drivers, 2 AD2 Breakouts, and 44 red LEDs, as well as 48 220 Ω and 470 Ω resistors. I put them all in a box, and will use the box for random part storage later on in the semester. The box can been seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.4.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I was actually lucky enough to find a MCP23017 I/O expander, the exact one we were using. I assume some other group was using it in their project. I looked up the datasheet here [1]. A photo can be seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.5.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I labeled all of the boards with white sharpie, so that we could distinguish the functionality of each of them. A photo is provided below. The labels I gave were: Front Panel (1), Front panel (2), Back Plane, and Spare.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.6.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I added the breakouts to each of the specific boards, and wired up the inputs to the AD2 breakout. Even if a short circuit occurs, this will not affect the AD2 breakout (I hope it does not occur). A photo is seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.7.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I needed the rubber bumpers to make sure the breadboard stayed in place, so I went to the TA to ask for some. He said that they did not have the rubber bumpers, so I went to the ECE shop and got 9 of them. A photo of the rubber bumpers I obtained is seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.8.png" width = "33%" height = "auto"></img>
+</div><br>
+Afterwards, I applied all the rubber bumpers to the boards [2], and let them stay for a while, around 2 hours before they would set. A photo of a singular one is attached below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\5.9.jpg" width = "33%" height = "auto"></img>
+</div><br>
+The result was that the breadboards were set up with the necessary components, including DIP switches, TLC59211IN drivers, and AD2 breakouts, all properly wired. I was able to apply rubber bumpers to the boards to keep them stable, preparing everything for the next steps.<br>
+This contributes to the project’s progress by finalizing the hardware prototypes, which will allow us to focus more on the PCB design and manufacturing.<br>
+The next steps involve transitioning to the PCB design phase, ensuring the breadboard setup translates well into the final PCB layout. Additionally, I will keep monitoring the hardware prototypes for any issues that might arise and adjust the design as needed before manufacturing.<br>
+
+<br>
+<b>Citations:</b><br>
+- 1: <a href="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf" target="_blank">Datasheet for MCP23017</a><br>
+- 2: <a href="https://www.digikey.com/en/products/detail/keystone-electronics/728/61971?gclsrc=aw.ds&&utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Medium%20ROAS%20Categories&utm_term=&utm_content=&utm_id=go_cmp-20223376311_adg-_ad-__dev-c_ext-_prd-61971_sig-Cj0KCQiA2oW-BhC2ARIsADSIAWpDOUuDxN08hyT4eBfJq0XWwhVUY3O4cNZyRty7-bk0csNUDQjNC0EaAv7iEALw_wcB&gad_source=1&gclid=Cj0KCQiA2oW-BhC2ARIsADSIAWpDOUuDxN08hyT4eBfJq0XWwhVUY3O4cNZyRty7-bk0csNUDQjNC0EaAv7iEALw_wcB&gclsrc=aw.ds" target="_blank">Cylindrical Bumper reference sheet</a><br>
 <br>
 
-<!-- 7.4 -->
+<!-- 7.4 F -->
 <b>Date: February 26 </b><br>
 <b>Start Time: 9:00 pm</b><br>
 <b>Duration: 1 hour</b><br>
 <br>
+<b>Content:</b><br>
+I will spend most of this session ensuring that we had a working KiCad Library for all of our schematics.<br>
+Based on my existing knowledge on KiCad libraries, I knew that each component needed a footprint and a 3D layout.<br>
+I researched most of the components online, finding four of the necessary components for our library. The four I found are listed below, with their links as reference to their right.<br>
+<ul>
+	<li> ECAD for ABM8-272-T3 Model [1]</li>
+	<li> ECAD for CONN SKT DIMM 288POS PCB [2]</li>
+	<li> ECAD for FSM103A [3]</li>
+	<li> ECAD for TLC59211IN [4]</li>
+</ul>
+I knew that I needed the electrical rules check to pass, so I needed to make efforts to ensure a PWR Flag was on every source of power where current was running through, just as Professor Walter had stated.<br>
+I kept getting the "signal not connected error", so I had to manually attached power flags to each of these signals. This process was very tedious, and might have been unnecessary in the end. I will keep it in mind on a list of procedures to avoid. The cumulative power flag grid looks as such.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\4.1.png" width = "33%" height = "auto"></img>
+</div><br>
 
-<!-- 7.3 -->
+Then, I needed to polish up the library. I downloaded the proper ECAD off of the internet, off the sites I listed above, and then extracted them into the 3d_models folder that was inside our directory. After that, I added them to the specific project library we had. I had no major issues with this process.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\4.2.png" width = "33%" height = "auto"></img>
+</div><br>
+I editted the names of these files before I updated the library, just to ensure we stayed organized. KiCad would normally download the file as the date, so the file name needed to be changed in order for the files to show as their prpoper component names.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\4.3.png" width = "33%" height = "auto"></img>
+</div><br>
+Above, you can see that each of the component libraries has the proper name, which will be important in the future.<br>
+The end result was a well-organized library with properly named and integrated components. I learned that while power flags are important, manually placing them was more work than needed, and I’ll look for ways to avoid that in the future.<br>
+Next, I’ll continue refining the schematic design, ensuring all components are correctly linked. I'll also focus on streamlining the process and avoiding unnecessary steps, like the manual placement of power flags, as the library is now in good shape.<br>
+<br>
+<b>Citations:</b><br>
+- 1: <a href="https://www.digikey.com/en/products/detail/abracon-llc/ABM8-272-T3/22472366?gclsrc=aw.ds&&utm_adgroup=Crystals%20Oscillators&utm_source=google&utm_medium=cpc&utm_campaign=Dynamic%20Search_EN_Product&utm_term=&utm_content=Crystals%20Oscillators&utm_id=go_cmp-120565755_adg-18031790595_ad-665604606926_dsa-53178521210_dev-c_ext-_prd-_sig-Cj0KCQiA2oW-BhC2ARIsADSIAWrHj-j_UH-SB9CSOWD6SSX2VSfHbX3h3h6ixeK9M5v6HkN0MgqVORwaAgzIEALw_wcB&gad_source=1&gclid=Cj0KCQiA2oW-BhC2ARIsADSIAWrHj-j_UH-SB9CSOWD6SSX2VSfHbX3h3h6ixeK9M5v6HkN0MgqVORwaAgzIEALw_wcB&gclsrc=aw.ds" target="_blank">ABM8-272-T3 Model</a><br>
+- 2: <a href="https://www.digikey.com/en/models/10233356" target="_blank">Model for CONN SKT DIMM 288POS PCB</a><br>
+- 3: <a href="https://www.digikey.com/en/models/701085" target="_blank">Model for FSM103A</a><br>
+- 4: <a href="https://www.digikey.com/en/models/2183120" target="_blank">Model for TLC59211IN</a><br>
+<br>
+
+<!-- 7.3 F -->
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
 <b>Date: February 25 </b><br>
 <b>Start Time: 11:00 pm</b><br>
@@ -135,8 +212,9 @@ I started wiring up the ground planes of the breadboard.
 <b>Content:</b><br>
 This evening, I needed to finish the PCB layout of all the cards on our PCB. This meant assigning and create footprints for all the boards on our KiCad Schematic, and making sure that the schematic passed the electrical rules check.<br>
 First, I made sure that the PCB was up to date by pulling on Github desktop. KiCad 8.0 was still installed on my computer, and we migrated everything over to KiCad 9.0, so I uninstalled KiCad 8.0 from my computer.<br>
+I realized that KiCad 8.0.0 would still have some remnants, as people online were complained about, so I looked into removing it completely from my system.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.8.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\3.1.png" width = "33%" height = "auto"></img>
 </div><br>
 I was still unsure on how to create nets in KiCad, which would streamline the wiring process, so I watched a video on YouTube [1] showing me how to do so. After watching this video, I learned more about creating a net in KiCad.<br>
 I was looking for a fast way to change reference numbers, because I know that we would have to be doing a lot of that for our very large PCB, so I asked ChatGPT how to change reference numbers quickly.<br>
@@ -144,25 +222,48 @@ I started changing all the reference designators for our project, which I knew w
 Next, I began to look into protection diodes to make sure our project would NEVER overcurrent or short circuit. I looked at the old Altair circuit diagrams [2] for inspiration.<br>
 Additionally, I also had to find out how to find a certain net within a KiCad schematic, so I looked it up on Google and found this article [2]. 
 It was presented to me that we would have to use matrices to register button presses, so I started looking back into the ECE 362 matrix scanner to see how we could implement it with the 24 switches.
-I decided to annotate the existing power electronics that Brian conducted in order to make the schematic more organized before we go into Layout.<br>
+<br>
+I decided to annotate the existing power electronics that Brian conducted in order to make the schematic more organized before we go into Layout. To do this, I needed to make regions of each schematic which detailed exactly what was occuring, so the graders would have an easier time figuring out what was what. I made five regions in the front panel, all specified below by what their functionality is.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\3.2.png" width = "33%" height = "auto"></img>
+</div><br>
+<b>Schematic area for switches and LEDs.</b><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\3.3.png" width = "33%" height = "auto"></img>
+</div><br>
+<b>Schematic area for sink drivers.</b><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\3.4.png" width = "33%" height = "auto"></img>
+</div><br>
+<b>Schematic area for scanning matrix (PDSR).</b><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\3.5.png" width = "33%" height = "auto"></img>
+</div><br>
+I quickly realized after I made the scanning matrix that we did not need it, as I2C communication would be enough to hit our PSDR. I knew that creating I2C communication may be a stretch, so I made sure to keep the schematic area outside the region of our paper, so it would not cause interference in the future.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\3.6.png" width = "33%" height = "auto"></img>
+</div><br>
+<b>Schematic area for microcontroller.</b><br>
+
 I also wanted to learn how to make the components in the schematic equally spaced, so I looked up a tutorial on that. The tutorial can be found here [3]. This was very useful, as I could now align the components to a grid.<br>
 In total, the keypad we will create will look something like below, with 4 rows and 6 columns for scanning, only using 10 of the 16 I/O pins on our expanders.<br>
 I talked with Brian about the whole layout of our board, and he told me that he was still selecting parts for use in the DIM connectors and bus lanes. I think I will organize the footprint library and try to fix the ERC errors for now.<br>
 After successfully fixing all of the ERC errors, I needed to fit the reverse mounted LED footprint such that it would fit on the back of our PCB.<br>
-This footprint was found on the digikey website [3], and I downloaded the KiCad version.
+This footprint was found on the digikey website [4], and I downloaded the KiCad version.
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.9.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\3.7.jpg" width = "33%" height = "auto"></img>
 </div><br>
-
+This session demonstrated significant progress in finalizing the PCB layout, requiring both technical problem-solving and organizational refinement. Migrating from KiCad 8.0 to 9.0 was a necessary step to ensure compatibility and efficiency, and researching complete removal methods highlights attention to detail in preventing software conflicts.<br>
+The effort to learn and implement nets in KiCad, as well as finding a quick way to change reference numbers, shows an emphasis on workflow optimization. Given the scale of the project—handling over 100 resistors and 50 capacitors—such efficiency improvements are crucial. The research into protection diodes and references to the old Altair circuit diagrams reinforce a strong design methodology, ensuring the project remains both functional and protected against potential faults.<br>
 
 <b>Citations:</b><br>
-Links and sources are found below:<br>
 - 1: <a href="https://www.youtube.com/watch?v=x4gjpgTBGTo" target="_blank">How to create nets</a><br>
 - 2: <a href="https://docs.kicad.org/master/en/eeschema/eeschema_schematic_creation_and_editing.html" target="_blank">Finding net names in KiCad, with other tricks</a><br>
 - 3: <a href="https://forum.kicad.info/t/align-parts-to-grid-in-layout/47336" target="_blank">Aligning to grid in KiCad</a><br>
+- 4: <a href="https://www.digikey.com/en/models/6615712" target="_blank">Model for Reverse mounted LEDs</a><br>
 <br>
 
-<!-- 7.2 -->
+<!-- 7.2 F -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
 <b>Date: February 24 </b><br>
 <b>Start Time: 9:30 am</b><br>
@@ -175,67 +276,86 @@ I replaced the existing A8 with the new one. I tried to get the front photo to w
 I migrated over to working on the PCB design, and first needed to find a working model for the TLC59211IN sink driver to use in the KiCad schematics. I found this model online [1], which was an exact match for the one we needed.<br>
 I put a photo of the existing Altair onto our schematic, just so we could always reference what the old one looked like. It looked as below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.1.png" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\2.1.png" width = "33%" height = "auto"></img>
 </div><br>
 Afterwards, I tried to fix the footprint libraries, but because Brian had imported them and there was no real documentation within the KiCad, I could not make heads or tails of it. It just shows how important documentation is.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.2.png" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\2.2.png" width = "33%" height = "auto"></img>
 </div><br>
 I wanted to use GitHub desktop to make it easier to push changes to the ECad files, so I went ahead and installed that and set the default repository to our repo. I thought that I would run into issues with the installation because I was using a lab computer, but there were no issues.<br>
 The use of GitHub desktop [4] on the lab computer is seen below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.3.png" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\2.3.png" width = "33%" height = "auto"></img>
 </div><br>
 I decided to add global labels to each of the signals in the schematic, based on the photo of the Altair, so I created and power flagged all 44 signals.<br>
 Additionally, I added a new sheet to the schematic with references, such that we could stay organized. I started adding the datasheets to the components we knew we were going to use. I hope that the other members of my team follow suit.<br>
 Afterwards, I saw that the MCP23017 I/O Expander, the expander that we are actually using, came, so I decided to take a break and solder all the pins to the MCP23017. I followed these instructions online [2], where I learned what the appropriate mounts for the solder are.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.4.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\2.4.png" width = "33%" height = "auto"></img>
 </div><br>
 The process to solder the pins was much smoother than the first time(s) I soldered, because I had more experience soldering and I was using a better soldering iron. I was able to get the pins soldered in about 30 minutes. I needed to solder a total of 16 pins, so I went one by one, following the process of heating the pad, applying the solder, and then quickly removing the pen. I did not run into any issues while doing this, and afterwards I went pin by pin and checked its appropriate connectivity to its pin across the board, as well as its non-existent connectivity to its neighbors. All the pins were soldered properly, and none of the pins were connected to their neighbors.<br>
 I made the correct solder mounts and the final product looked as below, very similarly mimicing the picture above.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.5.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\2.5.png" width = "33%" height = "auto"></img>
 </div><br>
 I realized that some of the pins on the Stamp XL board were connected together, causing a virtual short circuit whenever they were used. I needed to fix this, so I needed to go back and desolder/resolder the pins which needed it. I followed a very thorough process to do so, following advice I found online [3]. This tutorial taught me even more ways to desolder, and even gave me a streamlined process to follow.<br>
 I went counterclockwise around the center pins, making sure each pin was not connected to its neighbors but making sure that it was indeed connected to the pins across the board from it. There were several pins that did not match this specifically, so I had to resolder them and then using the connectivity probes on the multimeter to ensure that they were working. After I did this for all of the pins, I moved to the edge pins. These edge pins were easier, and I followed the same procedure, and I was eventually able to verify that every pin was working.
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.6.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\2.6.png" width = "33%" height = "auto"></img>
 </div><br>
 However, while desoldering and resoldering 5 of the pins which were not functionally, I accidently bumped my pen into the male to the pin headers, which caused the plastic to melt. I removed the plastic via clamps, but I will have to resolder each of these pins again, a painful process I will likely do in the next entry. However, this was a meaningful learning experience, because I now know just how careful you have to be when soldering, and how you cannot make any mistakes.<br>
 The removed pins, and the 16 pins I must resolder, are seen below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week7\7.7.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\2.7.png" width = "33%" height = "auto"></img>
 </div><br>
-Finally,
+Finally, the board looked as above, and I learned some very meaningful lessons about desoldering, specifically. In the future, perhaps later this week, I will need to revisit these concepts in case we make mistakes during assembly.<br>
+A significant challenge faced was troubleshooting the footprint libraries in KiCad due to a lack of prior documentation. This reinforces the importance of maintaining clear, well-organized records, as missing information can create roadblocks. In future work, a standardized method for documenting custom footprint imports should be considered to prevent similar issues.<br>
+Moving forward, breaking down the remaining resoldering task into manageable steps could help mitigate the frustration of repeating the process. Additionally, testing pins incrementally rather than all at once might reduce the likelihood of needing to redo large sections of work.<br>
+Additionally, another thing that I quickly saw and considered was the use of KiCad 9.0.0 to accelerate the development of our PCB layouts. I know that this version of the tool will be much better. I saw this information at this article [5], and seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\2.8.png" width = "33%" height = "auto"></img>
+</div><br>
 
+<br>
 <b>Citations:</b><br>
-
-Links and sources are found below:<br>
 - 1: <a href="https://www.digikey.com/en/models/2183120" target="_blank">TLC59211IN ECad Model for KiCad</a><br>
 - 2: <a href="https://www.robotics.org.za/W15391" target="_blank">How to solder MCP23017 SMD</a><br>
 - 3: <a href="https://www.instructables.com/The-Ultimate-Guide-to-Desoldering/" target="_blank">Steps to properly Desolder</a><br>
 - 4: <a href="https://desktop.github.com/download/" target="_blank">Github desktop installer</a><br>
-
+- 5: <a href="https://www.kicad.org/blog/2025/02/Version-9.0.0-Released/" target="_blank">KiCad 9.0.0 Release</a><br>
 <br>
 
-<!-- 7.1 -->
+<!-- 7.1 F -->
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
-<b>Date: Month Day </b><br>
-<b>Start Time: X:XX am</b><br>
+<b>Date: February 22 </b><br>
+<b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br><br>
 
 <b>Content:</b><br>
 This night, I needed to finish checking the stamp board which I had finished soldering the previous night. I realized that there was a connectivity issue between three of the stamps' pins.
-
-[PHOTO]
+I needed to fix this, so I went back and desoldered the pins, and resoldered them. I followed a very thorough process to do so, following advice I found online [1]. This tutorial taught me even more ways to desolder, using a conductive object to absorb the solder. However, the process would be quite risky.<br>
+In the end, the new stamp looked as below, with all the incorrect pins, being the 10 pins at the bottom and three around the sides, removed.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week7\1.1.jpg" width = "33%" height = "auto"></img>
 </div><br>
+Afterwards, because I knew I needed more practice, I went to get a prototype board which I knew had some mismatched pins, and desolder the board.<br>
+I found one which the staff had given us, and I practice removing the pins, because the old pins had been placed the wrong way ahead. I knew that if we made a similar mistake, we would lose a lot of time, unless I learned to do this well.<br>
+The old pins had been set to activate servo motors, but the entire breadboard did not work, so the idea was trashed. The board original looked as below, but with pins in the wrong direction to the ones visible.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\1.2.jpg" width = "33%" height = "auto"></img>
+</div><br>
+I meticulously desoldered the pins, applying a lot of heat at the maximum temperature to remove them. I realized that if the solder was not applied at the correct temperature, there would be no chance to remove the pins. I read this article [1] about temperatures required to desolder pins in order to become more knowledgable about the ranges of soldering heat.<br>
+Below is a picture of me going through the entire process, waiting a while for the heat to remelt the solder.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week7\1.3.jpg" width = "33%" height = "auto"></img>
+</div><br>
+This session was heavily focused on refining desoldering techniques and improving overall hardware troubleshooting skills. Identifying a connectivity issue on the stamp board and methodically fixing it demonstrated both patience and attention to detail. The decision to follow an online tutorial for alternative desoldering methods highlights a proactive approach to problem-solving.<br>
+One key takeaway from this session was the risk involved in using a conductive object to absorb solder. While it provided an effective solution, it also introduced potential hazards that required careful handling. Successfully removing and resoldering the incorrect pins strengthened soldering proficiency, making future corrections more efficient.<br>
+Practicing on a prototype board was a strategic move, allowing for hands-on experience in desoldering without risking critical project components. This foresight—anticipating potential mistakes and preparing for them in advance—is a valuable skill in hardware development. The research into appropriate desoldering temperatures further reinforced the importance of applying the correct heat range to avoid unnecessary damage.<br>
 <br>
 <b>Citations:</b><br>
-Links and sources are found below:<br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://community.spiceworks.com/t/solder-removal-without-a-solder-sucker/1010894" target="_blank">Desoldering without wick or a pen</a><br>
+- 2: <a href="https://en.wikipedia.org/wiki/Desoldering#:~:text=For%20most%20purposes%2C%20a%20temperature,heating%20required%20than%20from%20cold." target="_blank">desoldering ranges Wikipedia article</a><br>
 
 <h2 id = "week6">===============   Week 6: =================</h2>
 
