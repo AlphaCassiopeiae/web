@@ -126,10 +126,40 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-              <p></p>
+              <p>
+                I have some extra time to work on defining the software side of things. We need waveform descriptions of
+                our bus transactions such that we understand the specific timings and arbitration required between the
+                different cards.
+              </p>
 
               <ul>
-                <li></li>
+                <li>I realized that in order for the Front Panel to drive the data signals into order to deliver a JMP
+                  instruction, there needs to be some arbitration line that ensures that the front panel has control of
+                  the data bus.</li>
+                <li><a
+                    href="https://retrocomputing.stackexchange.com/questions/12194/how-did-the-altair-8800-front-panel-load-the-program-counter">For
+                    reference</a>, the original Altair was able to circumvent this by routing the front panel signals
+                  straight into the 8080 CPU, behind the input and output buffers.</li>
+                <li>For this reason, I've decided to drop the SS (single-step) line, which I've realized won't be used
+                  with our hardware, and created a new custom line called PANEL. I've updated our front page description
+                  with this information.</li>
+                <li>I'm doing a read-through of the Intel 8080 Datasheet to understand the timings of memory reads and
+                  write, and thinking about how to try to adapt that to our bus sustem, which is slightly modified.</li>
+                <li>
+                  <p>
+                    I've found that the timing information is very similar, but I've found it useful to transpose the
+                    8080 datasheet's information into signals that I could more easily understand in the data bus
+                    perspective. I wrote up some wavedrom files with my understanding of the timing, and organized those
+                    wavedroms as embedded within a draw.io document.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/4.1.png" alt="timing document" height="600" />
+                  </div>
+                </li>
+                <li>
+                  I think this document may be the first page of many. Writing these specifications down more formally
+                  should help with clarifying the software implementation.
+                </li>
               </ul>
             </div>
           </div>
