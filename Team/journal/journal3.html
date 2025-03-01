@@ -92,15 +92,24 @@ contact course staff.
            <b>Date: February 28th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 10:15am </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 1.75 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			<br>
-			<br>
+			Had a brief team meeting this morning, found out that Seth did in fact get embassy-rp working again, and he was able to flash a blinky LED test case to the micro, and the code inside the main loop actually executed. Since I have a good idea of where our software stands after this week, I started working on the software section of the presentation for next week. I did realize that some of the documentation on our website could use some updates, so I started on that by implementing some of the feedback on A3 - Software Overview. As a result I feel somewhat prepared for the presentation next week, and I have a very good overview of our software that I can easily explain to my teammates when we all work on debugging later this semester.
 			<br><br><br><br>
 	<!--  Week 7, Entry 5  -->
 	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
            <b>Date: February 27th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 7:00pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 1.25 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started working on auditing the rp235x-hal code to support functionality of all 47 GPIO pins on the RP2350B QFN80 package. After reading through most of the repository and RP2350B datasheet (~1 hour), I saw a lot of changes that needed to be made to the UART, I2C, and GPIO sections of the code. Copying the existing framework, I added code to allow UART and I2C functionality to all GPIO pins, and I also enable the pins in GPIO/func.rs.
 			<br>
+			<img src="Team/journal/img - member3/week7/W7J6.png" alt="datasheet excerpt" width="600"></img>
+			<br>
+			Now that this is done, I can meet with the team tomorrow morning and try and use the updated rp235x-hal package. Hopefully we can get the code to flash to the micro and we can begin debugging our software. This week has felt like a lot of running into issues, but I think we are moving in the right direction. Worst case scenario, if Seth gets embassy-rp working again, we can always have this as a backup if embassy-rp runs into issues down the road (its RP2350 support is relatively new so I wouldn’t be surprised). Some of the changes to the rp235x-hal code I had to make can be seen below:
+			<br>
+			<img src="Team/journal/img - member3/week7/W7J6.2.png" alt="website update" width="600"></img>
+			<br>
+			<img src="Team/journal/img - member3/week7/W7J6.3.png" alt="website update" width="600"></img>
+			<br>
+			<img src="Team/journal/img - member3/week7/W7J6.4.png" alt="website update" width="600"></img>
 			<br>
 			<br><br><br><br>
 	<!--  Week 7, Entry 4  -->
@@ -108,15 +117,22 @@ contact course staff.
            <b>Date: February 27th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 3:00pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 1.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Went into lab to try and flash the memory emulator package to one of the prototyping boards on our test harness with the new embassy-rp setup. I first had to move all of my code from eceprog to a WSL environment to use the USB connection for flashing. After realizing that WSL still couldn’t use the USB cable, I had to look into mounting the USB device to WSL. This required some PowerShell commands, but I was able to get the WSL environment to flash my code to the micro. 
 			<br>
+			<img src="Team/journal/img - member3/week7/W7J4.png" alt="website update" width="600"></img>
 			<br>
+			We did run into a pretty big issue, which was that the code would flash to the micro and everything looked good, except nothing in the main loop would actually execute. Although rp235x-hal didn’t support all the pins we needed, we were able to flash to the micros with it and the code in the main loop would execute. We decided that I am going to try and add functionality for all 47 GPIO pins in rp235x-hal, and Seth is going to try and fix whatever issues we have with embassy-rp. We now have 2 people working on debugging software issues and 2 people finishing up PCB layouts, so we should be able to fix these issues soon and start finalizing our CPU/memory emulators.
 			<br><br><br><br>		
 	<!--  Week 7, Entry 3 (just copy/paste this entry section template for the many more enties this week) -->
 	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
           <b>Date: February 26th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 11:15pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour--> 
+			As I suspected, there was a slight issue with the dependencies in Cargo.toml, but I was able to get it resolved by explicitly stating the version of ‘embassy-time-driver’ as 0.2.0. This did take some around 30 minutes to read through documentation specific to embassy-time, and about 20 minutes to resolve the issue in Cargo.toml. 
 			<br>
+			<a href="https://github.com/embassy-rs/embassy/tree/main/embassy-rp">embassy-rp repository</a>
+			<br>
+			 I was working on my computer at home, so I wasn’t able to try flashing to the microcontroller. I also had some issues with the code I had written in main.rs, so after reading more embassy documentation the code was able to build. If we just copy this setup to the other Rust packages we’re writing (CPU emulator, bus control), we should be able to get those flashed and tested in the next couple weeks, so we’re making progress towards software verification.
 			<br>
 			<br>
 			<br><br>
@@ -125,15 +141,34 @@ contact course staff.
            <b>Date: February 26th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			During this lab section, we first met with the instructors, who told us that our new functional description was much better, but that our PSDRs could be a little bit more clear. I then spent around 30 minutes talking with the team and making the PSDRs on the team website more understandable. As a result, the website’s front page should be completely done and all details about our project should be very easy for anyone who reads it to understand.
 			<br>
+			<img src="Team/journal/img - member3/week7/W7J2.JPG" alt="website update" width="600"></img>
 			<br>
+			After that, we kept reading through the rp235x-hal repository, and recognized that some of the functionality only had support for the QFN60 package of the RP2350, and not the QFN80 package. For example, UART was only configured for GPIO pins 0-29, but pins 30-47 were not set up. Luckily, we found a replacement for this in the embassy-rp repository, which is another open-source HAL for the RP2350, and this one had support built-in for all pins on the QFN80 package. 
+			<br>
+			<a href="https://github.com/embassy-rs/embassy/tree/main/embassy-rp">embassy-rp repository</a>
+			<br>
+			The setup process was almost exactly the same as for rp235x-hal, so I just needed to add embassy-rp stuff as dependencies in the Cargo.toml and cargo.config files. Integrating embassy-rp with the emulator was very similar to rp235x-hal, some code from main.rs can be seen below:
+			<br>
+			<img src="Team/journal/img - member3/week7/W7J1.JPG" alt="website update" width="600"></img>
+			<br>
+			After trying to build the code towards the end of lab section, I ran into a configuration error that can be seen below. Something was wrong with our dependencies (likely in Cargo.toml), so the project wouldn’t build or flash to the micro. I had to go to class so I couldn’t get this fixed in lab, but it should be an easy fix. In terms of project progress, this was a small step back, but we should be able to get this resolved and have support for the QFN80 package of our RP2350.
+			<br>
+			<img src="Team/journal/img - member3/week7/W7J3.png" alt="build error" width="600"></img>
 			<br><br><br><br>
 	<!--  Week 7, Entry 1  -->
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
            <b>Date: February 24th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 10:00am </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 1.75 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Decided to start working on the microcontroller-specific programming for the memory emulator. I first had to spend about 45 minutes reading through the rp235x-hal repository to understand how to code with the macros and packages for the RP2350. The top-level README in the rp-hal repository was very helpful with getting it setup and providing examples for how to structure my code.
 			<br>
+			<a href="https://github.com/rp-rs/rp-hal/tree/main/rp235x-hal">rp235x-hal repository</a>
+			<br>
+			Then, I had to modify the Cargo.toml and cargo.config files in the emulator’s directory so that the code would build. Took a bit to figure out, but I just had to add some stuff under [dependencies] in Cargo.toml to get the code to build. After integrating the rp235x_hal package with main.rs, I was able to get the code to build on my local machine. However, since I was on eceprog on my laptop (which didn’t support communication over the USB cable we’re using to flash), I was unable to get the emulator flashed to our prototyping board.
+			<br>
+			Doing this is a big step in our project since getting this set up allows us to start flashing code to the microcontrollers, meaning that using our test harness, we can start doing some basic tests with the CPU/memory emulators and the bus controller (called tram in our project), which are their own separate cargo workspaces meaning they can be flashed to different micros independently.
 			<br>
 			<br><br><br>
 
