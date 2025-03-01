@@ -105,27 +105,8 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-              <p><strong>What did you work on?</strong></p>
               <p></p>
 
-              <p><strong>How did you work on it?</strong></p>
-              <ul>
-                <li></li>
-              </ul>
-
-              <p>
-                <strong>What was the result and what did you learn from it?</strong>
-              </p>
-
-              <p>
-                <strong>How did this contribute to the project progress?</strong>
-              </p>
-
-              <p></p>
-
-              <p>
-                <strong>What are the next steps that must be taken?</strong>
-              </p>
               <ul>
                 <li></li>
               </ul>
@@ -134,6 +115,174 @@ contact course staff.
 
         <div class="week-content">
           <h2 id="sec-week7">=============== Week 7: =================</h2>
+
+          <h4>
+            <b>Entry 4: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> Feburary 28, 2025</p>
+            <p><b>Start Time:</b> 1:35 AM</p>
+            <p><b>Duration:</b> 2.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p></p>
+
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4>
+            <b>Entry 3: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> Feburary 26, 2025</p>
+            <p><b>Start Time:</b> 3:01 AM</p>
+            <p><b>Duration:</b> 6.5 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p></p>
+
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4>
+            <b>Entry 2: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> Feburary 24, 2025</p>
+            <p><b>Start Time:</b> 1:04 PM</p>
+            <p><b>Duration:</b> 1.0 hour</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>
+              <div class="image-section">
+                <img src="Team/journal/img - member1/week7/2.1.png" alt="reel of picos" height="600" />
+              </div>
+              At my apartment, I found a reel of Raspberry Pi Picos that still had two spare boards on them. Seth is
+              using the spare UART port on our current debug probe in order to receive debug messages, but it's
+              inconvients to have only one probe to do this while having to test two devices (the stamps). I'm going
+              to assemble and install an additional probe, such that we no longer need to fo the SWD wire switching,
+              and can debug and receive messages from both stamps simultaneously.
+              </p>
+
+              <ul>
+                <li>
+                  <p>
+                    I picked out a Pico board from the strip of the reel that I brought to lab.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.2.png" alt="single pico" height="600" />
+                  </div>
+                  I'm going to add header pins to this Pico such that I can be installed onto a breadboard.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I mounted the Pico with header pins onto a breadboard to provide alignment for soldering.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.3.png" alt="unsoldered pico on breadboard"
+                      height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I tacked the 4 corners of the board with 4 connections each to make sure sthat the header pins were
+                    attached mechanically secure to the pico. I could now remove the Pico from the board, and complete
+                    the job on the helping hands.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.4.png" alt="tacked pico on breadboard" height="600" />
+                    <img src="Team/journal/img - member1/week7/2.5.png" alt="tacked pico removed" height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I mounted the Pico onto the helping hands, and finished soldering on the header pin rows to finish
+                    the electrical connection.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.6.png" alt="tacked pico on helping hands"
+                      height="600" />
+                    <img src="Team/journal/img - member1/week7/2.7.png" alt="header rows complete" height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I then removed the Pico from the helping hands and flipped it over to add the SWD header. I tacked
+                    solder onto the two ends of the header row to support it, and then finished the last pin.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.8.png" alt="flipped over pico" height="600" />
+                    <img src="Team/journal/img - member1/week7/2.9.png" alt="SWD tacked pico" height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Here is the assembled Pico with the header pins on it.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.10.png" alt="assembled pico" height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Now it's time to wire the new Pico into the breadboard. The SWD signals on the bottom end of the
+                    breadboard will remain connected to the lower debug probe. I've disconnected the top SWD signals.
+                    These signals will be connected to the new Pico.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.11.png" alt="removed signals" height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I've gone and removed the slide switches we used to switch the target board for the single debug
+                    probe, and directly connected the lower SWD signals to the lower debug probe.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.12.png" alt="connected lower SWD signals"
+                      height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I then connected the upper <code>>SWCLK</code> to the new Pico's GPIO 2, and the upper
+                    <code>SWDIO</code> to the new Pico's GPIO 3, as specified in Appendix A of the <a
+                      href="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf">Getting started with
+                      Raspberry Pi Pico-series manual</a>.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.13.png" alt="new pico mounted" height="600" />
+                  </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I've now connected the gound and 3.3V out signals to the power columns on the breadboard, according
+                    to
+                    the <a
+                      href="https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pinout-and-design-files-3">Pico's
+                      pinout diagram</a>.
+                  </p>
+                  Raspberry Pi Pico-series manual</a>.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/2.14.png" alt="power columns connected" height="600" />
+                  </div>
+                </li>
+              </ul>
+
+              This should make deubgging smoother, since now we can connect both probes to a development computer, and
+              program/test both stamps at the same time without needing to toggle switches back and forth.
+            </div>
+          </div>
+
           <h4>
             <b>Entry 1: -----------------------------------------------------------------</b>
           </h4>
@@ -144,7 +293,6 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-              <p><strong>What did you work on?</strong></p>
               <p>
                 I'm working on completing and verifying all of the cable harnesses (ribbon cables) that we need for
                 communication between two boards. Currently, a pair of cables is complete, each of which has 24
@@ -152,8 +300,6 @@ contact course staff.
                 verify that the circuit for these two 24 conductor cables in good, and also work on the 20 conductor
                 cable, which connects the clock and bus control signals.
               </p>
-
-              <p><strong>How did you work on it?</strong></p>
               <ul>
                 <li>
                   <div class="image-section">
@@ -243,13 +389,15 @@ contact course staff.
                     <li>1 (male) pin block (for GPIO 23, right hand side headers)</li>
                   </ul>
                 </li>
-              </ul>
-
-              <p>
-                <strong>What was the result and what did you learn from it?</strong>
-              </p>
-
-              <ul>
+                <li>
+                  <p>In assembling so many Dupont crimp connectors, I've learned some techniques to make the process
+                    smoother. Rounding out the cable hold using the round hole grippers at the end of this stripper
+                    makes the insertion of the crimp connector into its housing a lot easier.</p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/phone05.png"
+                      alt="my technique for rounding out the wire holds" height="600" />
+                  </div>
+                </li>
                 <li>
                   <p>I've fully assembled the board with all the ribbon cables (2x 24 conductor cables, 2x 20 conductor
                     cables)!</p>
@@ -261,15 +409,7 @@ contact course staff.
                     I've also made sure that continuity passes between the two Stamp XLs for all GPIO pins from 4 to 47.
                   </p>
                 </li>
-                <li>
-                  <p>In assembling so many Dupont crimp connectors, I've learned some techniques to make the process
-                    smoother. Rounding out the cable hold using the round hole grippers at the end of this stripper
-                    makes the insertion of the crimp connector into its housing a lot easier.</p>
-                  <div class="image-section">
-                    <img src="Team/journal/img - member1/week7/phone05.png"
-                      alt="my technique for rounding out the wire holds" height="600" />
-                  </div>
-                </li>
+
                 <li>
                   <p>As a result, the newer ribbon cables I made look a lot cleaner than my older ones.</p>
                   <div class="image-section">
@@ -277,22 +417,10 @@ contact course staff.
                       height="600" />
                   </div>
                 </li>
-              </ul>
-
-              <p>
-                <strong>How did this contribute to the project progress?</strong>
-              </p>
-
-              <p>Now that this whole harness is done, there are no critical hardware blockers for software prototyping
-                and testing. Software prototyping and continue at full speed now.</p>
-
-              <p>
-                <strong>What are the next steps that must be taken?</strong>
-              </p>
-              <ul>
-                <li>I need to work with Seth to define all of the wavedrom signals for bus signalling, so that it's all "formally" specified.</li>
-                <li>I need to find the schematic symbols and footprints to finish up the general card schematic and PCB</li>
-                <li>I need to figure out how to aquire a supply of RP2350Bs on JLCPCB</li>
+                <li>
+                  Now that this whole harness is done, there are no critical hardware blockers for software prototyping
+                  and testing. Software prototyping and continue at full speed now.
+                </li>
               </ul>
             </div>
           </div>
