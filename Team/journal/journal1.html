@@ -144,10 +144,251 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-              <p></p>
+              <p>
+                Final PCB designs are due soon, so I'm coming into lab to finish up work on the schematic for the Card
+                design. With the release of KiCad v9.0, we've upgraded the project to take advantage of embedded
+                datasheet support, and are hoping some of the PCB routing improvements can help us.
+              </p>
 
               <ul>
-                <li></li>
+                <li>
+                  <p>
+                    I'm organizing and taking notes on the parts of the schematic that I have already. I'm using the
+                    line tool to box in parts of the schematic that are logically separate, to make everything more
+                    clear. Here I've boxed in each I/O expander into it's own organized unit.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/3.1.png" alt="boxing in the expanders" height="400" />
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    Additionally, I'm also taking design notes (utilizing the <a
+                      href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Hardware design
+                      with RP2350 manual</a>) on the schematic for implementation details that we
+                    shouldn't forget.
+                  <ul>
+                    <li>
+                      <p>
+                        Because the card boards, in normal operation, are powered via the card edge connector, and not
+                        via the USB bus, it's probably a good idea to have a reverse protection diode somewhere near the
+                        USB VBUS regulation circuit. I've added a note to do further research into this later.
+                      </p>
+                      <p>
+                        The L3 inductor in the 1.1V voltage regulator section of the schematic actually
+                        must be polarized, and Raspberry Pi has worked with a manufacturer to create a custom inductor
+                        to
+                        account for sensitivities in the internal voltage regulator (This is the <a
+                          href="https://jlcpcb.com/partdetail/AbraconLlc-AOTA_B201610S3R3_101T/C42411119">AOTA-B201610S3R3-101-T</a>).
+                        KiCad does not currently seem to have a
+                        default way to specify inductor polarization on their inductor symbol, so I will need to import
+                        or
+                        create a custom symbol for this in the future.
+                      </p>
+                    </li>
+                  </ul>
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/3.2.png" alt="notes on vbus reg" height="200" />
+                    <img src="Team/journal/img - member1/week7/3.3.png" alt="notes on 1.1v inductor" height="200" />
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    In order to better draw the dividing lines for the parts of the schematic that are directly linked
+                    to the RP2350B symbol, I modified the symbol of the RP2350B (the veresion in the schematic, not the
+                    library version) to spread out the pins (primarily the left side) to make it more evently spaced.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week7/3.4.png" alt="full view" height="200" />
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    Seth mentioned the the debug experience he was having with embassy and probe-rs was spotty. I looked
+                    into the issue and part of it was the issue mention in this <a
+                      href="https://github.com/embassy-rs/embassy/issues/1736">Github Issue on Embassy</a> mentioning an
+                    issue in probe-rs where it only resets one of the two CPU cores. For tracking, here's the <a
+                      href="https://github.com/probe-rs/probe-rs/pull/1603">draft PR for probe-rs</a> looking to fix
+                    this issue. Additionally, he noted that probe-rs doesn't pick up on certain debug behaviors of the
+                    RP2350B.
+                  </p>
+                  <p>
+                    Part of the reason we're using probe-rs is because we did not get OpenOCD to function with our build
+                    environment. I noted that the Raspberry Pi work on OpenOCD had not been upstreamed yet, so the
+                    stable versions of openOCD that we were testing against produced incorrect behavior against our
+                    chips. I need to get a working version of OpenOCD based on the <code>sdk-2.0.0</code> branch of the
+                    <a href="https://github.com/raspberrypi/openocd">Raspberry Pi OpenOCD fork</a>.
+                  </p>
+                </li>
+                <li>
+                  I am working on building a version of the downstream OpenOCD version on Windows. OpenOCD has a <a
+                    href="https://github.com/raspberrypi/openocd/blob/sdk-2.0.0/README.Windows"><code>README.Windows</code></a>
+                  that mentions some tools that I can start with to try to perform the build. I've decided to go along
+                  the <a href="https://www.msys2.org/">MSYS2</a> route, so I'm installing MSYS2 on my computer. I also
+                  followed the <a href="https://www.msys2.org/docs/terminals/">MSYS2 guide on adding the profiles to my
+                    Windows Terminal</a>.
+                </li>
+                <li>
+                  MSYS2 provides the <code>pacman</code> package manager, which I'm using to install build dependancies
+                  onto the MSYS2
+                  root. I'm referring to the <a
+                    href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/jtag-debugging/building-openocd-windows.html">Espressif
+                    documentation</a> on building OpenOCD for dependancies that I need,
+                  which include <code>autoconf</code>, <code>automake</code>, <code>git</code>,
+                  <code>make</code>,<code>mingw-w64-i686-gcc</code>,<code>mingw-w64-i686-toolchain</code>,<code>mingw-w64-i686-libtool</code>,<code>mingw-w64-i686-pkg-config</code>,
+                  and<code>mingw-w64-cross-winpthreads-git</code>.
+                </li>
+                <li>
+                  I realized that the generated GNU Autotools <code>./configure</code> script was failing to find the
+                  <code>mingw-w64-i686-gcc</code> target gcc, because I was running the UCRT64/MSYS2 shell, which loads
+                  the wrong environment. Swithing to the MINGW32/MSYS2 shell, the proper alternative of gcc is detected
+                  and used.
+
+                  <p>I also added a MINGW32/MSYS2 profile to my Windows Terminal, by adding the following profile
+                    listing to my configuration:</p>
+                  <pre>
+{
+  "guid": "{9f11d647-922f-4d52-8d58-7deac692ec2b}",
+  "name": "MINGW32 / MSYS2",
+  "commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -mingw32",
+  "startingDirectory": "C:/msys64/home/%USERNAME%",
+  "icon": "C:/msys64/mingw32.ico",
+  "font": 
+  {
+    "face": "Lucida Console",
+    "size": 9
+  }
+}
+                  </pre>
+                </li>
+                <li>
+                  <p>
+                    For some reason, there's a build error trying to compile <code>src/flash/nor/rp2040.c</code>,
+                    because it uses <code>uint</code> as a type, which isn't recognized. After running
+                    <code>sed -i -e 's/uint /unsigned int /g' ./src/flash/nor/rp2040.c</code> on the repository to
+                    replace the type usage, the project now builds correctly.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    The build is working to build a version of OpenOCD that supports no interfaces. OpenOCD configures
+                    build features via flags in the `./configure` script, which can be found when running `./configure
+                    --help`. Because on the <a
+                      href="https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf">Getting started with
+                      Raspberry Pi Pico-series manual</a>, Raspberry Pi notes that RP chips can be debugged through a
+                    generic CMSIS-DAP interface, I've opted to enable the <code>--enable-cmsis-dap</code> configure flag
+                    and regenerate the Makefile.
+                  </p>
+                </li>
+                <li>The configuration failed, because the inclusion of CMSIS-DAP support requires the
+                  <code>hidapi</code> library.
+                </li>
+                <li>
+                  Looking through the MSYS2 package listing, I found a good candidate: <a
+                    href="https://packages.msys2.org/base/mingw-w64-hidapi"><code>mingw-w64-hidapi</code></a>. I then
+                  ran
+                  <code>pacman -S mingw-w64-i686-hidapi</code> to install the MINGW32 version of the package.
+                </li>
+                <li>
+                  The configure script now passes, but running the Makefile fails, because sometime later, some parts
+                  of the CMSIS-DAP implementation try to reference <code>libusb-1.0.h</code>, which I have not provided.
+                  I will need to provide the libusb 1.0 DLLs and header files somehow
+                </li>
+                <li>
+                  Unfortunately, while the MSYS2 base package for libusb exists (<a
+                    href="https://packages.msys2.org/base/mingw-w64-libusb"><code>mingw-w64-libusb</code></a>), there's
+                  no MINGW32 version of the package available.
+                </li>
+                <li>
+                  I've also tried to include the library in the same way that the previous Espressif guide did, but for
+                  some reason the configure script does not pick up libusb, and it still does not build.
+                </li>
+                <li>
+                  I've decided to package a MINGW32/MSYS2 package myself. I took a look at the existing <a
+                    href="https://packages.msys2.org/packages/mingw-w64-x86_64-libusb">MINGW64 package for libusb</a>.
+                  Basically, it provides the following files:
+                  <ul>
+                    <li><code>/mingw64/bin/libusb-1.0.dll</code></li>
+                    <li><code>/mingw64/include/libusb-1.0/libusb.h</code></li>
+                    <li><code>/mingw64/lib/libusb-1.0.a</code></li>
+                    <li><code>/mingw64/lib/libusb-1.0.dll.a</code></li>
+                    <li><code>/mingw64/lib/pkgconfig/libusb-1.0.pc</code></li>
+                    <li><code>/mingw64/share/licenses/libusb/COPYING</code></li>
+                  </ul>
+                  Taking reference of this structure, I created a new archive based on the <a
+                    href="https://github.com/libusb/libusb/releases/tag/v1.0.27">MINGw32 build of libusb 1.0.27</a>,
+                  moving the files into an archive to fill out these files:
+                  <ul>
+                    <li><code>/mingw32/bin/libusb-1.0.dll</code></li>
+                    <li><code>/mingw32/include/libusb-1.0/libusb.h</code></li>
+                    <li><code>/mingw32/lib/libusb-1.0.a</code></li>
+                    <li><code>/mingw32/lib/libusb-1.0.dll.a</code></li>
+                  </ul>
+                  <p>
+                    I then copied over the pkgconfig configuration from the MINGW64 package, and modified to reference
+                    MINGW32 paths, and placed it in <code>/mingw32/lib/pkgconfig/libusb-1.0.pc</code>. I also copied
+                    over
+                    the <code>COPYING</code> file as-is.
+                  </p>
+                  <p>
+                    Here's a <a href="Team/journal/img - member1/week7/libusb-1.0.27.zip">link to my MINGW32/MSYS2
+                      packaging</a> of libusb-1.0.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    OpenOCD now properly builds with CMSIS-DAP support and the new RP2350B support. I've shared the
+                    binary (which requires you to bundle the hidapi and libusb DLL files), and it works on his computer.
+                    We have a more battle-tested debug tool that also has written support by Raspberry Pi.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Nathan noted that instead of having all our schematics and PCBs in one KiCad Project, per submission
+                    guidelines, we needed to split each board out into a separate project. We decided that it would be
+                    best to have a single KiCad .lib file that all the projects could reference.
+                  </p>
+                  <p>
+                    I thought this would be a good time to part out some of the core connector choices we needed, so I
+                    found the following parts to add to the library:
+                  </p>
+                  <ul>
+                    <li><a
+                        href="https://www.digikey.com/en/products/detail/amphenol-cs-fci/10145226-0241N13LF/10233356">10145226-0241N13LF</a>
+                      as a DDR4 DIMM slot, which I chose over <a
+                        href="https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2308107-9/6596874">2308107-9</a>
+                      because of footprint availability, and <a
+                        href="https://www.digikey.com/en/products/detail/amphenol-cs-fci/10145891-0320J13LF/10233357">10145891-0320J13LF</a>
+                      because the latter is a very hard to solder SMD part with 288 contacts.</li>
+                    <li><a href="https://www.digikey.com/en/products/detail/molex/2171750001/13913745">2171750001</a> as
+                      our USB-C connector, because it's very popular, and I'm not expecting too many issues from it,
+                      since it's a Molex part.</li>
+                  </ul>
+                </li>
+                <li>
+                  <p>
+                    Additionally, I've decided to use the same schematic symbol for DDR4 DIMM connections between the
+                    edge card and the slot, but we lack a footprint in the edge card case. I found an <a
+                      href="https://github.com/DiodeRed/kicad-footprint-ddr4-dimm/blob/master/DIMM-DDR4.kicad_mod">edge
+                      card footprint</a> online that I'm importing to use with the slot symbol.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I also took the liberty of selecting the slide switches and buttons we will use:
+                  </p>
+                  <ul>
+                    <li><a
+                        href="https://www.digikey.com/en/products/detail/c-k/OS102011MS2QN1/411602">OS102011MS2QN1</a>
+                      as a slide switch because of its fairly hefty casing that extends through hole into the PCB, which
+                      makes be believe that it will be less likely to rip off of a PCB.</li>
+                    <li><a
+                        href="https://www.digikey.com/en/products/detail/te-connectivity-alcoswitch-switches/FSM103/701085">FSM103</a>
+                      as a tactile momentary switch, as it allows the attachment of caps onto the stem, allowing for
+                      aesthetic customization.</li>
+                  </ul>
+                </li>
               </ul>
             </div>
           </div>
