@@ -144,14 +144,38 @@ Now our PICO 2 dev board is ready for prototyping and I have refreshed my solder
 <!-- 8.2 UF -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
 <b>Date: March Day </b><br>
-<b>Start Time: X:XX am</b><br>
+<b>Start Time: 8:30 pm</b><br>
 <b>Duration: 2 hours</b><br>
 <br>
 <b>Content:</b><br>
-
+I talked with Brian about changes to the KiCad files. He said that the library had been updated, and all the footprint models had been inserted. Now, I need to convert the front panel back into KiCad 8.0.0.<br>
+I got a merge conflict when pulling from main, so I decided to use the modified files from main to do all the operations. The merge conflict can be seen in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
 </div><br>
+Made a file called "KiCad Deprecation" which I will use to deprecate files from KiCad 9.0.0 to KiCad 8.0.0. I will basically copy paste structures into the google doc and export them back into new project files. I will do this for every component I need to.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
+</div><br>
+I realized that copy and pasting in to KiCad would not be realistic, as when I copy pasted even a little bit of our existing schematic, the google doc shot up to 114 pages. I decided to just recreate the front board for our project, as I had already done it once.<br>
+I recreated the Schematic in KiCad 8.0.0. I made sure to avoid all the pitfalls I made the first time, and removed the useless Nets, including VREG_AVDD and VREG_LX. I also created the new expansion connector, and made sure that between each 4 busses which actually had signals, I had a power and ground, and between the lines which did not have any usable signals, I had a power and ground between every 10 pins.<br>
+I also recreated the I/O expanders and passed the electrical rules check like previously, such that we could get started on the layout. The whole (NEW) schematic can be seen below, as well as the passed ERC rules check.<br>
+I had to find the severity rules in KiCad to determine which errors could be successfully ignored. I ignored three errors in the Electrical Rules Check, namely these three:<br>
+- <i>Conflict Problems between Pins</i><br>
+- <i>Library Symbol Editor</i><br>
+- <i>More than one name given to bus or net</i><br>
+I do not think these warnings will cause as issue, and we have records of them if they do. The exceptions can be found in the image below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\2.4.png" width = "25%" height = "auto"></img>
+</div><br>
+After completing the entire schematic based on the one I already made, it looked as below:
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\2.3.png" width = "25%" height = "auto"></img>
+</div><br>
+I needed to complete the PCB board layout based on the schematic I created, so I opened the KiCad footprint library and manually assigned all of the footprints. There were 159 footprints missing, so I had to assign all of it.<br>
+I set the following assignments for each of the parts that were missing:<br>
+-
+After this was complete, I went to the front panel PCB editor and started laying everything out. 
 
 <br>
 <b>Citations:</b><br>
