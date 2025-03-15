@@ -380,24 +380,40 @@ After this was complete, I went to the front panel PCB editor and started laying
 <br>
 <b>Content:</b><br>
 First, I needed to deprecated all our KiCad files from 9.0.0 back down to 8.0.0, following Dr. Walter's note which I saw below. I downloaded the older KiCad version of this site [1], and spent some time installing it.<br>
-
+<ul>
+	<li>
+	This note came as a surprise to us, as we thought that KiCad 9.0.0 would be fine in order to continue our PCB assembly, but we were very mistake. We realized that we would have to deprecate all of our things manually, and recreate everything.<br>
+	As such, I began to recreate the new schematic on a new ecad project within the directory, on top of the new files we had to make.	
+	</li> 
+	<li>
+	I just saw this note 1 week into our PCB creation, so we lost a bunch of progress that could have been accumulated if we didn't make the switch to KiCad 9.0.0. However, I think that this will be helpful, as there will now be time to improve on the existing design and refine any inaccuracies that might have been there initially.<br>
+	</li>
+</ul>
+The note which Dr. Walter left us can be seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\1.1.png" width = "25%" height = "auto"></img>
 </div><br>
+I wanted to try a naive approach of just importing all the content into a text document and copy pasting that into KiCad. I first created a new google doc with my personal google drive account on the lab computer, and tried to import all of the KiCad 9.0.0 content onto that google doc. However, this did not work, as the KiCad 9.0.0 format was not backwards compatible with the KiCad 8.0.0 formatting.<br>
+I also looked at the github branch history inside Github, as I thought that there would be a matching version which was not upgraded which I could work off of in order to restore my progress. The branch history which I was trying to compare to can be seen in the image below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\1.2.png" width = "25%" height = "auto"></img>
 </div><br>
+I quickly realized that there was no good branch to siphon off of, as all of our changes were divergent and in separate KiCad Project directories, so there really was no synchronized version. However, at this time, the google doc finished uploading, and I was able to see all of the content of KiCad 9.0.0.<br>
+I thought that there would be a way to deprecate the content of the KiCad 9.0.0, but after I saw that there were 114 pages of content and the file size was several MB, I decided to refrain from this choice and simply recreate the front panel and back plane schematics from their respective KiCad 9.0.0 files, just deprecated to KiCad 8.0.0. A photo of the very long google doc can be found here, and the file can be seen here [1].<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\1.3.png" width = "25%" height = "auto"></img>
 </div><br>
+After this, I admitted defeat and began to work on the conversion from KiCad 9.0.0 back down to KiCad 8.0.9. I first installed the KiCad 8.0.9 installer here [2], and realized that I could have both KiCad 9.0.0 and 8.0.9 on my system. This would allow me to switch between desktops and reference the existing design I had on KiCad 9.0.0 to insert it back into KiCad 8.0.9. The existing design which I had can be seen in the image below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\1.4.png" width = "25%" height = "auto"></img>
 </div><br>
-
 Afterwards, because I knew that the midterm design review presentation was next week, I decided to work on that and upload the new files to teams. KiCad was still installing in the background, because the installer is quite large.<br>
+I create new files and made sure they were properly linked inside the teams, and go to work creating slides for the midterm design review based on the slides that were given to us within the assignment which was posted in Brightspace. Before the end of the period, I was able to create 15 slides.<br>
+As a 
 
 <br>
 <b>Citations:</b><br>
+- 1: <a href="https://docs.google.com/document/d/1cOvcpEqkHJi-3afqtSzrdmrRLiiJ992B-ypC7sXVeEU/edit?tab=t.0" target="Google Doc for copy pasting content into KiCad"></a><br>
 - 1: <a href="https://downloads.kicad.org/kicad/windows/explore/stable" target="_blank">Kicad 8.0.9 Installer</a><br>
 <br>
 
