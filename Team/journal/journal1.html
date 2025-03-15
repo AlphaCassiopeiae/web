@@ -51,6 +51,10 @@ contact course staff.
       <link href="default_ie6.css" rel="stylesheet" type="text/css" />
     <![endif]-->
   <style>
+    img {
+      max-width: 100%;
+    }
+
     .img-grid-row {
       display: flex;
       flex-wrap: wrap;
@@ -58,11 +62,16 @@ contact course staff.
     }
 
     .img-grid-column {
-      flex: 50%;
+      flex: 30%;
       padding: 0 4px;
     }
 
-    .img-grid-column img {
+    .img-grid-column figure {
+      margin: 0;
+    }
+
+    .img-grid-column figure img {
+      max-width: 100%;
       margin-top: 8px;
       vertical-align: middle;
     }
@@ -347,11 +356,248 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-              <p></p>
+              <p>
+                The card PCB has some fairly involved routing, since it requires branching out all 16+8+20 bus signals
+                inside of a fairly compact footprint. I'm getting started on that design by first importing all the PCB
+                footprints that are necesary for all the boards. I'm importing this in a KiCAD v8 environment because of
+                the course's usage of KiCAD v8. This will roughly be a rehash of the library work that Nathan did on the
+                KiCAD v9 environment, but I will share my notes on the process.
+              </p>
 
               <ul>
-                <li></li>
+                <li>For each part that was not in the KiCAD standard library, I went into the DigiKey Part listing, and
+                  downloaded the symbol and foorprint for that part, preferring the SnapMagic verion of the model as
+                  opposed to Ultra Librarian, as I've found SnapMagic to be of higher quality.</li>
+                <li>
+                  <p>
+                    For each of these parts, I also imported and aligned the relevant 3D model by using KiCAD's
+                    footprint properties menu. Because we place our STEP files in the Library.pretty directory, we can
+                    use relative pathnames (in this case just the STEP filename) instead of the full path to the 3D
+                    model.
+                  </p>
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/1.1.png" />
+                          <figcaption>
+                            Source: <a
+                              href="https://www.digikey.com/en/products/detail/amphenol-cs-fci/10145226-0241N13LF/10233356">DigiKey</a>
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.4.png" />
+                          <figcaption>
+                            Source: <a
+                              href="https://www.digikey.com/en/products/detail/te-connectivity-alcoswitch-switches/FSM103/701085">DigiKey</a>
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.7.png" />
+                          <figcaption>
+                            Source: <a
+                              href="https://www.digikey.com/en/products/detail/texas-instruments/TLC59211IPWR/2183121">DigiKey</a>
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/1.2.png" />
+                          <figcaption>
+                            Source: <a
+                              href="https://www.digikey.com/en/products/detail/abracon-llc/abm8-272-t3/22472366">DigiKey</a>
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.5.png" />
+                          <figcaption>
+                            Source: <a href="https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198441">
+                              DigiKey
+                            </a>
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.14.png" />
+                          <figcaption>
+                            Source: <a href="https://datasheets.raspberrypi.com/rp2350/Minimal-KiCAD.zip">Raspberry Pi
+                              Reference KiCAD Project</a>
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/1.3.png" />
+                          <figcaption>
+                            Source: <a
+                              href="https://github.com/DiodeRed/kicad-footprint-ddr4-dimm/blob/master/DIMM-DDR4.kicad_mod">Github</a>
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.6.png" />
+                          <figcaption>
+                            Source: <a
+                              href="https://www.digikey.com/en/products/detail/c-k/OS102011MS2QN1/411602">DigiKey</a>
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    For the part "5017868090", which is the Molex flat flec connection, you can directly go onto the <a
+                      href="https://www.molex.com/en-us/products/part-detail/5017868090">Molex website for the part</a>
+                    and download the symbol and footprint data for KiCAD.
+                  </p>
+                  <p>
+                    However, for this symbol specifically, the file provided to me by Molex for the footprint was
+                    malformed.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/1.8.png" />
+                  </div>
+                  <p>
+                    Manually inspecting the footprint file, we can see that Molex quoted "" without escaping, causing a
+                    syntax error.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/1.9.png" />
+                  </div>
+                  <p>
+                    Just going in and replacing the """" with "" repaired the footprint file.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/1.10.png" />
+                    <img src="Team/journal/img - member1/week8/1.11.png" />
+                  </div>
+                  <p>
+                    I can now also include the 3D model as normal
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/1.12.png" style="max-width: 500px;" />
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    Some fields (like the datasheet URL) display on the KiCAD footprint. You can enter the properies
+                    menu for a specific footprint to prevent the unwanted fields from showing and clogging up the
+                    viewport.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/1.13.png" style="max-width: 500px;" />
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    The RP2350 requires an inductor with a polarization marking, specifically, the <a
+                      href="https://jlcpcb.com/partdetail/AbraconLlc-AOTA_B201610S3R3_101T/C42411119">AOTA-B201610S3R3-101-T</a>.
+                    The ECAD symbols and footprints for this part are currently only available on LCSC/JLCPCB, which
+                    only
+                    provides symbols/footprints in the form of EasyEDA IDs.
+                  </p>
+                  <p>
+                    To import a part into KiCAD from EasyEDA:
+                  </p>
+                  <ul>
+                    <li>Log into EasyEDA</li>
+                    <li>Hit the "Library" Button on the left sidebar, this should bring up a library browser pop-up.
+                    </li>
+                    <li>Enter the LCSC part #... a list of results should show up. Click on the appropriate result.</li>
+                    <li>Click on the rendered symbol preview to load the symbol into EasyEDA</li>
+                    <li>While viewing the symbol... File > Expore > EasyEDA, which will download a JSON-based EasyEDA
+                      symbol file.</li>
+                    <li>Do the same with the rendered footprint in the library broser, which will produce a JSON-based
+                      EasyEDA footprint file.</li>
+                    <li>These EasyEDA files can be directly imported into KiCAD via the Symbol and Footprint Editors, as
+                      KiCAD supports the EasyEDA JSON file format.</li>
+                  </ul>
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/1.17.png" />
+                          <figcaption>
+                            The JLCPCB listing for the EasyEDA symbol and footprint
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.15.png" />
+                          <figcaption>
+                            The EasyEDA symbol as viewed imported into KiCAD
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.19.png" />
+                          <figcaption>
+                            The footprint as viewed on EasyEDA
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/1.16.png" />
+                          <figcaption>
+                            The symbol as viewed on EasyEDA
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.18.png" />
+                          <figcaption>
+                            Modified by adding a dot polarity indicator onto the symbol
+                          </figcaption>
+                        </figure>
+                        <figure><img src="Team/journal/img - member1/week8/1.20.png" />
+                          <figcaption>
+                            The EasyEDA footprint as viewed imported into KiCAD
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    While I cannot find a 3D model for this inductor on JLC/LCSC, <a
+                      href="https://www.mouser.com/ProductDetail/ABRACON/AOTA-B201610S3R3-101-T">Mouser has a 3D
+                      model</a> (but no ECAD), so I downloaded the STEP, and imported it into the footprint entry.
+                  </p>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/1.21.png" style="max-width: 500px;" />
+                  </div>
+                </li>
+                <li>
+                  I imported the MCP23017T-E/SS (<a
+                    href="https://www.digikey.com/en/products/detail/microchip-technology/mcp23017t-e-ss/964185">from
+                    DigiKey</a>)
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/1.22.png" />
+                          <figcaption>MCP23017 3D model and footprint</figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/1.23.png" />
+                          <figcaption>MCP23017 Symbol</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  And also the reverse-mounted AA3528SECKT/J309 (<a
+                    href="https://www.digikey.com/en/products/detail/kingbright/AA3528SECKT-J309/10293095">from
+                    DigiKey</a>)
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/1.25.png" />
+                          <figcaption>Reverse-mounted LED 3D model and footprint</figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/1.24.png" />
+                          <figcaption>Reverse-mounted LED symbol</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </li>
               </ul>
+              <p>
+                I will need to backport the schematic changes we made from KiCAD
+                v9 back to KiCAD v8. From what I understand this is a manual process, so I'm prepared to redraw many
+                parts of the schematic.
+              </p>
             </div>
           </div>
         </div>
