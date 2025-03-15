@@ -106,7 +106,25 @@ contact course staff.
            <b>Date: March 12th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			
+			During this lab section, the instructors looked over some of the Rust code I had written for our memory emulator, and they said that the read() and write() functions looked good. I spent the rest of the time researching PIO so that I can start writing tram next week once my test harness is set up. Most of my research was done by reading the PIO section of the RP2350 datasheet, linked below:
+			<br>
+			<a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">RP2350 Datasheet</a>
+			<br>
+			The state machine overview, which can be seen below, helped me understand how to use PIO. There are two scratch registers X and Y, and you just write assembly-type instructions in PIO routines to control the I/O. The RP2350B provides 12 of these state machines in total, so I plan to use as many of these as possible for our bus control implementation (tram). The instrucitons that can be used to control these state machines can also be seen below:
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_2.1.jpg" alt="state machine overview" width="600"></img>
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_2.3.jpg" alt="PIO instructions" width="600"></img>
+			<br>
+			The datasheet also provided a simple example routine to use as guidance, which generates a simple square wave. It accomplishes this by setting a pin as output, then setting the pin high, waiting, setting the pin low, then repeating. The structure is extremely similar to other assembly variants like RISC-V, so it should be easy for me to extend this example to get the timings that we need for tram signals.
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_2.2.jpg" alt="PIO instructions" width="600"></img>
+			<br>
+			To understand how to use these PIO routines to implement tram, I had to talk with Seth to understand how tram interfaces with our other software packages (CPU emulator, RAM emulator, etc.). We went through some general functionality together, then I created my own flowcahrt with pseudocode to describe the communication of CPU/RAM through tram, which can be seen below:
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_2.4.jpg" alt="pesudocode" width="600"></img>
+			<br>
+			This reinforced my understanding that I gained last week while working on the software overview in our presentation. Tram will listen to bus signals from the CPU/RAM emulators, then execute machine cycles (different from clock cycles) to send requests and responses as necessary. As a result of this, I feel like I have a good enough understanding to start coding next week once I have my test harness finished. Once tram is at least partially functional, we can start testing it with the other software packages driving it, which is a huge step in bringing our project together.
 			<br><br><br><br>
 	<!--  Week 9, Entry 1  -->
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
@@ -115,9 +133,9 @@ contact course staff.
             <b>Duration: 4 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			Started the process of setting up my test harness to take on spring break with me. The first step was to solder one of the Stamp XL boards to the Stamp Carrier XL, as well as soldering the pin headers and power connector. I had to first learn how to solder by looking it up online and asking my teammates for tips. I then attempted to solder the Stamp XL board, and it was a bit rough since I am just learning to solder. I ended up messing up on the 12-pin connector on the edge of the board, so I had to desolder it which took a lot longer than I would have thought. The solder ended up filling one of the pin holes, and it was extremely painful to remove. Some images of the completed soldering can be seen below:
 			<br>
-			<img src="Team/journal/img - member3/week9/W9_1.1.JPG" alt="board 1 solder" width="600"></img>
+			<img src="Team/journal/img - member3/week9/W9_1.1.jpg" alt="board 1 solder" width="600"></img>
 			<br>
-			<img src="Team/journal/img - member3/week9/W9_1.2.JPG" alt="board 1 solder" width="600"></img>
+			<img src="Team/journal/img - member3/week9/W9_1.2.jpg" alt="board 1 solder" width="600"></img>
 			<br>
 			The 12-pin edge connector was not completely functional as can be seen in the picture, but all of the pins that I need to start testing recall (memory emulator) should be functional. I did a continuity test using the multimeter and moving along the pins to test for good electrical connection. This is a bit of a detour from the main project, but it will set me up nicely to get some good debugging done while I'm away for spring break next week. The next steps are to a) solder the other board, and b) connect both boards to a breadboard to complete the test harness. 
 			<br><br><br><br>
