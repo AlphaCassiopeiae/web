@@ -116,9 +116,26 @@ Now our PICO 2 dev board is ready for prototyping and I have refreshed my solder
 <b>Content:</b><br>
 I need to finish up the PCB tonight, so my team will likely for a good portion of the night getting things done. I went looking for the AD2 as well as the cable, because they got misplaced on the table. I also realized it is much faster to leave everything within the Senior design lab in the future.<br>
 I swapped all the silkscreen footprints on the board to be F.Fab prints, just so we wouldn't get confused in the future. The new board looks as such.<br>
+
 <div id="banner">
-	<img src="Team\journal\img - member4\week9\3.1.png" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week9\4.1.jpg" width = "25%" height = "auto"></img>
 </div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\4.2.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\4.3.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\4.4.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\4.5.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\4.6.png" width = "25%" height = "auto"></img>
+</div><br>
+
 I forgot to save my work editing the silkscreen, so a lot of my progress got wiped. I had to reset and update from PCB again, so I could trace again.<br>
 I reconfigured the mappings for the PCB (again), because I realized my board was reversed and some of the RP2350 pins were not assigned correctly. Next, I will have to look at protection diodes and protection resistors for the entire board.
 The Rat's nest was still looking hard to manage, so I have to reconfigure the mapping for the LEDs to make the routing simpler.<br>
@@ -138,7 +155,22 @@ I moved some of the components such that they were basically touching each other
 <b>Content:</b><br>
 
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week9\3.1.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\3.2.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\3.3.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\3.4.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\3.5.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\3.6.jpg" width = "25%" height = "auto"></img>
 </div><br>
 
 <br>
@@ -156,11 +188,11 @@ I moved some of the components such that they were basically touching each other
 I talked with Brian about changes to the KiCad files. He said that the library had been updated, and all the footprint models had been inserted. Now, I need to convert the front panel back into KiCad 8.0.0.<br>
 I got a merge conflict when pulling from main, so I decided to use the modified files from main to do all the operations. The merge conflict can be seen in the photo below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week9\2.1.png" width = "25%" height = "auto"></img>
 </div><br>
 Made a file called "KiCad Deprecation" which I will use to deprecate files from KiCad 9.0.0 to KiCad 8.0.0. I will basically copy paste structures into the google doc and export them back into new project files. I will do this for every component I need to.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week9\2.2.png" width = "25%" height = "auto"></img>
 </div><br>
 I realized that copy and pasting in to KiCad would not be realistic, as when I copy pasted even a little bit of our existing schematic, the google doc shot up to 114 pages. I decided to just recreate the front board for our project, as I had already done it once.<br>
 I recreated the Schematic in KiCad 8.0.0. I made sure to avoid all the pitfalls I made the first time, and removed the useless Nets, including VREG_AVDD and VREG_LX. I also created the new expansion connector, and made sure that between each 4 busses which actually had signals, I had a power and ground, and between the lines which did not have any usable signals, I had a power and ground between every 10 pins.<br>
@@ -171,11 +203,17 @@ I had to find the severity rules in KiCad to determine which errors could be suc
 - <i>More than one name given to bus or net</i><br>
 I do not think these warnings will cause as issue, and we have records of them if they do. The exceptions can be found in the image below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\2.4.png" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week9\2.3.png" width = "25%" height = "auto"></img>
 </div><br>
 After completing the entire schematic based on the one I already made, it looked as below:
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\2.3.png" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week9\2.4.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\2.5.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\2.6.png" width = "25%" height = "auto"></img>
 </div><br>
 I needed to complete the PCB board layout based on the schematic I created, so I opened the KiCad footprint library and manually assigned all of the footprints. There were 159 footprints missing, so I had to assign all of it.<br>
 I set the following assignments for each of the parts that were missing:<br>
@@ -201,9 +239,23 @@ I forgot to delete the second layer when I went to reroute the PCB, so I had to 
 By completing the route of the backside of the PCB first, I was able to drastically reduce the amount of traces needed. I originally thought to make my traces like the first PCB I did, but the routes would have been far too confusing.<br>
 I made the mistake of forgetting to change the side of the board before routing, so I had to manually go through and fix all of that.<br>
 Downloaded the QFN Footprint [1] for the MCP23017. This will make it easier to route, as well as the presence of less EMI. Link is provided in the references, but this is what it looks like. I plan to place this component at a 45 degree angle so the expansion covers more area per track width.<br>
+
 <div id="banner">
-	<img src="Team\journal\img - member4\week9\1.1.png" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week9\1.1.jpg" width = "25%" height = "auto"></img>
 </div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\1.2.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\1.3.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\1.4.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week9\1.5.jpg" width = "25%" height = "auto"></img>
+</div><br>
+
 I figured out that a global label would override a NET, so I decided to remove one of the nets on the I2C Lines. This was successful, and I continued making several routing into placement changes for the PCB
 
 I took a look at my old ECE 20008 Buck Converter Lab, just so I knew what to reconfigure to get our desired output. I plan to make 3 prototypes: One using an LM1117, one using an LMC555 Timer, and one with our desired chip.<br>
@@ -229,9 +281,16 @@ I asked the question of if the current team which was presenting (Team 2), was p
 This review presentation session took place from 10:30  - 11:20, where I learned team 2's idea for translation glasses, which would have a PCB attached to the left of a pair of glasses.<br>
 After this peer review, I attended another peer review session for team 18, Grid Wars, whose idea was to recreate grid wars with a microcontroller and RFID input devices.<br>
 They decided to use a ESP32-PICO as well as a Raspberry Pi 4. One of the major questions I asked during the presentation, which response gave me some information to put in the survey, the distinction between the many grounds on the schematic.<br>
-Another thing which I noticed was that 
+Another thing which I noticed was that they would be very financially or technologically constrained when making more cards for their game.
+
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week8\4.1.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\4.2.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\4.3.png" width = "25%" height = "auto"></img>
 </div><br>
 
 <br>
@@ -247,9 +306,15 @@ Another thing which I noticed was that
 <br>
 <b>Content:</b><br>
 
-This week, I needed to start finishing the layout on the backplane board. First, I 
+Today, I needed to completely finish the hardware prototypes of all of the circuit boards. First, I 
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week8\3.1.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\3.2.jpg" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\3.3.jpg" width = "25%" height = "auto"></img>
 </div><br>
 
 <br>
@@ -281,13 +346,22 @@ I had to find the severity rules in KiCad to determine which errors could be suc
 - <i>Library Symbol Editor</i><br>
 - <i>More than one name given to bus or net</i><br>
 I do not think these warnings will cause as issue, and we have records of them if they do. The exceptions can be found in the image below.<br>
-<div id="banner">
-	<img src="Team\journal\img - member4\week8\2.4.png" width = "25%" height = "auto"></img>
-</div><br>
+
 After completing the entire schematic based on the one I already made, it looked as below:
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\2.1.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\2.2.png" width = "25%" height = "auto"></img>
+</div><br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\2.3.png" width = "25%" height = "auto"></img>
 </div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\2.4.png" width = "25%" height = "auto"></img>
+</div><br>
+
+
 I needed to complete the PCB board layout based on the schematic I created, so I opened the KiCad footprint library and manually assigned all of the footprints. There were 159 footprints missing, so I had to assign all of it.<br>
 I set the following assignments for each of the parts that were missing:<br>
 -
@@ -306,15 +380,27 @@ After this was complete, I went to the front panel PCB editor and started laying
 <br>
 <b>Content:</b><br>
 First, I needed to deprecated all our KiCad files from 9.0.0 back down to 8.0.0, following Dr. Walter's note which I saw below. I downloaded the older KiCad version of this site [1], and spent some time installing it.<br>
+
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\1.1.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week8\1.1.png" width = "25%" height = "auto"></img>
 </div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\1.2.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\1.3.png" width = "25%" height = "auto"></img>
+</div><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week8\1.4.png" width = "25%" height = "auto"></img>
+</div><br>
+
 Afterwards, because I knew that the midterm design review presentation was next week, I decided to work on that and upload the new files to teams. KiCad was still installing in the background, because the installer is quite large.<br>
 
 <br>
 <b>Citations:</b><br>
 - 1: <a href="https://downloads.kicad.org/kicad/windows/explore/stable" target="_blank">Kicad 8.0.9 Installer</a><br>
 <br>
+
 
 <h2 id = "week7">===============   Week 7: =================</h2>
 <!-- 7.5 F -->
