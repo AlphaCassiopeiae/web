@@ -62,7 +62,7 @@ contact course staff.
     }
 
     .img-grid-column {
-      flex: 30%;
+      flex: 10%;
       padding: 0 4px;
     }
 
@@ -338,10 +338,209 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-              <p></p>
+              <p>
+                I'm going to backport the work we did on the schematic in KiCAD v9 back to KiCAD v8. Checking with the
+                Git version history, commit rev <code>a4b30b7a518c92836565844396b936475d47d457</code> was the last
+                version of the files we had which were saved using KiCAD v8. Consequently, I'll be basing my work off of
+                <a
+                  href="https://github.com/AlphaCassiopeiae/8800/blob/a4b30b7a518c92836565844396b936475d47d457/ecad/ecad.kicad_sch"><code>ecad.kicad_sch</code></a>,
+                splitting its contents across three projects (card, panel, backplane), and incorporating changes from
+                the KiCAD v9 version of the project.
+              </p>
 
               <ul>
-                <li></li>
+                <li>
+                  I've created a <code>Project_Library.kicad_sym</code> as a common symbol library, the directory
+                  <code>Library.pretty</code> as a common footprints/3D models directory, and created 3 subfolders
+                  (<code>card</code>, <code>panel</code>, and <code>backplane</code>) which contain KiCAD v8 projects
+                  that reference the same libraries.
+                </li>
+                <li>
+                  I'm keeping open 5 instances of KiCAD (4 instances of v8, to read the old v8 project, and write to the
+                  three (3) new v8 projects, and 1 instance of v9, to read from the v9 version of the project)
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.1.png" />
+                  </div>
+                </li>
+                <li>
+                  I noticed that the references between the projects and the common symbol/footprint libraries used
+                  absolute paths that were specific to my computer. For this to work properly across multiple computers,
+                  I basically need to manually prepend relative path with <code>${KIPRJMOD}/../</code>
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.3.png" style="max-width: 500px;" />
+                  </div>
+                  So this would be <code>${KIPRJMOD}/../Library.pretty</code>. Now repeat for all 3 symbol tables and
+                  footprint tables respectively.
+                </li>
+                <li>
+                  As a comparison of the work that needs to be done to backport, here are:
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/2.5.png" />
+                          <figcaption>
+                            The KiCAD v9 version of the front panel
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/2.6.png" />
+                          <figcaption>
+                            The KiCAD v8 version of the front panel
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>Sadly data from KiCAD v9 cannot be copied back into KiCAD v9. I am performing the manual porting
+                  process of essentially redoing the work in KiCAD v8.</li>
+                <li>
+                  Here's the current USB connector symbol:
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.10.png" style="max-width: 300px;" />
+                  </div>
+                  I'm using the "Change Symbol" property option for the symbol to change it to be the symbol that came
+                  with the specific USB port we're using.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.8.png" style="max-width: 500px;" />
+                    <br>
+                    <img src="Team/journal/img - member1/week8/2.9.png" style="max-width: 300px;" />
+                  </div>
+                  I realized the USB connector we currently chose (USB4125 GF-A) does not have D+ and D- pins, which we
+                  need if we want to use the device over USB boot. I've chosen a new part (<a
+                    href="https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198441">DigiKey:
+                    USB4105-GF-A</a>) and imported its symbol and footprint to rectify this.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.11.png" style="max-width: 600px;" />
+                    <img src="Team/journal/img - member1/week8/2.12.png" style="max-width: 300px;" />
+                    <img src="Team/journal/img - member1/week8/2.13.png" style="max-width: 300px;" />
+                  </div>
+                  This imported symbol and footprint now look to be correct. Now, in order to align the new symbol with
+                  the schematic, I place the symbol, edit the schematic version of the symbol, then wire it in.
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/2.14.png" style="max-width: 300px;" />
+                          <figcaption>
+                            The placed symbol
+                          </figcaption>
+                        </figure>
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/2.16.png" style="max-width: 300px;" />
+                          <figcaption>
+                            The reorganized schematic local version of the symbol
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/2.15.png" style="max-width: 300px;" />
+                          <figcaption>
+                            How to modify a symbol
+                          </figcaption>
+                        </figure>
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/2.16.png" style="max-width: 300px;" />
+                          <figcaption>
+                            Schematic local symbol wired up
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                  Because USB-C does not mechanically distinguish between device and host, it must do so electrically.
+                  In
+                  our case, we're a device, and in order to assert that (and allow the host to provide us with power) We
+                  pull CC1 and CC2 down to ground using 5.1 kiloOhm resistors as described in <a
+                    href="https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf">the
+                    USB-C specification</a>. In this case, we're advertising that we're a device that wants to accept up
+                  to 3A of 5V power on VBUS.
+                </li>
+                <li>
+                  Because I've significantly disambiguated our pin usage on the microcontroller, we can further reduce
+                  our jumper usage in the schematic.
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/2.18.png" />
+                          <figcaption>
+                            Reduced number of jumpers in the schematic
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/2.19.png" />
+                          <figcaption>
+                            Removing solder jumpers
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/2.20.png" />
+                          <figcaption>
+                            And introducing jumpers based on populate/no-popuation 0 Ohm resistor options.
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  While the RP2350's inverted reset line (RUN) is normally internally pulled up, <a
+                    href="https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf">the
+                    same nRESET line
+                    for the I/O expanders</a> is not so. So we will need to introduce our own pull-up resistors for this
+                  circuit.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.21.png" style="max-width: 500px;" />
+                    <img src="Team/journal/img - member1/week8/2.22.png" style="max-width: 500px;" />
+                  </div>
+                </li>
+                <li>
+                  <div class="image-section">
+                    <div class="img-grid-row">
+                      <div class="img-grid-column">
+                        <figure>
+                          <img src="Team/journal/img - member1/week8/2.23.png" />
+                          <figcaption>
+                            The old chip RESET button labelling
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/2.24.png" />
+                          <figcaption>
+                            The new chip RESET button labelling and layout
+                          </figcaption>
+                        </figure>
+                      </div>
+                      <div class="img-grid-column">
+                        <figure><img src="Team/journal/img - member1/week8/2.25.png" />
+                          <figcaption>
+                            I'm putting down a JST XH 2.54/2.50 mm pitch connector here for SWD, since it's a nicer
+                            connector to use than just pin headers.
+                          </figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  I also boxed out the schematic, like in the KiCAD v9 version of the file.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.26.png" style="max-width: 500px;" />
+                  </div>
+                </li>
+                <li>
+                  I then added in the symbol for the DIMM slot, but in this case, using it to map to the pin numbers of
+                  the edge connector, since we don't have an edge connector symbol associated with the footprint.
+                  <div class="image-section">
+                    <img src="Team/journal/img - member1/week8/2.27.png" style="max-width: 500px;" />
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -407,7 +606,7 @@ contact course staff.
                         </figure>
                         <figure><img src="Team/journal/img - member1/week8/1.5.png" />
                           <figcaption>
-                            Source: <a href="https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198441">
+                            Source: <a href="https://www.digikey.com/en/products/detail/gct/USB4125-GF-A/13547388">
                               DigiKey
                             </a>
                           </figcaption>
