@@ -92,14 +92,26 @@ contact course staff.
            <b>Date: March 14th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 6:00pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			
+			Started working on getting the Stamp XL boards connected to a breadboard. Had to hot glue everything to a piece of cardboard for now, but I was able to get all of the pins for one board connected using jumper cables. I was busy packing for spring break so I didn't have time to connect the other one yet, but I was thinking I can at least start debugging some tram stuff using only one board and an Analog Discovery 2, just to see if the timings are looking correct. 
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_4.1.jpg" alt="crude test harness" width="600"></img>
+			<br>
+			Once I get settled on break, I will begin writing some tram code and try debugging it on the test harness. Getting tram working is a big hurdle in our project, so setting up to test it is a big step in the right direction. With my free time next week, I hope to come back with a working version of tram that can be tested with our other software. 
 			<br><br><br><br>
 	<!--  Week 9, Entry 3  -->
 	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
            <b>Date: March 12th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 11:00pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 1.75 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			
+			Went into lab for a bit to solder the other board. I used the lab station soldering iron, and things went a lot smoother this time (it took me half the time of the first one). I soldered it a bit differently this time such that every pad I tried to solder was easily accessible, and by tinning the iron more frequently, the end result was a lot cleaner than the first time. After I was done soldering, I did the same electrical continuity test that I did last time, and everything looked good. Some pictures of the soldered board can be seen below:
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_3.1.jpg" alt="board 2 solder" width="600"></img>
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_3.2.jpg" alt="board 2 solder" width="600"></img>
+			<br>
+			<img src="Team/journal/img - member3/week9/W9_3.3.jpg" alt="board 2 solder" width="600"></img>
+			<br>
+			Now that both boards are soldered, I just need to hook them up to a breadboard to complete the test harness, which will allow me to start testing code over break. Assumming I make good progress over break, we should be able to come together as team after break and get our software working in the coming weeks, which is the last major milestone in this project. 
 			<br><br><br><br>
 	<!--  Week 9, Entry 2  -->
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
@@ -112,13 +124,13 @@ contact course staff.
 			<br>
 			The state machine overview, which can be seen below, helped me understand how to use PIO. There are two scratch registers X and Y, and you just write assembly-type instructions in PIO routines to control the I/O. The RP2350B provides 12 of these state machines in total, so I plan to use as many of these as possible for our bus control implementation (tram). The instrucitons that can be used to control these state machines can also be seen below:
 			<br>
-			<img src="Team/journal/img - member3/week9/W9_2.1.jpg" alt="state machine overview" width="600"></img>
+			<img src="Team/journal/img - member3/week9/W9_2.1.png" alt="state machine overview" width="600"></img>
 			<br>
-			<img src="Team/journal/img - member3/week9/W9_2.3.jpg" alt="PIO instructions" width="600"></img>
+			<img src="Team/journal/img - member3/week9/W9_2.3.png" alt="PIO instructions" width="600"></img>
 			<br>
 			The datasheet also provided a simple example routine to use as guidance, which generates a simple square wave. It accomplishes this by setting a pin as output, then setting the pin high, waiting, setting the pin low, then repeating. The structure is extremely similar to other assembly variants like RISC-V, so it should be easy for me to extend this example to get the timings that we need for tram signals.
 			<br>
-			<img src="Team/journal/img - member3/week9/W9_2.2.jpg" alt="PIO instructions" width="600"></img>
+			<img src="Team/journal/img - member3/week9/W9_2.2.png" alt="PIO instructions" width="600"></img>
 			<br>
 			To understand how to use these PIO routines to implement tram, I had to talk with Seth to understand how tram interfaces with our other software packages (CPU emulator, RAM emulator, etc.). We went through some general functionality together, then I created my own flowcahrt with pseudocode to describe the communication of CPU/RAM through tram, which can be seen below:
 			<br>
