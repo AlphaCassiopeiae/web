@@ -272,7 +272,7 @@ I went to the ECE shop to see if they restocked on the MCP16331, or any switchin
 <!-- 8.4 UF -->
 <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
 <b>Date: March 6 </b><br>
-<b>Start Time: X:XX am</b><br>
+<b>Start Time: 9:30 am</b><br>
 <b>Duration: 3 hours</b><br>
 <br>
 <b>Content:</b><br>
@@ -298,81 +298,137 @@ Another thing which I noticed was that they would be very financially or technol
 - 1: <a href="link" target="_blank">description</a><br>
 <br>
 
-<!-- 8.3 UF -->
+<!-- 8.3 F -->
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
 <b>Date: March 5 </b><br>
-<b>Start Time: X:XX am</b><br>
+<b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br>
 <br>
 <b>Content:</b><br>
 
-Today, I needed to completely finish the hardware prototypes of all of the circuit boards. First, I 
+Today, I needed to completely finish the hardware prototypes of all of the circuit boards. First, I looked around for the proper buttons which I needed in order to mount them onto the breadboard.<br>
+I found both the SMD and THT mounted components which were needed to complete assembly, but I had to look a little harder in order to find the breadboard buttons which I needed. Eventually, after searching the leftmost cabinet on the left side of the lab, I was able to locate the buttons seen in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\3.1.jpg" width = "25%" height = "auto"></img>
 </div><br>
+The buttons had this datasheet [1], and I needed exactly 14 of them to route each of the control signals which the user could control on the front panel. I selected these buttons, and layed them out in the following way:
+<ul>
+	<li>
+		Each button on the left hand side of the breadboard would receive a wire from the voltage line, and a route to the other side such that it could be connected to the I2C expander.
+	</li>
+	<li>
+		Each button on the right hand side of the breadboard would receive a simple power and ground such that it could be directly routed in the same way.
+	</li>
+</ul>
+After completing the routing, the breadboard had the following initial state. As you can see, all of the components have been placed in a way that everything can be easily routed, which is something I want to mimic when I go to finalize the PCB designs.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\3.2.jpg" width = "25%" height = "auto"></img>
 </div><br>
+More layout was completed, and all the chips were fastened onto the breadboard. Additionally, I tested all the power and ground lines just to make sure all the chips were fully functionally and that there were no internal shorts within the circuitry. I completed this step so that it would save us time in the long run, and would take less time to debug overall. The final project looked as below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\3.3.jpg" width = "25%" height = "auto"></img>
 </div><br>
+I used this guide [2] to follow some general breadboarding techniques. After this was completed, It was time to complete some wiring on the breadboard.<br>
+After all of this was completed, I proceded to start touching up the midterm design review slides.<br>
+Today, I focused on completing the hardware prototypes for all circuit boards. I started by searching for the necessary buttons to mount onto the breadboard, eventually locating the required SMD, THT, and breadboard-compatible components in the leftmost cabinet of the lab. I needed exactly 14 buttons to route control signals for the front panel, ensuring that each was positioned for efficient wiring. The left-side buttons were connected to the voltage line and routed to the I2C expander, while the right-side buttons received a direct power and ground connection.<br>
 
+Once the initial layout was complete, I carefully placed all components to optimize routing and minimize complexity, a strategy I plan to apply when finalizing the PCB design. With the components secured, I tested the power and ground lines to confirm functionality and check for internal shorts. This proactive step aimed to prevent debugging issues later in the process. Ensuring that all chips were properly fastened and operational was crucial for the next stages of development.<br>
+
+After verifying the electrical connections, I referenced a breadboarding guide to refine my approach and implement best practices. This helped streamline the assembly process and reinforce key layout principles. By following a systematic approach, I ensured that the setup was both organized and scalable for the final PCB layout.<br>
+
+With the breadboard assembly completed, the next step was to focus on wiring, making sure all signal paths were properly connected. This step is essential for validating the prototype’s functionality before transitioning to PCB manufacturing. Moving forward, I will refine the connections and begin testing the circuit under different conditions to ensure reliability.<br>
 <br>
 <b>Citations:</b><br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1825910&DocType=Customer+Drawing&DocLang=English" target="_blank">Datasheet for Tactile buttons</a><br>
+- 2: <a href="https://forum.digikey.com/t/definitive-guide-to-breadboarding-circuits/36584" target="_blank">Breadboarding techniques</a><br>
 <br>
 
-<!-- 8.2 UF -->
+<!-- 8.2 F -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
-<b>Date: March Day </b><br>
+<b>Date: March 3 </b><br>
 <b>Start Time: 8:30 pm</b><br>
-<b>Duration: 2 hours</b><br>
+<b>Duration: 3 hours</b><br>
 <br>
 <b>Content:</b><br>
 I talked with Brian about changes to the KiCad files. He said that the library had been updated, and all the footprint models had been inserted. Now, I need to convert the front panel back into KiCad 8.0.0.<br>
 I got a merge conflict when pulling from main, so I decided to use the modified files from main to do all the operations. The merge conflict can be seen in the photo below.<br>
+Made a file called "KiCad Deprecation" which I will use to deprecate files from KiCad 9.0.0 to KiCad 8.0.0. I will basically copy paste structures into the text and export them back into new project files. I will do this for every component I need to.<br>
+This is based on components, so there should not exist an issue between larger chunks of code, which is my initial assumption.
 <div id="banner">
-	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
-</div><br>
-Made a file called "KiCad Deprecation" which I will use to deprecate files from KiCad 9.0.0 to KiCad 8.0.0. I will basically copy paste structures into the google doc and export them back into new project files. I will do this for every component I need to.<br>
-<div id="banner">
-	<img src="Team\journal\img - member4\week8\X.X.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week8\2.1.png" width = "25%" height = "auto"></img>
 </div><br>
 I realized that copy and pasting in to KiCad would not be realistic, as when I copy pasted even a little bit of our existing schematic, the google doc shot up to 114 pages. I decided to just recreate the front board for our project, as I had already done it once.<br>
 I recreated the Schematic in KiCad 8.0.0. I made sure to avoid all the pitfalls I made the first time, and removed the useless Nets, including VREG_AVDD and VREG_LX. I also created the new expansion connector, and made sure that between each 4 busses which actually had signals, I had a power and ground, and between the lines which did not have any usable signals, I had a power and ground between every 10 pins.<br>
 I also recreated the I/O expanders and passed the electrical rules check like previously, such that we could get started on the layout. The whole (NEW) schematic can be seen below, as well as the passed ERC rules check.<br>
+There were pretty annoying violation severity which were passed into KiCad which didn't seem to matter in our final design. The criteria for the constraints were wildly away from JLCPCBs regulations, which I looked up on this website [1].<br>
 I had to find the severity rules in KiCad to determine which errors could be successfully ignored. I ignored three errors in the Electrical Rules Check, namely these three:<br>
 - <i>Conflict Problems between Pins</i><br>
 - <i>Library Symbol Editor</i><br>
 - <i>More than one name given to bus or net</i><br>
 I do not think these warnings will cause as issue, and we have records of them if they do. The exceptions can be found in the image below.<br>
 
-After completing the entire schematic based on the one I already made, it looked as below:
-<div id="banner">
-	<img src="Team\journal\img - member4\week8\2.1.png" width = "25%" height = "auto"></img>
-</div><br>
+After completing the entire schematic based on the one I already made, it looked as below. I had to remap several of the net classes such that they would be easier to solder. I did this for the following reasons:
+<ul>
+	<li>
+	Before the design review, we realized we needed to get a working draft of the PCB done. However, I disregarded the fact that negligence of nets would make an entire board harder to solder.<br>
+	</li>
+	<li>
+	I realized while I was routing the PCB that some routes were vritually impossible to trace within the constraints and without the use of multiple layers.<br>
+	</li>
+	<li>
+	I read some resources online stating and reinforcing the fact that PCB design was, indeed, 90% layout. The resources I found were based on KiCad's own development team [2].<br>
+	</li>
+</ul>
+I went back into the schematic and remapped all 36 nets which were on the left hand side of the RP2350b microcontroller. This took a while, but was overall worthwhile because it made the routing of the PCB much easier. A photo of the completed new nets can be seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\2.2.png" width = "25%" height = "auto"></img>
 </div><br>
+
+After this, I realized that my version control, and our team's entire version control for the whole project, was very lacking. I encouraged everyone to use GitHub Desktop, as it allowed us to contribute on multiple KiCad files without the use of the terminal and with very little merge conflicts. I had tried git through the terminal in the past, but it wasn't as fast or comprehensive. I installed Github Desktop from this link [3], and encouraged my teammates too as well. An image of the installation can be seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\2.3.png" width = "25%" height = "auto"></img>
 </div><br>
+
+After working on the front panel for so long, I decided it would be nice for a change to work on the back panel. But first, I needed to create global labels for each of the signals that were going into our Emulator bus. I had the following logic:
+<ul>
+	<li>
+		Bold format for any single signal that would not be regularly accessed by the user.
+	</li>
+	<li>
+		Normal format on a global label for a signal that would active on the front panel and actively used by the user.
+	</li>
+</ul>
+
+I got started on these mappings for all 44 signals which required this criteria, as seen in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\2.4.png" width = "25%" height = "auto"></img>
 </div><br>
 
-
 I needed to complete the PCB board layout based on the schematic I created, so I opened the KiCad footprint library and manually assigned all of the footprints. There were 159 footprints missing, so I had to assign all of it.<br>
 I set the following assignments for each of the parts that were missing:<br>
--
-After this was complete, I went to the front panel PCB editor and started laying everything out. 
+- Amphenol Connector [4]<br>
+- Buck Converter [5]<br>
+- Schottsky Diode [6]<br>
+After this was complete, I went to the front panel PCB editor and started laying everything out.<br>
+In sum, discussing the KiCad file updates with Brian, I learned that the library had been updated with all the footprint models. I attempted to merge my changes but encountered a conflict, so I used the modified files from the main branch to proceed. Initially, I planned to deprecate the files by copying structures into a text document and exporting them, but the sheer volume of data made this unrealistic. Instead, I opted to manually recreate the front panel schematic in KiCad 8.0.0, refining it by removing unnecessary nets and improving the expansion connector layout.<br>
+
+While working on the schematic, I ensured compliance with electrical rules, ignoring three warnings that were not relevant to our final design. I also remapped 36 nets on the left side of the RP2350b microcontroller to simplify PCB routing and improve soldering feasibility. Recognizing the team's struggles with version control, I advocated for using GitHub Desktop to streamline collaboration and minimize merge conflicts. This approach offered a more intuitive workflow than using Git through the terminal.<br>
+
+After completing the front panel schematic, I shifted focus to the back panel. I created global labels for the signals going into our Emulator bus, implementing a formatting system to distinguish user-accessible signals from those not regularly accessed. With 44 signals requiring this mapping, I ensured consistency across the schematic to facilitate easier design navigation and organization.<br>
+
+Finally, I began the PCB layout process by manually assigning footprints in KiCad, as 159 components were missing their respective assignments. I referenced external datasheets to correctly set footprints for key components such as the Amphenol Connector, Buck Converter, and Schottky Diode. With the footprints assigned, I moved on to laying out the front panel PCB, ensuring optimal placement for efficient routing and assembly.<br>
 
 <br>
 <b>Citations:</b><br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://jlcpcb.com/blog/pcb-basics-2-design-guidelines" target="_blank">JLCPCB Assembly Guidelines</a><br>
+- 2: <a href="https://forum.kicad.info/t/pcb-layout-strategy/51620" target="_blank">Layout Importance</a><br>
+- 3: <a href="https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop" target="_blank">Github Desktop Installer</a><br>
+- 4: <a href="https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/datasheet/ssio/ssio_ddr4.pdf" target="_blank">Amphenol Connector</a><br>
+- 5: <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/20005308C.pdf" target="_blank">Buck Converter PDF</a><br>
+- 6: <a href="hhttps://www.mccsemi.com/pdf/products/S2A-L_S2M-L(SMB).pdf" target="_blank">Schottsky Diode</a><br>
 <br>
 
-<!-- 8.1 UF -->
+<!-- 8.1 F -->
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: March 2 </b><br>
 <b>Start Time: 5:00 am</b><br>
@@ -409,12 +465,18 @@ After this, I admitted defeat and began to work on the conversion from KiCad 9.0
 </div><br>
 Afterwards, because I knew that the midterm design review presentation was next week, I decided to work on that and upload the new files to teams. KiCad was still installing in the background, because the installer is quite large.<br>
 I create new files and made sure they were properly linked inside the teams, and go to work creating slides for the midterm design review based on the slides that were given to us within the assignment which was posted in Brightspace. Before the end of the period, I was able to create 15 slides.<br>
-As a 
+After realizing that KiCad 9.0.0 was not suitable for our PCB assembly process, I had to manually deprecate all our design files back to KiCad 8.0.0. This unexpected issue caused a significant loss of progress, as we had already spent a week working in the newer version.<br>
+
+I initially attempted a quick workaround by importing the KiCad 9.0.0 content into a text document, but the incompatibility between formats made this approach unfeasible. Checking the GitHub branch history for an older version that could be restored also proved unsuccessful, as our changes were scattered across multiple project directories without a synchronized version.<br>
+
+Ultimately, I opted for a complete recreation of the front panel and backplane schematics using KiCad 8.0.0 while referencing the existing design in KiCad 9.0.0. Despite the setback, this process allowed for improvements and refinements to the schematic.<br>
+
+While waiting for KiCad 8.0.9 to install, I shifted focus to preparing slides for the upcoming midterm design review, ensuring that the newly created files were properly linked and uploaded. Moving forward, the priority will be finalizing the schematic conversion, verifying functionality, and continuing preparations for the presentation.<br>
 
 <br>
 <b>Citations:</b><br>
 - 1: <a href="https://docs.google.com/document/d/1cOvcpEqkHJi-3afqtSzrdmrRLiiJ992B-ypC7sXVeEU/edit?tab=t.0" target="Google Doc for copy pasting content into KiCad"></a><br>
-- 1: <a href="https://downloads.kicad.org/kicad/windows/explore/stable" target="_blank">Kicad 8.0.9 Installer</a><br>
+- 2: <a href="https://downloads.kicad.org/kicad/windows/explore/stable" target="_blank">Kicad 8.0.9 Installer</a><br>
 <br>
 
 
