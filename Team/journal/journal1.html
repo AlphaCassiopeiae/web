@@ -320,11 +320,110 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-              <p></p>
+              <p>
+                Our Midterm Design Review presentation is today. I'd like to get some semblance of a PCB layout out to
+                be able to present. I'll be working on the card, since that's where I have been paying the closest
+                attention to.
+              </p>
 
-              <ul>
-                <li></li>
-              </ul>
+              <div class="image-section">
+                <div class="img-grid-row">
+                  <div class="img-grid-column">
+                    <figure>
+                      <img src="Team/journal/img - member1/week8/3.1.png" />
+                      <figcaption>
+                        <h4>1.</h4>
+                        I've produced an initial layout with the parts placed and oriented about where I want them. In
+                        particular, the oscillator is near the XIN and OUT pins, and the USB port is the on correct side
+                        of the chip. Additionally, the chip is oriented at a 45 degree angle to help with signal
+                        fan-out.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.3.png" />
+                      <figcaption>
+                        <h4>3.</h4>
+                        I've moved the decoupling capacitors towards the power pins of the RP2350B, the QSPI, I/O
+                        expander, and LDO chips, based on the ordering shown in the schematic.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.5.png" />
+                      <figcaption>
+                        <h4>5.</h4>
+                        I've opted to closely follow the guidance of the design guide, placing my components, zones, and
+                        vias, in a broadly similar manner.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.6.png" />
+                      <figcaption>
+                        <h4>6.</h4>
+                        The USB termination resistors are next to this segment, so I decided to route those next. As
+                        soon as they exit the termination, I opt to run them through very thick traces for signal
+                        integrity, and then perform the necesary connector routing as close to the connector as I can.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.8.png" />
+                      <figcaption>
+                        <h4>8.</h4>
+                        The oscillator should nominally be jailed by ground on three (3) sides to limit the amount of
+                        noise that leaks out. I draw this ground zone ahead of time as a reminder.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.10.png" />
+                      <figcaption>
+                        <h4>10.</h4>
+                        I set up low-priority zone fills for ground on the front and back copper. I define one internal
+                        zone as 3.3V, and another internal zone as GND.
+                      </figcaption>
+                    </figure>
+                  </div>
+                  <div class="img-grid-column">
+                    <figure><img src="Team/journal/img - member1/week8/3.2.png" />
+                      <figcaption>
+                        <h4>2.</h4>
+                        Here's what that looks like in the 3D view. Additionally, I've moved the QSPI chip closer to the
+                        QSPI side of the chip.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.4.png" />
+                      <figcaption>
+                        <h4>4.</h4>
+                        In <a href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Section
+                          2.1 of the Hardware Design with RP2350 guide</a>, Raspberry Pi recommends using a very
+                        specific layout with respect to the discrete components (inductors, capacitors) surrounding the
+                        1.1V regulator section of the chip, as seen above.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.7.png" />
+                      <figcaption>
+                        <h4>7.</h4>
+                        In order to distribute 1.1V regulated power to all 4 sides of the chip, I decide to plunge into
+                        the 3.3V power plane to draw a short 1.1V power zone and power trace. This cuts the 3.3V plane
+                        slightly, but not too much, and only within the confines of the microcontroller.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.9.png" />
+                      <figcaption>
+                        <h4>9.</h4>
+                        I perform additional routing between many components, like hooking up the chip USB BOOT and
+                        RESET switches, and the SWD connector.
+                      </figcaption>
+                    </figure>
+                    <figure><img src="Team/journal/img - member1/week8/3.11.png" />
+                      <figcaption>
+                        <h4>11.</h4>
+                        Here's what the board looks like right now. Notably, all the bus signals still need to be routed
+                        to the edge connector.
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+
+              <p>
+                For the rest of my time, I worked on the block diagrams for the Midterm design presentation, and
+                organized and practiced the slides with the rest of the team. The midterm design presentation
+                immediately followed.
+              </p>
             </div>
           </div>
 
