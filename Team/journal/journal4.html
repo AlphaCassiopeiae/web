@@ -109,20 +109,27 @@ Now our PICO 2 dev board is ready for prototyping and I have refreshed my solder
 
 <!-- 9.4 UF -->
 <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
-<b>Date: March Day </b><br>
-<b>Start Time: X:XX am</b><br>
-<b>Duration: 3 hours</b><br>
+<b>Date: March 14 </b><br>
+<b>Start Time: 9:00 am</b><br>
+<b>Duration: 3.5 hours</b><br>
 <br>
 <b>Content:</b><br>
+
 I need to finish up the PCB tonight, so my team will likely for a good portion of the night getting things done. I went looking for the AD2 as well as the cable, because they got misplaced on the table. I also realized it is much faster to leave everything within the Senior design lab in the future.<br>
 I swapped all the silkscreen footprints on the board to be F.Fab prints, just so we wouldn't get confused in the future. The new board looks as such.<br>
 
+I set up the Buck Converter based on an LMC555 Timer Switching Regulator, which worked so some degree, although not giving us the proper output. The layout can be seen on the Breadboard below.
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\4.1.jpg" width = "25%" height = "auto"></img>
 </div><br>
+
+I also took the time to put all of the decoupling resistors between each of the 44 lines on the RP2350. It took a while because I crimped all of the wires, but in the end, it was worthwhile.<br>
+A photo can be seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\4.2.jpg" width = "25%" height = "auto"></img>
 </div><br>
+
+Afterwards, I needed to do budget cuts and estimations, to make sure my team wasn't going too over the budget. I put in all the production files into JLCPCB, as well as the alluminium cartridges. The following estimates are seen in the next 3 pictures.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\4.3.png" width = "25%" height = "auto"></img>
 </div><br>
@@ -132,100 +139,165 @@ I swapped all the silkscreen footprints on the board to be F.Fab prints, just so
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\4.5.png" width = "25%" height = "auto"></img>
 </div><br>
+In sum, we got the cost down to 426.61 dollars, but we still need to do some cost reduction.<br>
+Regardless, we sent our PCBs to print, and we got some feedback about them. It turns out we had not updated the site properly, so I had to send a follow-up with the correct files so that they could judge our new work.<br>
+A photo of the email conversation is seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\4.6.png" width = "25%" height = "auto"></img>
 </div><br>
 
+I had to follow a bunch of steps [1] to order from JLC, making sure everything was correct. However, there were some errors in the silkscreen.<br>
 I forgot to save my work editing the silkscreen, so a lot of my progress got wiped. I had to reset and update from PCB again, so I could trace again.<br>
 I reconfigured the mappings for the PCB (again), because I realized my board was reversed and some of the RP2350 pins were not assigned correctly. Next, I will have to look at protection diodes and protection resistors for the entire board.
 The Rat's nest was still looking hard to manage, so I have to reconfigure the mapping for the LEDs to make the routing simpler.<br>
 I moved some of the components such that they were basically touching each other on the board, so that we could have traces with less length.<br>
 
+I spent the night finalizing the PCB with my team, ensuring everything was in place. While working, I misplaced the AD2 and cable but later found them, realizing it's best to keep everything in the Senior Design Lab for efficiency. I swapped all the silkscreen footprints to F.Fab prints to avoid confusion. Additionally, I set up a Buck Converter using an LMC555 Timer Switching Regulator, but it didn’t provide the expected output. The breadboard layout can be seen above.<br>
+
+I also added decoupling resistors to all 44 lines on the RP2350, which took time due to crimping all the wires, but it was worth it. Afterward, I conducted budget estimations and uploaded our production files to JLCPCB, managing to reduce costs to $426.61, though more cuts are needed. We submitted our PCBs for printing but had to resend corrected files after realizing an update issue. An email exchange regarding this is shown above.<br>
+
+While ordering from JLC, I noticed silkscreen errors due to unsaved work, forcing me to redo the edits and update the PCB mappings. I also corrected misassigned RP2350 pins and worked on protection diodes and resistors. The Rat’s nest was still complex, so I adjusted LED mappings and moved components closer to shorten trace lengths, simplifying routing.<br>
+
 <br>
 <b>Citations:</b><br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://github.com/bennymeg/Fabrication-Toolkit" target="_blank">Fabrication Toolkit</a><br>
+- 2: <a href="https://jlcpcb.com/help/article/how-to-generate-gerber-and-drill-files-in-kicad-7" target="_blank">Gerber file generation</a><br>
+- 3: <a href="https://jlcpcb.com/parts/bom-tool-res/?fileAccessId=8d6afaca485e420e973a054ac8c8b47b" target="_blank">PCBA Assembly on Layout Boards</a><br>
+- 4: <a href="https://cart.jlcpcb.com/quote?orderType=1&stencilLayer=2&stencilWidth=100&stencilLength=100&stencilCounts=5&spm=Jlcpcb.Homepage.1010" target="_blank">Quote generator for PCBA</a><br>
 <br>
 
 <!-- 9.3 UF -->
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
-<b>Date: March Day </b><br>
-<b>Start Time: X:XX am</b><br>
-<b>Duration: 2 hours</b><br>
+<b>Date: March 12 </b><br>
+<b>Start Time: 9:30 am</b><br>
+<b>Duration: 2.5 hours</b><br>
 <br>
 <b>Content:</b><br>
 
+I got started on the datasheet verification part of the PCB checklist today. I remembered how important that each datasheet was successfully in the project archives of our project.<br>
+The datasheets needed to accumulate are listed below and can also be found in the photo below.<br>
+<ul>
+	<li>Buttons - FS...</li>
+	<li>DDR4 - 101...</li>
+	<li>DDR4 - 101...</li>
+	<li>FFC - 50178...</li>
+	<li>Inductor - D...</li>
+	<li>LEDs - AA35...</li>
+	<li>Micro - RP2...</li>
+	<li>os.pdf</li>
+	<li>Oscillator - ...</li>
+	<li>Power Induc...</li>
+	<li>Power Switch...</li>
+	<li>Slide Switch...</li>
+	<li>tlc59211.pdf</li>
+	<li>USB4125 Product...</li>
+  </ul>
+The provided image gives a good reference to the task I needed to complete.
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\3.1.png" width = "25%" height = "auto"></img>
 </div><br>
+
+I had to find all the datasheets online, get the links and download them to a project directory, then upload those links both to KiCad and the BOM, so that we had everything organized.<br>
+After this, I needed to complete footprint verification on all of our parts. Because we had pretty common parts, I thought it best to just measure the printout and make sure it matched, as it was unlikely they would mess up the components.<br>
+A photo of all the printed out Layouts and schematics can be seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\3.2.jpg" width = "25%" height = "auto"></img>
 </div><br>
+I messed up the layout of the card, and forgot to print the back layer so some of the footprints were invisible. Because of this, I needed to reprint only the card. I printed 5 copies so that we would have plenty to cross-reference. The newly printed cards can be seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\3.3.jpg" width = "25%" height = "auto"></img>
 </div><br>
+First, I compared the components on the card. There were several important components, including the oscillator, the RP2350, the 3.3V LDO, and the Power Inductors and Diodes. I wrote down all the pieces that needed verification on the back of the schematic paper, and got to work.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\3.4.jpg" width = "25%" height = "auto"></img>
 </div><br>
+I also had access to the backplane layout, so I decided to finish writing all of those components out as well. The major components were the FFC connectors, the edge connectors, and the switching regulator.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\3.5.jpg" width = "25%" height = "auto"></img>
 </div><br>
+Below you can see me carefully measuring out and recording the lengths and widths of the given parts. I followed this guidance online [1] to complete the task.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\3.6.jpg" width = "25%" height = "auto"></img>
 </div><br>
 
+I started working on the datasheet verification portion of the PCB checklist today. I recalled how crucial it was to have each datasheet successfully archived within our project records. The list of datasheets I needed to gather included components such as buttons, DDR4 modules, FFC connectors, inductors, LEDs, microcontrollers, oscillators, power inductors, power switches, and slide switches. These documents provided essential technical details to ensure proper implementation and compatibility within our design. A reference image displaying the required datasheets can be seen above, which helped me keep track of the verification process.<br>
+
+Once I located all the necessary datasheets, I proceeded to download and organize them into the project directory. I also uploaded these links into both KiCad and the Bill of Materials (BOM) to maintain a structured documentation system. After completing the datasheet verification, I moved on to the footprint verification of all parts. Since we were using relatively common components, I decided to measure the printout and cross-check it with the actual dimensions, as significant discrepancies were unlikely. However, I forgot to print the back layer of the card, causing some footprints to be invisible. To correct this, I reprinted five copies to ensure accuracy and provide ample reference material. The revised printouts were much clearer and ready for verification.<br>
+
+I then began comparing critical components on the front panel card. Key parts included the oscillator, RP2350 microcontroller, 3.3V LDO, power inductors, and diodes. To ensure accuracy, I documented verification details on the back of the schematic paper before proceeding with the measurements. Additionally, since I had access to the backplane layout, I decided to complete the component verification for that section as well, focusing on FFC connectors, edge connectors, and the switching regulator. Using precise measurement techniques, I carefully recorded the dimensions of each component and referenced a guidance document to ensure everything aligned properly. The provided images above illustrate the meticulous verification process I followed to confirm the PCB design’s accuracy.<br>
+
 <br>
 <b>Citations:</b><br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://www.linkedin.com/advice/0/what-best-practices-tips-verifying#:~:text=When%20checking%20your%20PCB%20design,if%20it%20works%20as%20expected." target="_blank">Verification Guidance</a><br>
 <br>
 
 <!-- 9.2 UF -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
-<b>Date: March Day </b><br>
+<b>Date: March 11 </b><br>
 <b>Start Time: 8:30 pm</b><br>
 <b>Duration: 2 hours</b><br>
 <br>
 <b>Content:</b><br>
-I talked with Brian about changes to the KiCad files. He said that the library had been updated, and all the footprint models had been inserted. Now, I need to convert the front panel back into KiCad 8.0.0.<br>
+I talked with Brian about changes to the KiCad files. All the footprint models had been inserted. Now, I need to convert the front panel back into KiCad 8.0.0.<br>
 I got a merge conflict when pulling from main, so I decided to use the modified files from main to do all the operations. The merge conflict can be seen in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\2.1.png" width = "25%" height = "auto"></img>
 </div><br>
 Made a file called "KiCad Deprecation" which I will use to deprecate files from KiCad 9.0.0 to KiCad 8.0.0. I will basically copy paste structures into the google doc and export them back into new project files. I will do this for every component I need to.<br>
+This worked for some of the layout components, as you can clearly see I was able to paste a switch into the PCB editor in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\2.2.png" width = "25%" height = "auto"></img>
 </div><br>
-I realized that copy and pasting in to KiCad would not be realistic, as when I copy pasted even a little bit of our existing schematic, the google doc shot up to 114 pages. I decided to just recreate the front board for our project, as I had already done it once.<br>
-I recreated the Schematic in KiCad 8.0.0. I made sure to avoid all the pitfalls I made the first time, and removed the useless Nets, including VREG_AVDD and VREG_LX. I also created the new expansion connector, and made sure that between each 4 busses which actually had signals, I had a power and ground, and between the lines which did not have any usable signals, I had a power and ground between every 10 pins.<br>
 I also recreated the I/O expanders and passed the electrical rules check like previously, such that we could get started on the layout. The whole (NEW) schematic can be seen below, as well as the passed ERC rules check.<br>
 I had to find the severity rules in KiCad to determine which errors could be successfully ignored. I ignored three errors in the Electrical Rules Check, namely these three:<br>
 - <i>Conflict Problems between Pins</i><br>
 - <i>Library Symbol Editor</i><br>
 - <i>More than one name given to bus or net</i><br>
-I do not think these warnings will cause as issue, and we have records of them if they do. The exceptions can be found in the image below.<br>
+I do not think these warnings will cause as issue, and we have records of them if they do. I finished the re-remapping of the pins based on Brian's new PIO logic and Seth's specifications, which made the connectors look like in the following photo.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\2.3.png" width = "25%" height = "auto"></img>
 </div><br>
-After completing the entire schematic based on the one I already made, it looked as below:
+After completing the entire schematic based on the one I already made, the completed routing looked like below:
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\2.4.png" width = "25%" height = "auto"></img>
 </div><br>
+To complete this routing, it took a lot of steps:
+<ul>
+	<li>
+		I needed to place parallel traces for all of the lines to indicate that a signal was going through because we wanted to minimize EMI interference.
+	</li>
+	<li>
+		For the signal lines on the FFC, vias were used to take advantage of perpendicular traces and routing each object 1 to 1
+	</li>
+	<li>
+		For the power system, all the heavy power lines were placed near the top of the schematic.
+	</li>
+</ul>
+After initially placing the schematic, the Rat's nest looked like the following picture, which was initially very intimidating to route correctly.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\2.5.png" width = "25%" height = "auto"></img>
 </div><br>
+After routing everything to the specifications I detailed above (which took a while), I was able to silkscreen our group's name as well as the prototype revision and project name, leading to a completed back panel.<br>
+This was good work, and let me control on the front panel, which was by far the hardest design. A photo of the finished back panel is seen below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\2.6.png" width = "25%" height = "auto"></img>
 </div><br>
 I needed to complete the PCB board layout based on the schematic I created, so I opened the KiCad footprint library and manually assigned all of the footprints. There were 159 footprints missing, so I had to assign all of it.<br>
-I set the following assignments for each of the parts that were missing:<br>
--
-After this was complete, I went to the front panel PCB editor and started laying everything out. 
+Afterwards, I got started on making sure that the footprint library was up to data, but I had a class soon, so I needed to leave and come back.<br>
+I talked with Brian about the recent updates to the KiCad files, and he informed me that the library had been updated with all the necessary footprint models inserted. My next task was to convert the front panel back to KiCad 8.0.0, ensuring compatibility with our project. While pulling from the main branch, I encountered a merge conflict, so I opted to use the modified files from the main branch as a reference for my work. The conflict can be seen in the screenshot provided above, showing the differences in versioning.<br>
+
+To resolve compatibility issues, I created a "KiCad Deprecation" file, where I manually copied and pasted structures into a Google Doc for conversion before exporting them back into new project files. This method worked successfully for some of the layout components, as evidenced by my ability to insert a switch into the PCB editor. Once I restructured the necessary components, I recreated the I/O expanders, ensuring they passed the Electrical Rules Check (ERC). I carefully reviewed the severity rules in KiCad to determine which errors could be ignored, and I ultimately chose to ignore three non-critical warnings, as they did not impact functionality.<br>
+
+After finalizing the schematic updates, I proceeded with routing the PCB layout. The revised schematic now included updated PIO mappings based on Brian’s logic and Seth’s specifications. The completed routing process required several strategic steps: I placed parallel traces for signals to minimize EMI interference, used vias for signal routing on the FFC connector, and ensured heavy power lines were positioned at the top of the schematic. Initially, the Rat’s Nest looked overwhelming, but after carefully following the outlined routing strategy, I managed to organize everything efficiently.<br>
+
+Once the routing was complete, I finalized the silkscreen labels, adding our group’s name, prototype revision, and project title to the back panel design. This step marked significant progress, as the back panel was now fully designed, allowing me to shift focus toward the front panel, which posed the greatest design challenge. The completed back panel layout can be seen in the photo above, demonstrating the successful implementation of all required elements.<br>
 
 <br>
 <b>Citations:</b><br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://forum.kicad.info/t/parallel-zigzag-traces-and-outline-edge-cut/51541" target="_blank">Parallel Traces Guidelines</a><br>
 <br>
 
-<!-- 9.1 UF -->
+<!-- 9.1 F -->
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: March 10 </b><br>
 <b>Start Time: 9:30 am</b><br>
@@ -239,37 +311,55 @@ I forgot to delete the second layer when I went to reroute the PCB, so I had to 
 By completing the route of the backside of the PCB first, I was able to drastically reduce the amount of traces needed. I originally thought to make my traces like the first PCB I did, but the routes would have been far too confusing.<br>
 I made the mistake of forgetting to change the side of the board before routing, so I had to manually go through and fix all of that.<br>
 Downloaded the QFN Footprint [1] for the MCP23017. This will make it easier to route, as well as the presence of less EMI. Link is provided in the references, but this is what it looks like. I plan to place this component at a 45 degree angle so the expansion covers more area per track width.<br>
-
+On the hardware prototypes side, which I switched back to after Brian took over some of the routing after I pushed my changes, I placed an AD2 breakout [1] onto the breadboard such that I had an easier way to debug the entire thing, and a way to protect again incidental shorts.<br>
+You can see the AD2 breakout in photo below.<br> 
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\1.1.jpg" width = "25%" height = "auto"></img>
 </div><br>
+I set up the GPIO lanes such that they were each configured to a PIO pins when the PICO 2 was set to the edge of the breadboard. This would make it so we could always place it easily and did not have to worry about any incorrect pinnings. I took special care to follow this pinout [3] to make sure it was correct, meticulously mapping each of the 28 pins.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\1.2.jpg" width = "25%" height = "auto"></img>
 </div><br>
+I thought that parasitic capacitance would still be an issue, because when I used the DP switches, multiple lights were lighting up, so I decided to change the wire length to make sure there was no electric interference between signals. I placed higher, longer wires like in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\1.3.jpg" width = "25%" height = "auto"></img>
 </div><br>
+It turned out that the parasitic capacitance was not inside the wires, but inside the DP switches, which there was nothing I could do about. When our team orders the entire board, we will not have to worry about this parasitic capacitance, as all of the switches will be spaced out enough to disregard any substantial effects of EMI.<br>
+I routed the rest of the PIOs on the left hand side of the Pico 2 (Looking down from the text side of the breadboard), which gave me the exact number of PIOs necessary. This was quite a stroke of luck, as we did not have ANY to spare. the longer wires were used, as can be seen in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\1.4.jpg" width = "25%" height = "auto"></img>
 </div><br>
+After a lot of meticulous routing and proper procedure, the entire front panel prototype was complete.<br>
+I tested each of the switches and the LEDs to make sure they worked, and there was no present short, meaning the IO expanders were fulfilling their purpose and we could move entirely to the routing portion of the PCB design for the rest of the week.<br>
+The entire front panel schematic, in its glory, is seen in the picture below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week9\1.5.jpg" width = "25%" height = "auto"></img>
 </div><br>
-
+Next, I resumed my work on the PCB design for all (3) cards.
 I figured out that a global label would override a NET, so I decided to remove one of the nets on the I2C Lines. This was successful, and I continued making several routing into placement changes for the PCB
 
 I took a look at my old ECE 20008 Buck Converter Lab, just so I knew what to reconfigure to get our desired output. I plan to make 3 prototypes: One using an LM1117, one using an LMC555 Timer, and one with our desired chip.<br>
 I went to the ECE shop to see if they restocked on the MCP16331, or any switching regulator chips, but it did not look like it. I think I will have to put in an order for 1-3 of a chip or something similar.<br>
+During this team meeting, I focused on finalizing the hardware prototypes and refining the PCB layout for easier routing. With the PCB submission deadline approaching, I prioritized layout improvements over the upcoming mandatory soldering workshop, as I’m already proficient in soldering. My plan was to complete all necessary PCB tasks before presenting my work to Professor Walter on Wednesday for verification, given the specialized nature of our PCB printing process.<br>
 
+I started by re-routing the PCB to simplify trace routing, which required modifying some PIO mappings. Initially, I forgot to delete the second layer before re-routing, leading to some backtracking. However, by routing the backside of the PCB first, I significantly reduced the number of required traces and avoided the confusion of my initial routing approach. I also mistakenly routed some traces on the wrong side of the board, which I had to manually correct. To improve routing efficiency and reduce EMI, I downloaded the QFN footprint for the MCP23017 and positioned it at a 45-degree angle. This placement should allow for better track width distribution and optimize signal flow across the PCB.<br>
+
+Once Brian took over some of the PCB routing, I returned to hardware prototyping. I placed an AD2 breakout onto the breadboard to facilitate easier debugging and provide protection against accidental shorts. To ensure correct pin mapping, I configured the GPIO lanes so that each pin was aligned with the Pico 2 at the edge of the breadboard. I meticulously followed the pinout reference to verify the correct mapping of all 28 pins. While testing the DP switches, I noticed multiple LEDs lighting up unexpectedly, suggesting parasitic capacitance issues. Initially, I suspected that wire length was the cause, so I adjusted the wire layout to minimize interference. However, after further investigation, I determined that the parasitic capacitance was within the DP switches themselves, not the wiring. This won’t be an issue in the final PCB design, as the switches will be adequately spaced to mitigate EMI effects.<br>
+
+After meticulous routing and adherence to best practices, the front panel prototype was completed. I thoroughly tested each switch and LED, confirming that there were no shorts and that the I/O expanders functioned correctly. This success allowed us to shift our focus entirely to PCB routing for the remainder of the week. Resuming PCB design, I discovered that global labels override NET names, so I removed one of the redundant I2C nets, which resolved a conflict. I also made several placement and routing optimizations to improve board layout efficiency.<br>
+
+To refine our Buck Converter design, I reviewed my old ECE 20008 lab notes to determine necessary modifications for achieving our target output. I plan to prototype three different designs: (1) LM1117-based regulator, (2) LMC555 Timer-based solution, and (3) Final design with our intended switching regulator. I checked the ECE shop for the MCP16331 or other switching regulators, but none were in stock. I will likely need to place an order for 1–3 suitable components to proceed with testing.<br>
 
 <br>
 <b>Citations:</b><br>
-- 1: <a href="https://www.digikey.com/en/models/894270" target="_blank">MCP23017 QFN Mount</a><br>
+- 1: <a href="https://www.amazon.com/Digilent-Breadboard-Breakout-Analog-Discovery/dp/B07Q5SGSVQ" target="_blank">AD2 Breakout Information</a><br>
+- 2: <a href="https://www.digikey.com/en/models/894270" target="_blank">MCP23017 QFN Mount</a><br>
+- 3: <a href="data:image/png;base64,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" target="_blank">Pico 2 Pinout</a><br>
 <br>
 
 <h2 id = "week8">===============   Week 8: =================</h2>
 
-<!-- 8.4 UF -->
+<!-- 8.4 F -->
 <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
 <b>Date: March 6 </b><br>
 <b>Start Time: 9:30 am</b><br>
@@ -283,19 +373,33 @@ After this peer review, I attended another peer review session for team 18, Grid
 They decided to use a ESP32-PICO as well as a Raspberry Pi 4. One of the major questions I asked during the presentation, which response gave me some information to put in the survey, the distinction between the many grounds on the schematic.<br>
 Another thing which I noticed was that they would be very financially or technologically constrained when making more cards for their game.
 
+After making these remarks on other team, I returned back to the lab to continue with my own senior design project. Firstly, I got a collection of other LEDs which I was to use on the front panel prototype. The yellow LEDs were to act as STATUS LEDs, and the green LEDs were to act as Data LEDs.<br>
+You can see that I grabbed the appropriate amount of both and placed them on the table in the image below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\4.1.jpg" width = "25%" height = "auto"></img>
 </div><br>
+Afterwards, I started wiring up the chips. I wanted to reduce parasitic capacitance and inductance, so I chose the shortest length wires I could to reduce parasitic inductance, and tried to space out my traces such that they would not as impacted by parasitic capacitance. In the photo below, you can see my attempts.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\4.2.jpg" width = "25%" height = "auto"></img>
 </div><br>
+I took a break from the hardware prototyping to check that the backplane had been properly version controlled. Some of my changes had been overwritten, so I had to take the time inside the git log page to see the changes that were applied and backtrack the ones that should not have been applied. All in all, there was just on commit which was interfering, the bottom merge branch in the photo below.<br>
 <div id="banner">
 	<img src="Team\journal\img - member4\week8\4.3.png" width = "25%" height = "auto"></img>
 </div><br>
+After this, I decided to refresh my layout knowledge. On top of Professor Walter's existing slides, I also read these documents [1] on proper orientation and looked at the buck converter's layout [2] again, which would be by far the most important section of the layout.<br>
+
+Today, I attended the required midterm design review session, where I observed presentations from two teams. During Team 2’s session, I inquired about their ESD protection strategy in case of a power short, particularly with their Buck Converter. Their project involved translation glasses with an attached PCB, which provided insight into their approach to compact circuit design. Later, I joined Team 18’s presentation on "Grid Wars," a microcontroller-based RFID game. I asked about the distinctions between the multiple grounds in their schematic and noted potential financial and technical constraints in manufacturing additional game cards.<br>
+
+After these sessions, I returned to the lab to continue work on my senior design project. I gathered LEDs for the front panel prototype—yellow for STATUS indicators and green for DATA indicators—ensuring the correct quantities were available. Once collected, I began wiring the chips while focusing on minimizing parasitic capacitance and inductance. To achieve this, I used the shortest possible wires and spaced out the traces effectively to reduce unwanted electrical interference.<br>
+
+I briefly paused hardware prototyping to review the backplane’s version control. Some of my changes had been unintentionally overwritten, so I analyzed the Git log to identify and revert any unnecessary modifications. Fortunately, only a single interfering commit required adjustment, which I resolved by tracking and restoring the correct files. This step ensured that all recent progress remained intact without unexpected regressions.<br>
+
+To reinforce my PCB layout approach, I revisited Professor Walter’s lecture slides alongside external layout references. I also revisited documentation on proper component orientation and re-examined the Buck Converter’s layout, as it remains one of the most critical elements of the design. Moving forward, I will focus on refining the PCB layout and preparing for final testing.<br>
 
 <br>
 <b>Citations:</b><br>
-- 1: <a href="link" target="_blank">description</a><br>
+- 1: <a href="https://www.google.com/search?q=pcb+layout+design&rlz=1C1OPNX_enUS1145US1145&oq=PCB+Layout+&gs_lcrp=EgZjaHJvbWUqDQgBEAAYkQIYgAQYigUyBggAEEUYOTINCAEQABiRAhiABBiKBTINCAIQABiRAhiABBiKBTIHCAMQABiABDIHCAQQABiABDIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDM0NDhqMGo0qAIAsAIA8QVXS3qulKu3wg&sourceid=chrome&ie=UTF-8" target="_blank">JLCPCB Design Guide</a><br>
+- 2: <a href="https://www.microchip.com/en-us/product/mcp16331" target="_blank">MCP16331 Buck Converter</a><br>
 <br>
 
 <!-- 8.3 F -->
