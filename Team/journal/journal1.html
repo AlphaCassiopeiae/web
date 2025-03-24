@@ -1158,248 +1158,261 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I clarified with Shivam earlier that we really couldn't order components from Aliexpress/Alibaba, which
+                is a bit of an issue with our current choice of enclosure, the LK-ALS43 (<a
+                  href="https://www.aliexpress.us/item/3256804810309519.html?spm=a2g0o.productlist.main.33.7a064aefxnOuPF&algo_pvid=43063054-1a62-41b9-8ba1-9e89cd6bd8a5&algo_exp_id=43063054-1a62-41b9-8ba1-9e89cd6bd8a5-16&pdp_npi=4%40dis!USD!11.43!9.71!!!81.77!69.50!%402101c59517313543812626215ef9e2!12000035287754204!sea!US!1721126835!ACX&curPageLogUid=41XvTcWH4LxM&utparam-url=scene%3Asearch%7Cquery_from%3A">Aliexpress</a>,
+                <a
+                  href="https://www.alibaba.com/product-detail/83-120-155mm-Aluminum-Electronic-Enclosures_1601184393467.html?spm=a2700.shop_plgr.41413.51.29b17121JPfKnQ">Alibaba</a>).
+                We need to find another supplier for enclosures that we can acquire through domestic sources.
               </p>
+
+              <ul>
+                <li>The <a href="https://www.mcmaster.com/3686K75/">McMaster-Carr "Circuit Board Enclosure"</a> category
+                  is costly, with an 8 3/4" x 2" x 6 1/2" enclosure costing 37.83.</li>
+                <li>The <a href="https://www.takachi-enclosure.com/products/EX">Takachi EX series</a> seems nice but
+                  seems difficult to acquire units short of contacting Takachi sales. Misumi for example does not carry
+                  the EX series.</li>
+              </ul>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>1.</h4>The <a href="https://www.hammfg.com/electronics/small-case/extruded/1455">Hammond 1455
+                        series</a> of enclosures seems nice, especially since they're relatively affordable, and can be
+                      found on electronics distributors like <a
+                        href="https://www.digikey.com/en/products/detail/hammond-manufacturing/1455t1602/1090716">DigiKey</a>.
+                      We're specifically looking at the 1455T1602 model, which is 6.3" x 6.5" x 2.05" (160mm x 165mm x
+                      52 mm). These are about $25 each on DigiKey.
                     </figcaption><img src="Team/journal/img - member1/week9/3.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.2.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>2.</h4>I drew up a 165mm x 52mm rectangle, and tried to move the components Nathan laid out to
+                      within the confines of this box in ways that felt about right. This confirmed that we should have
+                      enough real estate on a PCB that attaches to this enclosure. We'll need a more precise drawing of
+                      the enclosure to design the board around, however.
                     </figcaption><img src="Team/journal/img - member1/week9/3.3.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.4.png">
+                      <h4>3.</h4>On the Hammond website for <a
+                        href="https://www.hammfg.com/electronics/small-case/extruded/1455">the 1455 series</a>, clicking
+                      on 1455T1602 allows us to download the "2D CAD" file for the part. This is a DWG file. I can load
+                      the DWG in LibreCAD, and export the file as a DXF, allowing KiCAD to read the drawing.
+                    </figcaption><img src="Team/journal/img - member1/week9/3.4.png"><img
+                      src="Team/journal/img - member1/week9/3.10.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.5.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.6.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.7.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.8.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.9.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.10.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>4.</h4>I can import the DXF into the KiCAD PCB editor by going through File > Import >
+                      Graphics... and selecting the DXF file. KiCAD imports the DXF onto the User.Drawings layer.
                     </figcaption><img src="Team/journal/img - member1/week9/3.11.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>5.</h4>I delete all the geometry that I'm not concerned with. I then move the extrusion
+                      profile drawing to the back courtyard layer (as to allow for parts on the back of the PCB to not
+                      interfere mechanically with the aluminum extrusion itself), and the front plate drawing over to
+                      the edge cuts layer.
                     </figcaption><img src="Team/journal/img - member1/week9/3.12.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.13.png">
+                      <h4>6.</h4>I've added 4 mounting holes to the schematic, and assigned them the 3.5mm hole, which
+                      is about the same size as on the drawing. This hole size should be able to let the bolts through
+                      cleanly.
+                    </figcaption><img src="Team/journal/img - member1/week9/3.13.png"><img
+                      src="Team/journal/img - member1/week9/3.14.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.14.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.15.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>The footprints for these holes are then placed on to the centers of the edge cut
+                      circles on the imported drawing.
                     </figcaption><img src="Team/journal/img - member1/week9/3.16.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>8.</h4>Moving in the approximiate layout I put together earlier, it's pretty clear that
+                      There's some additional squeezing that needs to be done to fit within the courtyards defined by
+                      the extrusion profile.
                     </figcaption><img src="Team/journal/img - member1/week9/3.17.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>18.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>9.</h4>I realized that it's not possible to use a 90 degree USB connector on the front panel
+                      PCB, because the board is surrounded by aluminum walls on four (4) sides. I'll need to switch the
+                      footprint for this part with a verticle USB receptacle later.
                     </figcaption><img src="Team/journal/img - member1/week9/3.18.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>19.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>10.</h4>I squeezed the LEDs, sink driver, and slide switch courtyards to be within the
+                      confines of the enclosure.
                     </figcaption><img src="Team/journal/img - member1/week9/3.19.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>20.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>11.</h4>And I also did so for the switches and I/O expanders. The I/O expander for the buttons
+                      needed to be un-rotated to fit within the vertical space available. I may do the same for the
+                      other I/O expander.
                     </figcaption><img src="Team/journal/img - member1/week9/3.20.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>21.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>12.</h4>I measured the length of the DIMM slot footprint on the backplane, which came out to
+                      161mm. This exceeds the length of our current enclosure choice (1455T1602), which has a length of
+                      160mm, so we'll need to get an enclosure that's slightly longer.
                     </figcaption><img src="Team/journal/img - member1/week9/3.21.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>22.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>13.</h4>If we switch over to the 1455T2201/1455T2202 model of the enclosure, we'll have 220mm
+                      to work with in length, with the same front profile. This should be more than enough length.
                     </figcaption><img src="Team/journal/img - member1/week9/3.22.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>23.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>14.</h4>And I confirmed that the part is also <a
+                        href="https://www.digikey.com/en/products/detail/hammond-manufacturing/1455T2201/1090717">on
+                        DigiKey</a>.
                     </figcaption><img src="Team/journal/img - member1/week9/3.23.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>24.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>15.</h4>I confirmed that the DWG front extrusion profile drawing is identical between
+                      1455T2202 and 1455T1602, and flipped over the slot cover part of the drawing to be at the top of
+                      the PCB, since we want to be able to access the cards when the slot cover is removed.
                     </figcaption><img src="Team/journal/img - member1/week9/3.24.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>25.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>16.</h4>Here I setup the GND and power plane fills so that power vias can be routed correctly.
                     </figcaption><img src="Team/journal/img - member1/week9/3.25.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>26.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>17.</h4>I then add power vias to 3.3V an GND to the FFC connector.
                     </figcaption><img src="Team/journal/img - member1/week9/3.26.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>27.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>18.</h4>Due to the density of components relative to each other, I'm following a similar
+                      strategy with routing these signals as with the card, which means that I'll first route the traces
+                      first, then remap the net names to complete the traces. I'm doing this with the sink drivers
+                      first, because their connections to the status LEDs dictate what purpose signals further down the
+                      front panel serve. In this manner, I begin routing the sink lines to the 8 LEDs on the right of
+                      the PCB.
                     </figcaption><img src="Team/journal/img - member1/week9/3.27.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>28.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>19.</h4>I repeat this process with the sink driver on the other side of the FFC connector.
                     </figcaption><img src="Team/journal/img - member1/week9/3.28.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>29.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>20.</h4>The sink driver to the left of that is routed to a block of 8 additional LEDs.
                     </figcaption><img src="Team/journal/img - member1/week9/3.29.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>30.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>21.</h4>Even further left, two sink drivers need to drive 12 LEDs. For the right one here, I
+                      route it to a block of 8 LEDs.
                     </figcaption><img src="Team/journal/img - member1/week9/3.30.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>31.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>22.</h4>And the very leftmost sink driver gets routed to the last block of 4 LEDs.
                     </figcaption><img src="Team/journal/img - member1/week9/3.31.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>32.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>23.</h4>I purdue a similar strategy with the I/O expanders, but I make sure to separate the
+                      roles of the I/O expander dedicated to buttons, and the I/O expander dedicated to slide switches.
+                      This is the ensure that the two interrupt lines on the I/O expander dedicated to buttons can be
+                      reliably trusted to indicate that a button has been pressed. I first perform this routing with the
+                      button I/O expander.
                     </figcaption><img src="Team/journal/img - member1/week9/3.32.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>33.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>24.</h4>And do the same with the I/O expander responsible for the 16 data/address slide
+                      switches.
                     </figcaption><img src="Team/journal/img - member1/week9/3.33.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>34.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>25.</h4>The control lines for the sink drivers need to be routed sideways directly into the
+                      FFC connector, which I do on the front copper layer, in order to make room for those same signals
+                      to get routed to the MCU.
                     </figcaption><img src="Team/journal/img - member1/week9/3.34.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>35.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.35.png">
+                      <h4>26.</h4>Here's how the board looks so far on both sides.
+                    </figcaption><img src="Team/journal/img - member1/week9/3.36.png"><img
+                      src="Team/journal/img - member1/week9/3.37.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>36.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.36.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>37.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.37.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>38.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>27.</h4>The 8 switches on the right side of the PCB are also currently routed on the back
+                      copper, so I noved these signals to the front copper layer, also to make room for the FFC to MCU
+                      signal routing.
                     </figcaption><img src="Team/journal/img - member1/week9/3.38.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>39.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>28.</h4>A significant amount of routing related to decoupling capacitors, QSPI flash, and the
+                      crystal oscillator should be identical between the card and the panel, so I copied over the vias
+                      and tracks from the card PCB design, and matched up the MCU footprint location with the pasted
+                      tracks.
                     </figcaption><img src="Team/journal/img - member1/week9/3.39.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>40.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>29.</h4>I then cleaned up and rotated the whole block of traces, vias, and footprints into
+                      place, with as many of the GPIO pads facing upwards as possible.
                     </figcaption><img src="Team/journal/img - member1/week9/3.40.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>41.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>30.</h4>I set up the GND zones for the top and bottom layers of copper, since we're finishing
+                      up on the routing between FFC and MCU.
                     </figcaption><img src="Team/journal/img - member1/week9/3.41.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>42.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.42.png">
+                      <h4>31.</h4>I noticed that the slot cover for the extrusion, since rotating the rear courtyard 180
+                      degrees, now interferes with the courtyard for the LEDs. Ultra Librarian put a very aggressive
+                      courtyard on these LEDs, which I don't believe is necesary, so we can reduce the courtyard to fit.
+                    </figcaption><img src="Team/journal/img - member1/week9/3.35.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>43.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/3.43.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>44.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>32.</h4>In the library footprint editor, I resize the courtyard for the LEDs such that they're
+                      not as wide, and reload the footprints from the library for all LED footprints on the PCB.
                     </figcaption><img src="Team/journal/img - member1/week9/3.44.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>45.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>33.</h4>With this change, the courtyards of all the LEDs fit. I also take the opportunity to
+                      fit in all the current limiting resistors next to the LEDs.
                     </figcaption><img src="Team/journal/img - member1/week9/3.45.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>46.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>34.</h4>I move the footprints for all the decoupling capacitors for the MCU over the
+                      appropriate pasted traces.
                     </figcaption><img src="Team/journal/img - member1/week9/3.46.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                It's morning now, so I'm going to take a break to eat breakfast. I still need to finish up the MCU
+                routing, and remember, all this routing is just 90% there, I still need to reassign all the net names to
+                actually complete all of the traces.
               </p>
             </div>
           </div>
