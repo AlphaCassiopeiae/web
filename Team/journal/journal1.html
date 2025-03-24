@@ -784,103 +784,92 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I'm continuing on with the routing and reassignment of net labels that I was working on a little bit
+                prior.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>1.</h4>While trying to route the FFC signals to the sink driver, I found that t`he labels on
+                      the FFC side leading up to the U4 sink driver are flipped for some reason.
                     </figcaption><img src="Team/journal/img - member1/week9/5.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>2.</h4>Unflipping these labels on the FFC side lets me complete the route to U4.
                     </figcaption><img src="Team/journal/img - member1/week9/5.2.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.3.png">
+                      <h4>3.</h4>I then routed the signal connections to the other four (4) sink drivers, which was
+                      relatively straightforward.
+                    </figcaption><img src="Team/journal/img - member1/week9/5.3.png"><img
+                      src="Team/journal/img - member1/week9/5.4.png"><img
+                      src="Team/journal/img - member1/week9/5.5.png"><img
+                      src="Team/journal/img - member1/week9/5.6.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.4.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.5.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.6.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>4.</h4>I also went and finished the traces on the other side of the sink drivers, which lead
+                      up to the LEDs themselves.
                     </figcaption><img src="Team/journal/img - member1/week9/5.7.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>5.</h4>Now it's time to look at the MCU FFC mapping issues again. I decided to start again and
+                      reassign MCU GPIO pin numbers to the closest FFC pin.
                     </figcaption><img src="Team/journal/img - member1/week9/5.8.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>6.</h4>Here's the result of that labor. Hopefully these signals line up.
                     </figcaption><img src="Team/journal/img - member1/week9/5.9.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.10.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>I decided to swap the A6 and D6 signals here to improve ease of routing those signals.
                     </figcaption><img src="Team/journal/img - member1/week9/5.11.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>8.</h4>I then routed the signals between the resistors and the FFC, and the MCU up to the
+                      resistors. Looks like it's clean. Good.
+                    </figcaption><img src="Team/journal/img - member1/week9/5.10.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>9.</h4>I then modified the schematics of the I/O expanders to match the remapping tables I
+                      made in entry 4.
                     </figcaption><img src="Team/journal/img - member1/week9/5.12.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>10.</h4>With the schematic changes done, I could now fully route the buttons and switches up
+                      to the I/O expanders.
                     </figcaption><img src="Team/journal/img - member1/week9/5.13.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>11.</h4>I also routed the current limiting resistors up to their respective LEDs.
                     </figcaption><img src="Team/journal/img - member1/week9/5.14.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.15.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.16.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/5.17.png">
+                      <h4>12.</h4>Here's what all of that work looks like put together so far. I think the front panel
+                      is coming together.
+                    </figcaption><img src="Team/journal/img - member1/week9/5.15.png"><img
+                      src="Team/journal/img - member1/week9/5.16.png"><img
+                      src="Team/journal/img - member1/week9/5.17.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I'm really really tired right now, so I'm going to take a much longer break, but when I get back, I'm
+                going to clean up all the other stuff I need to get done on the front panel, such as the USB connector,
+                USB power, SWD, etc.
               </p>
             </div>
           </div>
@@ -2391,15 +2380,15 @@ contact course staff.
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>19.</h4>I then adjusted the schematics to match the remapping tables I created.
+                      <h4>19.</h4>I then adjusted the schematics of the sink drivers and the MCU to match the remapping
+                      tables I created.
                     </figcaption><img src="Team/journal/img - member1/week9/4.22.png"><img
                       src="Team/journal/img - member1/week9/4.23.png"><img
                       src="Team/journal/img - member1/week9/4.24.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>20.</h4>The signals near the sink drivers and I/O expanders are now fully routable, so I went
-                      ahead and completed the routing of all of those traces.
+                      <h4>20.</h4>The signals near the sink drivers are now fully routable.
                     </figcaption><img src="Team/journal/img - member1/week9/4.25.png">
                   </figure>
                   <figure class="grid-item">
