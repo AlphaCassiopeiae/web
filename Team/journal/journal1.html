@@ -31,8 +31,8 @@ contact course staff.
 
   <!--Reconfigurable base tag; used to modify the site root location for root-relative links-->
   <!--<base href="https://engineering.purdue.edu/ece477/StudentWebTemplate/" />-->
-  <base href="https://engineering.purdue.edu/477grp15/" />
-  <!-- <base href="../.." /> -->
+  <!-- <base href="https://engineering.purdue.edu/477grp15/" /> -->
+  <base href="../.." />
   <!-- Replace the N with your team number-->
 
   <!--Content-->
@@ -1637,187 +1637,1179 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                Continuing from last time, I'd like to finish up the
+                Continuing from last time, I'd like to finish up the card design as soon as I can. I really dislike how
+                much the current design relies on installing parts on both sides of the board, especially since we have
+                all that space on the other side of the DIMM that we can use. I'll work on rectifying this, and
+                finishing up the routing for the PCB in general.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>1.</h4>I went and moved all the components that were on the backside copper to approximately
+                      where I wanted them to be. This basically meant that I moved the I/O expansion to the other side
+                      of the board, the relevant jumper along with them, and slightly relocating the QSPI flash memory.
+                      I then flipped over the QSPI memory, which sits at a 45-degree angle relative to the RP2350B chip
+                      itself (meaning that the flash is at a normal right angle), and wired it in.
                     </figcaption><img src="Team/journal/img - member1/week9/1.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>2.</h4>I'm trying to route all the GPIO signals from the RP2350B over to the closest area I
+                      can reach on the edge connector. Currently, I'm not connecting it directly to the pad on the edge
+                      connector, because I need to reassign the edge net labels based on my routing, not the other way
+                      around. I'm trying to alternate whether I'm routing from the front or the back of the board to the
+                      board edge.
                     </figcaption><img src="Team/journal/img - member1/week9/1.2.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>3.</h4>I realized the I wasn't really using that much board space to route the traces, and
+                      that I could definitely pack a lot more of them onto the front layer without any issue. I'm going
+                      to retry my edge connector routing, and start from pins 80 & 1 - pins 41 & 40 on the chip side and
+                      try to map all those to pins 5-72 on the edge connector. I think my new strategy definitely looks
+                      better and more compact.
                     </figcaption><img src="Team/journal/img - member1/week9/1.3.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>4.</h4>Moving over to the other size of the chip, I'm taking care to route my signals around
+                      the "shielding" GND zone I set up a-round the oscillator.
                     </figcaption><img src="Team/journal/img - member1/week9/1.4.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>5.</h4>All the remaining GPIO signals on the far end of the chip get routed to the father end
+                      of the edge card. It's a longer path but I think it should be fine.
                     </figcaption><img src="Team/journal/img - member1/week9/1.5.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>6.</h4>I flipped over all the 0 Ohm jumper "resistors" and I/O expander footprints over to the
+                      front copper, and positioned them a little closer to where I wanted them to be.
                     </figcaption><img src="Team/journal/img - member1/week9/1.6.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>I then wired in the last 4 GPIO signals into the jumpers. In this case they can act
+                      either directly as bus lines via a jumper, or be routed on the card as I2C signals to the I/O
+                      expanders via another jumper.
                     </figcaption><img src="Team/journal/img - member1/week9/1.7.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.8.png">
+                      <h4>8.</h4>With this done, all components are now on one side of the board, and the backside is
+                      completely unpopulated. This should make both PCBA at JLCPCB, and reflow soldering of components
+                      on the hot-plate for us easier.
+                    </figcaption><img src="Team/journal/img - member1/week9/1.8.png"><img
+                      src="Team/journal/img - member1/week9/1.9.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.9.png">
+                      <h4>9.</h4>All the routing still stops right before the edge connector, because the net labels
+                      between the edge connector and the trace are still mismatched. I'm cross-referencing the net name
+                      of the trace and the net name of the edge connector, and changing the net name of the edge
+                      connector to match. I took notes on the differences between the old net names and the new net
+                      names in a table.
+                      <details>
+                        <summary>Show net mapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Edge Connnector Pin</th>
+                              <th>MCU Pin Label</th>
+                              <th>MCU Pin Number</th>
+                              <th>Current Usage</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>2.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>3.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>4.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>5.</td>
+                              <td>GPIO3</td>
+                              <td>80</td>
+                              <td>BUS20</td>
+                            </tr>
+                            <tr>
+                              <td>6.</td>
+                              <td>GPIO2</td>
+                              <td>79</td>
+                              <td>BUS21</td>
+                            </tr>
+                            <tr>
+                              <td>7.</td>
+                              <td>GPIO4</td>
+                              <td>1</td>
+                              <td>BUS19</td>
+                            </tr>
+                            <tr>
+                              <td>8.</td>
+                              <td>GPIO5</td>
+                              <td>2</td>
+                              <td>BUS18</td>
+                            </tr>
+                            <tr>
+                              <td>9.</td>
+                              <td>GPIO1</td>
+                              <td>78</td>
+                              <td>BUS22</td>
+                            </tr>
+                            <tr>
+                              <td>10.</td>
+                              <td>GPIO6</td>
+                              <td>3</td>
+                              <td>BUS17</td>
+                            </tr>
+                            <tr>
+                              <td>11.</td>
+                              <td>GPIO7</td>
+                              <td>4</td>
+                              <td>BUS16</td>
+                            </tr>
+                            <tr>
+                              <td>12.</td>
+                              <td>GPIO0</td>
+                              <td>77</td>
+                              <td>BUS23</td>
+                            </tr>
+                            <tr>
+                              <td>13.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>14.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>15.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>16.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>17.</td>
+                              <td>GPIO8</td>
+                              <td>6</td>
+                              <td>BUS15</td>
+                            </tr>
+                            <tr>
+                              <td>18.</td>
+                              <td>GPIO9</td>
+                              <td>7</td>
+                              <td>BUS14</td>
+                            </tr>
+                            <tr>
+                              <td>19:</td>
+                              <td>GPIO10</td>
+                              <td>8</td>
+                              <td>BUS13</td>
+                            </tr>
+                            <tr>
+                              <td>20.</td>
+                              <td>GPIO11</td>
+                              <td>9</td>
+                              <td>BUS12</td>
+                            </tr>
+                            <tr>
+                              <td>21.</td>
+                              <td>GPIO12</td>
+                              <td>11</td>
+                              <td>BUS11</td>
+                            </tr>
+                            <tr>
+                              <td>22.</td>
+                              <td>GPIO13</td>
+                              <td>12</td>
+                              <td>BUS10</td>
+                            </tr>
+                            <tr>
+                              <td>23.</td>
+                              <td>GPIO14</td>
+                              <td>13</td>
+                              <td>BUS09</td>
+                            </tr>
+                            <tr>
+                              <td>24.</td>
+                              <td>GPIO15</td>
+                              <td>14</td>
+                              <td>BUS08</td>
+                            </tr>
+                            <tr>
+                              <td>25.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>26.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>27.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>28.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>29.</td>
+                              <td>GPIO16</td>
+                              <td>16</td>
+                              <td>BUS07</td>
+                            </tr>
+                            <tr>
+                              <td>30.</td>
+                              <td>GPIO17</td>
+                              <td>17</td>
+                              <td>BUS06</td>
+                            </tr>
+                            <tr>
+                              <td>31.</td>
+                              <td>GPIO18</td>
+                              <td>18</td>
+                              <td>BUS05</td>
+                            </tr>
+                            <tr>
+                              <td>32.</td>
+                              <td>GPIO19</td>
+                              <td>19</td>
+                              <td>BUS04</td>
+                            </tr>
+                            <tr>
+                              <td>33.</td>
+                              <td>GPIO20</td>
+                              <td>20</td>
+                              <td>BUS03</td>
+                            </tr>
+                            <tr>
+                              <td>34.</td>
+                              <td>GPIO21</td>
+                              <td>21</td>
+                              <td>BUS02</td>
+                            </tr>
+                            <tr>
+                              <td>35.</td>
+                              <td>GPIO22</td>
+                              <td>22</td>
+                              <td>BUS01</td>
+                            </tr>
+                            <tr>
+                              <td>36.</td>
+                              <td>GPIO23</td>
+                              <td>23</td>
+                              <td>BUS00</td>
+                            </tr>
+                            <tr>
+                              <td>37.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>38.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>39.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>40.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>41.</td>
+                              <td>GPIO24</td>
+                              <td>25</td>
+                              <td>ADDR00</td>
+                            </tr>
+                            <tr>
+                              <td>42.</td>
+                              <td>GPIO47</td>
+                              <td>58</td>
+                              <td>DATA07</td>
+                            </tr>
+                            <tr>
+                              <td>43.</td>
+                              <td>GPIO25</td>
+                              <td>26</td>
+                              <td>ADDR01</td>
+                            </tr>
+                            <tr>
+                              <td>44.</td>
+                              <td>GPIO46</td>
+                              <td>57</td>
+                              <td>DATA06</td>
+                            </tr>
+                            <tr>
+                              <td>45.</td>
+                              <td>GPIO26</td>
+                              <td>27</td>
+                              <td>ADDR02</td>
+                            </tr>
+                            <tr>
+                              <td>46.</td>
+                              <td>GPIO42</td>
+                              <td>53</td>
+                              <td>DATA02</td>
+                            </tr>
+                            <tr>
+                              <td>47.</td>
+                              <td>GPIO27</td>
+                              <td>28</td>
+                              <td>ADDR03</td>
+                            </tr>
+                            <tr>
+                              <td>48.</td>
+                              <td>GPIO41</td>
+                              <td>52</td>
+                              <td>DATA01</td>
+                            </tr>
+                            <tr>
+                              <td>49.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>50.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>51.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>52.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>53.</td>
+                              <td>GPIO28</td>
+                              <td>36</td>
+                              <td>ADDR04</td>
+                            </tr>
+                            <tr>
+                              <td>54.</td>
+                              <td>GPIO29</td>
+                              <td>37</td>
+                              <td>ADDR05</td>
+                            </tr>
+                            <tr>
+                              <td>55.</td>
+                              <td>GPIO30</td>
+                              <td>38</td>
+                              <td>ADDR06</td>
+                            </tr>
+                            <tr>
+                              <td>56.</td>
+                              <td>GPIO31</td>
+                              <td>39</td>
+                              <td>ADDR07</td>
+                            </tr>
+                            <tr>
+                              <td>57.</td>
+                              <td>GPIO32</td>
+                              <td>40</td>
+                              <td>ADDR08</td>
+                            </tr>
+                            <tr>
+                              <td>58.</td>
+                              <td>GPIO33</td>
+                              <td>42</td>
+                              <td>ADDR09</td>
+                            </tr>
+                            <tr>
+                              <td>59.</td>
+                              <td>GPIO34</td>
+                              <td>43</td>
+                              <td>ADDR10</td>
+                            </tr>
+                            <tr>
+                              <td>60.</td>
+                              <td>GPIO35</td>
+                              <td>44</td>
+                              <td>ADDR11</td>
+                            </tr>
+                            <tr>
+                              <td>61.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>62.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>63.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>64.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>65.</td>
+                              <td>GPIO36</td>
+                              <td>45</td>
+                              <td>ADDR12</td>
+                            </tr>
+                            <tr>
+                              <td>66.</td>
+                              <td>GPIO37</td>
+                              <td>46</td>
+                              <td>ADDR13</td>
+                            </tr>
+                            <tr>
+                              <td>67.</td>
+                              <td>GPIO38</td>
+                              <td>47</td>
+                              <td>ADDR14</td>
+                            </tr>
+                            <tr>
+                              <td>68.</td>
+                              <td>GPIO39</td>
+                              <td>48</td>
+                              <td>ADDR15</td>
+                            </tr>
+                            <tr>
+                              <td>69.</td>
+                              <td>GPIO45</td>
+                              <td>56</td>
+                              <td>DATA05 (JP1)</td>
+                            </tr>
+                            <tr>
+                              <td>70.</td>
+                              <td>GPIO44</td>
+                              <td>55</td>
+                              <td>DATA04 (JP3)</td>
+                            </tr>
+                            <tr>
+                              <td>71.</td>
+                              <td>GPIO43</td>
+                              <td>54</td>
+                              <td>DATA03 (JP5)</td>
+                            </tr>
+                            <tr>
+                              <td>72.</td>
+                              <td>GPIO40</td>
+                              <td>49</td>
+                              <td>DATA00 (JP7)</td>
+                            </tr>
+                            <tr>
+                              <td>73.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>74.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>75.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>76.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>77.</td>
+                              <td>NC</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
+                    </figcaption><img src="Team/journal/img - member1/week9/1.10.png"><img
+                      src="Team/journal/img - member1/week9/1.11.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.10.png">
+                      <h4>10.</h4>I decided the swap the functions on the MCU side of package pins 49 and 53 (logical
+                      pins GPIO40 and GPIO42), to allow for all jumper bus signals to be together in its own block
+                      (GPIOs 42-45)
+                      <details>
+                        <summary>Show net mapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Edge Connnector Pin</th>
+                              <th>MCU Pin Label</th>
+                              <th>MCU Pin Number</th>
+                              <th>Current Usage</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>2.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>3.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>4.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>5.</td>
+                              <td>GPIO3</td>
+                              <td>80</td>
+                              <td>BUS20</td>
+                            </tr>
+                            <tr>
+                              <td>6.</td>
+                              <td>GPIO2</td>
+                              <td>79</td>
+                              <td>BUS21</td>
+                            </tr>
+                            <tr>
+                              <td>7.</td>
+                              <td>GPIO4</td>
+                              <td>1</td>
+                              <td>BUS19</td>
+                            </tr>
+                            <tr>
+                              <td>8.</td>
+                              <td>GPIO5</td>
+                              <td>2</td>
+                              <td>BUS18</td>
+                            </tr>
+                            <tr>
+                              <td>9.</td>
+                              <td>GPIO1</td>
+                              <td>78</td>
+                              <td>BUS22</td>
+                            </tr>
+                            <tr>
+                              <td>10.</td>
+                              <td>GPIO6</td>
+                              <td>3</td>
+                              <td>BUS17</td>
+                            </tr>
+                            <tr>
+                              <td>11.</td>
+                              <td>GPIO7</td>
+                              <td>4</td>
+                              <td>BUS16</td>
+                            </tr>
+                            <tr>
+                              <td>12.</td>
+                              <td>GPIO0</td>
+                              <td>77</td>
+                              <td>BUS23</td>
+                            </tr>
+                            <tr>
+                              <td>13.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>14.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>15.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>16.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>17.</td>
+                              <td>GPIO8</td>
+                              <td>6</td>
+                              <td>BUS15</td>
+                            </tr>
+                            <tr>
+                              <td>18.</td>
+                              <td>GPIO9</td>
+                              <td>7</td>
+                              <td>BUS14</td>
+                            </tr>
+                            <tr>
+                              <td>19:</td>
+                              <td>GPIO10</td>
+                              <td>8</td>
+                              <td>BUS13</td>
+                            </tr>
+                            <tr>
+                              <td>20.</td>
+                              <td>GPIO11</td>
+                              <td>9</td>
+                              <td>BUS12</td>
+                            </tr>
+                            <tr>
+                              <td>21.</td>
+                              <td>GPIO12</td>
+                              <td>11</td>
+                              <td>BUS11</td>
+                            </tr>
+                            <tr>
+                              <td>22.</td>
+                              <td>GPIO13</td>
+                              <td>12</td>
+                              <td>BUS10</td>
+                            </tr>
+                            <tr>
+                              <td>23.</td>
+                              <td>GPIO14</td>
+                              <td>13</td>
+                              <td>BUS09</td>
+                            </tr>
+                            <tr>
+                              <td>24.</td>
+                              <td>GPIO15</td>
+                              <td>14</td>
+                              <td>BUS08</td>
+                            </tr>
+                            <tr>
+                              <td>25.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>26.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>27.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>28.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>29.</td>
+                              <td>GPIO16</td>
+                              <td>16</td>
+                              <td>BUS07</td>
+                            </tr>
+                            <tr>
+                              <td>30.</td>
+                              <td>GPIO17</td>
+                              <td>17</td>
+                              <td>BUS06</td>
+                            </tr>
+                            <tr>
+                              <td>31.</td>
+                              <td>GPIO18</td>
+                              <td>18</td>
+                              <td>BUS05</td>
+                            </tr>
+                            <tr>
+                              <td>32.</td>
+                              <td>GPIO19</td>
+                              <td>19</td>
+                              <td>BUS04</td>
+                            </tr>
+                            <tr>
+                              <td>33.</td>
+                              <td>GPIO20</td>
+                              <td>20</td>
+                              <td>BUS03</td>
+                            </tr>
+                            <tr>
+                              <td>34.</td>
+                              <td>GPIO21</td>
+                              <td>21</td>
+                              <td>BUS02</td>
+                            </tr>
+                            <tr>
+                              <td>35.</td>
+                              <td>GPIO22</td>
+                              <td>22</td>
+                              <td>BUS01</td>
+                            </tr>
+                            <tr>
+                              <td>36.</td>
+                              <td>GPIO23</td>
+                              <td>23</td>
+                              <td>BUS00</td>
+                            </tr>
+                            <tr>
+                              <td>37.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>38.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>39.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>40.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>41.</td>
+                              <td>GPIO24</td>
+                              <td>25</td>
+                              <td>ADDR00</td>
+                            </tr>
+                            <tr>
+                              <td>42.</td>
+                              <td>GPIO47</td>
+                              <td>58</td>
+                              <td>DATA07</td>
+                            </tr>
+                            <tr>
+                              <td>43.</td>
+                              <td>GPIO25</td>
+                              <td>26</td>
+                              <td>ADDR01</td>
+                            </tr>
+                            <tr>
+                              <td>44.</td>
+                              <td>GPIO46</td>
+                              <td>57</td>
+                              <td>DATA06</td>
+                            </tr>
+                            <tr>
+                              <td>45.</td>
+                              <td>GPIO26</td>
+                              <td>27</td>
+                              <td>ADDR02</td>
+                            </tr>
+                            <tr>
+                              <td>46.</td>
+                              <td>GPIO40</td>
+                              <td>49</td>
+                              <td>DATA00</td>
+                            </tr>
+                            <tr>
+                              <td>47.</td>
+                              <td>GPIO27</td>
+                              <td>28</td>
+                              <td>ADDR03</td>
+                            </tr>
+                            <tr>
+                              <td>48.</td>
+                              <td>GPIO41</td>
+                              <td>52</td>
+                              <td>DATA01</td>
+                            </tr>
+                            <tr>
+                              <td>49.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>50.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>51.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>52.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>53.</td>
+                              <td>GPIO28</td>
+                              <td>36</td>
+                              <td>ADDR04</td>
+                            </tr>
+                            <tr>
+                              <td>54.</td>
+                              <td>GPIO29</td>
+                              <td>37</td>
+                              <td>ADDR05</td>
+                            </tr>
+                            <tr>
+                              <td>55.</td>
+                              <td>GPIO30</td>
+                              <td>38</td>
+                              <td>ADDR06</td>
+                            </tr>
+                            <tr>
+                              <td>56.</td>
+                              <td>GPIO31</td>
+                              <td>39</td>
+                              <td>ADDR07</td>
+                            </tr>
+                            <tr>
+                              <td>57.</td>
+                              <td>GPIO32</td>
+                              <td>40</td>
+                              <td>ADDR08</td>
+                            </tr>
+                            <tr>
+                              <td>58.</td>
+                              <td>GPIO33</td>
+                              <td>42</td>
+                              <td>ADDR09</td>
+                            </tr>
+                            <tr>
+                              <td>59.</td>
+                              <td>GPIO34</td>
+                              <td>43</td>
+                              <td>ADDR10</td>
+                            </tr>
+                            <tr>
+                              <td>60.</td>
+                              <td>GPIO35</td>
+                              <td>44</td>
+                              <td>ADDR11</td>
+                            </tr>
+                            <tr>
+                              <td>61.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>62.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>63.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>64.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>65.</td>
+                              <td>GPIO36</td>
+                              <td>45</td>
+                              <td>ADDR12</td>
+                            </tr>
+                            <tr>
+                              <td>66.</td>
+                              <td>GPIO37</td>
+                              <td>46</td>
+                              <td>ADDR13</td>
+                            </tr>
+                            <tr>
+                              <td>67.</td>
+                              <td>GPIO38</td>
+                              <td>47</td>
+                              <td>ADDR14</td>
+                            </tr>
+                            <tr>
+                              <td>68.</td>
+                              <td>GPIO39</td>
+                              <td>48</td>
+                              <td>ADDR15</td>
+                            </tr>
+                            <tr>
+                              <td>69.</td>
+                              <td>GPIO45</td>
+                              <td>56</td>
+                              <td>DATA05 (JP1)</td>
+                            </tr>
+                            <tr>
+                              <td>70.</td>
+                              <td>GPIO44</td>
+                              <td>55</td>
+                              <td>DATA04 (JP3)</td>
+                            </tr>
+                            <tr>
+                              <td>71.</td>
+                              <td>GPIO43</td>
+                              <td>54</td>
+                              <td>DATA03 (JP5)</td>
+                            </tr>
+                            <tr>
+                              <td>72.</td>
+                              <td>GPIO42</td>
+                              <td>53</td>
+                              <td>DATA02 (JP7)</td>
+                            </tr>
+                            <tr>
+                              <td>73.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>74.</td>
+                              <td>3V3</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>75.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>76.</td>
+                              <td>GND</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>77.</td>
+                              <td>NC</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
+                    </figcaption><img src="Team/journal/img - member1/week9/1.12.png"><img
+                      src="Team/journal/img - member1/week9/1.13.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.11.png">
+                      <h4>11.</h4>I went and swapped the jumper over to pin 53 on the schematic, and made the necesary
+                      routing changes on the MCU side on the PCB.
+                    </figcaption><img src="Team/journal/img - member1/week9/1.14.png"><img
+                      src="Team/journal/img - member1/week9/1.15.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.12.png">
+                      <h4>12.</h4>Additionally, since we moved the jumper block across over to a different set of pins,
+                      according to <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">section
+                        (1.2.3) of the RP2350B datasheet</a>, pins 42 and 43 correspond to I2C peripheral 1, and 44 and
+                      45 correspond to I2C peripheral 0. I've changed the labels on the schematic appropriately.
+                    </figcaption><img src="Team/journal/img - member1/week9/1.17.png"><img
+                      src="Team/journal/img - member1/week9/1.16.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.13.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.14.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.15.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.16.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.17.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>18.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>13.</h4>Following the recommendation to install protection resistors on all pins that are on
+                      the bus, as to reduce current flow into the MCU in situations where a GPIO pin is misconfigured, I
+                      went and added KiCAD's R_Small symbol in front of each label to the bus side. This separates the
+                      nets, so the new bus side labels simply refer to the edge card connector's pin number.
                     </figcaption><img src="Team/journal/img - member1/week9/1.18.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>19.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>14.</h4>I chose to use 330 Ohms as the protection resistor size, as it should be a small
+                      enough value within the Hi-Z and pull-up/pull-down resistor configurations of the I/O pin, and
+                      still be able to meet the voltage levels necesary to determine digital LOW vs HIGH (referring to
+                      <a href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">section 14.9.4 on I/O
+                        characteristics in the RP2350 datasheet</a>). I may want to recheck the value I'm using here
+                      later, but this feels pretty close to correct for now.
                     </figcaption><img src="Team/journal/img - member1/week9/1.19.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>20.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>15.</h4>I went and set up the net labels on the edge card side, with the labels describing pin
+                      numbers. Additionally, for the other end of the edge connector, I've designated them "BEX" for use
+                      in expansion. These "BEX" labels are added on to the other end of the I/O expanders, which also
+                      get protection resistors.
                     </figcaption><img src="Team/journal/img - member1/week9/1.20.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>21.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.21.png">
+                      <h4>16.</h4>The new protection resistors are set to 0402 sizing in the KiCAD footprint assignment
+                      UI. This is pretty much a necesary size due to the sheer quantity of I/O lines we have.
+                    </figcaption><img src="Team/journal/img - member1/week9/1.21.png"><img
+                      src="Team/journal/img - member1/week9/1.22.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>22.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/1.22.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>23.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>17.</h4>Here's all the new 0402-sized resistors imported into the PCB. I tried to fit them
+                      in-between the current routing, but was unable to fit them.
                     </figcaption><img src="Team/journal/img - member1/week9/1.23.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>24.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>18.</h4>In order to fit everything, I decided to select all the other components and traces,
+                      and move them up slightly, to make room for the protection resistors.
                     </figcaption><img src="Team/journal/img - member1/week9/1.24.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>25.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>19.</h4>This also meant that some components and traces went past the top part of the DIMM. In
+                      particular, the USB connector's board edge annotation now goes past the top. It's really not easy
+                      to try to move this connector, since trying to move it down collides with power, flash, and the
+                      MCU below. The edge annotation goes past the end of the board almost exactly 1 mm.
                     </figcaption><img src="Team/journal/img - member1/week9/1.25.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>26.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>20.</h4>To resolve this issue, I decided to go and expand the edge cut of the board by 1 mm.
+                      The edge cut for the card PCB is a little weird; the edge cut is defined as a layer inside of our
+                      edge card connector footprint. So, to change this, I needed to go into the footprint editor for
+                      our edge connector, and used the positioning tools to move the edge cut line segment up exactly 1
+                      mm.
                     </figcaption><img src="Team/journal/img - member1/week9/1.26.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>27.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>21.</h4>Viewing the whole board now, with the edited edge card footprint, it looks like
+                      everything lines up.
                     </figcaption><img src="Team/journal/img - member1/week9/1.27.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>28.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>22.</h4>I then moved all the protection resistors in place, which now fit between the chips
+                      and the edge connector.
                     </figcaption><img src="Team/journal/img - member1/week9/1.28.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>29.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>23.</h4>I aligned the 0402 courtyards to be as close to each other as possible, such that they
+                      can fit in-between the power vias that straddle them.
                     </figcaption><img src="Team/journal/img - member1/week9/1.29.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>30.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>24.</h4>I then routed all the connections to the protection resistors, and the resistors to
+                      the edge card. This process was repeated for each resistor "block".
                     </figcaption><img src="Team/journal/img - member1/week9/1.30.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>31.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>25.</h4>Here's how it looks with everything all put together, all MCU GPIOs and expander I/Os
+                      wired in.
                     </figcaption><img src="Team/journal/img - member1/week9/1.31.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>32.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>26.</h4>Since the PCB is finally in good enough condition to get useful output out of DRC, I
+                      ran DRC, and got 233 errors, that I'll need to resolve. Most of these are unconnected tracks
+                      (mostly tiny artifacts that I can just delete) and minor clearance violations that I think I can
+                      jiggle my way out of.
                     </figcaption><img src="Team/journal/img - member1/week9/1.32.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>33.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>27.</h4>Removing the small unconnected traces, I'm left with 230 other DRC errors, which are
+                      mostly clearance violations. I will need to correct these later.
                     </figcaption><img src="Team/journal/img - member1/week9/1.33.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>34.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>28.</h4>Here's what the PCB looks like right now.
                     </figcaption><img src="Team/journal/img - member1/week9/1.34.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                There's still additional work left to do on the card. This includes cleaning up all those clearance
+                violations, adding connectors for UART debugging, and adding a protection diode for the LDO.
               </p>
             </div>
           </div>
@@ -6006,6 +6998,13 @@ contact course staff.
     })
     $grid.imagesLoaded().progress(function () {
       $grid.masonry('layout');
+    });
+    $(document).ready(function () {
+      $grid.find('details').each(function () {
+        this.addEventListener('toggle', function (e) {
+          $grid.masonry('layout');
+        }, false);
+      });
     });
   </script>
 </body>
