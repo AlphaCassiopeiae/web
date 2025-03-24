@@ -31,8 +31,8 @@ contact course staff.
 
   <!--Reconfigurable base tag; used to modify the site root location for root-relative links-->
   <!--<base href="https://engineering.purdue.edu/ece477/StudentWebTemplate/" />-->
-  <!-- <base href="https://engineering.purdue.edu/477grp15/" /> -->
-  <base href="../.." />
+  <base href="https://engineering.purdue.edu/477grp15/" />
+  <!-- <base href="../.." /> -->
   <!-- Replace the N with your team number-->
 
   <!--Content-->
@@ -161,7 +161,6 @@ contact course staff.
               </ul>
             </div>
           </div> -->
-        <h1 style="color: red;">!!! WEEK 9 IMPORT IN PROGRESS !!!</h1>
         <div class="week-content">
           <h2 id="sec-week9">=============== Week 9: =================</h2>
 
@@ -176,158 +175,157 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                There's two things that I want to get done before the week ends before Spring Break. Incorporating the
+                TA PCB design feedback, and reducing our JLCPCB order cost.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>1.</h4>Setsuna noted that we would prefereably have keep-out-zones for copper near the
+                      mounting holes on the front panel. I implemented this by drawing circle graphics on a user layer,
+                      and designating the circle as a keep-out for zone fills.
                     </figcaption><img src="Team/journal/img - member1/week9/9.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>2.</h4>For Setsuna's feedback on the oscillator keep-out I also did the same for regions of
+                      copper underneath the oscillators using a rectangle graphic.
                     </figcaption><img src="Team/journal/img - member1/week9/9.2.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>3.</h4>Examining the <a
+                        href="https://jlcpcb.com/capabilities/pcb-assembly-capabilities">JLCPCB listing of PCBA
+                        capabilities</a>, 4-layer boards must have green solder mask to be eligible for "Economic" vs
+                      "Standard" assembly, which reduces the order cost. I've decided to order the front panel with
+                      green solder mask, which is the only eligible board we have for Economic PCBA.
                     </figcaption><img src="Team/journal/img - member1/week9/9.3.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>4.</h4>Additionally, I realized that any part that is not in the JLCPCB "Basic" parts list
+                      incurs an addition $3 setup fee to the order cost. I decided to swap components in our design that
+                      were "Extended" over to components that were "Basic" to reduce the PCBA cost. The JLCPCB website
+                      contains a search tools that allows me to filter component categories by whether they are "Basic"
+                      or "Extended".
                     </figcaption><img src="Team/journal/img - member1/week9/9.4.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.5.png">
+                      <h4>5.</h4>The 68 Ohm resistors we're using for the status LEDs are an "Extended" part, with the
+                      closest value "Basic" part being a 49.9 Ohm resistor. We should be able to use these resistors
+                      with the LEDs.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.5.png"><img
+                      src="Team/journal/img - member1/week9/9.6.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.6.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>6.</h4>Using an <a href="https://ledcalculator.net/#p=3.3&v=2.2&c=20&n=1&o=w">LED
+                        calculator</a>,
+                      using a 49.9 Ohm resistor should fall within the LED's current rating.
                     </figcaption><img src="Team/journal/img - member1/week9/9.7.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.8.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.9.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.10.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.13.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>I then reassign all the LED resistors over to 49.9 Ohms each.
                     </figcaption><img src="Team/journal/img - member1/week9/9.14.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>8.</h4>27 Ohm resistors are also not part of the "Basic" parts catalog. I think this is
+                      because normally, the termination resistor value for an STM32 is 22 Ohm, but <a
+                        href="https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf">Section 5.1 of
+                        the Hardware design with RP2350 manual</a> notes that the RP2350B wants 27 Ohms for USB
+                      termination. I've elected to keep these resistors unpopulated, and to change their footprints to
+                      0603s with hand-solderable pads.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.8.png"><img
+                      src="Team/journal/img - member1/week9/9.10.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>9.</h4>The current choice of decoupling capacitor for the sink drivers (30 picofarad) aren't
+                      "Basic", so I've changed them to 100 nanofarad, the same ones used to decouple the VDD on the MCU.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.13.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>10.</h4>I've also changed the resistance on the heartbeat LED from 150 to 200 Ohms, which is a
+                      "Basic" part.
                     </figcaption><img src="Team/journal/img - member1/week9/9.15.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>11.</h4>There's only one "Basic" tactile button, the TS-1187A-B-A-B, which has a native
+                      footprint in KiCAD. I've changed the chip RESET and USB boot SMD tactile buttons to this part.
                     </figcaption><img src="Team/journal/img - member1/week9/9.16.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.17.png">
+                      <h4>12.</h4>This tactile button has a slightly larger footprint, so I was only able to fit one (1)
+                      of them between the spaces created by the slide switch through holes.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.17.png"><img
+                      src="Team/journal/img - member1/week9/9.18.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.18.png">
+                      <h4>13.</h4>The LSM115JE3/TR13 is an "Extended" part, and the highest-performing "Basic" Schottky
+                      diode for the voltages I want is the "SS34", so I've elected to use this part for LDO and ESD
+                      protection. The SS34 has a slightly smaller courtyard, so routing only needed minor adjustments.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.19.png"><img
+                      src="Team/journal/img - member1/week9/9.20.png"><img
+                      src="Team/journal/img - member1/week9/9.21.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.19.png">
+                      <h4>14.</h4>The "Basic" AMS1117 seems to be a "Drop-in" replacement for the NCP1117/LM1117 type of
+                      voltage regulator.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.22.png"><img
+                      src="Team/journal/img - member1/week9/9.23.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>18.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.20.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>19.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.21.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>20.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.22.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>21.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.23.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>22.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>15.</h4>The KiCAD footprint and symbol for all the "1117" parts seem to be identical, but I
+                      swapped in the new symbol anyway.
                     </figcaption><img src="Team/journal/img - member1/week9/9.24.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>23.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>16.</h4>The <a href="http://www.advanced-monolithic.com/pdf/ds1117.pdf">Datasheet for the
+                        AMS1117</a> recommends using 22uF capacitors on the Vout and Vin lines, as opposed to the 10uF
+                      we're currently using.
                     </figcaption><img src="Team/journal/img - member1/week9/9.25.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>24.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>17.</h4>The smallest size of "Basic" 22 uF capacitor is a 1206-sized part, which is much
+                      larger than the capacitors we're currently using.
                     </figcaption><img src="Team/journal/img - member1/week9/9.26.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>25.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.27.png">
+                      <h4>18.</h4>In order to fit these larger 1206-sized capacitors, I moved the SS34 diode a little
+                      farther away from the LDO to make room.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.27.png"><img
+                      src="Team/journal/img - member1/week9/9.28.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>26.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.28.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>27.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.29.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>38.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/9.30.png">
+                      <h4>19.</h4>Running this new slightly more cost-optimized design through JLCPCB, the total comes
+                      out to $123.79, which is a reduction from the $196.10 that was previously quoted. I think the cost
+                      reductions comes from the fact that we're using green silkscreen, using Economic instead of
+                      Standard PCBA, and use fewer "Extended" components.
+                    </figcaption><img src="Team/journal/img - member1/week9/9.29.png"><img
+                      src="Team/journal/img - member1/week9/9.30.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                These cost optimizations gives us a 34.86% cost reduction on the quote for the front panel PCBs. I'm
+                going to continue doing these cost optimizations to the card PCB (technically next week, since it's past
+                midnight from Fri-Sat).
               </p>
             </div>
           </div>
