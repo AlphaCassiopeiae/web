@@ -896,143 +896,1525 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                Good morning, I'm continuing off on the work I'm doing on the front panel PCB. I'm going to start off by
+                laying out the decoupling capacitors for the sink drivers.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>1.</h4>The U4 sink driver is packed pretty tightly around other signals and holes, so it's not
+                      easy trying to place down a decoupling capacitor. I've opted to created a filled zone beneath the
+                      component, with the capacitor on the other side of it.
                     </figcaption><img src="Team/journal/img - member1/week9/4.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>2.</h4>The GPIO signals from the MCU need to be packed in-between these through-holes created
+                      by the slide switch footprints, so I'm packing together as many signals as I can between the
+                      through-holes as I can before them.
                     </figcaption><img src="Team/journal/img - member1/week9/4.2.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/4.3.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>3.</h4>I think the best way to try to fit in protection resistors is to try to arrange them
+                      into blocks in the area between the switches. I think a staggered arrangement like this should
+                      work.
                     </figcaption><img src="Team/journal/img - member1/week9/4.4.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/4.5.png"><img src="Team/journal/img - member1/week9/4.6.png">
+                      <h4>4.</h4>During ManLab, it was noted that I should consider a different design for the
+                      arrangement of protection diodes, as shown, with protection across 3.3V and VBUS between the LDO
+                      and the rest of the net, instead of between Vout and Vin. I should look into this more later.
+                    </figcaption><img src="Team/journal/img - member1/week9/4.5.png"><img
+                      src="Team/journal/img - member1/week9/4.6.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>5.</h4>I continued trying this packed-in "resistor block" routing strategy for other sides of
+                      the chip.
                     </figcaption><img src="Team/journal/img - member1/week9/4.7.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>6.</h4>I wired in GPIOs 38 & 39 as the I2C bus that goes into both I/O expanders. One (1) I/O
+                      expander is configured to have a higher hardware address to the other by pulling one of its
+                      hardware address pins to 3.3V.
                     </figcaption><img src="Team/journal/img - member1/week9/4.8.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>I continued routing from the other side of the resistors, just up to the edge
+                      connector, like before. I'll reconfigure the pin functions (net names) on the MCU side later such
+                      that I can complete the route. The reason I'm doing it this way is because many of the pin
+                      functions on the FFC side are dictated by the sink drivers' connections to the status LEDs, which
+                      are fixed-function.
                     </figcaption><img src="Team/journal/img - member1/week9/4.9.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>8.</h4>Here's that initial routing being done for all the MCU connections.
                     </figcaption><img src="Team/journal/img - member1/week9/4.10.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/4.11.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>9.</h4>In order to complete the routes for all the components, I need to build out a
+                      remapping table for
+                      <ul>
+                        <li>all sink drivers (5 of them)</li>
+                        <li>all I/O expanders (2 of them)</li>
+                        <li>the FFC/RP2350B interface</li>
+                      </ul>
                     </figcaption><img src="Team/journal/img - member1/week9/4.12.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>10.</h4>For the sink drivers, I looked at the function of the LEDs that the driver was
+                      connected to, and reassigned the net of the pin to that function. Here's the remappings for the
+                      sink driver on the very left (flipped view).
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>6</td>
+                              <td>HLDA</td>
+                              <td>PROT</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>WAIT</td>
+                              <td>INTE</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>PROT</td>
+                              <td>WAIT</td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>INTE</td>
+                              <td>HLDA</td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>PROT_LED</td>
+                              <td>HLDA_LED</td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>INTE_LED</td>
+                              <td>WAIT_LED</td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td>WAIT_LED</td>
+                              <td>INTE_LED</td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td>HLDA_LED</td>
+                              <td>PROT_LED</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.13.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>11.</h4>Here's the remappings for the sink driver to the right of that one (flipped view).
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>2</td>
+                              <td>INT</td>
+                              <td>A12</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>WO</td>
+                              <td>A13</td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>STACK</td>
+                              <td>OUT</td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>HLTA</td>
+                              <td>M1</td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>OUT</td>
+                              <td>A14</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>M1</td>
+                              <td>MEMR</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>INP</td>
+                              <td>INP</td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>MEMR</td>
+                              <td>A15</td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>MEMR_LED</td>
+                              <td>A15_LED</td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>INP_LED</td>
+                              <td>INP_LED</td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td>M1_LED</td>
+                              <td>MEMR_LED</td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td>OUT_LED</td>
+                              <td>A14_LED</td>
+                            </tr>
+                            <tr>
+                              <td>16</td>
+                              <td>HLTA_LED</td>
+                              <td>M1_LED</td>
+                            </tr>
+                            <tr>
+                              <td>17</td>
+                              <td>STACK_LED</td>
+                              <td>OUT_LED</td>
+                            </tr>
+                            <tr>
+                              <td>18</td>
+                              <td>WO_LED</td>
+                              <td>A13_LED</td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td>INT_LED</td>
+                              <td>A12_LED</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.14.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>12.</h4>Here's the remappings for the sink driver in the middle of the others (3 out of 5).
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>2</td>
+                              <td>A8</td>
+                              <td>A8</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>A9</td>
+                              <td>A9</td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>A10</td>
+                              <td>INT</td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>A11</td>
+                              <td>A10</td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>A12</td>
+                              <td>WO</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>A13</td>
+                              <td>A11</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>A14</td>
+                              <td>STACK</td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>A15</td>
+                              <td>HLTA</td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>A15_LED</td>
+                              <td>HLTA_LED</td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>A14_LED</td>
+                              <td>STACK_LED</td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td>A13_LED</td>
+                              <td>A11_LED</td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td>A12_LED</td>
+                              <td>WO_LED</td>
+                            </tr>
+                            <tr>
+                              <td>16</td>
+                              <td>A11_LED</td>
+                              <td>A10_LED</td>
+                            </tr>
+                            <tr>
+                              <td>17</td>
+                              <td>A10_LED</td>
+                              <td>INT_LED</td>
+                            </tr>
+                            <tr>
+                              <td>18</td>
+                              <td>A9_LED</td>
+                              <td>A9_LED</td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td>A8_LED</td>
+                              <td>A8_LED</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.15.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>13.</h4>Here's the remappings for the sink driver on the left of the FFC connector (flipped
+                      view).
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>2</td>
+                              <td>D0</td>
+                              <td>A4</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>D1</td>
+                              <td>D4</td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>D2</td>
+                              <td>A5</td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>D3</td>
+                              <td>D5</td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>D4</td>
+                              <td>A7</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>D5</td>
+                              <td>A6</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>D6</td>
+                              <td>D6</td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>D7</td>
+                              <td>D7</td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>D7_LED</td>
+                              <td>D7_LED</td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>D6_LED</td>
+                              <td>D6_LED</td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td>D5_LED</td>
+                              <td>A6_LED</td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td>D4_LED</td>
+                              <td>A7_LED</td>
+                            </tr>
+                            <tr>
+                              <td>16</td>
+                              <td>D3_LED</td>
+                              <td>D5_LED</td>
+                            </tr>
+                            <tr>
+                              <td>17</td>
+                              <td>D2_LED</td>
+                              <td>A5_LED</td>
+                            </tr>
+                            <tr>
+                              <td>18</td>
+                              <td>D1_LED</td>
+                              <td>D4_LED</td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td>D0_LED</td>
+                              <td>A4_LED</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.16.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>14.</h4>And here's the remappings for the sink driver all the way on the right of the board
+                      (flipped view).
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>2</td>
+                              <td>A0</td>
+                              <td>D0</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>A1</td>
+                              <td>D1</td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>A2</td>
+                              <td>A1</td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>A3</td>
+                              <td>A0</td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>A4</td>
+                              <td>D2</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>A5</td>
+                              <td>A2</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>A6</td>
+                              <td>D3</td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>A7</td>
+                              <td>A3</td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>A7_LED</td>
+                              <td>A3_LED</td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>A6_LED</td>
+                              <td>D3_LED</td>
+                            </tr>
+                            <tr>
+                              <td>14</td>
+                              <td>A5_LED</td>
+                              <td>A2_LED</td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td>A4_LED</td>
+                              <td>D2_LED</td>
+                            </tr>
+                            <tr>
+                              <td>16</td>
+                              <td>A3_LED</td>
+                              <td>A0_LED</td>
+                            </tr>
+                            <tr>
+                              <td>17</td>
+                              <td>A2_LED</td>
+                              <td>A1_LED</td>
+                            </tr>
+                            <tr>
+                              <td>18</td>
+                              <td>A1_LED</td>
+                              <td>D1_LED</td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td>A0_LED</td>
+                              <td>D0_LED</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.17.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>18.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>15.</h4>For the I/O expanders, I'm doing something similar. The function of each of the
+                      buttons and switches is pre-defined, so I need to reassign the nets on the I/O expander according
+                      to whatever switch they're connected to. Here's the remappings for the I/O expander connected to
+                      the 16 slide switches.
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>A7_SW</td>
+                              <td>A7_SW</td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>A6_SW</td>
+                              <td>A6_SW</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>A5_SW</td>
+                              <td>A5_SW</td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>A4_SW</td>
+                              <td>A4_SW</td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>A3_SW</td>
+                              <td>A3_SW</td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>A2_SW</td>
+                              <td>A2_SW</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>A1_SW</td>
+                              <td>A1_SW</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>A0_SW</td>
+                              <td>A0_SW</td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>I2C1_SCK</td>
+                              <td>I2C1_SCK</td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>I2C1_SDA</td>
+                              <td>I2C1_SDA</td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td>NC</td>
+                              <td>NC</td>
+                            </tr>
+                            <tr>
+                              <td>20</td>
+                              <td>NC</td>
+                              <td>NC</td>
+                            </tr>
+                            <tr>
+                              <td>21</td>
+                              <td>AUX2</td>
+                              <td>A15_SW</td>
+                            </tr>
+                            <tr>
+                              <td>22</td>
+                              <td>AUX1</td>
+                              <td>A14_SW</td>
+                            </tr>
+                            <tr>
+                              <td>23</td>
+                              <td>UNPROTECT</td>
+                              <td>A13_SW</td>
+                            </tr>
+                            <tr>
+                              <td>24</td>
+                              <td>PROTECT</td>
+                              <td>A12_SW</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>CLR</td>
+                              <td>A11_SW</td>
+                            </tr>
+                            <tr>
+                              <td>26</td>
+                              <td>RESET</td>
+                              <td>A10_SW</td>
+                            </tr>
+                            <tr>
+                              <td>27</td>
+                              <td>NC</td>
+                              <td>A9_SW</td>
+                            </tr>
+                            <tr>
+                              <td>28</td>
+                              <td>NC</td>
+                              <td>A8_SW</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.18.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>19.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>16.</h4>And similarly, here's the table for the I/O expander assigned to all the tactile
+                      button switches.
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>A15_SW</td>
+                              <td>CLR</td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>A14_SW</td>
+                              <td>UNPROTECT</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>A13_SW</td>
+                              <td>AUX1</td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>A12_SW</td>
+                              <td>PROTECT</td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>A11_SW</td>
+                              <td>AUX2</td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>A10_SW</td>
+                              <td>NC</td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td>A9_SW</td>
+                              <td>NC</td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td>A8_SW</td>
+                              <td>NC</td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>I2C0_SCK</td>
+                              <td>I2C1_SCK</td>
+                            </tr>
+                            <tr>
+                              <td>13</td>
+                              <td>I2C0_SDA</td>
+                              <td>I2C1_SDA</td>
+                            </tr>
+                            <tr>
+                              <td>19</td>
+                              <td>NC</td>
+                              <td>PUSH_INTB</td>
+                            </tr>
+                            <tr>
+                              <td>20</td>
+                              <td>NC</td>
+                              <td>PUSH_INTA</td>
+                            </tr>
+                            <tr>
+                              <td>21</td>
+                              <td>DEPOSIT</td>
+                              <td>RUN</td>
+                            </tr>
+                            <tr>
+                              <td>22</td>
+                              <td>DEPOSIT_NEXT</td>
+                              <td>STOP</td>
+                            </tr>
+                            <tr>
+                              <td>23</td>
+                              <td>EXAMINE</td>
+                              <td>SINGLE</td>
+                            </tr>
+                            <tr>
+                              <td>24</td>
+                              <td>EXAMINE_NEXT</td>
+                              <td>EXAMINE_NEXT</td>
+                            </tr>
+                            <tr>
+                              <td>25</td>
+                              <td>STEP</td>
+                              <td>EXAMINE</td>
+                            </tr>
+                            <tr>
+                              <td>26</td>
+                              <td>SINGLE</td>
+                              <td>DEPOSIT_NEXT</td>
+                            </tr>
+                            <tr>
+                              <td>27</td>
+                              <td>RUN</td>
+                              <td>RESET</td>
+                            </tr>
+                            <tr>
+                              <td>28</td>
+                              <td>STOP</td>
+                              <td>DEPOSIT</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.19.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>20.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>17.</h4>For the table describing the FFC to MCU remappings, I first set up a table going
+                      through all the non-power pins on the FFC connector, and writing down their original net
+                      assignment.
+                      <details>
+                        <summary>Show "old mapping" table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>3</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>10</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>11</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>12</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>15</td>
+                              <td>???</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>16</td>
+                              <td>A0</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>17</td>
+                              <td>A1</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>18</td>
+                              <td>A2</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>21</td>
+                              <td>A3</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>22</td>
+                              <td>A4</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>23</td>
+                              <td>A5</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>24</td>
+                              <td>A6</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>27</td>
+                              <td>A7</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>28</td>
+                              <td>D0</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>29</td>
+                              <td>D1</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>30</td>
+                              <td>D2</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>33</td>
+                              <td>D3</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>34</td>
+                              <td>D4</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>35</td>
+                              <td>D5</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>36</td>
+                              <td>D6</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>44</td>
+                              <td>A8</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>45</td>
+                              <td>A9</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>46</td>
+                              <td>A10</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>47</td>
+                              <td>A11</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>50</td>
+                              <td>A12</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>51</td>
+                              <td>A13</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>52</td>
+                              <td>A14</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>53</td>
+                              <td>A15</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>56</td>
+                              <td>INT</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>57</td>
+                              <td>WO</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>58</td>
+                              <td>STACK</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>59</td>
+                              <td>HLTA</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>62</td>
+                              <td>OUT</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>63</td>
+                              <td>M1</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>64</td>
+                              <td>INP</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>65</td>
+                              <td>MEMR</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>68</td>
+                              <td>HLDA</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>69</td>
+                              <td>WAIT</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>70</td>
+                              <td>PROT</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>71</td>
+                              <td>INTE</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>74</td>
+                              <td>I2C1_SCK</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>75</td>
+                              <td>I2C1_SDA</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>76</td>
+                              <td>I2C0_SCK</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>77</td>
+                              <td>I2C0_SDA</td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.20.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>21.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>18.</h4>I then extended this table, by cross referencing where the sink driver signals lines
+                      met with the FFC connector, to set the new function of that FFC connector line. I then also
+                      assigned the MCU GPIO signals based on where it was located physically (closest) relative to the
+                      FFC line.
+                      <details>
+                        <summary>Show remapping table</summary>
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Pin</th>
+                              <th>Old</th>
+                              <th>New</th>
+                              <th>RP2350B</th>
+                              <th>Grp</th>
+                              <th>Con</th>
+                              <th>Driver</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>BUS03</td>
+                              <td>???</td>
+                              <td>A3</td>
+                              <td>44 GPIO35</td>
+                              <td>A</td>
+                              <td>A</td>
+                              <td>U5 9</td>
+                            </tr>
+                            <tr>
+                              <td>BUS04</td>
+                              <td>???</td>
+                              <td>D3</td>
+                              <td>43 GPIO34</td>
+                              <td>A</td>
+                              <td>A</td>
+                              <td>U5 8</td>
+                            </tr>
+                            <tr>
+                              <td>BUS05</td>
+                              <td>???</td>
+                              <td>A2</td>
+                              <td>42 GPIO33</td>
+                              <td>A</td>
+                              <td>A</td>
+                              <td>U5 7</td>
+                            </tr>
+                            <tr>
+                              <td>BUS06</td>
+                              <td>???</td>
+                              <td>D2</td>
+                              <td>40 GPIO32</td>
+                              <td>A</td>
+                              <td>A</td>
+                              <td>U5 6</td>
+                            </tr>
+                            <tr>
+                              <td>BUS09</td>
+                              <td>???</td>
+                              <td>A0</td>
+                              <td>39 GPIO31</td>
+                              <td>B</td>
+                              <td>A</td>
+                              <td>U5 5</td>
+                            </tr>
+                            <tr>
+                              <td>BUS10</td>
+                              <td>???</td>
+                              <td>A1</td>
+                              <td>52 GPIO41</td>
+                              <td>B</td>
+                              <td>B</td>
+                              <td>U5 4</td>
+                            </tr>
+                            <tr>
+                              <td>BUS11</td>
+                              <td>???</td>
+                              <td>D1</td>
+                              <td>38 GPIO30</td>
+                              <td>B</td>
+                              <td>C</td>
+                              <td>U5 3</td>
+                            </tr>
+                            <tr>
+                              <td>BUS12</td>
+                              <td>???</td>
+                              <td>D0</td>
+                              <td>49 GPIO40</td>
+                              <td>B</td>
+                              <td>D</td>
+                              <td>U5 2</td>
+                            </tr>
+                            <tr>
+                              <td>BUS15</td>
+                              <td>???</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS16</td>
+                              <td>A0</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS17</td>
+                              <td>A1</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS18</td>
+                              <td>A2</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS21</td>
+                              <td>A3</td>
+                              <td>PANEL</td>
+                              <td>37 GPIO29</td>
+                              <td>B</td>
+                              <td>E</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS22</td>
+                              <td>A4</td>
+                              <td>MWRT</td>
+                              <td>57 GPIO46</td>
+                              <td>B</td>
+                              <td>F</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS23</td>
+                              <td>A5</td>
+                              <td>DBIN</td>
+                              <td>58 GPIO47</td>
+                              <td>B</td>
+                              <td>F</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS24</td>
+                              <td>A6</td>
+                              <td>HOLD</td>
+                              <td>36 GPIO28</td>
+                              <td>B</td>
+                              <td>G</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS27</td>
+                              <td>A7</td>
+                              <td>RESET</td>
+                              <td>28 GPIO27</td>
+                              <td>B</td>
+                              <td>G</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS28</td>
+                              <td>D0</td>
+                              <td>PRDY</td>
+                              <td>27 GPIO26</td>
+                              <td>B</td>
+                              <td>G</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS29</td>
+                              <td>D1</td>
+                              <td>XRDY</td>
+                              <td>26 GPIO25</td>
+                              <td>B</td>
+                              <td>G</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS30</td>
+                              <td>D2</td>
+                              <td>INTA</td>
+                              <td>25 GPIO24</td>
+                              <td>B</td>
+                              <td>G</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>BUS33</td>
+                              <td>D3</td>
+                              <td>D7</td>
+                              <td>16 GPIO16</td>
+                              <td>C</td>
+                              <td>H</td>
+                              <td>U4 9</td>
+                            </tr>
+                            <tr>
+                              <td>BUS34</td>
+                              <td>D4</td>
+                              <td>D6</td>
+                              <td>17 GPIO17</td>
+                              <td>C</td>
+                              <td>H</td>
+                              <td>U4 8</td>
+                            </tr>
+                            <tr>
+                              <td>BUS35</td>
+                              <td>D5</td>
+                              <td>A6</td>
+                              <td>18 GPIO18</td>
+                              <td>C</td>
+                              <td>I</td>
+                              <td>U4 7</td>
+                            </tr>
+                            <tr>
+                              <td>BUS36</td>
+                              <td>D6</td>
+                              <td>A7</td>
+                              <td>19 GPIO19</td>
+                              <td>C</td>
+                              <td>I</td>
+                              <td>U4 6</td>
+                            </tr>
+                            <tr>
+                              <td>BUS44</td>
+                              <td>A8</td>
+                              <td>D5</td>
+                              <td>20 GPIO20</td>
+                              <td>C</td>
+                              <td>I</td>
+                              <td>U4 5</td>
+                            </tr>
+                            <tr>
+                              <td>BUS45</td>
+                              <td>A9</td>
+                              <td>A5</td>
+                              <td>22 GPIO22</td>
+                              <td>C</td>
+                              <td>J</td>
+                              <td>U4 4</td>
+                            </tr>
+                            <tr>
+                              <td>BUS46</td>
+                              <td>A10</td>
+                              <td>D4</td>
+                              <td>21 GPIO21</td>
+                              <td>C</td>
+                              <td>J</td>
+                              <td>U4 3</td>
+                            </tr>
+                            <tr>
+                              <td>BUS47</td>
+                              <td>A11</td>
+                              <td>A4</td>
+                              <td>23 GPIO23</td>
+                              <td>C</td>
+                              <td>K</td>
+                              <td>U4 2</td>
+                            </tr>
+                            <tr>
+                              <td>BUS50</td>
+                              <td>A12</td>
+                              <td>PROT</td>
+                              <td>53 GPIO42</td>
+                              <td>C</td>
+                              <td>L</td>
+                              <td>U1 6</td>
+                            </tr>
+                            <tr>
+                              <td>BUS51</td>
+                              <td>A13</td>
+                              <td>INTE</td>
+                              <td>54 GPIO43</td>
+                              <td>C</td>
+                              <td>L</td>
+                              <td>U1 7</td>
+                            </tr>
+                            <tr>
+                              <td>BUS52</td>
+                              <td>A14</td>
+                              <td>WAIT</td>
+                              <td>55 GPIO44</td>
+                              <td>C</td>
+                              <td>L</td>
+                              <td>U1 8</td>
+                            </tr>
+                            <tr>
+                              <td>BUS53</td>
+                              <td>A15</td>
+                              <td>HLDA</td>
+                              <td>56 GPIO45</td>
+                              <td>C</td>
+                              <td>L</td>
+                              <td>U1 9</td>
+                            </tr>
+                            <tr>
+                              <td>BUS56</td>
+                              <td>INT</td>
+                              <td>A12</td>
+                              <td>79 GPIO02</td>
+                              <td>C</td>
+                              <td>M</td>
+                              <td>U2 2</td>
+                            </tr>
+                            <tr>
+                              <td>BUS57</td>
+                              <td>WO</td>
+                              <td>A13</td>
+                              <td>80 GPIO03</td>
+                              <td>C</td>
+                              <td>M</td>
+                              <td>U2 3</td>
+                            </tr>
+                            <tr>
+                              <td>BUS58</td>
+                              <td>STACK</td>
+                              <td>OUT</td>
+                              <td>78 GPIO01</td>
+                              <td>C</td>
+                              <td>N</td>
+                              <td>U2 4</td>
+                            </tr>
+                            <tr>
+                              <td>BUS59</td>
+                              <td>HLTA</td>
+                              <td>M1</td>
+                              <td>77 GPIO00</td>
+                              <td>C</td>
+                              <td>N</td>
+                              <td>U2 5</td>
+                            </tr>
+                            <tr>
+                              <td>BUS62</td>
+                              <td>OUT</td>
+                              <td>A14</td>
+                              <td>1 GPIO04</td>
+                              <td>D</td>
+                              <td>O</td>
+                              <td>U2 6</td>
+                            </tr>
+                            <tr>
+                              <td>BUS63</td>
+                              <td>M1</td>
+                              <td>MEMR</td>
+                              <td>2 GPIO05</td>
+                              <td>D</td>
+                              <td>O</td>
+                              <td>U2 7</td>
+                            </tr>
+                            <tr>
+                              <td>BUS64</td>
+                              <td>INP</td>
+                              <td>INP</td>
+                              <td>3 GPIO06</td>
+                              <td>D</td>
+                              <td>O</td>
+                              <td>U2 8</td>
+                            </tr>
+                            <tr>
+                              <td>BUS65</td>
+                              <td>MEMR</td>
+                              <td>A15</td>
+                              <td>4 GPIO07</td>
+                              <td>D</td>
+                              <td>O</td>
+                              <td>U2 9</td>
+                            </tr>
+                            <tr>
+                              <td>BUS68</td>
+                              <td>HLDA</td>
+                              <td>HLTA</td>
+                              <td>6 GPIO08</td>
+                              <td>D</td>
+                              <td>O</td>
+                              <td>U3 9</td>
+                            </tr>
+                            <tr>
+                              <td>BUS69</td>
+                              <td>WAIT</td>
+                              <td>STACK</td>
+                              <td>7 GPIO09</td>
+                              <td>D</td>
+                              <td>O</td>
+                              <td>U3 8</td>
+                            </tr>
+                            <tr>
+                              <td>BUS70</td>
+                              <td>PROT</td>
+                              <td>A11</td>
+                              <td>8 GPIO10</td>
+                              <td>D</td>
+                              <td>O</td>
+                              <td>U3 7</td>
+                            </tr>
+                            <tr>
+                              <td>BUS71</td>
+                              <td>INTE</td>
+                              <td>WO</td>
+                              <td>9 GPIO12</td>
+                              <td>D</td>
+                              <td>P</td>
+                              <td>U3 6</td>
+                            </tr>
+                            <tr>
+                              <td>BUS74</td>
+                              <td>I2C1_SCK</td>
+                              <td>A10</td>
+                              <td>11 GPIO11</td>
+                              <td>D</td>
+                              <td>P</td>
+                              <td>U3 5</td>
+                            </tr>
+                            <tr>
+                              <td>BUS75</td>
+                              <td>I2C1_SDA</td>
+                              <td>INT</td>
+                              <td>12 GPIO13</td>
+                              <td>D</td>
+                              <td>Q</td>
+                              <td>U3 4</td>
+                            </tr>
+                            <tr>
+                              <td>BUS76</td>
+                              <td>I2C0_SCK</td>
+                              <td>A9</td>
+                              <td>13 GPIO14</td>
+                              <td>D</td>
+                              <td>Q</td>
+                              <td>U3 3</td>
+                            </tr>
+                            <tr>
+                              <td>BUS77</td>
+                              <td>I2C0_SDA</td>
+                              <td>A8</td>
+                              <td>14 GPIO15</td>
+                              <td>D</td>
+                              <td>Q</td>
+                              <td>U3 2</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </details>
                     </figcaption><img src="Team/journal/img - member1/week9/4.21.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>22.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/4.22.png">
+                      <h4>19.</h4>I then adjusted the schematics to match the remapping tables I created.
+                    </figcaption><img src="Team/journal/img - member1/week9/4.22.png"><img
+                      src="Team/journal/img - member1/week9/4.23.png"><img
+                      src="Team/journal/img - member1/week9/4.24.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>23.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/4.23.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>24.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/4.24.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>25.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>20.</h4>The signals near the sink drivers and I/O expanders are now fully routable, so I went
+                      ahead and completed the routing of all of those traces.
                     </figcaption><img src="Team/journal/img - member1/week9/4.25.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>26.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>21.</h4>It seems that I may have messed something up in the MCU-FFC connection however, I'll
+                      need to take a look at this later.
                     </figcaption><img src="Team/journal/img - member1/week9/4.26.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I made some more progress today with routing the front panel today. I think that once I get the mappings
+                fixed between the FFC connector and the MCU, most of the final routing should fall into place. I'm going
+                to take a dinner break before coming back into lab to finish that.
               </p>
             </div>
           </div>
