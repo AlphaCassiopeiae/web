@@ -455,198 +455,185 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I'm going to work on the silkscreen for the front panel now. It's important that the silscreen of the
+                front panel looks good, since it's going to be directly facing and interacting with end-users.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>1.</h4>I noticed that the reference designator silkscreen for many resistors was not showing,
+                      so I went into Edit > Edit Text and Graphic Properties of the KiCAD PCBNew editor, and set all
+                      Reference designators to be visible.
                     </figcaption><img src="Team/journal/img - member1/week9/7.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.2.png">
+                      <h4>2.</h4>I then sent all the existing silkscreen that was on the front silkscreen layer to the
+                      back, by selecting all text on the front silkscreen layer, setting the layer to the back
+                      silkscreen, and enabling the "Mirror" option.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.2.png"><img
+                      src="Team/journal/img - member1/week9/7.3.png"><img
+                      src="Team/journal/img - member1/week9/7.4.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.3.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.4.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>3.</h4>I then moved the silkscreen elements on the back of the PCB around so that they do not
+                      overlap with each other or with pads.
                     </figcaption><img src="Team/journal/img - member1/week9/7.5.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>4.</h4>To create the more aesthetic silkscreen visible to the end-user, I'm making reference
+                      to the silkscreen present on the front-panel of the original Altair 8800, using <a
+                        href="https://commons.wikimedia.org/wiki/File:MITS_Altair_8800_Front_Panel.jpg">this image on
+                        WikiMedia Commons</a>.
                     </figcaption><img src="Team/journal/img - member1/week9/7.6.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>5.</h4>I moved the tactile switches down slightly to make a bit of room for the front
+                      silkscreen intended for the slide switches.
                     </figcaption><img src="Team/journal/img - member1/week9/7.7.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.8.png">
+                      <h4>6.</h4>I then added line and text elements to the front silkscreen layer, matching up with the
+                      design of the 8800 as best as I could. For the dotted lines, I selected the "dotted" option on the
+                      line properties.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.8.png"><img
+                      src="Team/journal/img - member1/week9/7.9.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.9.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>I then took the silkscreen design that I made in <a href="#sec-week1">Week 1</a> Entry
+                      1, and pasted it into a new Affinity Designer project sized to the space I had available for a
+                      negative silkscreen (87.3 mm x 27.4 mm). I exported this file from Affinity Designer to an SVG
+                      file.
                     </figcaption><img src="Team/journal/img - member1/week9/7.10.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>8.</h4>I then imported the SVG file into inkscape, realigned the text to make way for the
+                      hole on the right, and the tactile buttons to the left, and exported the file again over to a DxF
+                      file.
                     </figcaption><img src="Team/journal/img - member1/week9/7.11.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.12.png">
+                      <h4>9.</h4>I then imported the DXF file as graphics into KiCAD, using the new geometry as a
+                      "Keep-out Zone" for a front silkscreen zone fill, so that the geometry acts as a negative.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.12.png"><img
+                      src="Team/journal/img - member1/week9/7.13.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.13.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>10.</h4>I increased the font size of as many text elements as I could on the front panel in
+                      order to increase readability.
                     </figcaption><img src="Team/journal/img - member1/week9/7.14.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.15.png">
+                      <h4>11.</h4>Reading an <a
+                        href="https://electronics.stackexchange.com/questions/248174/drive-voltage-regulator-vout-when-vin-is-floating">Electronics
+                        StackExchange post</a>, I feel like my usage of a diode across Vout and Vin, is OK. I decided to
+                      choose a specific part, the LSM115JE3/TR13 (<a
+                        href="https://www.digikey.com/en/products/detail/microchip-technology/LSM115JE3-TR13/1634473">DigiKey</a>),
+                      a very low forward-voltage drop Schottky diode, which should minimize the difference between Vout
+                      and Vin when Vout is higher than Vin. I imported the footprint for this component, and added a
+                      cathode marker to the silkscreen on the footprint.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.15.png"><img
+                      src="Team/journal/img - member1/week9/7.16.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.16.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>12.</h4>I then set up the 3D model path for the footprint to refer to the instance in our
+                      shared library.
                     </figcaption><img src="Team/journal/img - member1/week9/7.17.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>18.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>13.</h4>I decide to also use this diode for the ESD protection on the I/O expansion, and then
+                      place and route the connections for the LDO, the diodes, and the capacitors for the LDO.
                     </figcaption><img src="Team/journal/img - member1/week9/7.18.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>19.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.19.png">
+                      <h4>14.</h4>I then finish adding and routing the LED resistors, placing a via to tap into the 3.3V
+                      power plane.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.19.png"><img
+                      src="Team/journal/img - member1/week9/7.20.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>20.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.20.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>21.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>15.</h4>The front panel PCB is now fully routed.
                     </figcaption><img src="Team/journal/img - member1/week9/7.21.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>22.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>16.</h4>With the board fully routed, I ran the DRC, and got 50 DRC errors. All of these errors
+                      are related to tiny track artifacts, and some decoupling capacitors being rotated 180 degrees.
                     </figcaption><img src="Team/journal/img - member1/week9/7.22.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>23.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>17.</h4>Deleting the track artifacts, and rotating some of the decoupling capacitors (related
+                      to the fact that most of the tracks near the MCU were pasted in), we're left with 0 DRC errors.
                     </figcaption><img src="Team/journal/img - member1/week9/7.23.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>24.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>18.</h4>And after resizing the rear silkscreen text on the slide switches, we have 0 DRC
+                      warnings.
                     </figcaption><img src="Team/journal/img - member1/week9/7.24.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>25.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.25.png">
+                      <h4>19.</h4>Here's what the front panel looks like right now. We're pretty much done with the
+                      front panel I think.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.25.png"><img
+                      src="Team/journal/img - member1/week9/7.26.png"><img
+                      src="Team/journal/img - member1/week9/7.27.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>26.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.26.png">
+                      <h4>20.</h4>On the card PCB, I changed out the vertical JST XH connectors to 90 degree variants,
+                      so that it would be easier to attach cables into onto the cards when slotted into the enclosure.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.28.png"><img
+                      src="Team/journal/img - member1/week9/7.29.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>27.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.27.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>28.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.28.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>29.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.29.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>30.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>21.</h4>I then added a second UART port (1 for debug, 1 for communication) to the schematic,
+                      and also set that to a JST XH connector.
                     </figcaption><img src="Team/journal/img - member1/week9/7.30.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>31.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.31.png">
+                      <h4>22.</h4>I then inserted the same Schottky protection diode that we had on the front panel into
+                      the card PCB, and rearranged the LDO section of the board to fit the new diode footprint.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.31.png"><img
+                      src="Team/journal/img - member1/week9/7.32.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>32.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.32.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>33.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>23.</h4>With these changes, the card DRC still fully passes.
                     </figcaption><img src="Team/journal/img - member1/week9/7.33.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>34.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.34.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>35.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.35.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>36.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/7.36.png">
+                      <h4>24.</h4>Here's what the card looks like right now.
+                    </figcaption><img src="Team/journal/img - member1/week9/7.34.png"><img
+                      src="Team/journal/img - member1/week9/7.35.png"><img
+                      src="Team/journal/img - member1/week9/7.36.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                The PCB designs for the card and front panel are pretty much finalized. Next time I'll need to go
+                through the final course PCB checklist, and run/check through any other issue I can think of.
               </p>
             </div>
           </div>
