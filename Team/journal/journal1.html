@@ -1415,213 +1415,173 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I'm continuing on from yesterday with the card PCB. First thing I want to get through are all of those
+                DRC errors (230) that are remaining.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.1.png">
+                      <h4>1.</h4>A significant number of errors came from the fact that I did not route the 3.3V
+                      connections on the back side of the PCB. I went ahead and did this, which resulted in the board
+                      having 0 unrouted nets. This decreased the number of DRC errors from 230 to 192.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.1.png"><img
+                      src="Team/journal/img - member1/week9/2.2.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.2.png">
+                      <h4>2.</h4>Another significant source of DRC errors was the fact that the spacing between pads on
+                      the RP2350B's QFN package was 0.18mm, which was lower than the 0.20mm clearance defined in our
+                      board constraints. JLCPCB should be fine with manufacturing these QFN packages, so I entered the
+                      footprint properties by hitting "E" on the RP2350B footprint, went into the "Clearance Overrides
+                      and Settings" tab, and set the "Pad clearance" to 0.18mm. This decreased the number of DRC errors
+                      from 192 to 118.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.3.png"><img
+                      src="Team/journal/img - member1/week9/2.6.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.3.png">
+                      <h4>3.</h4>Nearly all of our warnings are silkscreen overlap warnings coming from the resistor
+                      blocks. I'm moving them out the way, spreading them out, since the silkscreen is slightly larger
+                      than the 0402 footprint courtyard.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.7.png"><img
+                      src="Team/journal/img - member1/week9/2.8.png"><img
+                      src="Team/journal/img - member1/week9/2.9.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.4.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.5.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.6.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.7.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.8.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.9.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>4.</h4>One of our DRC errors notes that the maskless part of the DIMM in the middle is
+                      bridging nets, which makes sense. That part of the DIMM is actually supposed to be completely bare
+                      FR4.
                     </figcaption><img src="Team/journal/img - member1/week9/2.10.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>5.</h4>To rectify this issue, I moved the boundaries of all of our copper zone pours for all 4
+                      layers up and above the courtyard of the edge connector.
                     </figcaption><img src="Team/journal/img - member1/week9/2.11.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>6.</h4>Because the GND pour no longer reaches all the way to the bottom of the board, I need
+                      to route the GND power manually. I'm also adding GND power vias here while I'm at it.
                     </figcaption><img src="Team/journal/img - member1/week9/2.12.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>There's 58 DRC errors remaining, all of which are related to the edge cut clearance on
+                      the DIMM connector pads, and the alignment hole edge clearance on the USB connector. Since there's
+                      nothing really I can change about these; they need to be drawn this way to support the interface,
+                      I'm ignoring these DRC errors.
                     </figcaption><img src="Team/journal/img - member1/week9/2.13.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.14.png">
+                      <h4>8.</h4>Here's the current state of the board. Looks like things are coming together.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.14.png"><img
+                      src="Team/journal/img - member1/week9/2.15.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.15.png">
+                      <h4>9.</h4>According to <a
+                        href="https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf">section
+                        (1.2.3) of the RP2350B datasheet</a>, GPIO pins 44 and 45 correspond to UART0 TX and RX
+                      respectively. I marked this functionality with another label on the schematic.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.17.png"><img
+                      src="Team/journal/img - member1/week9/2.18.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.16.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.17.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>18.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.18.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>19.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>10.</h4>To support print-debugging, we need a UART connector in addition to the SWD connector,
+                      so I've also added another JST XH connector to the schematic on the UART0 pins.
                     </figcaption><img src="Team/journal/img - member1/week9/2.19.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>20.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.20.png">
+                      <h4>11.</h4>Referring to the <a href="https://www.onsemi.com/pdf/datasheet/ncp1117-d.pdf">NCP1117
+                        datasheet</a>, if we really want reverse current protection on the LDO, we can add a diode
+                      between Vout and Vin of the LDO. I've decided to add a Schottky diode in my schematic in the same
+                      manner.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.20.png"><img
+                      src="Team/journal/img - member1/week9/2.22.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>21.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>12.</h4>I noticed that in certain locations, my power vias for 3.3V are currenty located
+                      in-between the MCU and the capacitor, which isn't ideal. I will need to move these vias over to
+                      the other side of the capacitors later.
                     </figcaption><img src="Team/journal/img - member1/week9/2.21.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>22.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.22.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>23.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.23.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>24.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>13.</h4>I imported and laid out the protection diode for the LDO on the PCB.
                     </figcaption><img src="Team/journal/img - member1/week9/2.24.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>25.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>14.</h4>I imported and routed the JST XH connector for the UART0 port on the PCB.
                     </figcaption><img src="Team/journal/img - member1/week9/2.25.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>26.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.26.png">
+                      <h4>15.</h4>Here's the current status of the PCB and the schematic. I think we're very very close
+                      the final layout now.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.26.png"><img
+                      src="Team/journal/img - member1/week9/2.27.png"><img
+                      src="Team/journal/img - member1/week9/2.28.png"><img
+                      src="Team/journal/img - member1/week9/2.29.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>27.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.27.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>28.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.28.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>29.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.29.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>30.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>16.</h4>I'm currently working on fixing up the via locations for the decoupling capacitors.
+                      For this IOVDD (pin 29 on the QFN package), it's a bit difficult to make a clean trace to the
+                      vias, so instead I've created a really small zone to fill the area containing the pads and the
+                      vias.
                     </figcaption><img src="Team/journal/img - member1/week9/2.30.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>31.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.31.png">
+                      <h4>17.</h4>In other locations, the solution is pretty simple: move the vias over to the other
+                      side of the capacitor's pad, and route.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.31.png"><img
+                      src="Team/journal/img - member1/week9/2.32.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>32.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.32.png">
+                      <h4>18.</h4>The decoupling capacitor for the QSPI flash wasn't routed correctly (it was placed
+                      near the MCU and not the flash). It's currently rotated at a 45 degree angle, but I can make it
+                      aligned to the normal grid again, just like the flash itself. I placed and routed this capacitor.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.33.png"><img
+                      src="Team/journal/img - member1/week9/2.34.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>33.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.33.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>34.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.34.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>35.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>19.</h4>The GND pad on the LDO only had one (1) thermal relief spoke going into the ground
+                      plane, which I felt wasn't enough, so I added a thick trace to explicitly create a second spoke.
                     </figcaption><img src="Team/journal/img - member1/week9/2.35.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>36.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>20.</h4>I then added a couple power vias near the GND pad to tap in to the inner GND plane.
                     </figcaption><img src="Team/journal/img - member1/week9/2.36.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>37.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.37.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>38.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.38.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>39.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/2.39.png">
+                      <h4>21.</h4>Here's what the board looks like now with the fixed-up routing, and new connectors and
+                      diodes.
+                    </figcaption><img src="Team/journal/img - member1/week9/2.37.png"><img
+                      src="Team/journal/img - member1/week9/2.38.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I think this is close to the final layout we want for the card. There's still a couple more things that
+                I'd like to do, such as add a second JST XH connector for a second UART port (such that we have one (1)
+                UART for debugging, and another for communication for use in our stretch PSDR), and validation that my
+                footprint choices map to real parts (in particular, I haven't chosen a specific Schottky diode yet, so I
+                don't know whether the 0402 footprint I chose for the diode is correct).
               </p>
             </div>
           </div>
