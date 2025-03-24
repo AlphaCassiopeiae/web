@@ -662,113 +662,108 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                Because a right-angle USB connector doesn't work for the front-panel use-case, I've decided to use the
+                GCT USB4235-03-C (<a
+                  href="https://www.digikey.com/en/products/detail/gct/USB4235-03-C/25577698">DigiKey</a>) on the front
+                panel, which is a vertical variant of the GCT USB4105-GF-A connector we're already using on the card and
+                backplane PCBs.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>1.</h4>GCT USB4235-03-C is a relatively new part, and DigiKey doesn't have the ECAD models for
+                      it indexed yet. Heading over to the <a href="https://gct.co/connector/usb4235">GCT listing for the
+                        part</a>, there's a link to "Download PCB Model", which redirects me to the <a
+                        href="https://www.snapeda.com/parts/USB4235-03-C/Global%20Connector%20Technology/view-part/?ref=search&t=USB4235-03-C">SnapMagic
+                        entry for the part</a>.
                     </figcaption><img src="Team/journal/img - member1/week9/6.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.2.png">
+                      <h4>2.</h4>I then downloaded the KiCAD v6 version of the ECAD file from SnapMagic, imported the
+                      symbol and footprint, and configured the footprint to load the 3D model correctly from our shared
+                      footprint library.
+                    </figcaption><img src="Team/journal/img - member1/week9/6.2.png"><img
+                      src="Team/journal/img - member1/week9/6.3.png"><img
+                      src="Team/journal/img - member1/week9/6.4.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.3.png">
+                      <h4>3.</h4>I then replaced the USB4105-GF-A symbol with the USB4235-03-C symbol in the schematic,
+                      and edited the instance of the USB4235-03-C symbol to rearrange the pins to be in a similar layout
+                      as the old schematic.
+                    </figcaption><img src="Team/journal/img - member1/week9/6.5.png"><img
+                      src="Team/journal/img - member1/week9/6.6.png"><img
+                      src="Team/journal/img - member1/week9/6.7.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.4.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.5.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.6.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.7.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>4.</h4>I then connected the new symbol up in the same manner as the old one; pulling down the
+                      CC lines using 5.1 kiloOhm resistors, and wiring in the paired D+ and D- signals.
                     </figcaption><img src="Team/journal/img - member1/week9/6.8.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>5.</h4>Here's what the new receptacle looks like in 3D.
                     </figcaption><img src="Team/journal/img - member1/week9/6.9.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>6.</h4>In order to make possibly routing signals onto the front of the board easier, I
+                      modified this section of traces that loops around the oscillator to be on the back copper as much
+                      as possible, as opposed to the interweaved layout they had previously.
                     </figcaption><img src="Team/journal/img - member1/week9/6.10.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>7.</h4>I then placed the USB connector on the side of the MCU where the USB signals are, and
+                      routed large 0.500mm traces up to the termination resistors.
                     </figcaption><img src="Team/journal/img - member1/week9/6.11.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>8.</h4>VBUS is another large signal, and I felt that I could route it within the 3.3V power
+                      plane for a short distance. I also set up a small rectangular zone to make routing the VBUS power
+                      easier in the connector area.
                     </figcaption><img src="Team/journal/img - member1/week9/6.12.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>9.</h4>There wasn't a USB BOOT signal in the panel schematic yet, so I went and added that,
+                      copied over from the card schematic.
                     </figcaption><img src="Team/journal/img - member1/week9/6.13.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>10.</h4>I then laid out and routed the chip RESET and USB BOOT SMD buttons.
                     </figcaption><img src="Team/journal/img - member1/week9/6.14.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.15.png">
+                      <h4>11.</h4>I wanted a 3D model of the QFN I/O expanders, so I referenced the <a
+                        href="https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf">MCP23017
+                        data sheet</a> to get the relevant package dimensions, and determined that the closest KiCAD 3D
+                      Library model to the part was
+                      <code>${KICAD8_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/QFN-28-1EP_6x6mm_P0.65mm_EP4.25x4.25mm.step</code>.
+                      Setting this in the footprint properties, the I/O expanders now display with 3D models.
+                    </figcaption><img src="Team/journal/img - member1/week9/6.15.png"><img
+                      src="Team/journal/img - member1/week9/6.16.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.16.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.17.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>18.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.18.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>19.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/6.19.png">
+                      <h4>12.</h4>Here's the current state of the front panel board.
+                    </figcaption><img src="Team/journal/img - member1/week9/6.17.png"><img
+                      src="Team/journal/img - member1/week9/6.18.png"><img
+                      src="Team/journal/img - member1/week9/6.19.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                I think we're very very close to a final layout and route of the front panel board. I need to work on
+                the silkscreen for the front panel later.
               </p>
             </div>
           </div>
@@ -869,7 +864,8 @@ contact course staff.
               <p>
                 I'm really really tired right now, so I'm going to take a much longer break, but when I get back, I'm
                 going to clean up all the other stuff I need to get done on the front panel, such as the USB connector,
-                USB power, SWD, etc.
+                USB power (LDO), SWD, protection diodes, USB BOOT and chip RESET switchse, and designing the front layer
+                silkscreen pattern.
               </p>
             </div>
           </div>
