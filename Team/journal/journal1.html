@@ -343,103 +343,76 @@ contact course staff.
           <div class="entry-content">
             <div class="section">
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                These PCB designs seem like they're near ready to manufacture. There's a bunch of checks I need to
+                perform before sending them in to the course staff, however.
               </p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>1.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.1.png">
+                      <h4>1.</h4>One of the checklist items was to ensure that the team names and revision number/date
+                      were visible on the PCB. We didn't have this on all of the boards, so I made sure that they were
+                      all conformant by adding them.
+                    </figcaption><img src="Team/journal/img - member1/week9/8.1.png"><img
+                      src="Team/journal/img - member1/week9/8.2.png"><img
+                      src="Team/journal/img - member1/week9/8.3.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>2.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.2.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>3.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.3.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>4.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
+                      <h4>2.</h4>Because of the way that our PCBs need to work mechanically together in a pretty tight
+                      form factor, I decided to validate our mechanical assumptions using <a
+                        href="https://www.kicad.org/external-tools/stepup/">KiCAD StepUp</a>, which allowed me to import
+                      my KiCAD boards into FreeCAD.
                     </figcaption><img src="Team/journal/img - member1/week9/8.4.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>5.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.5.png">
+                      <h4>3.</h4>I then imported the 3D STEP model from <a
+                        href="https://www.hammfg.com/electronics/small-case/extruded/1455">Hammond of the 1455T2202</a>
+                      and moved all the boards into place in a FreeCAD assembly. The edge cut on the backplane seems to
+                      look good, giving enough space for the components on the rear of the front panel. The alignment of
+                      the right-angle power switch on the backplane to the hole cut-out on the front panel also looks
+                      good. The card PCB seems to sit well on the DIMM slot, with enough room to spare for the second
+                      UART part rotate 90 degrees to face the back.
+                    </figcaption><img src="Team/journal/img - member1/week9/8.5.png"><img
+                      src="Team/journal/img - member1/week9/8.6.png"><img
+                      src="Team/journal/img - member1/week9/8.7.png"><img
+                      src="Team/journal/img - member1/week9/8.8.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>6.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.6.png">
+                      <h4>4.</h4>Because I verified in 3D that I had enough room to do so, I went back into KiCAD and
+                      modified the second UART port to be rotated 90 degrees. This should enable easier access to that
+                      port event when the enclosure cover is closed.
+                    </figcaption><img src="Team/journal/img - member1/week9/8.10.png"><img
+                      src="Team/journal/img - member1/week9/8.11.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>7.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.7.png">
+                      <h4>5.</h4>I generated Gerber archives using the <a
+                        href="https://github.com/bennymeg/Fabrication-Toolkit">JLCPCB Fabrication Toolkit</a> plug-in
+                      for KiCAD, and viewed them all in the <a href="https://gerbv.github.io/">gerbv</a> gerber viewer.
+                      All the gerber layers seemed to match what I expected.
+                    </figcaption><img src="Team/journal/img - member1/week9/8.12.png"><img
+                      src="Team/journal/img - member1/week9/8.13.png"><img
+                      src="Team/journal/img - member1/week9/8.14.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
-                      <h4>8.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.8.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>9.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.9.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>10.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.10.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>11.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.11.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>12.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.12.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>13.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.13.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>14.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.14.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>15.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.34.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>16.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.35.png">
-                  </figure>
-                  <figure class="grid-item">
-                    <figcaption>
-                      <h4>17.</h4>TYPESETTING PLACEHOLDER PLEASE IGNORE TYPESETTING PLACEHOLDER PLEASE IGNORE
-                    </figcaption><img src="Team/journal/img - member1/week9/8.36.png">
+                      <h4>6.</h4>I then went to the JLCPCB website to set up a quote for the PCBs, taking care to add
+                      the BOM and position (CPL) files for the front panel and card, because of out usage of the
+                      RP2350B.
+                    </figcaption><img src="Team/journal/img - member1/week9/8.34.png"><img
+                      src="Team/journal/img - member1/week9/8.35.png"><img
+                      src="Team/journal/img - member1/week9/8.36.png">
                   </figure>
                 </div>
               </div>
 
               <p>
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
-                TYPESETTING PLACEHOLDER PLEASE IGNORE
+                The total for the JLCPCB order came out to be $426.64. This is currently too high for my liking, but
+                we'll send off the Gerbers for review for now.
               </p>
             </div>
           </div>
