@@ -86,6 +86,46 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
+			<h2>===============   Week 11: =================</h2>
+	<!--  Week 11, Entry 1  -->
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: March 25th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:00pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3.25 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			I started brainstorming on how to simulate the communication between tram and recall (bus control and memory emulator). I started by drawing a crude diagram on the white board for how our software packages will interact, then I started thinking about how to simulate the communication without using any GPIO stuff just to make sure the packages could communicate properly (following our software architecture diagram, seen below)
+			<br>
+			<img src="Team/journal/img - member3/week11/W11_1.1.JPG" alt="sw architecture" width="600"></img>
+			<br>
+			<img src="Team/journal/img - member3/week11/W11_1.2.jpg" alt="sw interface" width="600"></img>
+			<br>
+			After that I just started writing some code to make a rough interface between tram and recall. I thought that instead of using our actual bus, I could just create some structs for requests and responses to pass between packages. This would allow me to test if the packages could communicate properly until I figure out exactly which bus signals correspond to memory requests and responses.
+			<br>
+			<img src="Team/journal/img - member3/week11/W11_1.3.png" alt="code1" width="600"></img>
+			<br>
+			I also wrote some rough code in the main loop of recall to constantly poll for requests. My first idea was that tram would have some kind of receive() function, which would return a request or response if there was one active, and would return nothing otherwise (using the std::Option<T> feature, documentation below).
+			<br>
+			<a href="https://doc.rust-lang.org/std/option/">std::option - Rust</a>
+			<br>
+			I haven’t figured out exact details at this point, but if recall gets a request through tram, it will then call its read()/write() functions and generate a response to send back to tram. With this setup tram can handle machine cycles (to get the exact timings we need for reads and writes), and recall is completely blind to them (just calls its local read()/write() and responds to tram). The skeleton code I wrote can be seen below:
+			<br>
+			<img src="Team/journal/img - member3/week11/W11_1.4.png" alt="code2" width="600"></img>
+			<br>
+			For passing these messages between packages, I found something called channels, which allows me to set up tx and rx channels to pass any data type I want (for our purposes, the BusMessage struct from earlier). For example, I have structs that define Tram and Recall, so I can just add a tx and rx member to them, then connect the channels together in the main function to allow bidirectional communication of BusMessages between the two through the channels.
+			<br>
+			<a href="https://doc.rust-lang.org/std/sync/mpsc/fn.channel.html">std::sync::mpsc::channel - Rust</a>
+			<br>
+			Finally, I created a TramSim struct to simulate tram’s behavior for now without any bus/GPIO stuff. I added the tx/rx channels described above, I’ll figure out how to connect them to recall tomorrow
+			<br>
+			<img src="Team/journal/img - member3/week11/W11_1.5.png" alt="code3" width="600"></img>
+			<br>
+			To summarize today’s work, I wrote on the whiteboard and coded some Rust to figure out how to prototype the communication interface between tram and recall. With a little more code connecting tram and recall in recall’s main function, I should be able to send an abstract BusRequest to tram, and recall should act accordingly and send a response back to tram. Since our software architecture dictates that tram is the only thing directly interacting with the bus, getting this figured out means that I can transfer similar logic to our CPU emulator and front panel software, and I should be able to get a full simulation of interfaces between all packages done soon (ignoring bus/GPIO stuff for now for simplicity).
+			<br>
+			In terms of next steps, I want to clean up this code a bit and fully complete the logic so I can start testing it. Once I can test this interface and verify that it’s going to work, I will move on to getting the other side of tram (GPIO/bus interface) figured out. This will involve figuring out which bus signals correspond to read/write requests, and eventually figuring out how to use PIO to get the bus timings we are looking for.
+			<br><br><br><br>
+			<h2>===============   Week 10: =================</h2>
+	<!--  Week 10, Entry 4  -->
+	<h4><b>Spring Break, no work this week!</b></h4>
+			<br><br><br><br>
 			<h2>===============   Week 9: =================</h2>
 	<!--  Week 9, Entry 4  -->
 	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
