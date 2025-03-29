@@ -87,11 +87,81 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 11: =================</h2>
+	<!--  Week 11, Entry 5  -->
+	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
+           <b>Date: March 27th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 7:15pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 0.75 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Had a little time to code, so I started making a Bus struct to cleanly wrap all of the needed GPIO pins into something that tram can use. However, I quickly realized that it is not as simple as designating certain pins as inputs, and other pins as outputs. For example, when executing a memory read, the data lines on the bus should be outputs in tram, so data can be send back to the CPU. However, when executing a memory write, the data lines are inputs to tram so recall can write the data to memory. Since this is the case, I just listed all of our bus signals as AnyPins, which is a way to define the type as a GPIO pin without committing to input/output yet. For future reference, I also added comments to each signal which details its corresponding IO pin number.
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_5.1.png" alt="code" width="600"></img>
+			<br><br>
+			When interfacing two packages in a main file, I will have to declare a Bus struct and assign the variables to GPIO pins. Having this framework means that I am getting closer to completing all of tram’s interfaces, I just need to finish it and figure out how to call PIO routines to get the bus timings we need. 
+			<br><br>
+			Next week, I plan on looking into how to assign the pins dynamically (change input/output based on need), and I also need to figure out how to block any other packages from modifying the bus while a request is active (waiting on response).
+			<br><br><br><br>
+	<!--  Week 11, Entry 4  -->
+	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+           <b>Date: March 27th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:00am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1.75 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started looking into how to detect memory requests on the GPIO pins so that tram can translate them into Messages. In tram, I wrote some skeleton code for a detect_memory_request() function, which will return a summary of the bus signals. Once I figure out how to use the embassy-rp framework a bit better, I can monitor the GPIO pins and assign the values to a BusState struct, which is a middle step in translating GPIO to Messages. It contains the values on the address and data lines, as well as boolean flags for each Message type (is the bus state a read request? write request? etc.). I also added some aliases TX and RX for sender and receiver channels for readability and ease of use. 
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_4.1.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_4.2.png" alt="code" width="600"></img>
+			<br><br>
+			Inside of recall’s main loop, I call tram.detect_memory_request(), which returns the current bus state. Then I check the boolean flags of the bus state to determine what kind of request is active, if any. If there is a request, the corresponding message is sent over the channel to recall, and recall will respond accordingly. The updated main loop can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_4.3.png" alt="code" width="600"></img>
+			<br><br>
+			This should just about complete the recall-tram interface, so I should be able to transfer most of this logic to the other packages. We are getting closer to being able to test all of our software packages together, which is a huge step in our project.
+			<br><br>
+			Since the tram attached to recall can just poll incoming GPIO pins (for request detection), the next step is to find a clean way to wrap all of the GPIO pins into a struct that detect_memory_request() can check. This is much easier than passing every single GPIO pin individually to the function. Later tonight I’ll try and get something figured out.
+			<br><br><br><br>
+	<!--  Week 11, Entry 3  -->
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+           <b>Date: March 27th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 12:00am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Worked on coding up the ideas I came up with in lab, trying to keep it clean and scalable so that my teammates can understand it. Referring to the stuff I drew on the whiteboard, I started setting up channels by adding a send and receive channel to both the recall and tram structs, then adding functions to send and receive messages over the channel, using the .send() and .recv() functions of std::sync::mpsc::channel, documentation below:
+			<br><br>
+			<a href="https://doc.rust-lang.org/std/sync/mpsc/struct.Sender.html#method.send">std::sync::mpsc::channel.send() - Rust</a>
+			<br><br>
+			<a href="https://doc.rust-lang.org/std/sync/mpsc/struct.Receiver.html#method.recv">std::sync::mpsc::channel.send() - Rust</a>
+			<br><br>
+			The updated code for tram and recall with the above functionality can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_3.1.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_3.2.png" alt="code" width="600"></img>
+			<br><br>
+			I also made an attempt at connecting the channels together in recall’s main function, and I also wrote some rough code for how recall is going to respond to messages. I’m not exactly sure if this will work but my idea is this: call tram’s.recv_msg() function (returns an Option<Message>), if there is a message, use a match {} block to figure out what the message is, then either call read() or write(). Nowhere near final code, but it can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_3.3.png" alt="code" width="600"></img>
+			<br><br>
+			I’m going to keep working on this tomorrow, as soon as it is done I want to move on to getting GPIO stuff working using the embassy-rp framework. I need to look into what GPIO signals can be used to detect memory requests, and how to translate what is on the GPIO pins into a Message to send to recall. Getting this working and tested would be great progress, since I can use the same logic to work on the other two packages (CPU emulator and front panel software)
+			<br><br><br><br>
+	<!--  Week 11, Entry 2  -->
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: March 26th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started working on cleaning up the code from yesterday, then I realized that a lot of the ideas I came up with yesterday could be useful for much more than prototyping. I saw that the channels could be used exclusively for communication between tram and other packages, and that I could do something similar to the BusMessage struct to send over the channels. Formally, tram will listen for bus changes, detect memory requests, and translate the GPIO signals into a message struct to pass to packages. A sketch of this behavior can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_2.1.jpg" alt="whiteboard" width="600"></img>
+			<br><br>
+			I talked this over with Seth a bit, and we both agreed that this could work. Also had to meet with the instructors so I didn’t get a whole lot of time to modify the code just yet, but I wrote down a bunch of my ideas in our Discord so I can work on it later. I had a meeting to attend so I had to leave lab early, so I’ll revisit the code later today. I thought about what recall needs to know to respond to memory requests, so I came up with a more abstract Message struct to pass between recall and tram. Tram detects memory request on GPIO, then passes a Message over the channel connecting recall and tram, and recall responds to that message. Here’s the message struct and some of the types I will need for now:
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_2.2.png" alt="code" width="600"></img>
+			<br><br>
+			I now understand how all of our code is going to interface, which is a huge step in the right direction and I should be able to get a lot of code done soon. There are still a few details that still need figured out, which include: 1) how can I use PIO to generate proper timings on GPIO pins for read/write cycles?  and 2) how can I block the bus when there is an active request?
+			<br><br><br><br>
 	<!--  Week 11, Entry 1  -->
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
            <b>Date: March 25th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 11:00pm </b><br> <!--the time you began the meeting/work for this entry-->
-            <b>Duration: 3.25 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+            <b>Duration: 3.25 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			I started brainstorming on how to simulate the communication between tram and recall (bus control and memory emulator). I started by drawing a crude diagram on the white board for how our software packages will interact, then I started thinking about how to simulate the communication without using any GPIO stuff just to make sure the packages could communicate properly (following our software architecture diagram, seen below)
 			<br><br>
 			<img src="Team/journal/img - member3/week11/W11_1.1.JPG" alt="sw architecture" width="600"></img>
