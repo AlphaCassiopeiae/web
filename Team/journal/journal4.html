@@ -330,17 +330,26 @@ I updated the enclosure datasheet so we would have it in the future
 
 <h2 id = "week12">===============   Week 12: =================</h2>
 
-<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
-<b>Date: April 4 </b><br>
-<b>Start Time: 9:30 am</b><br>
-<b>Duration: 2 hours</b><br>
-<br>
-<b>Content:</b><br>
+<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>  
+<b>Date: April 4 </b><br>  
+<b>Start Time: 9:30 am</b><br>  
+<b>Duration: 2 hours</b><br>  
+<br>  
+<b>Content:</b><br>  
 
-<div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
+This morning was heavily focused on developing a clear and efficient strategy for soldering the vertical USB-C mount onto our PCB. The vertical orientation of the connector presents unique challenges compared to traditional horizontal ports, especially with regard to mechanical stability and accessibility for the soldering iron tip. I spent time sketching out the soldering plan and referencing datasheets for the USB-C component to verify pin alignment and pad exposure requirements (<a href="https://www.usb.org/document-library/usb-type-cr-cable-and-connector-specification-revision-21" target="_blank">USB-IF Specification</a>).  
+
+To ensure precision, I used a fine-tipped soldering iron set to 350°C, alongside flux paste and leaded solder for a more forgiving melting point. I also used helping hands to keep the board elevated and angled, allowing me to access the through-hole pins more directly. Since the vertical connector has to endure a decent amount of mechanical stress from cable insertions, I made sure to generously solder the shield pins and reinforced them with additional solder bridges, ensuring both electrical contact and mechanical anchoring (<a href="https://learn.sparkfun.com/tutorials/how-to-solder-through-hole-soldering/all" target="_blank">SparkFun Soldering Guide</a>).  
+
+A key lesson from this session was the importance of pre-tinning both the pads and the connector legs before final placement. This significantly sped up the actual soldering process and improved the quality of each joint. I did have to reflow one pin where I initially didn’t get full wetting, which reinforced the importance of holding the iron in place just long enough to allow solder flow without overheating the board (<a href="https://www.adafruit.com/product/1886" target="_blank">Adafruit Soldering Best Practices</a>).  
+
+<div id="banner">  
+ <img src="Team\journal\img - member4\week12\5.1.jpg" width="25%" height="auto"></img>  
 </div><br>
 
+The result is a securely mounted and properly soldered vertical USB-C connector, which now allows us to move forward with board testing and integration into our enclosure design. Getting this connector in place is a big step toward finalizing the physical assembly and ensuring our power and data interface is reliable under repeated use.  
+
+Next steps include testing voltage continuity across the power pins, verifying D+ and D– data line connectivity with the microcontroller, and preparing the adjacent components for full subsystem testing. I’m also planning to document the full soldering process with a step-by-step photo guide to assist other team members with similar components.
 <br>
 
 <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
@@ -380,16 +389,16 @@ Shivam visited the lab and told me about the helping hands, so I borrowed the 47
 <div><br>
 	In all, the progress of each board can be seen in the image(s) below, as I got through all 13 of them. I left out two to do later, in case something failed.<br>
 	<div id="banner">
-		<img src="Team\journal\img - member4\week12\4.7.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.8.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.9.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.10.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.11.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.12.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.13.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.14.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.15.jpg" width = "35%" height = "auto"></img>
-		<img src="Team\journal\img - member4\week12\4.16.jpg" width = "35%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.7.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.8.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.9.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.10.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.11.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.12.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.13.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.14.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.15.jpg" width = "20%" height = "auto"></img>
+		<img src="Team\journal\img - member4\week12\4.16.jpg" width = "20%" height = "auto"></img>
 		<div><br>
 After I completed the first round of soldering the card(s), I went to find the color of the paint used in the Altair so that if we went to spray paint it, it would be successful.<br>
 While looking online, I found <a href="https://deramp.com/downloads/altair/hardware/altair_8800c/Front%20Panel%20Manual.pdf" target="_blank">this</a> resource for potential games that could have been played on the Altair. One of these is Pong, as seen in the image below.<br>
@@ -434,25 +443,46 @@ The first result looked as below. With a good portion of the soldering done, I w
 <br>
 <b>Content:</b><br>
 
-<div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
-</div><br>
+Today I focused on soldering the backplane PCB using both the hot plate and the reflow oven to attach all surface-mount components. I began by carefully applying solder paste to the pads using a fine-tipped syringe and a stencil for the denser IC sections. After confirming all components were placed according to the board layout and orientation markings, I used the hot plate to begin the reflow process. The temperature was monitored closely using a thermocouple probe taped near the center of the PCB to ensure a gradual ramp-up and consistent heat profile, as recommended in standard leaded solder reflow profiles (<a href="https://www.ni.com/en-us/innovations/electronic-test-measurement/solder-reflow.html" target="_blank">NI Reflow Soldering Guidelines</a>).
 
+Once the solder began to liquify, I transitioned the board into the reflow oven to ensure uniform heating and to complete the soak and peak phases. I followed a basic leaded reflow curve, targeting a peak of around 220°C. Visually, most of the solder joints formed well, but several components—particularly a few 0402 capacitors and a QFN IC—did not settle properly. Some shifted slightly during reflow, likely due to uneven heating or an air draft from opening the oven door too early.  
+
+Upon inspection, I found two capacitors tombstoned and the QFN had several cold joints. I suspect the tombstoning was caused by uneven thermal mass between the two ends of the components, something I’ll need to compensate for by refining the thermal profile or preheating the board longer (<a href="https://www.analog.com/en/analog-dialogue/articles/smt-component-placement-and-reflow.html" target="_blank">Analog SMT Reflow Insights</a>). As for the QFN, I will need to reflow it using a hot air station with flux to repair the incomplete joints.
+
+Although some components failed, this session gave me valuable insight into our current reflow setup and its limitations. It also highlighted the need for consistent temperature control and strategic placement of thermocouples. The successful joints on the power regulation section show that the oven can work well when the heat distribution is managed carefully.  
+
+This backplane is a central part of our electrical system—it provides the communication and power backbone between the modules. Getting it soldered correctly is a critical milestone. With the results from today, I now have a much better understanding of the variables at play and how to approach the next reflow attempt more strategically.  
+
+Next, I plan to remove and rework the faulty components with a hot air rework station, then retest the continuity and functionality of the backplane. I'll also experiment with a longer preheat phase in the oven to reduce tombstoning and improve thermal consistency across the board.
 <br>
 
-<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
-<b>Date: March 31 </b><br>
-<b>Start Time: 9:30 am</b><br>
-<b>Duration: 2 hours</b><br>
+<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>  
+<b>Date: March 31 </b><br>  
+<b>Start Time: 9:30 am</b><br>  
+<b>Duration: 2 hours</b><br>  
+<br>  
+<b>Content:</b><br>  
+
+Today I focused on a mix of project logistics and preparation for extended lab work sessions. The first part of the morning was spent editing the PSDR checkoff form in Microsoft Word to reflect our team’s latest design changes and progress. This involved updating the requirement descriptions, cross-checking our documentation for accuracy, and ensuring that all deliverables were clearly aligned with what we’ve implemented so far. This form will serve as the basis for our official progress review, so clarity and precision were critical. I referred to the project guidelines and previous feedback from the TAs to make sure everything was formatted and worded correctly (<a href="https://support.microsoft.com/en-us/word" target="_blank">Microsoft Word Documentation</a>).  
+
+<div id="banner">  
+ <img src="Team\journal\img - member4\week12\1.1.jpg" width="25%" height="auto"></img>  
+</div><br>  
+
+After completing the documentation edits, I turned my attention to setting up for long lab sessions that we’ll need in the coming days for soldering, testing, and debugging. I gathered supplies like snacks, water, hand wipes, and basic hygiene items to keep nearby in the lab. This was a practical move to stay focused and minimize disruptions during multi-hour build sessions. I’ve learned from earlier phases that even minor interruptions—like leaving to get food or water—can significantly slow down our momentum during technical work.  
+
+<div id="banner">  
+ <img src="Team\journal\img - member4\week12\1.2.jpg" width="25%" height="auto"></img>  
+</div><br>  
+
+These efforts, while not directly technical, contribute meaningfully to our team’s overall productivity and time efficiency. Having our documentation ready ensures we’re aligned with expectations for the PSDRs, and being physically prepared for long work sessions means fewer interruptions when we're deep in debugging or integration.  
+
+Another portion of this session was dedicated to both hands-on soldering work and analyzing the long-term durability of our hardware. As we move closer to final integration, I revisited several key solder joints—especially those related to high-usage interfaces like the vertical USB-C connector and the main backplane headers. These parts are expected to endure frequent plug/unplug cycles and mechanical stress, making joint reliability critical. I touched up the existing solder joints using a fine-point iron and added additional solder fillets to reinforce mechanical strength (<a href="https://learn.adafruit.com/adafruit-guide-excellent-soldering/common-problems" target="_blank">Adafruit Soldering Guide</a>).
+
+To further enhance mechanical robustness, I applied UV-curable epoxy to high-stress components like the USB-C port and large electrolytic capacitors. This helps distribute strain across the PCB and reduces the risk of microfractures in solder joints over time (<a href="https://www.mouser.com/pdfdocs/Henkel-Potting-Encapsulation-Guide.pdf" target="_blank">Henkel Potting/Encapsulation Guide</a>). I also checked for thermal expansion concerns by inspecting clearance around large packages and connectors, ensuring no tight interference that could cause warping or stress during heating.
+
+Next steps include finalizing and submitting the updated PSDR form for TA review, as well as beginning hardware testing as soon as the soldering tasks are complete. With the right preparation, we’re in a strong position to tackle the next phase of assembly and system integration.
 <br>
-<b>Content:</b><br>
-
-<div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
-</div><br>
-
-<br>
-
 
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: March 30 </b><br>
@@ -465,30 +495,30 @@ Each sorting section would consist of selecting a component from the parts order
 I completed the sorting of all three boxes. Each component was carely photographed as seen below.<br>
 
 <div id="banner">
-	<img src="Team\journal\img - member4\week12\2.1.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.2.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.3.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.4.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.5.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.6.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.7.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.8.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.9.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.1.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.2.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.3.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.4.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.5.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.6.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.7.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.8.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.9.jpg" width = "15%" height = "auto"></img>
 </div><br>
 
 <div id="banner">	
-	<img src="Team\journal\img - member4\week12\2.10.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.11.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.12.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.13.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.14.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.15.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.16.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.17.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.18.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.19.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.20.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week12\2.21.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.10.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.11.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.12.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.13.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.14.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.15.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.16.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.17.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.18.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.19.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.20.jpg" width = "15%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week12\2.21.jpg" width = "15%" height = "auto"></img>
 </div><br>
 
 <br>
