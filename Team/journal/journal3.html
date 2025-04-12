@@ -86,7 +86,7 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
-			<h2>===============   Week 11: =================</h2>
+			<h2>===============   Week 13: =================</h2>
 	<!--  Week 11, Entry 3  -->
 	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
            <b>Date: April 9th </b><br> <!--the date the project meeting or work was performed)-->
@@ -105,19 +105,65 @@ contact course staff.
            <b>Date: April 8th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 4.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			Started looking into how to detect memory requests on the GPIO pins so that tram can translate them into Messages. In tram, I wrote some skeleton code for a detect_memory_request() function, which will return a summary of the bus signals. Once I figure out how to use the embassy-rp framework a bit better, I can monitor the GPIO pins and assign the values to a BusState struct, which is a middle step in translating GPIO to Messages. It contains the values on the address and data lines, as well as boolean flags for each Message type (is the bus state a read request? write request? etc.). I also added some aliases TX and RX for sender and receiver channels for readability and ease of use. 
+			I started this session by trying to figure out how to fix the errors I was getting last time when trying to run cargo build. The panic_handler one was easily fixed by making sure every package involved contained defmt, defmt_rtt, and panic_probe, which when included in the main file, act as a panic handler. 
 			<br><br>
-			<img src="Team/journal/img - member3/week11/W11_4.1.png" alt="code" width="600"></img>
+			<img src="Team/journal/img - member3/week13/W13_2.1.PNG" alt="code" width="600"></img>
 			<br><br>
-			<img src="Team/journal/img - member3/week11/W11_4.2.png" alt="code" width="600"></img>
+			The second error was due to the mutexes I selected for the new channels not having Sync implemented, which was required. To fix this I changed the NoopRawMutexes to CriticalSelectionRawMutexes, which do have Sync functionality. I updated this in the common package, as well as in the channel instances themselves, seen below:
 			<br><br>
-			Inside of recall’s main loop, I call tram.detect_memory_request(), which returns the current bus state. Then I check the boolean flags of the bus state to determine what kind of request is active, if any. If there is a request, the corresponding message is sent over the channel to recall, and recall will respond accordingly. The updated main loop can be seen below:
+			<img src="Team/journal/img - member3/week13/W13_2.2.png" alt="code" width="600"></img>
 			<br><br>
-			<img src="Team/journal/img - member3/week11/W11_4.3.png" alt="code" width="600"></img>
+			Here are the links to the documentation I read through to figure this out:
 			<br><br>
-			This should just about complete the recall-tram interface, so I should be able to transfer most of this logic to the other packages. We are getting closer to being able to test all of our software packages together, which is a huge step in our project.
+			<a href="https://docs.embassy.dev/embassy-sync/git/default/blocking_mutex/raw/struct.NoopRawMutex.html">embassy-sync NoopRawMutex</a>
 			<br><br>
-			Since the tram attached to recall can just poll incoming GPIO pins (for request detection), the next step is to find a clean way to wrap all of the GPIO pins into a struct that detect_memory_request() can check. This is much easier than passing every single GPIO pin individually to the function. Later tonight I’ll try and get something figured out.
+			<a href="https://docs.embassy.dev/embassy-sync/git/default/blocking_mutex/raw/struct.CriticalSectionRawMutex.html">embassy-sync CriticalSelectionRawMutex</a>
+			<br><br>
+			After making this change, I was able to get it to build, which means that we can begin testing it here soon. Debugging for this one shouldn’t be too bad since the actual RAM simulation functionality is pretty simple, it's just a matter of making sure it reads the I/O pins correctly.
+			<br><br>
+			After that I started brainstorming a bit about how we are going to implement our CPU emulator. What makes our emulator different from a normal emulator is that it needs to listen to an external clock signal to determine when instructions are run. The interface between this and tram should be exactly the same as the interface between tram and recall, so I went ahead and set that up first using the common package:			<br><br>
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.4.PNG" alt="code" width="600"></img>
+			<br><br>
+			I was able to get the framework to build by running cargo build, so I started figuring out how CPU emulation worked. I found a couple of really good references that will guide my implementation, including an existing 8080 emulator written in Rust. If I can read through this code and really understand it, I should be able to reference the concepts and modify the implementation for our purposes. There’s also a really good YouTube playlist of someone writing an emulator for the 6502 processor in C++, so I intend to follow the steps in this series to guide my implementation and code structure. Both of these are linked below:
+			<br><br>
+			<a href="https://github.com/cbiffle/rs80/blob/master/src/emu.rs">rs80 emu.rs</a>
+			<br><br>
+			<a href="https://www.youtube.com/playlist?list=PLLwK93hM93Z13TRzPx9JqTIn33feefl37">6502 Emulator YouTube Series</a>
+			<br><br>
+			Here is an overview of the main differences between our implementation and both of the references. Our emulator needs to listen to an external clock to run. It also has no memory of its own, so any memory requests will need to be sent through tram to be put on the bus. My first thought was to break down each instruction into steps, so that on each pulse of clk (GPIO 4), the emulator will run one instruction step. A crude diagram I drew detailing this can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.5.jpg" alt="diagram" width="600"></img>
+			<br><br>
+			I also wrote a line of code in runner’s main function that accomplishes just this functionality, using the async function wait_for_rising_edge() function from embassy-rp. The main loop will wait for a positive edge, then decide what to do from there.
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.6.png" alt="diagram" width="600"></img>
+			<br><br>
+			Following the patterns present in the first episode of the YouTube series, I set up a general CPU  struct with all of the 8080 registers and flags that it needs. I had to look this up on wikipedia, and I also found some good information on all of the instructions in the ISA (number of clock cycles required, opcodes, etc.) that will guide my implementation of the instruction lookup tables down the road.
+			<br><br>
+			<a href="https://en.wikipedia.org/wiki/Intel_8080#Registers">Wikipedia: 8080 Registers</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.7.png" alt="diagram" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.8.png" alt="diagram" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.9.png" alt="diagram" width="600"></img>
+			<br><br>
+			After writing this code, I was still able to get the runner package to build using cargo build, so I’m ready to start working through the functionality piece by piece (the warnings were just from unused functions).
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.10.png" alt="build" width="600"></img>
+			<br><br>
+			After looking up what happens to the 8080 on reset, I was able to write the code for the reset() function. The pc is set to zero, and interrupt_enable is set to false (it can only be enabled by an EI instruction after reset). The flags are cleared, and the contents of the registers are undefined, but I set them to 0 for safety:
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.11.png" alt="reset" width="600"></img>
+			<br><br>
+			The last thing I did was add a halt flag to the CPU struct so that we can track when the CPU is halted via a HLT instruction. I wrote a very basic halt() function that just sets the halt flag to true, and this halt flag will be checked in runner’s main loop to see if execution can continue.
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_2.12.png" alt="halt" width="600"></img>
+			<br><br>
+			To summarize, I made good progress tonight getting recall to build and starting work on our CPU emulator. There’s still a lot of work to do, and that includes making the lookup tables for instructions, figuring out what the main loop will look like, and writing an execute_instruction() function to control instruction execution.
 			<br><br><br><br>
 	<!--  Week 13, Entry 1  -->
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
