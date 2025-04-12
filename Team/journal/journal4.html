@@ -480,10 +480,59 @@ My main priority still remains getting all of the front panels soldered, so that
 <br>
 <b>Content:</b><br>
 
-I researched some opportunities we could use in the Spark Challenge in addition to our four miniaturized Altairs. I stumbled across this game, which could be played on the 
+I researched some opportunities we could use in the Spark Challenge in addition to our four miniaturized Altairs. I stumbled across this game, which could be played on the original Altair and could be easier to implement with our new Altairs.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week13\1.1.jpg" width = "25%" height = "auto"></img>
 </div><br>
+
+I also spent some time on the reliability analysis, working on the calculations of A10, as seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week13\1.2.jpg" width = "25%" height = "auto"></img>
+</div><br>
+
+Afterwards, I had to cross check some things on the schematics, especially the Schottsky Diodes that were used on each Card PCB as well as the orientation of the LEDs on the front panel. I discovered that the triangular segment that is cut out of each LED should face the tiny white dot that is directed towards the microcontroller. The analysis of the component, as well as some analysis of some boards, is seen in the series of two photos below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week13\1.3.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week13\1.4.jpg" width = "25%" height = "auto"></img>
+</div><br>
+
+I spent a lot of time inspecting the boards that were already soldered. I looked under each component in the electron microscope, so that each of the pins on the sink driver were corresponding to the correct pad. This was very difficult, as the sink drivers had a tendency to move around, even with the smallest perturbation. I spent time inspecting three additional boards, which can be seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week13\1.5.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week13\1.6.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week13\1.7.jpg" width = "25%" height = "auto"></img>
+</div><br>
+
+Hopefully, in the end, we will have working PCBs like the image below. For now, I have to complete the inspection of the PCBs.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week13\1.8.jpg" width = "25%" height = "auto"></img>
+</div><br>
+
+<p>
+	To explore additional opportunities for our Spark Challenge submission beyond the four miniaturized Altair units, I researched retro-style games that were originally playable on the classic Altair 8800. I came across a game called "Hammurabi," a text-based strategy simulation that could be feasibly adapted for our modern implementation due to its minimal memory and display requirements. Details on this game and others like it can be found on retrocomputing archives such as <a href="https://www.retrogames.cz/play_083-DOS.php" target="_blank">RetroGames.cz</a> and through resources provided by the <a href="https://s3.amazonaws.com/sparkfun-sparkchallenge/Altair_Programs.pdf" target="_blank">SparkFun Altair Program Manual</a>.
+	</p>
+	
+	<p>
+	In parallel, I continued working on the reliability analysis for the Altair hardware, focusing specifically on the A10 life prediction parameter. A10 refers to the number of cycles at which 10% of a population is expected to fail under normal operating conditions. I derived this based on component failure rate data and environmental stressors using the reliability prediction methods recommended by the <a href="https://www.reliasoft.com/products/reliability-analysis/weibull-analysis" target="_blank">Weibull++ software by ReliaSoft</a>. The ongoing A10 calculations are shown in the image below.
+	</p>
+	
+	<p>
+	To validate design and assembly decisions, I cross-checked our schematics, especially focusing on the <a href="https://www.vishay.com/docs/88755/ss14.pdf" target="_blank">SS14 Schottky Diodes</a> used on each Card PCB. I verified that they were placed in the correct direction based on their polarity markers. I also reviewed the orientation of surface-mounted LEDs on the front panel. According to the <a href="https://www.kingbrightusa.com/images/catalog/spec/KA-3528SURC.pdf" target="_blank">Kingbright LED datasheet</a>, the beveled corner of each LED package should align with the silkscreen dot pointing toward the microcontroller. This ensures proper current flow and display behavior.
+	</p>
+	
+	<p>
+	After confirming the design specifications, I spent several hours conducting a meticulous inspection of the assembled boards. Using our lab’s electron microscope, I analyzed the solder joints beneath each Sink Driver chip to verify alignment with PCB pads. These ICs are notoriously sensitive to mechanical misalignment, especially given their fine-pitch packaging. Even a slight shift during reflow can result in intermittent failures. Images of three additional board inspections are shown below.
+	</p>
+	
+	<p>
+	This inspection process is critical to our quality assurance workflow. By manually inspecting all boards for misalignment and solder bridges, we minimize the risk of electrical faults in our demo units. Ultimately, our goal is to ensure each PCB reaches the assembly-ready state depicted in the last image.
+	</p>
+	
+	<!-- Summary -->
+	<p>
+	Today’s work contributed significantly to both our design validation and demo preparedness. By identifying a playable game for the Spark Challenge and performing detailed reliability and schematic reviews, we’ve enhanced the Altair’s capability and robustness. The inspection of soldered components using microscopy confirmed correct pin-to-pad alignment, reducing the chance of latent defects. Going forward, the next steps involve finalizing board inspection, verifying firmware compatibility with potential games like "Hammurabi," and beginning integration testing with the enclosure and front panels.
+	</p>
+	
 
 <br>
 
