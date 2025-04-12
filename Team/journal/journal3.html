@@ -86,6 +86,72 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
+			<h2>===============   Week 11: =================</h2>
+	<!--  Week 11, Entry 3  -->
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 9th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Had a little time to code, so I started making a Bus struct to cleanly wrap all of the needed GPIO pins into something that tram can use. However, I quickly realized that it is not as simple as designating certain pins as inputs, and other pins as outputs. For example, when executing a memory read, the data lines on the bus should be outputs in tram, so data can be send back to the CPU. However, when executing a memory write, the data lines are inputs to tram so recall can write the data to memory. Since this is the case, I just listed all of our bus signals as AnyPins, which is a way to define the type as a GPIO pin without committing to input/output yet. For future reference, I also added comments to each signal which details its corresponding IO pin number.
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_5.1.png" alt="code" width="600"></img>
+			<br><br>
+			When interfacing two packages in a main file, I will have to declare a Bus struct and assign the variables to GPIO pins. Having this framework means that I am getting closer to completing all of tram’s interfaces, I just need to finish it and figure out how to call PIO routines to get the bus timings we need. 
+			<br><br>
+			Next week, I plan on looking into how to assign the pins dynamically (change input/output based on need), and I also need to figure out how to block any other packages from modifying the bus while a request is active (waiting on response).
+			<br><br><br><br>
+	<!--  Week 11, Entry 2  -->
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 8th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 4.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started looking into how to detect memory requests on the GPIO pins so that tram can translate them into Messages. In tram, I wrote some skeleton code for a detect_memory_request() function, which will return a summary of the bus signals. Once I figure out how to use the embassy-rp framework a bit better, I can monitor the GPIO pins and assign the values to a BusState struct, which is a middle step in translating GPIO to Messages. It contains the values on the address and data lines, as well as boolean flags for each Message type (is the bus state a read request? write request? etc.). I also added some aliases TX and RX for sender and receiver channels for readability and ease of use. 
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_4.1.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_4.2.png" alt="code" width="600"></img>
+			<br><br>
+			Inside of recall’s main loop, I call tram.detect_memory_request(), which returns the current bus state. Then I check the boolean flags of the bus state to determine what kind of request is active, if any. If there is a request, the corresponding message is sent over the channel to recall, and recall will respond accordingly. The updated main loop can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week11/W11_4.3.png" alt="code" width="600"></img>
+			<br><br>
+			This should just about complete the recall-tram interface, so I should be able to transfer most of this logic to the other packages. We are getting closer to being able to test all of our software packages together, which is a huge step in our project.
+			<br><br>
+			Since the tram attached to recall can just poll incoming GPIO pins (for request detection), the next step is to find a clean way to wrap all of the GPIO pins into a struct that detect_memory_request() can check. This is much easier than passing every single GPIO pin individually to the function. Later tonight I’ll try and get something figured out.
+			<br><br><br><br>
+	<!--  Week 13, Entry 1  -->
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 7th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			I spent this time attempting to get recall to build (updated with the interface to tram) as well as cleaning up the code. After running cargo build, I was getting an error that told me that std::sync::mpsc::channel could not be found. This was because, as I should have noticed earlier, features of the std library cannot be used in no_std environments, which we are using. In our dependencies, I saw the embassy-sync package, which happened to provide channels very similar to the ones I was trying to use, documentation for those below:
+			<br><br>
+			<a href="https://github.com/embassy-rs/embassy/blob/main/embassy-sync/src/channel.rs">embassy-sync channels</a>
+			<br><br>
+			After reading through the documentation, I redefined the TX and RX in the lib.rs files in each package, using the first Mutex that I found since I was unsure what they actually did, which can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_1.1.png" alt="code" width="600"></img>
+			<br><br>
+			I then updated the send_msg() and recv_msg() functions in the tram and recall structs themselves. Since the embassy-sync channel’s send/recv functions are async functions, I updated the send_msg()/recv_msg() functions to be async functions and used .await to get the async functionality of send/recv (seen below)
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_1.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_1.3.png" alt="code" width="600"></img>
+			<br><br>
+			The final step of reworking this was to define the channels to be used inside of recall’s main.rs file. These channels needed to be defined as static and were created using the Channel::new() function provided by embassy. The code for this can be seen below with updated imports/dependencies.
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_1.4.png" alt="code" width="600"></img>
+			<br><br>
+			I decided that I didn’t like having an individual lib.rs file in each package that needed updated every time I made a change, so I defined a common package to be used by packages that need it, which contains its own lib.rs file. This way, when I need to change something that is used by all packages, I can just modify this single lib.rs file, which is much easier. I had to update the Cargo.toml file in each package to support this, but that was as simple as adding the line “common = {workspace=true}” under the [dependencies] section. 
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_1.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_1.6.png" alt="code" width="600"></img>
+			<br><br>
+			I tried to build this before I had to go to class, and I was getting the error messages seen below. I will try and figure this out tomorrow night. As soon as this gets done, I should be able to get recall to build, which means that we can begin testing it soon (which would mean having 1 out of 4 major packages finished). We desperately need to start working on the CPU emulator (runner package), so I will move on to that as soon as recall builds.
+			<br><br>
+			<img src="Team/journal/img - member3/week13/W13_1.7.png" alt="code" width="600"></img>
+			<br><br><br><br>
 			<h2>===============   Week 12: =================</h2>
 			<b>I was in Pittsburgh, PA for club gymnastics nationals this week, so no work was done</b>
 			<h2>===============   Week 11: =================</h2>
