@@ -92,13 +92,15 @@ contact course staff.
            <b>Date: April 9th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
             <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
-			Had a little time to code, so I started making a Bus struct to cleanly wrap all of the needed GPIO pins into something that tram can use. However, I quickly realized that it is not as simple as designating certain pins as inputs, and other pins as outputs. For example, when executing a memory read, the data lines on the bus should be outputs in tram, so data can be send back to the CPU. However, when executing a memory write, the data lines are inputs to tram so recall can write the data to memory. Since this is the case, I just listed all of our bus signals as AnyPins, which is a way to define the type as a GPIO pin without committing to input/output yet. For future reference, I also added comments to each signal which details its corresponding IO pin number.
+			After our meeting with the instructors, I kept working on putting together the pieces of the CPU emulator. I started by writing some function to read out the flags of the CPU, which can be seen below. These are incredibly simple and are just there to give read access to non-public CPU flags. I might also need setter functions for these at some point, I will figure that out later.			
 			<br><br>
-			<img src="Team/journal/img - member3/week11/W11_5.1.png" alt="code" width="600"></img>
+			<img src="Team/journal/img - member3/week13/W13_3.1.png" alt="code" width="600"></img>
 			<br><br>
-			When interfacing two packages in a main file, I will have to declare a Bus struct and assign the variables to GPIO pins. Having this framework means that I am getting closer to completing all of tram’s interfaces, I just need to finish it and figure out how to call PIO routines to get the bus timings we need. 
+			I kept watching the second part of the YouTube series for a bit, then I wrote a function to set the interrupt_enable flag of the CPU, which is turned on and off via the EI/DI instructions.	
 			<br><br>
-			Next week, I plan on looking into how to assign the pins dynamically (change input/output based on need), and I also need to figure out how to block any other packages from modifying the bus while a request is active (waiting on response).
+			<img src="Team/journal/img - member3/week13/W13_3.2.png" alt="code" width="600"></img>
+			<br><br>
+			I then started brainstorming about how the CPU is gonna know when to execute instructions. The clock comes from the front panel, so I had to think about how run mode and single-step mode worked. In single-step, the front panel will pulse the clock for the required number of times to complete the current instruction. In run mode, the front panel will run the clock until a HLT instruction is executed, so the CPU will execute instructions and request memory as needed. I was pretty tired so I didn’t end up writing any code for this yet, but getting those ideas down on paper will guide my implementation next week. I have to spend the remainder of this week studying for exams and completing A11, so I probably won’t get a whole lot of time to work again until the weekend.
 			<br><br><br><br>
 	<!--  Week 11, Entry 2  -->
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
