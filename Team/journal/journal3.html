@@ -87,6 +87,47 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 14: =================</h2>
+	<!--  Week 14, Entry 2  -->
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 14th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			<a href="https://github.com/cbiffle/rs80/blob/master/src/emu.rs">rs80 repository</a>
+			<br><br>
+			<a href="https://www.youtube.com/playlist?list=PLLwK93hM93Z13TRzPx9JqTIn33feefl37">6502 C++ Emulator YouTube Playlist</a>
+			<br><br>
+			Gonna spend most of this week continuing to work on the CPU emulator (runner package). After finishing the second episode of the 6502 C++ emulator YouTube series and reading the relevant parts of the rs80 repository, I decided to wrap all of the flags that the 8080 processor has into a Flags struct. The YouTube series just had a single 8-bit register to store the flag/status values, but the rs80 has a separate Flags struct and I think that that is gonna be the cleanest way to do it since the aux_carry flag needs to be handled a little bit differently. After looking into what auxiliary carry is, it is specifically for binary-coded decimal (BCD) computations, and the flag lets the processor know to make adjustments under certain circumstances. 
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.1.png" alt="code" width="600"></img>
+			<br><br>
+			<a href="https://en.wikipedia.org/wiki/Half-carry_flag">Wikipedia - Half-carry-flag</a>	
+			<br><br>
+			This is an example from the Wikipedia page for the Half-Carry Flag (linked in the Intel 8080 Wikipedia page). Since BCD arithmetic is concerned with groups of 4 bits, if overflow from the lower four bits carries into the upper four bits, the CPU needs to make some adjustments to ensure correct BCD arithmetic, and will thus raise the aux_carry (half-carry) flag. I don’t need to know the specific arithmetic details yet, just need to know when to raise the flag. After understanding this, I wrote the Flags struct, mostly referencing the flags register layout from the Wikipedia page, but I modified some code from the rs80 repository for the aux_carry part because I was unsure of how to implement it. Below is the flags register layout and the code that I wrote to support its functionality. This includes reading/setting flags, as well as packing/unpacking them to/from a Program Status Word (PSW). This is just a combination of the 8-bit A register and 8-bit flags register (16-bit total). This will be used on context-switches and interrupts as a “CPU state” so control flow can be restored.
+			<br><br>
+			<a href="https://en.wikipedia.org/wiki/Intel_8080#Flags">Wikipedia - Intel 8080 Flags</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.4.png" alt="code" width="600"></img>
+			<br><br>
+			After this I started thinking about how instructions were going to be executed, and decided that I could write some very simple helper functions to aid with execution. For instance, since the JMP instruction just updates the program counter to a new address, once we detect a JMP instruction, we should just call the jump() function, which will just update the CPU struct’s program_counter member to the new address. During this process I did remember that since program_counter/stack_pointer are gonna be used to access an array (in our memory emulator), I need to change them to usize instead of u16 as I ran into issues with this earlier. I went ahead and updated this as well. 
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.5.png" alt="code" width="600"></img>
+			<br><br>
+			There will be a lot more of these helper functions, but since our CPU doesn’t have any memory of its own, it needs to go through tram to make bus requests. This means that for helper functions like load() and store(), those will be responsible for making a tram request and awaiting a response which is slightly more complicated than the rs80 repository’s examples. I decided to look into the details about how the CPU knows when to execute a little more deeply. Building off of my understanding from last week, I asked ChatGPT what exactly happens when the single-step button is pressed. I then cross-referenced that with our bus to make sure that it would work, and this is what I understand so far. When the single-step button is pressed, the front panel asserts the RDY signal, indicating that the CPU should begin processing. The CPU fetches an instruction from memory (through tram, using machine cycles), then decodes that instruction and makes more memory requests if needed. Using bus signals asserted by CPU, front panel can tell when CPU is done, at which point front panel lowers RDY, pausing the CPU. A rough sketch of this can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.6.jpg" alt="drawing" width="600"></img>
+			<br><br>
+			I went ahead and coded up some skeleton code for some of this functionality, specifically communication with tram in the main loop. There are still a lot of details to figure out, but I made two boolean flags, namely waiting_for_mem and waiting_for_tram. This setup is tricky because using awaits to recv() in the main loop could cause the loop to stall indefinitely. These flags are only asserted after a message is sent, so that we only await a channel response if there is gonna be one to receive (preventing the stalling issue). An outline for this behavior can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.7.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_2.8.png" alt="code" width="600"></img>
+			<br><br>
+			I want to take this idea and test it with the simulator that I wrote on Sunday, I mainly want to see that when runner sends a message to tram, that tram actually gets that message and forwards it to wherever it needs to go (and that the main loop doesn’t stall indefinitely). Next steps are to continue work on getting instructions to run on the CPU emulator, that will likely involve lookup tables of some kind, but I will probably start by not using an external clock (just write unit tests to test individual instructions), then work on detecting instructions from GPIO later this week. As a result of tonight’s work I now have a better idea of how the front panel and CPU interact through certain bus signals, and I have a much better idea of how I am going to implement single-step functionality.
+			<br><br><br><br>
 	<!--  Week 14, Entry 1  -->
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
            <b>Date: April 13th </b><br> <!--the date the project meeting or work was performed)-->
