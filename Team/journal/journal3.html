@@ -86,8 +86,40 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
+			<h2>===============   Week 14: =================</h2>
+	<!--  Week 14, Entry 1  -->
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 13th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 7:00pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			After brainstorming about single-step vs run mode last week, I decided to start writing some kind of simulation for single step. This will be some relatively simple rust code that will listen for keyboard inputs, grab a value from an array, and do something based on that value. This is just adding layers of abstraction to what we are actually trying to implement, but I think this will help me understand it better and verify that our design is gonna work. This simulation involves a CPU and RAM struct, but they are not the same ones used in our project. They are much simpler and are purely for testing abstract ideas like single-stepping and updating a program counter to fetch the next instruction. The simplified CPU and RAM structs can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_1.1.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_1.2.png" alt="code" width="600"></img>
+			<br><br>
+			For the main loop, I had to ask ChatGPT about how to get keyboard events because that is something that I have no prior experience with, especially in Rust. It pointed me to the crossterm and tokio packages, specifically crossterm::event::KeyEvent and tokio::task::spawn_blocking(). KeyEvent is useful for determining what key was pressed, and spawn_blocking() is good for spawning a blocking thread, meaning that other async tasks can safely run while we are waiting on keyboard input. 
+			<br><br>
+			<a href="https://docs.rs/crossterm/latest/crossterm/event/struct.KeyEvent.html">crossterm::event::KeyEvent documentation</a>
+			<br><br>
+			<a href="https://docs.rs/tokio/latest/tokio/task/fn.spawn_blocking.html">tokio::task::spawn_blocking documentation</a>
+			<br><br>
+			Using the documentation for both of these packages, I went ahead and wrote the main loop. I did run into a slight issue where I could read keyboard inputs, but the loop would not respond until I pressed enter. A quick Google search pointed me to crossterm::terminal::enable_raw_mode(), which I just had to call before the main loop to fix the issue. 
+			<br><br>
+			<a href="https://docs.rs/crossterm/latest/crossterm/terminal/fn.enable_raw_mode.html">crossterm::terminal::enable_raw_mode documentation</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_1.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_1.4.png" alt="code" width="600"></img>
+			<br><br>
+			To test this I preloaded the RAM struct with three bytes: 0x10, 0x20, and 0x30. After running cargo build, I pressed the n key (single-step) 3 times, then the q key (quit) once and got the following output, which is entirely correct.
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_1.5.png" alt="code" width="600"></img>
+			<br><br>
+			This simulation should be useful in testing single-step for various instructions, but the CPU struct will need to be expanded to have full instruction decoding/executing functionality. Tomorrow I want to work on our actual CPU emulator a bit more and work on figuring out the main loop such that the CPU can execute and communicate with tram at the same time.
+			<br><br><br><br>
 			<h2>===============   Week 13: =================</h2>
-	<!--  Week 11, Entry 3  -->
+	<!--  Week 13, Entry 3  -->
 	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
            <b>Date: April 9th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
@@ -102,7 +134,7 @@ contact course staff.
 			<br><br>
 			I then started brainstorming about how the CPU is gonna know when to execute instructions. The clock comes from the front panel, so I had to think about how run mode and single-step mode worked. In single-step, the front panel will pulse the clock for the required number of times to complete the current instruction. In run mode, the front panel will run the clock until a HLT instruction is executed, so the CPU will execute instructions and request memory as needed. I was pretty tired so I didn’t end up writing any code for this yet, but getting those ideas down on paper will guide my implementation next week. I have to spend the remainder of this week studying for exams and completing A11, so I probably won’t get a whole lot of time to work again until the weekend.
 			<br><br><br><br>
-	<!--  Week 11, Entry 2  -->
+	<!--  Week 13, Entry 2  -->
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
            <b>Date: April 8th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
