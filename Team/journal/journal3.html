@@ -96,9 +96,9 @@ contact course staff.
 			<br><br>
 			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcode Info Table</a>	
 			<br><br>
-			<img src="Team/journal/img - member3/week14/W14_3.1.png" alt="table" width="1000"></img>
+			<img src="Team/journal/img - member3/week14/W14_3.1.png" alt="table" width="800"></img>
 			<br><br>
-			<img src="Team/journal/img - member3/week14/W14_3.2.png" alt="details" width="1000"></img>
+			<img src="Team/journal/img - member3/week14/W14_3.2.png" alt="details" width="800"></img>
 			<br><br>
 			Following this table closely, I made a InstructionInfo struct and table entries for all 256 opcodes that contains the information listed above, the code for this can be seen below (this was a pretty long and tedious process)
 			<br><br>
@@ -146,7 +146,7 @@ contact course staff.
 			<br><br>
 			<img src="Team/journal/img - member3/week14/W14_3.20.png" alt="code" width="600"></img>
 			<br><br>
-			Now that the CPU can decode opcodes into InstructionInfo, the next step is to figure out the actual execution of these instructions. The CPU will need to look at the cycles and bytes fields of the InstructionInfo to figure out what to do, I’ll figure out more refined implementation details here soon. I also want to add more of the front panel functionality to the simulator, including deposit and examine (for manually reading/writing memory). This way the user can input instructions to the simulator, then either run or single step through the program. Fully implementing the front panel on the simulator would allow me to start testing the CPU/memory interface without needing a working bus, which is a good abstraction that will help us test individual parts of the software before putting everything together.			<br><br><br><br>
+			Now that the CPU can decode opcodes into InstructionInfo, the next step is to figure out the actual execution of these instructions. The CPU will need to look at the cycles and bytes fields of the InstructionInfo to figure out what to do, I’ll figure out more refined implementation details here soon. I also want to add more of the front panel functionality to the simulator, including deposit and examine (for manually reading/writing memory). This way the user can input instructions to the simulator, then either run or single step through the program. Fully implementing the front panel on the simulator would allow me to start testing the CPU/memory interface without needing a working bus, which is a good abstraction that will help us test individual parts of the software before putting everything together.
 			<br><br><br><br>
 	<!--  Week 14, Entry 2  -->
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
