@@ -87,6 +87,27 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 14: =================</h2>
+	<!--  Week 14, Entry 4  -->
+	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 3:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 0.5 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			On my walk back from lab I realized that I could implement a quick debugging tool to print the CPU’s state at any point in single-step execution. In the simulator, I added some code so that pressing the p key will print the CPU’s current state (registers, pc) to the terminal. The code I added to main for this can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_4.1.png" alt="code" width="600"></img>
+			<br><br>
+			In order to get this to work, I had to implement the fmt::Display for the CPU struct using std::fmt. I’ll link the documentation for std::fmt below, but fmt() returns a fmt::Result that will then be put on std::out (to the terminal). By using a series of writeln!() calls, I was able to make a clean format for printing the CPU’s state. I will keep adding to this as more debugging info is needed (flags, stack pointer, etc.)
+			<br><br>
+			<a href="https://doc.rust-lang.org/std/fmt/">std::fmt - Rust</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_4.2.png" alt="code" width="600"></img>
+			<br><br>
+			After running cargo build and cargo run, I was able to press p to print the CPU state, press n a few times to decode some instructions, then press p again to print the state again. The output to the terminal can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_4.3.png" alt="code" width="600"></img>
+			<br><br>
+			While this will not work in no_std environments for our final design (std::fmt is part of the std library), this will be a great help in debugging instruction execution in the simulation once I start working on that. Since the instructions are not currently being executed, the output is meaningless, but the CPU state will update once instructions are actually being processed.
+			<br><br><br><br>
 	<!--  Week 14, Entry 3  -->
 	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
            <b>Date: April 15th </b><br> <!--the date the project meeting or work was performed)-->
