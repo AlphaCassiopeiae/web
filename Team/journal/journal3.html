@@ -87,6 +87,67 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 14: =================</h2>
+	<!--  Week 14, Entry 3  -->
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 15th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			I spent this time working on the instruction decoding for our CPU emulator. Since the entire byte of the instruction is just an opcode, decoding involves looking up the opcode and determining if the CPU needs more bytes from memory, how many cycles it will take, and what flags will be modified. I found a good reference for example, so I will need to make a lookup table for all 256 opcodes in the 8080 instruction set following this table:
+			<br><br>
+			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcode Info Table</a>	
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.1.png" alt="table" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.2.png" alt="details" width="600"></img>
+			<br><br>
+			Following this table closely, I made a InstructionInfo struct and table entries for all 256 opcodes that contains the information listed above, the code for this can be seen below (this was a pretty long and tedious process)
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.21.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.6.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.7.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.8.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.9.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.10.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.11.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.12.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.13.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.14.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.15.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.16.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.17.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.18.png" alt="code" width="600"></img>
+			<br><br>
+			I did realize towards the end that some instructions, specifically some of the conditional instructions, can take a different number of clock cycles depending on whether or not the condition is met, so I will need to figure out how to handle that at some point. 
+			<br><br>
+			After I finished the lookup table I wanted to test it out using the simulator that I made earlier this week. I first decided to implement a run mode for the simulator, which is triggered by pressing the r key on the keyboard. When run mode is enabled, the cpu will read an instruction from RAM, decode it, then move on to the next instruction until it runs into a HLT instruction, at which point it breaks from the loop. I added the same HLT recognition functionality to single-step mode (pressing the n key). The code for run mode can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.19.png" alt="drawing" width="600"></img>
+			<br><br>
+			I imported the instruction lookup table into the main file, then loaded RAM with all of the instructions. If run mode works correctly, the simulator should decode instructions until it hits entry 0x76 in RAM, which is a HLT instruction (opcode is 0x76). After running cargo build and cargo run, I got the following output, indicating that run mode and the lookup table were functioning correctly. 
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_3.20.png" alt="code" width="600"></img>
+			<br><br>
+			Now that the CPU can decode opcodes into InstructionInfo, the next step is to figure out the actual execution of these instructions. The CPU will need to look at the cycles and bytes fields of the InstructionInfo to figure out what to do, I’ll figure out more refined implementation details here soon. I also want to add more of the front panel functionality to the simulator, including deposit and examine (for manually reading/writing memory). This way the user can input instructions to the simulator, then either run or single step through the program. Fully implementing the front panel on the simulator would allow me to start testing the CPU/memory interface without needing a working bus, which is a good abstraction that will help us test individual parts of the software before putting everything together.			<br><br><br><br>
+			<br><br><br><br>
 	<!--  Week 14, Entry 2  -->
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
            <b>Date: April 14th </b><br> <!--the date the project meeting or work was performed)-->
