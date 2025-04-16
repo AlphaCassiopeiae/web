@@ -87,6 +87,43 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 14: =================</h2>
+	<!--  Week 14, Entry 5  -->
+	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1.5 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			At the beginning of lab section, I updated the formatter for printing InstructionInfo implementing the std::fmt::Display function for InstructionInfo myself instead of relying on #[derive(Debug)] to do it. This way, the flags affected by each instruction can be printed in binary instead of decimal, which is much easier to debug. Since each flag is represented by a single bit in the u8 for flags, printing in binary makes much more sense. We had our meeting with the instructors, where I showed my progress on the CPU instruction decoding simulation for my weekly show-me-a-thing. 
+			<br><br>
+			I then started reading through the 8080 instruction set to begin working on actually executing some of the instructions. I was mainly referencing the Intel 8080 programming guide, specifically section 2, which defines the instruction set. I noticed that some of the instruction groups (MOV, INR/DCR, arithmetic register operations) follow the same pattern, where certain bits in the opcode define which register(s) are to be used. The link to the programmer manual and some of the instructions I was looking at can be seen below:
+			<br><br>
+			<a href="https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf">Intel 8080 Programmer's Manual</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.1.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.3.png" alt="code" width="600"></img>
+			<br><br>
+			After noticing these patterns, I decided to change the way I am handling registers in the CPU struct. Instead of defining each register individually in the struct, it would be easier to define the registers as an array of registers, so that when we decode an instruction where certain bits correspond to a register, I can use those bits of the opcode to index into the registers array. This will reduce the amount of code that I have to write drastically, the updated register implementation can be seen below:	
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.6.png" alt="code" width="600"></img>
+			<br><br>
+			After changing that, I started writing some skeleton code for the execute_instruction() function. This function takes an opcode (u8) and returns nothing for now. It decodes the opcode into InstructionInfo using the lookup table I made last night, then checks the opcode to decide what to do. Using match statements and if/else statements, I first checked for NOP and HLT instructions, and HLT sets the halt flag of the CPU to true. After that, I check of we have a MOV instruction by masking/checking the first two bits of the opcode, where 01 indicates a MOV instruction. I haven’t fully implemented it yet, but inside of that if block will be logic for decoding the src and dst registers. After that I added logic for identifying arithmetic operations by masking the first 5 bits of the opcode. The outline I have implemented can be seen below, I need to keep working on it:			
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.7.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.8.png" alt="code" width="600"></img>
+			<br><br>
+			The last thing I did was call this function in the main loop to clean up the logic a bit, the code for that can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_5.9.png" alt="code" width="600"></img>
+			<br><br>
+			Once execute_instruction() works properly, I want to set up a basic program in RAM and get this to work on our actual hardware so we can get the corresponding PSDR checked off. Next step: keep working on and debug the execute_instruction() function utilizing the debugging info I set up last night.
+			<br><br><br><br>
 	<!--  Week 14, Entry 4  -->
 	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
            <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
