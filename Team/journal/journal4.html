@@ -174,6 +174,10 @@ WEEK 15
 	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
 </div><br>
 
+<b>Citations:</b><br>
+- 1: <a href="link" target="_blank">description</a><br>
+<br>
+
 <br>
 
 <h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
@@ -186,6 +190,10 @@ WEEK 15
 <div id="banner">
 	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
 </div><br>
+
+<b>Citations:</b><br>
+- 1: <a href="link" target="_blank">description</a><br>
+<br>
 
 <br>
 
@@ -200,6 +208,10 @@ WEEK 15
 	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
 </div><br>
 
+<b>Citations:</b><br>
+- 1: <a href="link" target="_blank">description</a><br>
+<br>
+
 <br>
 
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
@@ -213,48 +225,270 @@ WEEK 15
 	<img src="Team\journal\img - member4\weekX\X.X.jpg" width = "25%" height = "auto"></img>
 </div><br>
 
+<b>Citations:</b><br>
+- 1: <a href="link" target="_blank">description</a><br>
+<br>
+
 <br>
 
 WEEK 14 -->
 
+<!-- Done -->
 <h2 id = "week14">===============   Week 14: =================</h2>
 
 <h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+<b>Date: April 17 </b><br>
+<b>Start Time: 9:00 pm</b><br>
+<b>Duration: 2.5 hours</b><br>
+<br>
+<b>Content:</b><br>
+
+Today, I needed to get started on the desoldering of the front panel buttons, as well as the CAD/CAM models for the back and front bezels. Below is an image of the front panel buttons, of which I need to desolder 52 of the pins so we can reassemble them.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.1.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I used the fine tipped soldering tip on the soldering iron, as well as the suction gun. These mounts were large enough to use the gun on. Below is an image of the tools I would use.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.2.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+The plan is to desolder all of the button pins, and then pull the entire button out at out. We have enough leftover buttons, so thankfully that will not be an issue.<br>
+
+I put the tip at 750 degrees Fahrenheit, and the new tip on, as well as some water in the sponge. Then I got to work.<br>
+
+After about an hour of soldering, I was unsuccessful at pulling out all of the buttons. This may have been because of bad equipment. I pulled the plastic and the metal out with tweezers, but it proved to not be the most effective way to desolder. I might be using a hot air gun in the future.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.3.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I decided to just cut some legs on the spot, but that did not leave enough room to properly pull out the button. I used pliers to take out 8 legs from two buttons, as seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.4.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+In the end, the desoldering was unsuccessful due to a lack of preparation. I will discuss with Brian how to go about the buttons, the final piece of the puzzle, and then we will have a mostly ready project, ready for finishing touches. For now, the progress on the front panel is as below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.5.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Next, I started on the Fusion360 for the front and back bezels.<br>
+
+First, I learned how to upload a .stp file into Fusion360. I did this by creating a new project and importing the .stp file into the directory. I knew that I would need two files, one for the front and one for the back, so I imported it twice. The import and the final result can be seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.6.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.7.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Next, I needed to move the entire bezel down so it was flush with the ground plane. I looked at this tutorial <a href="https://help.autodesk.com/view/fusion360/ENU/?guid=SLD-USE-MOVE-COPY" target="_blank">here</a>, and was able to move both the bezels down the ground plane. I also figured out that middle clicking and dragging would move your view, and how to get the position of an object so that I could translate it down. I also learned that shift + middle click could orbit the design.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.8.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.9.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I figured out that Fusion will not save on exit, so you have to manually save, which is quite annoying. I replicated the same translation on the back bezel. Now, it was time to cut out a certain size rectangle out of the design. I looked up <a href = "https://forums.autodesk.com/t5/fusion-design-validate-document/how-can-i-cut-a-custom-shape-out-of-a-shape/td-p/9413686" target = "_blank">this</a> article about someone else cutting a star out of their shape, and decided to follow a similar procedure. I decided to extrude the shape to get what I wanted.<br>
+
+I got the dimensions of the rectangle I wanted to cut out of the back bezel, which was 8 mm by 11.15 mm. This came from the KiCad file. I also measured the position of the center of the USB-C mount, which was 17 mm away from the side, and 11 mm away from the bottom.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.10.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.11.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I realized that the size of the rectangle may not be sufficient to fit the USB-C connector, so I will scale the entire design up by 1.2, to make sure it fits. The new dimensions will be: 9.6 mm x 13.38 mm. Below is the image of the new rectangle on the CAD design.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.12.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+If the dimensions of the rectangle are 9.6 mm by 13.38 mm, that means that half of one side is 4.8 mm x 6.69 mm. Therefore, the dimension markings from the side need to be placed at (17 - 4.8) mm and (11 - 6.69) mm, as seen below.
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.13.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Now that the rectangle is made, I can complete the extrusion. I selected all the necessary components from the backside and did object -> extrude.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.14.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.15.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Since the back bezel was done, I moved onto the front bezel. I saved the back bezel and went to import the svg of the design the laser needed to cut out.<br>
+
+I needed to extrude from object, so I watched <a href = "https://help.autodesk.com/view/fusion360/ENU/?guid=SLD-EXTRUDE-SOLID" target = "_blank">this</a> tutorial to get the information. I also needed to figure out how to import a .svg into the same design.<br>
+
+First, I needed to export the design I needed into a .svg. Then I could import it into Fusion360. I first exported the layer as svg in KiCad, seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.16.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Then, I imported the .SVG into solidworks, making sure the design overlapped what I had already. I overlapped the two designs, making sure there was minimal error. It looked as below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.17.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+To extrude, I had to do the annoying thing of selecting all the bodies I wanted to extrude, and then doing the operation. It was tedious, but I got it done and it looked as below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.18.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Now the extrusions were complete, and the designs were ready to go. First, I exported them as three separate file formats:<br>
+<ul>
+	<li>Autodesk Fusion Archive (.f3d)</li>
+	<li>Drawing Interchangable Format (.dxf)</li>
+	<li>.cam file, (.cam360)</li>
+</ul>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.19.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.20.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.21.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.22.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+With the cam files done, I exported the file version and got ready to go to the BIDC. I set up a request to use their CNC milling machine <a href = "https://www.purdue.edu/bidc/os1/project/proposal/7747" target = "_blank">here</a>, which led me to finish the brightspace training. I quickly finished the training, and send my completed model over, as seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\4.23.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\4.24.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+<p>
+Today, I focused on desoldering the front panel buttons and developing CAD/CAM models for the front and back bezels. Initially, I attempted desoldering 52 pins from the buttons using a fine-tipped soldering iron set to 750°F and a suction gun. Despite an hour of effort, this method proved ineffective due to difficulty extracting the buttons cleanly. I briefly tried cutting button legs and pulling them out with pliers, but this also had limited success. Going forward, I plan to discuss using a hot-air rework station or alternative techniques with Brian to simplify the process.
+</p>
+
+<p>
+Afterwards, I began working with Fusion360, importing two separate <code>.stp</code> files for the front and back bezels. Following this <a href="https://help.autodesk.com/view/fusion360/ENU/?guid=SLD-USE-MOVE-COPY" target="_blank">Fusion360 guide</a>, I learned to move and align components precisely within the software. I then measured and cut out an opening on the back bezel for the USB-C connector, adjusting dimensions to 9.6 mm by 13.38 mm for adequate clearance. The positioning was based on measurements from the KiCad layout.
+</p>
+
+<p>
+Next, I imported the front panel design from KiCad as an <code>.svg</code> file and aligned it accurately onto the front bezel model in Fusion360, guided by <a href="https://help.autodesk.com/view/fusion360/ENU/?guid=SLD-EXTRUDE-SOLID" target="_blank">this tutorial</a>. After meticulously selecting each body, I completed the extrusion cuts to finalize the CAD models.
+</p>
+
+<p>
+With the CAD models ready, I exported them into three different formats: Autodesk Fusion Archive (<code>.f3d</code>), Drawing Exchange Format (<code>.dxf</code>), and CAM (<code>.cam360</code>) files. Finally, I submitted a CNC milling request to the BIDC facility through their online platform (<a href="https://www.purdue.edu/bidc/os1/project/proposal/7747" target="_blank">proposal link</a>), completing the required Brightspace training, and uploaded the finished CAM files in preparation for fabrication.
+</p>	
+
+<b>Citations:</b><br>
+- 1: <a href="https://help.autodesk.com/view/fusion360/ENU/?guid=SLD-USE-MOVE-COPY" target="_blank">Fusion 360 Help: Move or Copy Geometry</a>
+- 2: <a href = "https://forums.autodesk.com/t5/fusion-design-validate-document/how-can-i-cut-a-custom-shape-out-of-a-shape/td-p/9413686" target = "_blank">Extrusion in Fusion360</a>
+- 3: <a href = "https://help.autodesk.com/view/fusion360/ENU/?guid=SLD-EXTRUDE-SOLID" target = "_blank">Object extrusion in Fusion360</a>
+- 4: <a href = "https://www.purdue.edu/bidc/os1/project/proposal/7747" target = "_blank">BIDC Guidelines</a>
+<br>
+
+<br>
+
+<!-- Done -->
+<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
 <b>Date: April 16 </b><br>
-<b>Start Time: X:XX am</b><br>
+<b>Start Time: 9:30 am</b><br>
 <b>Duration: 2 hours</b><br>
 <br>
 <b>Content:</b><br>
 
+Today, I focused on more hardware manufacturing was well as the physical enclosures. First, I removed all of tape from the existing enclosures, to see if the paint had fully dried. It looked like it did, from the images below. I also removed the painter's tape from the plastic bezels.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.1.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\3.2.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Dr. Walter came by during the mandatory lab session, where we got another checkoff for the I/O expanders as seen in the photo below. One of the biggest concerns we reported to him was the amount of manpower it would take to solder all of the back planes.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.3.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I checked the time it would take the paint to fully dry, which was on the container of the spray paint can. I also checked online at this <a href = "https://www.thespruce.com/how-long-does-it-take-spray-paint-to-dry-7486380#:~:text=After%20application%2C%20it%20typically%20takes,temperature%2C%20humidity%2C%20and%20airflow." target = "_blank">link</a>, which matched up with the estimate from the can.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.4.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+After the boxes were all unboxed as seen in the photo below, I decided to add the rubber feet which came in the enclosure packages. I first decided to make them 1 cm away from the corners, but that resulted in the plastic bezels not fitting onto the enclosure. Thus, I spaced them out to be 1 inch away from the corners, as seen in the second image. I was aiming to get the position close to what we saw in the enclosure documentation <a href = "https://www.hammfg.com/electronics/small-case/extruded/1455" target = "_blank">here</a>, which I realized might not be possible to get it pixel perfect.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.5.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\3.6.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\3.6.2.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+The new spacing worked perfectly, and the boxes were starting to look like the original Altair, which we were going off of <a href = "https://americanhistory.si.edu/collections/object/nmah_334396" target = "_blank">here</a><br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.7.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I messed up the back panel a little bit due to the fact that some of the solder decided to bridge and the pen was unable to get it off, so I believe I will need to be more patient next time when applying the solder and drag soldering, even going to the extents of doing it one pin at a time. Below you can see the bridged mounts on the FFC.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.8.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Next, I created bends in the flash chips so that we could solder the proper pins into the card PCBs, because they were reverse in the schematic and we had to deal with the fallout when the PCBs were ordered. I had 10 to make, as seen in the below photo, and I successfully changed the orientation of the legs, as seen in the photo to the right.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.9.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\3.10.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Then, I went to ACE hardware to return the usused can of spray paint and try to get the plastic bezels engraved. I grabbed the second can and returned it promptly, as seen in the photos below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.11.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\3.12.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+After this, I went to BIDC to try to get the bezels engraved, but it turned out they were closed, and I needed to schedule an appointment with the BIDC center. After this, I went to the machine shop, but they were also closed. Hopefully the machine shop has something for me, so I don't need to schedule things with Bechdel.
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.13.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I helped with the soldering of the new QSPI Flash chips onto the cards, which I organized and checked for non-continuity at the mounts, before organizing them and placing them under the table, as seen in the image below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.14.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Next, I needed to download Fusion360 <a href = "https://www.autodesk.com/products/fusion-360/appstream" target = "_blank">here</a> and Adobe Illustrator <a href = "https://www.adobe.com/products/illustrator/free-trial-download.html" target = "_blank">here</a>. I had already used an existing trial of Adobe illustrator in the past, so I think I would have to go to one of the WALC computers in order to use it.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\3.15.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\3.16.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+The new plan for the front panel details would be to mill out a design from the front and back bezels, and then print out a vinyl sticker from the knowledge lab in order to paste on top of the the front bezel. This would allow us to exactly replicate the original design, which is what we are intending. I looked up how if Adobe Illustrator could import .svg files, which it could <a href = "https://www.adobe.com/creativecloud/file-types/image/vector/svg-file.html#:~:text=How%20to%20edit%20an%20SVG,Illustrator%20document%20using%20File%20%3E%20Place." target = "_blank">here</a><br>
+
+I needed to leave to attend a meeting, but I will pick up the work during my next work session, starting with Fusion360.<br>
+
+<p>
+Today, I continued work on hardware manufacturing and enclosure preparation. I began by removing all painter’s tape from the aluminum enclosures and plastic bezels, confirming that the paint had fully dried. The results looked clean and matched expectations. During our mandatory lab session, Dr. Walter reviewed our progress and checked off the functionality of the I/O expanders. One of our concerns discussed was the time and manpower required to complete soldering on all the backplanes.
+</p>
+
+<p>
+To confirm drying times, I referenced the spray paint can and verified the estimate with <a href="https://www.thespruce.com/how-long-does-it-take-spray-paint-to-dry-7486380#:~:text=After%20application%2C%20it%20typically%20takes,temperature%2C%20humidity%2C%20and%20airflow." target="_blank">this guide</a> on spray paint drying. Once the boxes were unboxed, I installed rubber feet onto each enclosure. Initially, I placed them 1 cm from the corners, but this prevented the bezels from fitting properly. Adjusting to a 1 inch offset solved the issue, aligning with placement recommendations from the <a href="https://www.hammfg.com/electronics/small-case/extruded/1455" target="_blank">Hammond enclosure documentation</a>. The boxes are now beginning to resemble the original Altair design, as seen in <a href="https://americanhistory.si.edu/collections/object/nmah_334396" target="_blank">this reference</a>.
+</p>
+
+<p>
+While soldering a back panel, I ran into an issue with solder bridging on the FFC mounts. I realized I needed to slow down and consider soldering each pin individually to avoid short circuits. Additionally, I corrected the pin orientation on ten QSPI flash chips by bending their leads—an adjustment made necessary by a schematic error in our PCB design. I also made a trip to ACE Hardware to return unused spray paint and attempted to engrave bezels, but both BIDC and the campus machine shop were closed. I will need to schedule time with either facility soon.
+</p>
+
+<p>
+Back in the lab, I helped solder QSPI chips to the cards, verified continuity, and stored the completed boards properly. I then prepared to begin the next phase of front panel detailing. To do this, I downloaded <a href="https://www.autodesk.com/products/fusion-360/appstream" target="_blank">Fusion 360</a> and attempted to access <a href="https://www.adobe.com/products/illustrator/free-trial-download.html" target="_blank">Adobe Illustrator</a>. Since my free trial had expired, I plan to use the WALC computers to access Illustrator.
+</p>
+
+<b>Citations:</b><br>
+- 1: <a href = "https://www.thespruce.com/how-long-does-it-take-spray-paint-to-dry-7486380#:~:text=After%20application%2C%20it%20typically%20takes,temperature%2C%20humidity%2C%20and%20airflow." target = "_blank">Duration it takes spray paint to fully dry</a><br>
+- 2: <a href = "https://www.hammfg.com/electronics/small-case/extruded/1455" target = "_blank">Rubber feet positioning</a><br>
+- 3: <a href = "https://www.autodesk.com/products/fusion-360/appstream" target = "_blank">Fusion 360 Documentation</a><br>
+- 4: <a href = "https://www.adobe.com/products/illustrator/free-trial-download.html" target = "_blank">Adobe Illustrator documentation</a><br>
+- 5: <a href = "https://www.adobe.com/creativecloud/file-types/image/vector/svg-file.html#:~:text=How%20to%20edit%20an%20SVG,Illustrator%20document%20using%20File%20%3E%20Place." target = "_blank">here</a><br>
 <br>
 
-<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
-<b>Date: April 15 </b><br>
-<b>Start Time: X:XX am</b><br>
-<b>Duration: 3 hours</b><br>
-<br>
-<b>Content:</b><br>
-
-<br>
-
+<!-- Done -->
 <h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
 <b>Date: April 14 </b><br>
 <b>Start Time: 9:30 am</b><br>
-<b>Duration: 2.5 hours</b><br>
+<b>Duration: 3.5 hours</b><br>
 <br>
 <b>Content:</b><br>
 
 Today, I got to lab and went to check on the paint. I removed some of the painter's tape on one of the front panel bezels, just to inspect it, and it came out perfectly. Below you can see an image of what it looked like.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\2.1.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.1.jpg" width = "50%" height = "auto"></img>
 </div><br>
 After thinking about how they came out, I realized that I maybe should have waited on painting the bezels, based on the plan I had for the entire front panel bezel.<br>
 
 I looked at the silkscreen of the front panel, trying to think of a way to print out the front panel so that we could laser engrave it with the front panel design we desired. After turning off all of the unnecessary layers, I came out with the following image, which I send to the printer.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\2.2.jpg" width = "25%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\2.3.jpg" width = "25%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\2.4.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.2.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.3.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.4.jpg" width = "50%" height = "auto"></img>
 </div><br>
 
 The following layers were selected:
@@ -266,17 +500,17 @@ The following layers were selected:
 
 I also removed the layers of tape on one of the enclosures, and it came out pretty well. I still need to wait 4 more days for the paint to dry completely. Below is an image of what the enclosure looks like.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\2.5.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.5.jpg" width = "50%" height = "auto"></img>
 </div><br>
 
 In the meantime, I got more layers of the KiCad layout, and I cut out on of the papers after marking some measurement marks on a few. I talked to Shivam, who recommended we use the laser in BIDC to get the intended design onto our front and back panel bezels. I also printed out an example back panel bezel just so I could know what it looked like, seen in the images below. I also made sure to mirror the back panel bezel so that it actually matched up with the final physical version.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\2.6.jpg" width = "25%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\2.7.jpg" width = "25%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\2.8.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.6.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.7.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.8.jpg" width = "50%" height = "auto"></img>
 </div><br>
 
-I was concerned that the paint might peel, so I looked up the conditions and images of psray paint peeling <a href = "" target="_blank">here</a>, just for reference
+I was concerned that the paint might peel, so I looked up the conditions and images of psray paint peeling <a href = "https://www.behr.com/consumer/how-to/interior/how-to-repair-peeling-paint" target="_blank">here</a>, just for reference
 
 I will have to talk with the Machinist in the ECE building later to see if he can laser the bezels without me having to go to BIDC. Otherwise, I will likely have to go to BIDC. In the meantime, I needed to get another back panel ready for baking, by setting the PCB stencil on all sides.<br>
 
@@ -284,15 +518,119 @@ I talked to the machinist about laser engraving the bezels, which he said he did
 
 After I got back to lab, I decided to solder paste the backplane. I used a technique where I would go over it once and then go back in order for all of the solder to stick to the backplane mounts. Then, I put all of the components onto the backplane.<br>
 
-Resistors and ceramic capacitors were not polarized, so I started with those. An image of the non-polarization can be found below.<br>
+Resistors and ceramic capacitors were not polarized, so I started with those. An image of the non-polarization can be found below. I also found the information from <a href = "https://www.protoexpress.com/kb/component-orientation-and-polarity/#:~:text=Non%2Dpolarized%20capacitors%20have%20no,%2C%20mica%2C%20and%20glass%20capacitors." target = "_blank">this</a> source<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\2.9.jpg" width = "25%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.9.jpg" width = "50%" height = "auto"></img>
 </div><br>
 
-Then, I put on the diodes and other polarized components using the existing backplane as a guide.	
+Then, I put on the diodes and other polarized components using the existing backplane as a guide. I placed the PCB stencil and spent a lot of time trying to get all of the edges aligned. I knew that if I was even a millimeter off, the PCB was not going to come out how I wanted it too. The two major points I used for this were the entire buck converter region and the USB-C connector region. Again, a lot of time was spent to make sure the stencil was aligned, given how many mounts we needed to make. Below, you can see an image of the completed stencil.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.10.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Afterwards, all the solder paste was added to the backplane, which made it look like below. I followed a special method for pasting the board, by applying ONLY one coat on the long edge of the board, and then going back the other way to make sure that every single pad was coated. I only did this for one layer, because as I discovered before, two or more layers would cause bridges between the solder, which we did not want.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.11.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+All the necessary components were populated, being all of the buck converter items and the USB-C mounts as well as the resistors. In the photos below you can see the proper placements of the items.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.12.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.13.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+On the way to placing all of the components, I accidently lost on of the 0402 resistors. I looked up how small it was <a href = "https://www.rohm.com/electronics-basics/resistors/chip-resistor-specifications" target ="_blank">here</a>, and spent 30 minutes searching for it, but never found it. I think that the 0402s are just way to small. After this I needed to switch to a new pair of tweezers to complete the rest of the components.
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.14.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.14.2.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I cleaned up the stencil and the table after completing the pasting, as seen in the below image.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.15.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.16.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+After this, I created a new stencil layout, removing all of the existing tape and paste off of the old stencil, and placing the new one on top of the new board, following the rules and regulations I developed before. The outcome can be seen below.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.17.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.18.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I wanted to use the gloves for spreading the solder paste, but I had got them wet before, and I looked up this <a href = "https://www.indium.com/blog/humidity-and-solder-paste-do-not-mix.php#:~:text=As%20a%20rule%2C%20solder%20pastes,exhibit%20reduced%20viscosity" target = "_blank">article</a> on the effects of using solder paste with water. Because it decreases viscosity and performance, I decided against doing it. Below is an image of the wet gloves.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.19.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+I continued to place the components that were necessary on the backplane. Below is an archive of all of these components, also found on our website <a href = "https://engineering.purdue.edu/477grp15/Files/references.html" target = "_blank">here</a>:<br>
+
+The buck converter and the position of the buck converter:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.21.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.20.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+The USB-C mount and the 5.1k resistors around the USB-C mount:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.22.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+The debugging diodes on the backplane:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.23.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+The drum inductor for the power converter:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.24.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Capacitors, resistors, and diodes around the buck converter:<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.25.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.26.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.27.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Afterwards, the completed backplane was placed on the hotplate, and allowed to cooled after everything was heated up. Below is an image of the result, which was pretty good.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.28.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+Because I was unable to complete another backplane due to lack of parts (3 parts were missing because I lost them), I decided to clean up the environment and wait for another day to complete the last backplane. I returned the solder to the contained and placed the paste container inside the refrigerator, cleaned the PCB stencil with water, and then reconfigured the layout with the last back panel inside. Below are three images of my work.<br>
+<div id="banner">
+	<img src="Team\journal\img - member4\week14\2.29.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.30.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\2.31.jpg" width = "50%" height = "auto"></img>
+</div><br>
+
+<p>
+Today, I began by checking on the status of the spray-painted enclosures. I removed the painter’s tape from one front panel bezel, and the result was nearly perfect. However, upon further reflection, I realized I may have painted the bezels prematurely given our updated plan to laser engrave the front panel design. I turned off unnecessary layers in KiCad—specifically <b>F.silkscreen</b>, <b>F.Edge.Cuts</b>, and <b>F.Courtyard</b>—to generate a printable image for the laser cutter. After exporting the image, I printed and mirrored the back panel version for alignment, preparing for future laser etching at BIDC.
+</p>
+
+<p>
+I also peeled the painter’s tape off one of the enclosures and was pleased with the outcome. Since the paint still needs several days to fully cure, I researched spray paint peeling scenarios from <a href="https://www.behr.com/consumer/how-to/interior/how-to-repair-peeling-paint" target="_blank">this guide</a> to be cautious. I consulted with the ECE building machinist about laser engraving, but he didn’t have the capability. Instead, I submitted a work order for a simple back panel cut. Meanwhile, I began preparing another backplane for baking.
+</p>
+
+<p>
+Using a PCB stencil, I carefully applied solder paste and placed components onto the new backplane. I began with non-polarized components like resistors and ceramic capacitors, referencing <a href="https://www.protoexpress.com/kb/component-orientation-and-polarity/#:~:text=Non%2Dpolarized%20capacitors%20have%20no,%2C%20mica%2C%20and%20glass%20capacitors." target="_blank">this polarity reference</a>. Next, I placed polarized parts such as diodes, the buck converter circuitry, and the USB-C mount. I ensured the stencil alignment was accurate by using the buck converter and USB-C regions as anchor points. After aligning and applying solder paste with a single pass to prevent bridging, I populated all key components.
+</p>
+
+<p>
+While populating the board, I lost a 0402 resistor—so small that even after 30 minutes of searching, I couldn’t find it. According to <a href="https://www.rohm.com/electronics-basics/resistors/chip-resistor-specifications" target="_blank">ROHM’s specifications</a>, 0402 components are just 1.0 × 0.5 mm, which explains the difficulty. I replaced my tweezers and continued component placement. After confirming that all components were correctly mounted—including buck converter elements, debugging diodes, and 5.1k resistors for the USB-C port—I placed the backplane on a hotplate for reflow soldering.
+</p>
+
+<b>Citations:</b><br>
+- 1: <a href = "https://www.behr.com/consumer/how-to/interior/how-to-repair-peeling-paint" target="_blank">Conditions for paint to peel</a><br>
+- 2: <a href = "https://www.protoexpress.com/kb/component-orientation-and-polarity/#:~:text=Non%2Dpolarized%20capacitors%20have%20no,%2C%20mica%2C%20and%20glass%20capacitors." target = "_blank">Polarity of SMD components</a><br>
+- 3: <a href = "https://www.rohm.com/electronics-basics/resistors/chip-resistor-specifications" target ="_blank">Size of 0402 components</a><br>
+- 4: <a href = "https://www.indium.com/blog/humidity-and-solder-paste-do-not-mix.php#:~:text=As%20a%20rule%2C%20solder%20pastes,exhibit%20reduced%20viscosity" target = "_blank">Effects of mixing solder paste and water</a>
+- 5: <a href = "https://engineering.purdue.edu/477grp15/Files/references.html" target = "_blank">Documentation of backplane components</a><br>
+<br>
 
 <br>
 
+<!-- Done -->
 <h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
 <b>Date: April 13 </b><br>
 <b>Start Time: 7:00 pm</b><br>
@@ -303,7 +641,7 @@ Then, I put on the diodes and other polarized components using the existing back
 Today, I wanted to complete spray painting of the enclosures so I could spend the next week getting all the back panels assembled, cutting out the front panels, and assembling all of the PCs. The first step for me was using the calipers I had found last week to get the exact measurements for the depth and height of the blue paint. The calipers in use can be seen in the image below.<br>
 
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.1.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.1.jpg" width = "50%" height = "auto"></img>
 </div><br>
 As mentioned last week, after doing all the calculations of the scale of the Altair using external sources and <a href="https://americanhistory.si.edu/collections/object/nmah_334396" title="_blank">this</a> reference, I needed to measure at the following markings.<br>
 <ul>
@@ -312,87 +650,87 @@ As mentioned last week, after doing all the calculations of the scale of the Alt
 </ul>
 I used the guidance in <a href="https://tapemanblue.com/blogs/tips-tricks/paint-straight-lines#:~:text=Layer%20the%20Tape,rest%20should%20come%20right%20off." target = "_blank">this</a> website to figure out how to get perfectly straight lines on the tape. I also decided to double up the layering of painter's tape, so no tape would bleed through. Below is an image of the finished box with the double layered tape. I made sure that everything was as close to aligned as possible and that I went the 90 degree direction when applying the tape.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.2.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.2.jpg" width = "50%" height = "auto"></img>
 </div><br>
 The process I followed for taping the boxes was as follows:<br>
 First, I would place lines in pencil where the markings should go. This can be seen in the photos below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.3.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\1.4.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.3.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.4.jpg" width = "50%" height = "auto"></img>
 </div><br>
 Then, I would apply tape to the front and bottom, so that no paint would bleed inside. After this step was done, it would look like this:<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.5.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.5.jpg" width = "50%" height = "auto"></img>
 </div><br>
 Afterwards, I would apply the first round of tape, making sure that the lines were straight and applied to the edges. The following two photos demonstrate what this would look like.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.6.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\1.7.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.6.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.7.jpg" width = "50%" height = "auto"></img>
 </div><br>
 Next, I would apply the remaining tape, making sure it covered the entire rectangular region on the top which I did not want painted. Sometimes, I would use a card to smooth out the lines. A photo of the finished product and me using a card can be seen below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.8.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\1.9.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.8.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.9.jpg" width = "50%" height = "auto"></img>
 </div><br>
 Afterwards, I would go and tape over the lines with another layer. In all, the box would look like below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.10.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.10.jpg" width = "50%" height = "auto"></img>
 </div>
 I repeated the process 2 more times for the remaining two enclosures. I had to remove some of the tape on the enclosures in the past, because it wasn't the correct <a href = "https://www.homedepot.com/b/Paint-Paint-Supplies-Tape-Painters-Tape/N-5yc1vZcibu" target="_blank">painter's tape</a> that we needed to do the painting.<br> 
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.11.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.11.jpg" width = "50%" height = "auto"></img>
 </div>
 I placed the enclosures on the leftovers of a cardboard poster. In the end, it looked as below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.12.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.12.jpg" width = "50%" height = "auto"></img>
 </div>
 I started thinking about how I would paint the front panel portion of the enclosure. From the two images below, It can be seen that the blue paint went outside the perimeter. The back plane of the enclosure, however, is not painted, as seen in the photo.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.13.jpg" width = "33%" height = "auto"></img>
-	<img src="Team\journal\img - member4\week14\1.14.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.13.jpg" width = "50%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.14.jpg" width = "50%" height = "auto"></img>
 </div>
 I decided to paint only the sides of the front facing plastic, as I had another plan for the front panel plastic. To do this, I would need to tape over the front face of the plastic. I use two pieces of tape in order to do so, making two layers to make sure no paint leaked. A single front panel plastic can be seen below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.15.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.15.jpg" width = "50%" height = "auto"></img>
 </div>
 And all four completed plastic panels looked as below:<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.16.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.16.jpg" width = "50%" height = "auto"></img>
 </div>
 I then moved forward to painting the alluminum, where I would need a 180 grit sandpaper followed by a 220 grit sandpaper, according to <a href = "https://machining-quote.com/bolg/how-to-paint-aluminum/" target = "_blank">this</a> website, so I obtained those materials as seen in the picture below, as well as a higher pitch sandpaper.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.17.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.17.jpg" width = "50%" height = "auto"></img>
 </div>
 I started sanding each of the front panels so the surface would not be as smooth, just to try it out, first with the 180P and then with the 240P. Below you can see how it turned out.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.18.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.18.jpg" width = "50%" height = "auto"></img>
 </div>
 After this was complete, I packed up all the painting related things, including goggles, gloves, masks, and headed up to the BIDC to complete painting in their ventilated rooms. Below is an image of the box I took.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.19.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.19.jpg" width = "50%" height = "auto"></img>
 </div>
 While at BIDC, the first thing I needed to do was find a suitable place to paint, which was away from anything hazardous and that could cause damage. I looked up this <a href="https://www.fivestarpainting.com/blog/2021/october/indoor-painting-how-to-do-it-safely/" target="_blank">article</a> on find a place to paint indoors.<br>
 I got the necessary materials which I needed, and made a setup like you can see below. I need to find an object to hold the front panel plastics down, so the cardboard box is what I settled on. I saw that the plastic we were using was ABS plastic, so I found <a href="https://www.pfonline.com/articles/painting-plastic" target="_blank">this</a> article on how to paint ABS plastic. It was a similar procedure to spray painting alluminum, so I made sure to sand all of the edges of the bezels. I continued to abrase the surfaces until they were ready to be painted.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.20.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.20.jpg" width = "50%" height = "auto"></img>
 </div>
 After which, I began spray painting, following the instructions on the can. I began with adding one coat of paint, and then waiting around 20 minutes to apply the second one. Then I would apply the third coat of paint at the 40 minute mark, and wait another hour before taking them back to the lab, inside the cardboard box. The first coat of paint can be seen below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.21.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.21.jpg" width = "50%" height = "auto"></img>
 </div>
 During the painting, I ran into the issue that the painter's tape would sometimes peel. If this happened on the plastic bezels, it would be some issue, but not a lot since we were going to hacksaw them anyways. After 20 minutes, I applied the second coat of paint. It can be seen in the image below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.22.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.22.jpg" width = "50%" height = "auto"></img>
 </div>
 After the second coating, the spray painting was much better, and I believe that the coats were actually applying to the alluminum. I will still likely have to apply the third coat in around 30 minutes, because I do not trust that 2 will do the trick.<br>
 
 Before the third coating was applied, I wanted to get the box ready for transport, in the case that the paint were to leak. The main reason I did this was so the boxes would be held secure in place if the box moved around. Even if the paint leaked or wasn't applied correct, the damages would be minimal. I used some tape and taped inside the box with some newspaper inside. It looked as such.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.23.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.23.jpg" width = "50%" height = "auto"></img>
 </div>
 THe third coating was applied, and looks as below.<br>
 <div id="banner">
-	<img src="Team\journal\img - member4\week14\1.24.jpg" width = "33%" height = "auto"></img>
+	<img src="Team\journal\img - member4\week14\1.24.jpg" width = "50%" height = "auto"></img>
 </div>
 I felt like the spray painting was very successful, as I saw no paint move during the 90 minutes I was watching it. I took the boxes back to the lab and let them dry on the floor on the cardboard. I will check back on the painted boxes sometime later.<br>
 
@@ -407,6 +745,15 @@ Next, I prepared the aluminum and ABS plastic components for painting by sanding
 <p>
 During the spray painting session, I applied three coats of paint, waiting 20 minutes between the first and second, and then another 40 minutes before applying the third. I encountered a minor issue with tape peeling, especially on the plastic bezels, but this was manageable since those would be trimmed with a hacksaw anyway. To prepare for safe transportation back to the lab, I reinforced the box interior with newspaper and tape to prevent the painted pieces from shifting. Ultimately, the paint adhered well, with no signs of movement during the drying period. I let the pieces dry on a cardboard platform in the lab and will inspect the final result later. The spray painting process was thorough and successful, ensuring the enclosures are now visually accurate and professionally finished.
 </p>	
+
+<b>Citations:</b><br>
+- 1: <a href="https://americanhistory.si.edu/collections/object/nmah_334396" title="_blank">Dimensions of old Altair</a><br>
+- 2: <a href="https://tapemanblue.com/blogs/tips-tricks/paint-straight-lines#:~:text=Layer%20the%20Tape,rest%20should%20come%20right%20off." target = "_blank">Painting techniques for straight lines</a><br>
+- 3: <a href="https://www.homedepot.com/b/Paint-Paint-Supplies-Tape-Painters-Tape/N-5yc1vZcibu" target="_blank">Correct painter's tape for straight lines</a><br>
+- 4: <a href="https://machining-quote.com/bolg/how-to-paint-aluminum/" target = "_blank">Technique for painting alluminum</a><br>
+- 5: <a href="https://www.fivestarpainting.com/blog/2021/october/indoor-painting-how-to-do-it-safely/" target="_blank">Indoor painting with ventilation</a><br>
+- 6: <a href="https://www.pfonline.com/articles/painting-plastic" target="_blank">Plastic painting guide</a><br>
+<br>
 
 <br>
 
