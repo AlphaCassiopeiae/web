@@ -87,6 +87,41 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 14: =================</h2>
+			<!--  Week 14, Entry 5  -->
+	<h4><b>Entry 8: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 18th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 1:00am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			While starting to work on implementing functionality for arithmetic instructions inside of execute_instruction(), I realized that I needed to handle the M register much differently than the other registers. After reading through the Wikipedia page about the Intel 8080, I learned that the “M” register is just the value in memory at the address contained in the concatenation of the H and L registers. This means that to access the M register, I need to concatenate the contents of the H and L register into a single u16, then read memory at that address. Using this knowledge, I wrote some skeleton code for getting the address, then reading/writing memory at that address (effectively getting/setting the M register). This code can be seen below, as well as the Wikipedia page that I read through (under the Registers section):
+			<br><br>
+			<a href="https://en.wikipedia.org/wiki/Intel_8080#Registers">Intel 8080 Wikipedia Page</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.1.png" alt="code" width="600"></img>
+			<br><br>
+			As I figure out timing and making tram requests (in our system, these read/write requests will need to go out on the bus), I will update these read_m() and write_m() functions. The next thing that I did was update read_reg() and set_reg() to include functionality for the M register, which involves calling read_m() and write_m(). The code I wrote can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.2.png" alt="code" width="600"></img>
+			<br><br>
+			I moved on to implementing more instructions in the execute_instruction() function. Starting with the MOV instructions, I wrote the code to move the contents of one register (now including M) to another register. The code is pretty simple for now, but I still need to find a way for MOV instructions that involve M to take 7 cycles, while the others take 5.		
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.3.png" alt="code" width="600"></img>
+			<br><br>
+			I took a quick detour to write the update_szp() function that I mentioned earlier, which uses the new flag setup to set the sign, zero, and parity flags based on the result of an arithmetic calculation. This was pretty simple code, I did have to find the count_ones() function in order to figure out the parity condition, but no issues other than that. This function will be used for any instruction where the sign, zero, and parity flags are affected.
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.4.png" alt="code" width="600"></img>
+			<br><br>
+			After that, I started working on the arithmetic instructions, mainly focusing on the logical operations (ORA, XRA, ANA) since they seemed the simplest to me. I also worked on the add and subtract instructions, but I’m now realizing as I’m writing this that I forgot to use the wrapping_add() and wrapping_sub() functions (I just used +/- operators), so that will definitely need to be fixed. Some of the instruction implementations can be seen below, again I’m not exactly sure how I will handle operations involving M because they will take a different number of clock cycles.	
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.6.png" alt="code" width="600"></img>
+			<br><br>
+			Assuming I fix some minor issues over the weekend, my progress on the instruction set will be as follows:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.7.png" alt="code" width="600"></img>
+			<br><br>
+			I spent the rest of this session doing some brainstorming about what critical functionality still needs to be implemented to get some basic programs running (eventually on the microcontroller). I thought about it for a while, and here’s the list that I came up with: 1) get flag updates working for every instruction implemented so far: this is critical since some instructions rely on the current state of the flags. 2) update get/set_m to make tram requests, also update fetch_instruction() to make tram request: this is needed for interfacing with our bus. 3) translate the front panel simulation code (keyboard input) into GPIO signals and logic (so that we can start testing with our working front panel card). My goal is to have all 3 of these done early next week so I can start making sure that the integration of the whole system comes together nicely. I should also have enough instructions implemented to start writing some very basic programs and testing that they work as intended.
+			<br><br><br><br>
 	<!--  Week 14, Entry 7  -->
 	<h4><b>Entry 7: -----------------------------------------------------------------</b></h4>
            <b>Date: April 17th </b><br> <!--the date the project meeting or work was performed)-->
