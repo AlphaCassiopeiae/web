@@ -87,11 +87,67 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 14: =================</h2>
+	<!--  Week 14, Entry 7  -->
+	<h4><b>Entry 7: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 17th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 2:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started my effort to rework how my emulator will handle updating CPU flags. After looking into it a bit (asking ChatGPT), I figured out that when an instruction does not update a given flag, that flag is not reset; it is left as it was from the previous instruction. I started by defining bit masks for each flag. Since affected flags (u8) is a part of the InstructionInfo struct, I figured I could use these bit masks to determine when to update a flag. The bit masks I defined in cpu.rs can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.1.png" alt="code" width="600"></img>
+			<br><br>
+			I also changed the flags in the CPU struct, making them each individual boolean flags instead of them all being stored in a single u8. I did this to make updating them easier (no need to use the individual bit-setting logic I was using), and I scrapped the update_flags() function entirely. My new plan is to have a set_szp() function that sets the sign, zero, and parity flags only (those flags only depend on the result), then handle carry and aux_carry separately (I will code this up later tonight). I still wanted a way to pack the flags into a u8 for pushing/popping a PSW (concatenation of A register and flags, 16 bits total), so I added a pack_flags() function that takes the CPU flags and creates a u8 following the 8080 flags register format (S, Z, 0, A, 0, P, 1, C). I also changed the read functions for each of the flags, they are much simpler now since I just have to immediately return the boolean value from the struct. All of the added/modified code for the flags can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.3.png" alt="code" width="600"></img>
+			<br><br>
+			The last thing I did was work on execute_instruction() for a bit. I want to get the register arithmetic instructions working as soon as possible, as that will allow me to start testing some programs and check the register values to determine if instructions are being processed properly. I just added a framework for these in the match statement for now, I did this by referencing the 8080 opcodes table and seeing which opcodes correspond to which instructions. The src register is defined in the first 3 bits of each opcode, and all of them use the A register as the other operand, so this should be relatively simple to implement when I have some more time. The link to the opcode table and the framework I set up can be seen below:
+			<br><br>
+			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcodes Table</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.4.png" alt="code" width="600"></img>
+			<br><br>
+			The execute_instruction() function is slowly coming along, and I feel like the current set up will allow me to progress much quicker. The next major step is to actually implement the arithmetic instructions and start testing them. 
+			<br><br><br><br>
+	<!--  Week 14, Entry 6  -->
+	<h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started working on getting execute_instruction() to work for a few instructions. With NOPs and HLT already implemented, I started moving on to some simple instructions, particularly INR and DCR. I will handle updating flags later, but the code for now was extremely simple. The register number to be incremented/decremented is stored in the bits 5-3 of the opcode, so I just read the corresponding register’s value, then either incremented or decremented it using the wrapping_add(1)/wrapping_sub(1) functions. These functions are necessary because otherwise the program would panic on overflow/underflow, and these functions prevent that from happening. For instance, using 8-bit registers, adding 1 to 0xFF will result in the new value being 0x00. The documentation for these functions and test case for INR/DCR B output can be seen below, they are working flawlessly for now but I will need to update them to handle flags later.	
+			<br><br>
+			<a href="https://doc.rust-lang.org/std/intrinsics/fn.wrapping_add.html">wrapping_add() - Rust</a>
+			<br><br>
+			<a href="https://doc.rust-lang.org/std/intrinsics/fn.wrapping_sub.html">wrapping_sub() - Rust</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.1.png" alt="code" width="600"></img>
+			<br><br>
+			I then decided to make my first attempt at some kind of flag updating function. As I soon figured out this will not work for all instructions, but it should work for INR/DCR instructions. It takes a parameter result (u8), and sets the CPU flags for zero, sign, and parity according to the result. I had the flags just as a u8 in the CPU struct, so implementing this involved turning on/off the specific bits corresponding to each flag. The code for that can be seen below, as well as how it is used in the INR/DCR section of the execute_instruction() function.
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.3.png" alt="code" width="600"></img>
+			<br><br>
+			I also wrote a quick format_flags() function that transforms the CPU flags into a string to be used with fmt::Display. After running the same test case, we can see that the flags are updated properly and printed to the terminal. The updated fmt::Display code as well as the output can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.5.png" alt="code" width="600"></img>
+			<br><br>
+			I then quickly implemented functionality for the EI and DI instructions, which enable and disable interrupts for the CPU. Their opcodes are 0xF3 and 0xFB respectively. I did this by adding a boolean flag to the CPU struct called interrupt_enable, and these instructions just toggle it on or off. Here’s the code I wrote for those instructions:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.6.png" alt="code" width="600"></img>
+			<br><br>
+			I tried to make an attempt at implementing some arithmetic instructions, but I soon realized that I would need to handle the flags completely differently for each operation (carry and aux_carry specifically). After brainstorming for a while, I couldn’t come up with anything scalable, so I decided to go to bed and revisit it later. There’s still a lot of work left to do, but I feel like I am making good progress on this CPU emulator. The next steps are fixing the flag handling issue, finishing execute_instruction(), and working on getting the emulator to work with the right number of clock cycles for each instruction. After that I can test functionality without GPIO, then translate all of the simulator-specific functionality into GPIO stuff (button on front panel instead of keyboard input, clk on GPIO pin, etc.). My current progress on working through the instruction set can be seen below, I’ll continue to update this as I make progress.
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.7.png" alt="code" width="600"></img>
+			<br><br><br><br>
 	<!--  Week 14, Entry 5  -->
 	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
            <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
-            <b>Duration: 1.5 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+            <b>Duration: 1.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			At the beginning of lab section, I updated the formatter for printing InstructionInfo implementing the std::fmt::Display function for InstructionInfo myself instead of relying on #[derive(Debug)] to do it. This way, the flags affected by each instruction can be printed in binary instead of decimal, which is much easier to debug. Since each flag is represented by a single bit in the u8 for flags, printing in binary makes much more sense. We had our meeting with the instructors, where I showed my progress on the CPU instruction decoding simulation for my weekly show-me-a-thing. 
 			<br><br>
 			I then started reading through the 8080 instruction set to begin working on actually executing some of the instructions. I was mainly referencing the Intel 8080 programming guide, specifically section 2, which defines the instruction set. I noticed that some of the instruction groups (MOV, INR/DCR, arithmetic register operations) follow the same pattern, where certain bits in the opcode define which register(s) are to be used. The link to the programmer manual and some of the instructions I was looking at can be seen below:
@@ -128,7 +184,7 @@ contact course staff.
 	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
            <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 3:30am </b><br> <!--the time you began the meeting/work for this entry-->
-            <b>Duration: 0.5 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+            <b>Duration: 0.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			On my walk back from lab I realized that I could implement a quick debugging tool to print the CPU’s state at any point in single-step execution. In the simulator, I added some code so that pressing the p key will print the CPU’s current state (registers, pc) to the terminal. The code I added to main for this can be seen below:
 			<br><br>
 			<img src="Team/journal/img - member3/week14/W14_4.1.png" alt="code" width="600"></img>
