@@ -87,6 +87,67 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 2  -->
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 21st </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 4:45pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.25 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started by looking into the issue of A and L being tied together when updating registers, turns out it was just a simple issue in the fmt::Display function, I accidentally encoded L as 111 instead of 101, resulting in the value at registers[111] being printed for both A and L. Changing the encoding to 101 resolved the issue.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.1.png" alt="code" width="600"></img>
+			<br><br>
+			Starting where I left off last night, I began implementing LDAX and STAX with the simulated RAM. I had to add a mut ram: RAM parameter to execute_instruction, and update the execute_instruction calls in the main loop accordingly. With those changes, I am able to call ram.read() and ram.write() in execute_instruction() instead of having to go through tram for memory access, which makes testing much simpler for now. The rest of the LDAX/STAX code was more or less just deciding which register pair to use as a memory address, no flags are affected so I didn’t have to worry about that.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.3.png" alt="code" width="600"></img>
+			<br><br>
+			Went back to update read_m and write_m, realized that it might be better to just add a RAM instance to the CPU struct, as this is closer to the channels communication method I’ll be using later. After doing this, I was able to update read_m() and write_m() as follows:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.4.png" alt="code" width="600"></img>
+			<br><br>
+			In order to get this new setup to build, I had to modify the CPU::new() function to accept a RAM instance as a parameter, then change anywhere in the code that used ram.read() or ram.write() to self.ram.read() or self.ram.write(). Finally I had to change the structure of the main file to construct the CPU instance such that it contained the RAM instance, but after doing this the workspace builds and works exactly the same as before. When I start integrating this with the rest of the project, any reads/writes will need to be changed to Messages to be passed over the TX/RX channels connected to tram, but the structure is almost exactly the same as our final integration will be.
+			<br><br>
+			With this new setup, I started implementing PUSH/POP so that I can start using the stack pointer for stuff. For PUSH, the stack pointer must be decremented, the upper byte must be written, the stack pointer is decremented again, then the lower byte is written. For POP, the value at mem address sp is retrieved as the lower byte, the sp is incremented, the byte at new sp is retrieved as upper byte, then the sp is incremented again, and the bytes are concatenated/stored in the appropriate register pair. The code I wrote reflecting this behavior can be seen below, I will test it in the next step:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.6.png" alt="code" width="600"></img>
+			<br><br>
+			Test case for PUSH/POP: I set a default stack pointer value of 0xFFFF for now, so my plan is to PUSH two values to the stack, do some other instructions, then POP the values off the stack to see if the value is preserved correctly. After thinking about how to write the test case, I realized that it would be a lot easier if LDA a16 was implemented, so I’m gonna take a quick detour to do that. This instruction needs 2 bytes of memory to represent an address, and that address is used to load a value into the accumulator. The code I wrote to accomplish this can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.7.png" alt="code" width="600"></img>
+			<br><br>
+			I wrote a quick test case to verify that LDA works as intended, I initialized memory such that a LDA a16 instruction is followed by the bytes 0xEF and 0xBE, so the address 0xBEEF (which is initialized to 0xFC) will be used to load 0xFC into the accumulator. The test case as well as the correct CPU state after the LDA instruction can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.8.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.9.png" alt="code" width="600"></img>
+			<br><br>
+			Back to the PUSH/POP instructions test case: similar initialization, but set up 2 values in memory to LDA into the accumulator, then move one into B and one into C. Then PUSH B will put that 16-bit value on the stack, and POP D should pop that value into the D and E registers. The setup I used can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.10.png" alt="code" width="600"></img>
+			<br><br>
+			The output from the test case looks good, register pair DE holds the value 0xFCA0, which is exactly what we pushed to the stack
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.11.png" alt="code" width="600"></img>
+			<br><br>
+			Realized that I forgot to set the next_pc to pc + 3 when executing a LDA a16 instruction, so the data bytes were still being fetched and executed as instructions, which is why the flags were wrong initially. After fixing this, the sequence of instructions and resulting flag updates are now correct.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.12.png" alt="code" width="600"></img>
+			<br><br>
+			Now that PUSH/POP work as intended, I will move on to implementing STA a16, which is similar in structure to LDA a16, but STA a16 stores the accumulator value at the address specified by a16. I’ll write a test case to store the accumulator value at an address, then immediately retrieve it to make sure the value is stored correctly.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.13.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.14.png" alt="code" width="600"></img>
+			<br><br>
+			After running the test case, the accumulator correctly loads the value that was stored, which can be seen in the output below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.15.png" alt="code" width="600"></img>
+			<br><br>
+			Got through my main goal of finishing LDAX/STAX, POP/PUSH, and LDA/STA a16, gonna take a break and journal this on the website before I move on to transforming this into embedded code. I now have enough instructions done where I can begin writing some more advanced programs and testing functionality, but we desperately need to start getting this running on our final hardware. Still need to figure out how to track clock cycles properly and what bus signals to change when an instruction is done executing. A good starting point would be adding the embassy-sync channels I was using to the current design so that I can start communicating with bus control instead of using a local RAM instance.
+			<br><br><br><br>
 	<!--  Week 15, Entry 1  -->
 	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
            <b>Date: April 20th </b><br> <!--the date the project meeting or work was performed)-->
