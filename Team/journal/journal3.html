@@ -86,6 +86,120 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
+			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 1  -->
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 20th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Spent this time continuing to work on execute_instruction(), work consisted of cleaning up old code and starting to implement new instructions. To accomplish this I was mostly referencing the 8080 opcodes table I have been using, as well as the Intel 8080 programmer’s manual, both of which are linked below:
+			<br><br>
+			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcodes</a>
+			<br><br>
+			<a href="https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf">Programmer's Manual</a>
+			<br><br>
+			I want a way to quickly load/store values to the accumulator register so that I can start testing basic programs, so I started looking into the LDAX/STAX instructions. These instructions use a register pair as a memory address, then either load/store the accumulator value to/from that address in memory. For example, LDAX B takes the address defined by B (pair BC), then loads the value from that address and puts it in the accumulator. STAX D takes the address defined by D (pair DE), then stores the accumulator value at that memory address. The programmer’s manual documentation for these opcodes can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.1.png" alt="code" width="600"></img>
+			<br><br>
+			After looking into LDAX/STAX, I decided to implement the functionality for the 16-bit registers, which are just the register pairs BC, DE, and HL. I added some quick helper functions for reading/setting a register pair. Reading a register pair concatenates the two required registers and returns the value as a u16, and setting takes a u16 and sets the two corresponding 8-bit registers.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.3.png" alt="code" width="600"></img>
+			<br><br>
+			As I was scrolling through the execute_instruction() function I am writing, and I did not like the way I was handling MOV instructions, so I decided to clean up the logic a bit. I threw all MOV instructions (including those involving the M register) into a single match statement instead of splitting them up. I added some extra conditional logic in the block to handle the special case where either the src or dst register is M, then called either read_m() or write_m() respectively. read/write_m() still need to be updated with tram functionality, but for now this is fine (just trying to get the PSDR checked off, so no need to involve the bus). The reworked code can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.4.png" alt="code" width="600"></img>
+			<br><br>
+			I then remembered that I hadn’t finished the flag updating logic for several instructions, including INR/DCR. I had to add an intermediate variable val (value before increment) to help with auxiliary carry logic, but the rest of the flags logic was pretty simple. It was just calling set_szp() and checking if carry/borrow occurred between bits 3 and 4 of the value when incremented.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.6.png" alt="code" width="600"></img>
+			<br><br>
+			Inside of RAM::init(), I wrote a very basic test case for the MOV instruction. The instructions were INR B, MOV A, B, HLT. In theory after B is incremented, calling MOV A, B should result in a value of 1 being in the A register. When running this, the value was correctly moved into the A register, but the A and L registers both contained the value 0x01, even though the instructions should not be touching the L register at all. I decided to move on to arithmetic instructions to see if this issue would persist with different instructions. The output for the test case can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.7.png" alt="code" width="600"></img>
+			<br><br>
+			I implemented the ADD instruction, this time making sure to use wrapping_add() as I forgot to do last week. Also updated the flag setting logic appropriately. The code I wrote to do this can be seen below. For all these arithmetic instructions, I am not going to be doing any clock cycle tracking just yet, so I left a blank framework for handling this later (instructions involving M take more clock cycles than others). After writing a quick test case and running it, I noticed that the issue of A and L being tied together persisted but adding worked correctly. The sequence of instructions and output can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.11.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.8.png" alt="code" width="600"></img>
+			<br><br>
+			Started implementing the rest of the arithmetic operations, starting with ADC. Wrote a special test case where I initialized A to 0xFF, incremented it (which should set the carry flag), then called ADC (first picture). The code for ADC is very similar to ADD, but it also involves adding the current carry flag value to the result (second image). The output for this test case was as I expected, and the flags appear to update properly (third image).
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.12.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.9.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.10.png" alt="code" width="600"></img>
+			<br><br>
+			Implemented SUB and SBB next, the logic was extremely similar to ADD and ADC, just using wrapping_sub() instead of wrapping_add(). The carry and aux_carry logic was slightly different as these flags indicate borrows instead of carries, but it was still relatively simple.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.13.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.14.png" alt="code" width="600"></img>
+			<br><br>
+			After looking through the programmer’s manual for how logical operations affect the flags, I learned some interesting details. Sign, zero, and parity can be set as usual using the result of the operation, but aux_carry and carry are handled very differently. The notes I took regarding these instructions are detailed below, as well as my implementations for ANA, XRA, ORA, and CMP. After finishing these instructions, my progress through the instruction set is as follows:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.34.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.15.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.16.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.17.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.18.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.21.png" alt="code" width="600"></img>
+			<br><br>
+			That completes all of the 8-bit register arithmetic operations, I will need to test those at some point. I started thinking about LDAX/STAX again, as well as LDA/STA a16. Since LDA/STA needs 2 bytes from memory after the opcode (the bytes are located right after the opcode in memory at pc+1 and pc+2), the pc will need to be updated to pc + 3 after completion of the instruction. Similar to stuff I did when I took 437, I created some kind of next_pc logic. It defaults to pc+1, and if an instruction needs to handle pc differently (LDA/STA, JMP, etc.), I will set it explicitly in the corresponding match block. The minor updates I made to the logic can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.19.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.20.png" alt="code" width="600"></img>
+			<br><br>
+			Started reading up on the POP/PUSH instructions a bit as I want to start adding functionality for the stack pointer. POP/PUSH use bits 5-4 to define the register pair that will be used, and this includes the PSW (concatenation of A and flags). I read the entire section in the programmer’s manual about the details of POP/PUSH, but the main points for our implementation in execute_instruction() can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.22.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.23.png" alt="code" width="600"></img>
+			<br><br>
+			Since these are going to require tram requests (stack is in memory), I moved on to other register-only instructions, starting with INX/DCX. These are exactly the same as INR/DCR from earlier, just using the register pairs instead of individual registers. INX/DCX can also be used on the stack pointer. These do not affect the flags at all, the code I wrote is pictured below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.24.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.25.png" alt="code" width="600"></img>
+			<br><br>
+			There were some other register-only instructions that I saw while reading through the programmer’s manual. I started by implementing RLC, RAL, RRC, RAR, which rotate (circular shift) the accumulator (or using carry flag to set the new bit after shift). These required some kind of nasty bit manipulation, but they were relatively simple to implement once I understood them.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.26.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.27.png" alt="code" width="600"></img>
+			<br><br>
+			CMC and CMA were also very simple, as CMC simply inverts the current carry flag, and CMA just performs bitwise AND on the accumulator register.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.28.png" alt="code" width="600"></img>
+			<br><br>
+			Went back to setting up the framework for POP/PUSH. Similar to what I did for INX/DCX, I set up a match block for identifying the register pair being used. I still need to integrate this with tram for memory access, but in an emergency I can just use simulated RAM to get the PSDR for our CPU emulator alone.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.29.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.30.png" alt="code" width="600"></img>
+			<br><br>
+			Wrote some helper functions to simplify the code inside of execute_instructions(), specifically for PSW functionality. I already had a function to pack the flags into a u8, so I wrote a function that takes a u8 and unpacks the flags from that. I also wrote functions for getting/setting the PSW, which were very similar to the other register pair accesses, just calling pack/unpack_flags().
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.31.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.32.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.33.png" alt="code" width="600"></img>
+			<br><br>
+			I’m making very good progress on execute_instruction(), and I am getting close to being able to test some basic programs with simulated RAM (which would get us the PSDR). I want to finish LDAX/STAX, POP/PUSH, and LDA/STA a16 before I get testing. After that, I will rework the main function to use the embassy-rp framework, then begin trying to flash it to the micro on our card PCB. This will require a lot of debugging, but once it works we can get the PSDR checked off and begin integrating it with our bus control, front panel, and memory emulator.
+			<br><br><br><br>
 			<h2>===============   Week 14: =================</h2>
 			<!--  Week 14, Entry 5  -->
 	<h4><b>Entry 8: -----------------------------------------------------------------</b></h4>
