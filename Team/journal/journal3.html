@@ -87,6 +87,60 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 4  -->
+	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 22nd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 3:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1.25 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started cleaning up the code for cpu.rs a bit so that I can actually read it. I had defined an enum called Reg that maps the register name (A, B, C, M, etc.) to a 3-bit code (0b111, 0b000, etc.), but I never actually used the enum in my code because I couldn’t figure out how to do it. The enum can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.1.png" alt="code" width="600"></img>
+			<br><br>
+			I figured out that I needed to implement functions to go from Reg to u8 and from u8 to Reg in order to get this to work, so that’s what I did. These functions can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.2.png" alt="code" width="600"></img>
+			<br><br>
+			After implementing this, I was able to (quite painfully) go through cpu.rs and change anywhere I was explicitly using the binary code for a register, instead using Reg::A, Reg::B, etc. to index into the CPU struct’s registers field. This was mainly in the get/set register functions, but there were also a few places in execute_instruction() where I was doing this. Some of the updated (and more readable) code can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.6.png" alt="code" width="600"></img>
+			<br><br>
+			After making these changes, I was still able to get the cpu emulator to build in our rs repository, meaning I can move on to embedded stuff to work towards the PSDR checkoff. 
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.7.png" alt="code" width="600"></img>
+			<br><br>
+			As soon as I get the emulator itself checked off, I am going to change all of the local RAM requests into tram requests that go over the bus, so I went through the code again and marked all of the places where changes will need to be made with /* TODO: tram requests */. For example:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.8.png" alt="code" width="600"></img>
+			<br><br>
+			Spent some time after that brainstorming about how to tackle the remainder of the project. For getting the PSDR checkoff, I will need only one GPIO pin (clock) to control the execution of the emulator, but other than that it should run without GPIO functionality on the cpu card. This way I can show that the emulator listens to an external clock, executes 8080 instructions, and handles clock cycle timing as specified by our PSDR. 
+			<br><br>
+			After I get the checkoff, I need to work with Seth to figure out how to integrate memory requests with his PIO bus transactions since he got those working last night. Anywhere I marked the code in cpu.rs, I will need to make a tram request that executes the desired bus transaction, then continues instruction execution. I spent some time reading through his code, but was having difficulty understanding how it works so I’ll need to talk with him a good bit tonight.
+			<br><br><br><br>
+	<!--  Week 15, Entry 3  -->
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 21st </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 10:45pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 0.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Quickly tried to get the cpu emulator to build inside of the rs repository (embedded context, no_std). The goal is that even after refactoring the code, I am still able to get helpful debugging info on the terminal using the info!() function (want to see CPU state, InstructionInfo, clock cycles, etc.). Since we already have tram and recall building on their own, I tried to mimic the structure of those packages as much as possible. I used the exact same Cargo.toml and folder setup, and I moved main.rs into a bin folder inside of src. This ensures that I can specify the binary file to build with when running cargo run.
+			<br><br>
+			Since most of the debugging functionality I had implemented was from the std library, I had to change all of those imports to the core version. This involved adding a bunch of use statements in several of the files, such that anything inside of #derive[] or println!() statements came from core instead of std. The added imports can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_3.1.png" alt="code" width="600"></img>
+			<br><br>
+			This process was mostly just fixing various compiler issues, nothing too interesting to note but it was a fairly tedious process. In order to format the InstructionInfo struct for use with the info!() function, I had to implement the defmt::Format for the struct. The change was simple, just changing #derive[(Debug)] to #derive[(Format)] after adding the necessary imports. The error I got that led me to this can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_3.2.png" alt="code" width="600"></img>
+			<br><br>
+			After fixing the imports/formats I was able to get the package to build inside of the rs repository, which means that I can start testing on the final hardware. As I was reading through the code to refactor it for embedded use, I felt like the code I wrote was kind of hard to follow, so my next step is going to be cleaning up the code a bit, I’ll get to that tomorrow morning as I’m pretty burnt out from today.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_3.3.png" alt="code" width="600"></img>
+			<br><br><br><br>
 	<!--  Week 15, Entry 2  -->
 	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
            <b>Date: April 21st </b><br> <!--the date the project meeting or work was performed)-->
