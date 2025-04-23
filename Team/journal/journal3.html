@@ -87,6 +87,41 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 6  -->
+	<h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 23rd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Wrote some helper functions in an attempt to clean up the code in execute_instruction() a bit. These functions retrieve either one or two bytes from memory starting at self.pc + 1, depending on what the instruction requires. The theory behind this is that when I need to update the code to do actual bus transactions, I will only need to modify the helper functions, nothing in execute_instruction().
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.1.png" alt="code" width="600"></img>
+			<br><br>
+			I went through execute_instruction() and replaced code with these helper functions as appropriate, which took a good amount of time but will be a great help later. With the remaining time I wrote and tested some test cases for various instructions. Starting with LXI rp,d16, I wrote the following test case and got the following output, which looks perfect to me:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.3.png" alt="code" width="600"></img>
+			<br><br>
+			Next I wrote a test case to test all of the MVI reg,d8 instructions. This was similar in structure to the test case for LXI rp,d16. After running all the instructions and examining the CPU state, all of the values from the test case were present in the appropriate registers, indicating that the instruction works as intended.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.5.png" alt="code" width="600"></img>
+			<br><br>
+			I also wrote a simple test case for JMP a16, which is the unconditional jump instruction. It fetches the two bytes after the opcode and updates the PC to that value to continue execution, and I wrote a test case that reflected this. Single-stepping through the execution, I found that it had the correct behavior.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.6.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.7.png" alt="code" width="600"></img>
+			<br><br>
+			The last test case that I wrote was for CALL a16 and RET, as these instructions are designed to work together. CALL puts the pc value at which to resume execution on the stack, then jumps to a subroutine. After the subroutine executes, RET is called and the pc value is popped off the stack and execution is resumed there. My test case does exactly this, jumping to a subroutine containing 3 NOPs then a RET, after RET there is an INR B instruction and HLT that should execute. Observing the execution flow, these instructions appear to work properly
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.8.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.9.png" alt="code" width="600"></img>
+			<br><br>
+			Given that the logic is more or less the same for conditional and unconditional JMP/CALL/RET, I can assume that those work fine as well. If there is a bug in those it will be as simple as fixing the broken flag-check condition. Testing this code is good progress because it will reduce the amount of debugging I need to do later today once I start testing on the real hardware.
+			<br><br><br><br>
 	<!--  Week 15, Entry 5  -->
 	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
            <b>Date: April 22nd </b><br> <!--the date the project meeting or work was performed)-->
