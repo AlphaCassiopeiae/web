@@ -87,6 +87,89 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 5  -->
+	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 22nd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Decided to go back and implement the remainder of the 8080 instructions in execute_instruction() so that once I start testing, I can use any instructions that I want. I once again referenced the 8080 opcodes table and Intel 8080 programmer's manual to accomplish this. I started with the jump instructions, specifically JMP a16, which is an unconditional jump to the address specified by a16. It needs 2 bytes of data (located at pc+1 and pc+2), then it updates the pc to whatever was retrieved from memory. The code I wrote can be seen below:
+			<br><br>
+			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcodes</a>
+			<br><br>
+			<a href="https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf">Programmer's Manual</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.1.png" alt="code" width="600"></img>
+			<br><br>
+			I then moved on to the conditional jump instructions (JNZ, JNC, JPO, JP, JZ, JC, JPE, JM) a16. These work very similarly to the JMP a16 instruction, but they only jump to a16 if a certain condition is met (ex: JNZ a16 only jumps if cpu’s zero flag is not set). Below is the code for JNZ, JNC, JPO, and JP:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.4.png" alt="code" width="600"></img>
+			<br><br>
+			The remaining 4 conditional jumps had very similar implementations, they were more or less the same with the flag check condition inverted (ex: JZ checks if the zero flag IS set). I then moved on to SHLD/LHLD a16, which are Store HL Direct and Load HL Direct. These both require 2 ram accesses initially to retrieve a16 from memory. SHLD writes the H register at memory address a16, and the L register at memory address a16+1. LHLD retrieves one byte from memory address a16 to store in the L register, and another byte from address a16+1 to store in the H register. The code I wrote for both of these instructions can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.6.png" alt="code" width="600"></img>
+			<br><br>
+			Next was LXI rp,d16 which loads two bytes from memory and stores them in a register pair, specified by the opcode. It can also load into the stack pointer, so I wrote a match block to decide where to store the retrieved bytes.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.7.png" alt="code" width="600"></img>
+			<br><br>
+			Next was MVI reg,d8 which loads one byte of data from memory and stores it in the register specified by the opcode. I was able to really use the framework I set up yesterday to keep the code clean, I also referenced the programmer’s manual to figure out which opcode bits held the register encoding. The reference I used as well as the code I wrote can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.8.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.9.png" alt="code" width="600"></img>
+			<br><br>
+			I then found two relatively simple instructions, specifically PCHL and SPHL, which set either the PC or SP respectively to the contents of the HL register pair.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.10.png" alt="code" width="600"></img>
+			<br><br>
+			I then moved on to the 8-bit arithmetic instructions with immediates (ADI d8, ORI d8, etc.). I borrowed a lot of logic from the other 8-bit arithmetic instructions, the key difference is that the other operand had to be retrieved from memory first. The flag logic was exactly the same, I just had to set next_pc to pc+2 to skip over the data byte when fetching the next instruction. The code for all 8 of these instructions can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.11.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.12.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.13.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.14.png" alt="code" width="600"></img>
+			<br><br>
+			The last two miscellaneous instructions I had to implement were the XTHL and XCHG instructions. XTHL trades the values of the HL register pair and the two bytes at the top of the stack (sp & sp + 1). XCHG swaps the values of the HL and DE register pairs. Finishing these instructions leaves me with the call, return, and reset instructions.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.15.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.16.png" alt="code" width="600"></img>
+			<br><br>
+			I had to look at the programmer’s manual to figure out how the RST instructions work. After some reading, I learned that bits 5-3 of the opcode are used to define where the PC will be reset to as follows: 0b00000000 00 b5 b4 b3 000. By bitwise ANDing the opcode with 0x38, I am able to get the new PC value easily. The old PC is pushed to the stack, then the PC is set to the new value. The excerpt from the programmer’s manual I read as well as my code is below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.17.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.18.png" alt="code" width="600"></img>
+			<br><br>
+			The CALL instructions are used to call subroutines. The way they do this is by pushing PC+3 to the stack (it first needs 2 bytes of memory to specify the call address), then setting the PC value to whatever was retrieved from memory. CALL a16 is an unconditional call, the code looks like this:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.19.png" alt="code" width="600"></img>
+			<br><br>
+			Implementing the conditional calls (CNZ, CNC, etc.) used very similar logic to the conditional jumps, but they use the same structure as CALL a16. Basically if a flag condition is met, it will push PC+3 to the stack and update PC to the value retrieved from memory. Otherwise, it will just set the PC to PC+3 (skipping over data bytes before fetching the next instruction). I implemented all 8 of these conditional calls, here’s CNZ a16 for example:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.20.png" alt="code" width="600"></img>
+			<br><br>
+			It was at this point that I realized that my life would be a lot easier if I wrote helper functions to push and pop to/from the stack, instead of manually writing it out every time. I just wrapped the code I wrote into these helper functions, then went back through and put them in anytime I was using the stack.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.21.png" alt="code" width="600"></img>
+			<br><br>
+			The last instructions to implement were the return functions, which are designed for return from subroutines. These are relatively simple, they just pop 2 bytes off the stack and set the PC to that new value. There is an unconditional return (RET) as well as conditional versions (RNZ, RNC, etc.), so I followed the same structure as the call instructions to produce the following code:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.22.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.23.png" alt="code" width="600"></img>
+			<br><br>
+			The only instructions left in the instruction set are IN d8 and OUT d8, which we will not be implementing, so I am now ready to just start testing programs with any instructions I want. Once my teammates are done debugging the read/write transactions on our cards, I can start testing the emulator on our actual hardware, which puts us one step closer to having full CPU-RAM communication
+			<br><br><br><br>
 	<!--  Week 15, Entry 4  -->
 	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
            <b>Date: April 22nd </b><br> <!--the date the project meeting or work was performed)-->
