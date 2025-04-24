@@ -86,12 +86,450 @@ contact course staff.
 		
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
+			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 6  -->
+	<h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 23rd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Wrote some helper functions in an attempt to clean up the code in execute_instruction() a bit. These functions retrieve either one or two bytes from memory starting at self.pc + 1, depending on what the instruction requires. The theory behind this is that when I need to update the code to do actual bus transactions, I will only need to modify the helper functions, nothing in execute_instruction().
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.1.png" alt="code" width="600"></img>
+			<br><br>
+			I went through execute_instruction() and replaced code with these helper functions as appropriate, which took a good amount of time but will be a great help later. With the remaining time I wrote and tested some test cases for various instructions. Starting with LXI rp,d16, I wrote the following test case and got the following output, which looks perfect to me:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.3.png" alt="code" width="600"></img>
+			<br><br>
+			Next I wrote a test case to test all of the MVI reg,d8 instructions. This was similar in structure to the test case for LXI rp,d16. After running all the instructions and examining the CPU state, all of the values from the test case were present in the appropriate registers, indicating that the instruction works as intended.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.5.png" alt="code" width="600"></img>
+			<br><br>
+			I also wrote a simple test case for JMP a16, which is the unconditional jump instruction. It fetches the two bytes after the opcode and updates the PC to that value to continue execution, and I wrote a test case that reflected this. Single-stepping through the execution, I found that it had the correct behavior.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.6.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.7.png" alt="code" width="600"></img>
+			<br><br>
+			The last test case that I wrote was for CALL a16 and RET, as these instructions are designed to work together. CALL puts the pc value at which to resume execution on the stack, then jumps to a subroutine. After the subroutine executes, RET is called and the pc value is popped off the stack and execution is resumed there. My test case does exactly this, jumping to a subroutine containing 3 NOPs then a RET, after RET there is an INR B instruction and HLT that should execute. Observing the execution flow, these instructions appear to work properly
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.8.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_6.9.png" alt="code" width="600"></img>
+			<br><br>
+			Given that the logic is more or less the same for conditional and unconditional JMP/CALL/RET, I can assume that those work fine as well. If there is a bug in those it will be as simple as fixing the broken flag-check condition. Testing this code is good progress because it will reduce the amount of debugging I need to do later today once I start testing on the real hardware.
+			<br><br><br><br>
+	<!--  Week 15, Entry 5  -->
+	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 22nd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 3.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Decided to go back and implement the remainder of the 8080 instructions in execute_instruction() so that once I start testing, I can use any instructions that I want. I once again referenced the 8080 opcodes table and Intel 8080 programmer's manual to accomplish this. I started with the jump instructions, specifically JMP a16, which is an unconditional jump to the address specified by a16. It needs 2 bytes of data (located at pc+1 and pc+2), then it updates the pc to whatever was retrieved from memory. The code I wrote can be seen below:
+			<br><br>
+			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcodes</a>
+			<br><br>
+			<a href="https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf">Programmer's Manual</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.1.png" alt="code" width="600"></img>
+			<br><br>
+			I then moved on to the conditional jump instructions (JNZ, JNC, JPO, JP, JZ, JC, JPE, JM) a16. These work very similarly to the JMP a16 instruction, but they only jump to a16 if a certain condition is met (ex: JNZ a16 only jumps if cpu’s zero flag is not set). Below is the code for JNZ, JNC, JPO, and JP:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.4.png" alt="code" width="600"></img>
+			<br><br>
+			The remaining 4 conditional jumps had very similar implementations, they were more or less the same with the flag check condition inverted (ex: JZ checks if the zero flag IS set). I then moved on to SHLD/LHLD a16, which are Store HL Direct and Load HL Direct. These both require 2 ram accesses initially to retrieve a16 from memory. SHLD writes the H register at memory address a16, and the L register at memory address a16+1. LHLD retrieves one byte from memory address a16 to store in the L register, and another byte from address a16+1 to store in the H register. The code I wrote for both of these instructions can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.6.png" alt="code" width="600"></img>
+			<br><br>
+			Next was LXI rp,d16 which loads two bytes from memory and stores them in a register pair, specified by the opcode. It can also load into the stack pointer, so I wrote a match block to decide where to store the retrieved bytes.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.7.png" alt="code" width="600"></img>
+			<br><br>
+			Next was MVI reg,d8 which loads one byte of data from memory and stores it in the register specified by the opcode. I was able to really use the framework I set up yesterday to keep the code clean, I also referenced the programmer’s manual to figure out which opcode bits held the register encoding. The reference I used as well as the code I wrote can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.8.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.9.png" alt="code" width="600"></img>
+			<br><br>
+			I then found two relatively simple instructions, specifically PCHL and SPHL, which set either the PC or SP respectively to the contents of the HL register pair.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.10.png" alt="code" width="600"></img>
+			<br><br>
+			I then moved on to the 8-bit arithmetic instructions with immediates (ADI d8, ORI d8, etc.). I borrowed a lot of logic from the other 8-bit arithmetic instructions, the key difference is that the other operand had to be retrieved from memory first. The flag logic was exactly the same, I just had to set next_pc to pc+2 to skip over the data byte when fetching the next instruction. The code for all 8 of these instructions can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.11.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.12.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.13.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.14.png" alt="code" width="600"></img>
+			<br><br>
+			The last two miscellaneous instructions I had to implement were the XTHL and XCHG instructions. XTHL trades the values of the HL register pair and the two bytes at the top of the stack (sp & sp + 1). XCHG swaps the values of the HL and DE register pairs. Finishing these instructions leaves me with the call, return, and reset instructions.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.15.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.16.png" alt="code" width="600"></img>
+			<br><br>
+			I had to look at the programmer’s manual to figure out how the RST instructions work. After some reading, I learned that bits 5-3 of the opcode are used to define where the PC will be reset to as follows: 0b00000000 00 b5 b4 b3 000. By bitwise ANDing the opcode with 0x38, I am able to get the new PC value easily. The old PC is pushed to the stack, then the PC is set to the new value. The excerpt from the programmer’s manual I read as well as my code is below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.17.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.18.png" alt="code" width="600"></img>
+			<br><br>
+			The CALL instructions are used to call subroutines. The way they do this is by pushing PC+3 to the stack (it first needs 2 bytes of memory to specify the call address), then setting the PC value to whatever was retrieved from memory. CALL a16 is an unconditional call, the code looks like this:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.19.png" alt="code" width="600"></img>
+			<br><br>
+			Implementing the conditional calls (CNZ, CNC, etc.) used very similar logic to the conditional jumps, but they use the same structure as CALL a16. Basically if a flag condition is met, it will push PC+3 to the stack and update PC to the value retrieved from memory. Otherwise, it will just set the PC to PC+3 (skipping over data bytes before fetching the next instruction). I implemented all 8 of these conditional calls, here’s CNZ a16 for example:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.20.png" alt="code" width="600"></img>
+			<br><br>
+			It was at this point that I realized that my life would be a lot easier if I wrote helper functions to push and pop to/from the stack, instead of manually writing it out every time. I just wrapped the code I wrote into these helper functions, then went back through and put them in anytime I was using the stack.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.21.png" alt="code" width="600"></img>
+			<br><br>
+			The last instructions to implement were the return functions, which are designed for return from subroutines. These are relatively simple, they just pop 2 bytes off the stack and set the PC to that new value. There is an unconditional return (RET) as well as conditional versions (RNZ, RNC, etc.), so I followed the same structure as the call instructions to produce the following code:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.22.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_5.23.png" alt="code" width="600"></img>
+			<br><br>
+			The only instructions left in the instruction set are IN d8 and OUT d8, which we will not be implementing, so I am now ready to just start testing programs with any instructions I want. Once my teammates are done debugging the read/write transactions on our cards, I can start testing the emulator on our actual hardware, which puts us one step closer to having full CPU-RAM communication
+			<br><br><br><br>
+	<!--  Week 15, Entry 4  -->
+	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 22nd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 3:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1.25 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started cleaning up the code for cpu.rs a bit so that I can actually read it. I had defined an enum called Reg that maps the register name (A, B, C, M, etc.) to a 3-bit code (0b111, 0b000, etc.), but I never actually used the enum in my code because I couldn’t figure out how to do it. The enum can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.1.png" alt="code" width="600"></img>
+			<br><br>
+			I figured out that I needed to implement functions to go from Reg to u8 and from u8 to Reg in order to get this to work, so that’s what I did. These functions can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.2.png" alt="code" width="600"></img>
+			<br><br>
+			After implementing this, I was able to (quite painfully) go through cpu.rs and change anywhere I was explicitly using the binary code for a register, instead using Reg::A, Reg::B, etc. to index into the CPU struct’s registers field. This was mainly in the get/set register functions, but there were also a few places in execute_instruction() where I was doing this. Some of the updated (and more readable) code can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.3.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.6.png" alt="code" width="600"></img>
+			<br><br>
+			After making these changes, I was still able to get the cpu emulator to build in our rs repository, meaning I can move on to embedded stuff to work towards the PSDR checkoff. 
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.7.png" alt="code" width="600"></img>
+			<br><br>
+			As soon as I get the emulator itself checked off, I am going to change all of the local RAM requests into tram requests that go over the bus, so I went through the code again and marked all of the places where changes will need to be made with /* TODO: tram requests */. For example:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_4.8.png" alt="code" width="600"></img>
+			<br><br>
+			Spent some time after that brainstorming about how to tackle the remainder of the project. For getting the PSDR checkoff, I will need only one GPIO pin (clock) to control the execution of the emulator, but other than that it should run without GPIO functionality on the cpu card. This way I can show that the emulator listens to an external clock, executes 8080 instructions, and handles clock cycle timing as specified by our PSDR. 
+			<br><br>
+			After I get the checkoff, I need to work with Seth to figure out how to integrate memory requests with his PIO bus transactions since he got those working last night. Anywhere I marked the code in cpu.rs, I will need to make a tram request that executes the desired bus transaction, then continues instruction execution. I spent some time reading through his code, but was having difficulty understanding how it works so I’ll need to talk with him a good bit tonight.
+			<br><br><br><br>
+	<!--  Week 15, Entry 3  -->
+	<h4><b>Entry 3: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 21st </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 10:45pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 0.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Quickly tried to get the cpu emulator to build inside of the rs repository (embedded context, no_std). The goal is that even after refactoring the code, I am still able to get helpful debugging info on the terminal using the info!() function (want to see CPU state, InstructionInfo, clock cycles, etc.). Since we already have tram and recall building on their own, I tried to mimic the structure of those packages as much as possible. I used the exact same Cargo.toml and folder setup, and I moved main.rs into a bin folder inside of src. This ensures that I can specify the binary file to build with when running cargo run.
+			<br><br>
+			Since most of the debugging functionality I had implemented was from the std library, I had to change all of those imports to the core version. This involved adding a bunch of use statements in several of the files, such that anything inside of #derive[] or println!() statements came from core instead of std. The added imports can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_3.1.png" alt="code" width="600"></img>
+			<br><br>
+			This process was mostly just fixing various compiler issues, nothing too interesting to note but it was a fairly tedious process. In order to format the InstructionInfo struct for use with the info!() function, I had to implement the defmt::Format for the struct. The change was simple, just changing #derive[(Debug)] to #derive[(Format)] after adding the necessary imports. The error I got that led me to this can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_3.2.png" alt="code" width="600"></img>
+			<br><br>
+			After fixing the imports/formats I was able to get the package to build inside of the rs repository, which means that I can start testing on the final hardware. As I was reading through the code to refactor it for embedded use, I felt like the code I wrote was kind of hard to follow, so my next step is going to be cleaning up the code a bit, I’ll get to that tomorrow morning as I’m pretty burnt out from today.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_3.3.png" alt="code" width="600"></img>
+			<br><br><br><br>
+	<!--  Week 15, Entry 2  -->
+	<h4><b>Entry 2: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 21st </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 4:45pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.25 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started by looking into the issue of A and L being tied together when updating registers, turns out it was just a simple issue in the fmt::Display function, I accidentally encoded L as 111 instead of 101, resulting in the value at registers[111] being printed for both A and L. Changing the encoding to 101 resolved the issue.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.1.png" alt="code" width="600"></img>
+			<br><br>
+			Starting where I left off last night, I began implementing LDAX and STAX with the simulated RAM. I had to add a mut ram: RAM parameter to execute_instruction, and update the execute_instruction calls in the main loop accordingly. With those changes, I am able to call ram.read() and ram.write() in execute_instruction() instead of having to go through tram for memory access, which makes testing much simpler for now. The rest of the LDAX/STAX code was more or less just deciding which register pair to use as a memory address, no flags are affected so I didn’t have to worry about that.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.3.png" alt="code" width="600"></img>
+			<br><br>
+			Went back to update read_m and write_m, realized that it might be better to just add a RAM instance to the CPU struct, as this is closer to the channels communication method I’ll be using later. After doing this, I was able to update read_m() and write_m() as follows:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.4.png" alt="code" width="600"></img>
+			<br><br>
+			In order to get this new setup to build, I had to modify the CPU::new() function to accept a RAM instance as a parameter, then change anywhere in the code that used ram.read() or ram.write() to self.ram.read() or self.ram.write(). Finally I had to change the structure of the main file to construct the CPU instance such that it contained the RAM instance, but after doing this the workspace builds and works exactly the same as before. When I start integrating this with the rest of the project, any reads/writes will need to be changed to Messages to be passed over the TX/RX channels connected to tram, but the structure is almost exactly the same as our final integration will be.
+			<br><br>
+			With this new setup, I started implementing PUSH/POP so that I can start using the stack pointer for stuff. For PUSH, the stack pointer must be decremented, the upper byte must be written, the stack pointer is decremented again, then the lower byte is written. For POP, the value at mem address sp is retrieved as the lower byte, the sp is incremented, the byte at new sp is retrieved as upper byte, then the sp is incremented again, and the bytes are concatenated/stored in the appropriate register pair. The code I wrote reflecting this behavior can be seen below, I will test it in the next step:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.6.png" alt="code" width="600"></img>
+			<br><br>
+			Test case for PUSH/POP: I set a default stack pointer value of 0xFFFF for now, so my plan is to PUSH two values to the stack, do some other instructions, then POP the values off the stack to see if the value is preserved correctly. After thinking about how to write the test case, I realized that it would be a lot easier if LDA a16 was implemented, so I’m gonna take a quick detour to do that. This instruction needs 2 bytes of memory to represent an address, and that address is used to load a value into the accumulator. The code I wrote to accomplish this can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.7.png" alt="code" width="600"></img>
+			<br><br>
+			I wrote a quick test case to verify that LDA works as intended, I initialized memory such that a LDA a16 instruction is followed by the bytes 0xEF and 0xBE, so the address 0xBEEF (which is initialized to 0xFC) will be used to load 0xFC into the accumulator. The test case as well as the correct CPU state after the LDA instruction can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.8.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.9.png" alt="code" width="600"></img>
+			<br><br>
+			Back to the PUSH/POP instructions test case: similar initialization, but set up 2 values in memory to LDA into the accumulator, then move one into B and one into C. Then PUSH B will put that 16-bit value on the stack, and POP D should pop that value into the D and E registers. The setup I used can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.10.png" alt="code" width="600"></img>
+			<br><br>
+			The output from the test case looks good, register pair DE holds the value 0xFCA0, which is exactly what we pushed to the stack
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.11.png" alt="code" width="600"></img>
+			<br><br>
+			Realized that I forgot to set the next_pc to pc + 3 when executing a LDA a16 instruction, so the data bytes were still being fetched and executed as instructions, which is why the flags were wrong initially. After fixing this, the sequence of instructions and resulting flag updates are now correct.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.12.png" alt="code" width="600"></img>
+			<br><br>
+			Now that PUSH/POP work as intended, I will move on to implementing STA a16, which is similar in structure to LDA a16, but STA a16 stores the accumulator value at the address specified by a16. I’ll write a test case to store the accumulator value at an address, then immediately retrieve it to make sure the value is stored correctly.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.13.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.14.png" alt="code" width="600"></img>
+			<br><br>
+			After running the test case, the accumulator correctly loads the value that was stored, which can be seen in the output below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_2.15.png" alt="code" width="600"></img>
+			<br><br>
+			Got through my main goal of finishing LDAX/STAX, POP/PUSH, and LDA/STA a16, gonna take a break and journal this on the website before I move on to transforming this into embedded code. I now have enough instructions done where I can begin writing some more advanced programs and testing functionality, but we desperately need to start getting this running on our final hardware. Still need to figure out how to track clock cycles properly and what bus signals to change when an instruction is done executing. A good starting point would be adding the embassy-sync channels I was using to the current design so that I can start communicating with bus control instead of using a local RAM instance.
+			<br><br><br><br>
+	<!--  Week 15, Entry 1  -->
+	<h4><b>Entry 1: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 20th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Spent this time continuing to work on execute_instruction(), work consisted of cleaning up old code and starting to implement new instructions. To accomplish this I was mostly referencing the 8080 opcodes table I have been using, as well as the Intel 8080 programmer’s manual, both of which are linked below:
+			<br><br>
+			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcodes</a>
+			<br><br>
+			<a href="https://altairclone.com/downloads/manuals/8080%20Programmers%20Manual.pdf">Programmer's Manual</a>
+			<br><br>
+			I want a way to quickly load/store values to the accumulator register so that I can start testing basic programs, so I started looking into the LDAX/STAX instructions. These instructions use a register pair as a memory address, then either load/store the accumulator value to/from that address in memory. For example, LDAX B takes the address defined by B (pair BC), then loads the value from that address and puts it in the accumulator. STAX D takes the address defined by D (pair DE), then stores the accumulator value at that memory address. The programmer’s manual documentation for these opcodes can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.1.png" alt="code" width="600"></img>
+			<br><br>
+			After looking into LDAX/STAX, I decided to implement the functionality for the 16-bit registers, which are just the register pairs BC, DE, and HL. I added some quick helper functions for reading/setting a register pair. Reading a register pair concatenates the two required registers and returns the value as a u16, and setting takes a u16 and sets the two corresponding 8-bit registers.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.3.png" alt="code" width="600"></img>
+			<br><br>
+			As I was scrolling through the execute_instruction() function I am writing, and I did not like the way I was handling MOV instructions, so I decided to clean up the logic a bit. I threw all MOV instructions (including those involving the M register) into a single match statement instead of splitting them up. I added some extra conditional logic in the block to handle the special case where either the src or dst register is M, then called either read_m() or write_m() respectively. read/write_m() still need to be updated with tram functionality, but for now this is fine (just trying to get the PSDR checked off, so no need to involve the bus). The reworked code can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.4.png" alt="code" width="600"></img>
+			<br><br>
+			I then remembered that I hadn’t finished the flag updating logic for several instructions, including INR/DCR. I had to add an intermediate variable val (value before increment) to help with auxiliary carry logic, but the rest of the flags logic was pretty simple. It was just calling set_szp() and checking if carry/borrow occurred between bits 3 and 4 of the value when incremented.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.6.png" alt="code" width="600"></img>
+			<br><br>
+			Inside of RAM::init(), I wrote a very basic test case for the MOV instruction. The instructions were INR B, MOV A, B, HLT. In theory after B is incremented, calling MOV A, B should result in a value of 1 being in the A register. When running this, the value was correctly moved into the A register, but the A and L registers both contained the value 0x01, even though the instructions should not be touching the L register at all. I decided to move on to arithmetic instructions to see if this issue would persist with different instructions. The output for the test case can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.7.png" alt="code" width="600"></img>
+			<br><br>
+			I implemented the ADD instruction, this time making sure to use wrapping_add() as I forgot to do last week. Also updated the flag setting logic appropriately. The code I wrote to do this can be seen below. For all these arithmetic instructions, I am not going to be doing any clock cycle tracking just yet, so I left a blank framework for handling this later (instructions involving M take more clock cycles than others). After writing a quick test case and running it, I noticed that the issue of A and L being tied together persisted but adding worked correctly. The sequence of instructions and output can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.11.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.8.png" alt="code" width="600"></img>
+			<br><br>
+			Started implementing the rest of the arithmetic operations, starting with ADC. Wrote a special test case where I initialized A to 0xFF, incremented it (which should set the carry flag), then called ADC (first picture). The code for ADC is very similar to ADD, but it also involves adding the current carry flag value to the result (second image). The output for this test case was as I expected, and the flags appear to update properly (third image).
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.12.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.9.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.10.png" alt="code" width="600"></img>
+			<br><br>
+			Implemented SUB and SBB next, the logic was extremely similar to ADD and ADC, just using wrapping_sub() instead of wrapping_add(). The carry and aux_carry logic was slightly different as these flags indicate borrows instead of carries, but it was still relatively simple.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.13.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.14.png" alt="code" width="600"></img>
+			<br><br>
+			After looking through the programmer’s manual for how logical operations affect the flags, I learned some interesting details. Sign, zero, and parity can be set as usual using the result of the operation, but aux_carry and carry are handled very differently. The notes I took regarding these instructions are detailed below, as well as my implementations for ANA, XRA, ORA, and CMP. After finishing these instructions, my progress through the instruction set is as follows:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.34.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.15.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.16.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.17.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.18.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.21.png" alt="code" width="600"></img>
+			<br><br>
+			That completes all of the 8-bit register arithmetic operations, I will need to test those at some point. I started thinking about LDAX/STAX again, as well as LDA/STA a16. Since LDA/STA needs 2 bytes from memory after the opcode (the bytes are located right after the opcode in memory at pc+1 and pc+2), the pc will need to be updated to pc + 3 after completion of the instruction. Similar to stuff I did when I took 437, I created some kind of next_pc logic. It defaults to pc+1, and if an instruction needs to handle pc differently (LDA/STA, JMP, etc.), I will set it explicitly in the corresponding match block. The minor updates I made to the logic can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.19.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.20.png" alt="code" width="600"></img>
+			<br><br>
+			Started reading up on the POP/PUSH instructions a bit as I want to start adding functionality for the stack pointer. POP/PUSH use bits 5-4 to define the register pair that will be used, and this includes the PSW (concatenation of A and flags). I read the entire section in the programmer’s manual about the details of POP/PUSH, but the main points for our implementation in execute_instruction() can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.22.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.23.png" alt="code" width="600"></img>
+			<br><br>
+			Since these are going to require tram requests (stack is in memory), I moved on to other register-only instructions, starting with INX/DCX. These are exactly the same as INR/DCR from earlier, just using the register pairs instead of individual registers. INX/DCX can also be used on the stack pointer. These do not affect the flags at all, the code I wrote is pictured below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.24.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.25.png" alt="code" width="600"></img>
+			<br><br>
+			There were some other register-only instructions that I saw while reading through the programmer’s manual. I started by implementing RLC, RAL, RRC, RAR, which rotate (circular shift) the accumulator (or using carry flag to set the new bit after shift). These required some kind of nasty bit manipulation, but they were relatively simple to implement once I understood them.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.26.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.27.png" alt="code" width="600"></img>
+			<br><br>
+			CMC and CMA were also very simple, as CMC simply inverts the current carry flag, and CMA just performs bitwise AND on the accumulator register.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.28.png" alt="code" width="600"></img>
+			<br><br>
+			Went back to setting up the framework for POP/PUSH. Similar to what I did for INX/DCX, I set up a match block for identifying the register pair being used. I still need to integrate this with tram for memory access, but in an emergency I can just use simulated RAM to get the PSDR for our CPU emulator alone.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.29.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.30.png" alt="code" width="600"></img>
+			<br><br>
+			Wrote some helper functions to simplify the code inside of execute_instructions(), specifically for PSW functionality. I already had a function to pack the flags into a u8, so I wrote a function that takes a u8 and unpacks the flags from that. I also wrote functions for getting/setting the PSW, which were very similar to the other register pair accesses, just calling pack/unpack_flags().
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.31.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.32.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_1.33.png" alt="code" width="600"></img>
+			<br><br>
+			I’m making very good progress on execute_instruction(), and I am getting close to being able to test some basic programs with simulated RAM (which would get us the PSDR). I want to finish LDAX/STAX, POP/PUSH, and LDA/STA a16 before I get testing. After that, I will rework the main function to use the embassy-rp framework, then begin trying to flash it to the micro on our card PCB. This will require a lot of debugging, but once it works we can get the PSDR checked off and begin integrating it with our bus control, front panel, and memory emulator.
+			<br><br><br><br>
 			<h2>===============   Week 14: =================</h2>
+			<!--  Week 14, Entry 5  -->
+	<h4><b>Entry 8: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 18th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 1:00am </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			While starting to work on implementing functionality for arithmetic instructions inside of execute_instruction(), I realized that I needed to handle the M register much differently than the other registers. After reading through the Wikipedia page about the Intel 8080, I learned that the “M” register is just the value in memory at the address contained in the concatenation of the H and L registers. This means that to access the M register, I need to concatenate the contents of the H and L register into a single u16, then read memory at that address. Using this knowledge, I wrote some skeleton code for getting the address, then reading/writing memory at that address (effectively getting/setting the M register). This code can be seen below, as well as the Wikipedia page that I read through (under the Registers section):
+			<br><br>
+			<a href="https://en.wikipedia.org/wiki/Intel_8080#Registers">Intel 8080 Wikipedia Page</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.1.png" alt="code" width="600"></img>
+			<br><br>
+			As I figure out timing and making tram requests (in our system, these read/write requests will need to go out on the bus), I will update these read_m() and write_m() functions. The next thing that I did was update read_reg() and set_reg() to include functionality for the M register, which involves calling read_m() and write_m(). The code I wrote can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.2.png" alt="code" width="600"></img>
+			<br><br>
+			I moved on to implementing more instructions in the execute_instruction() function. Starting with the MOV instructions, I wrote the code to move the contents of one register (now including M) to another register. The code is pretty simple for now, but I still need to find a way for MOV instructions that involve M to take 7 cycles, while the others take 5.		
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.3.png" alt="code" width="600"></img>
+			<br><br>
+			I took a quick detour to write the update_szp() function that I mentioned earlier, which uses the new flag setup to set the sign, zero, and parity flags based on the result of an arithmetic calculation. This was pretty simple code, I did have to find the count_ones() function in order to figure out the parity condition, but no issues other than that. This function will be used for any instruction where the sign, zero, and parity flags are affected.
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.4.png" alt="code" width="600"></img>
+			<br><br>
+			After that, I started working on the arithmetic instructions, mainly focusing on the logical operations (ORA, XRA, ANA) since they seemed the simplest to me. I also worked on the add and subtract instructions, but I’m now realizing as I’m writing this that I forgot to use the wrapping_add() and wrapping_sub() functions (I just used +/- operators), so that will definitely need to be fixed. Some of the instruction implementations can be seen below, again I’m not exactly sure how I will handle operations involving M because they will take a different number of clock cycles.	
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.6.png" alt="code" width="600"></img>
+			<br><br>
+			Assuming I fix some minor issues over the weekend, my progress on the instruction set will be as follows:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_8.7.png" alt="code" width="600"></img>
+			<br><br>
+			I spent the rest of this session doing some brainstorming about what critical functionality still needs to be implemented to get some basic programs running (eventually on the microcontroller). I thought about it for a while, and here’s the list that I came up with: 1) get flag updates working for every instruction implemented so far: this is critical since some instructions rely on the current state of the flags. 2) update get/set_m to make tram requests, also update fetch_instruction() to make tram request: this is needed for interfacing with our bus. 3) translate the front panel simulation code (keyboard input) into GPIO signals and logic (so that we can start testing with our working front panel card). My goal is to have all 3 of these done early next week so I can start making sure that the integration of the whole system comes together nicely. I should also have enough instructions implemented to start writing some very basic programs and testing that they work as intended.
+			<br><br><br><br>
+	<!--  Week 14, Entry 7  -->
+	<h4><b>Entry 7: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 17th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 2:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started my effort to rework how my emulator will handle updating CPU flags. After looking into it a bit (asking ChatGPT), I figured out that when an instruction does not update a given flag, that flag is not reset; it is left as it was from the previous instruction. I started by defining bit masks for each flag. Since affected flags (u8) is a part of the InstructionInfo struct, I figured I could use these bit masks to determine when to update a flag. The bit masks I defined in cpu.rs can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.1.png" alt="code" width="600"></img>
+			<br><br>
+			I also changed the flags in the CPU struct, making them each individual boolean flags instead of them all being stored in a single u8. I did this to make updating them easier (no need to use the individual bit-setting logic I was using), and I scrapped the update_flags() function entirely. My new plan is to have a set_szp() function that sets the sign, zero, and parity flags only (those flags only depend on the result), then handle carry and aux_carry separately (I will code this up later tonight). I still wanted a way to pack the flags into a u8 for pushing/popping a PSW (concatenation of A register and flags, 16 bits total), so I added a pack_flags() function that takes the CPU flags and creates a u8 following the 8080 flags register format (S, Z, 0, A, 0, P, 1, C). I also changed the read functions for each of the flags, they are much simpler now since I just have to immediately return the boolean value from the struct. All of the added/modified code for the flags can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.3.png" alt="code" width="600"></img>
+			<br><br>
+			The last thing I did was work on execute_instruction() for a bit. I want to get the register arithmetic instructions working as soon as possible, as that will allow me to start testing some programs and check the register values to determine if instructions are being processed properly. I just added a framework for these in the match statement for now, I did this by referencing the 8080 opcodes table and seeing which opcodes correspond to which instructions. The src register is defined in the first 3 bits of each opcode, and all of them use the A register as the other operand, so this should be relatively simple to implement when I have some more time. The link to the opcode table and the framework I set up can be seen below:
+			<br><br>
+			<a href="https://www.pastraiser.com/cpu/i8080/i8080_opcodes.html">8080 Opcodes Table</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_7.4.png" alt="code" width="600"></img>
+			<br><br>
+			The execute_instruction() function is slowly coming along, and I feel like the current set up will allow me to progress much quicker. The next major step is to actually implement the arithmetic instructions and start testing them. 
+			<br><br><br><br>
+	<!--  Week 14, Entry 6  -->
+	<h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:30pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Started working on getting execute_instruction() to work for a few instructions. With NOPs and HLT already implemented, I started moving on to some simple instructions, particularly INR and DCR. I will handle updating flags later, but the code for now was extremely simple. The register number to be incremented/decremented is stored in the bits 5-3 of the opcode, so I just read the corresponding register’s value, then either incremented or decremented it using the wrapping_add(1)/wrapping_sub(1) functions. These functions are necessary because otherwise the program would panic on overflow/underflow, and these functions prevent that from happening. For instance, using 8-bit registers, adding 1 to 0xFF will result in the new value being 0x00. The documentation for these functions and test case for INR/DCR B output can be seen below, they are working flawlessly for now but I will need to update them to handle flags later.	
+			<br><br>
+			<a href="https://doc.rust-lang.org/std/intrinsics/fn.wrapping_add.html">wrapping_add() - Rust</a>
+			<br><br>
+			<a href="https://doc.rust-lang.org/std/intrinsics/fn.wrapping_sub.html">wrapping_sub() - Rust</a>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.1.png" alt="code" width="600"></img>
+			<br><br>
+			I then decided to make my first attempt at some kind of flag updating function. As I soon figured out this will not work for all instructions, but it should work for INR/DCR instructions. It takes a parameter result (u8), and sets the CPU flags for zero, sign, and parity according to the result. I had the flags just as a u8 in the CPU struct, so implementing this involved turning on/off the specific bits corresponding to each flag. The code for that can be seen below, as well as how it is used in the INR/DCR section of the execute_instruction() function.
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.2.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.3.png" alt="code" width="600"></img>
+			<br><br>
+			I also wrote a quick format_flags() function that transforms the CPU flags into a string to be used with fmt::Display. After running the same test case, we can see that the flags are updated properly and printed to the terminal. The updated fmt::Display code as well as the output can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.4.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.5.png" alt="code" width="600"></img>
+			<br><br>
+			I then quickly implemented functionality for the EI and DI instructions, which enable and disable interrupts for the CPU. Their opcodes are 0xF3 and 0xFB respectively. I did this by adding a boolean flag to the CPU struct called interrupt_enable, and these instructions just toggle it on or off. Here’s the code I wrote for those instructions:
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.6.png" alt="code" width="600"></img>
+			<br><br>
+			I tried to make an attempt at implementing some arithmetic instructions, but I soon realized that I would need to handle the flags completely differently for each operation (carry and aux_carry specifically). After brainstorming for a while, I couldn’t come up with anything scalable, so I decided to go to bed and revisit it later. There’s still a lot of work left to do, but I feel like I am making good progress on this CPU emulator. The next steps are fixing the flag handling issue, finishing execute_instruction(), and working on getting the emulator to work with the right number of clock cycles for each instruction. After that I can test functionality without GPIO, then translate all of the simulator-specific functionality into GPIO stuff (button on front panel instead of keyboard input, clk on GPIO pin, etc.). My current progress on working through the instruction set can be seen below, I’ll continue to update this as I make progress.
+			<br><br>
+			<img src="Team/journal/img - member3/week14/W14_6.7.png" alt="code" width="600"></img>
+			<br><br><br><br>
 	<!--  Week 14, Entry 5  -->
 	<h4><b>Entry 5: -----------------------------------------------------------------</b></h4>
            <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 9:30am </b><br> <!--the time you began the meeting/work for this entry-->
-            <b>Duration: 1.5 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+            <b>Duration: 1.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			At the beginning of lab section, I updated the formatter for printing InstructionInfo implementing the std::fmt::Display function for InstructionInfo myself instead of relying on #[derive(Debug)] to do it. This way, the flags affected by each instruction can be printed in binary instead of decimal, which is much easier to debug. Since each flag is represented by a single bit in the u8 for flags, printing in binary makes much more sense. We had our meeting with the instructors, where I showed my progress on the CPU instruction decoding simulation for my weekly show-me-a-thing. 
 			<br><br>
 			I then started reading through the 8080 instruction set to begin working on actually executing some of the instructions. I was mainly referencing the Intel 8080 programming guide, specifically section 2, which defines the instruction set. I noticed that some of the instruction groups (MOV, INR/DCR, arithmetic register operations) follow the same pattern, where certain bits in the opcode define which register(s) are to be used. The link to the programmer manual and some of the instructions I was looking at can be seen below:
@@ -128,7 +566,7 @@ contact course staff.
 	<h4><b>Entry 4: -----------------------------------------------------------------</b></h4>
            <b>Date: April 16th </b><br> <!--the date the project meeting or work was performed)-->
             <b>Start Time: 3:30am </b><br> <!--the time you began the meeting/work for this entry-->
-            <b>Duration: 0.5 hour </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+            <b>Duration: 0.5 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
 			On my walk back from lab I realized that I could implement a quick debugging tool to print the CPU’s state at any point in single-step execution. In the simulator, I added some code so that pressing the p key will print the CPU’s current state (registers, pc) to the terminal. The code I added to main for this can be seen below:
 			<br><br>
 			<img src="Team/journal/img - member3/week14/W14_4.1.png" alt="code" width="600"></img>
