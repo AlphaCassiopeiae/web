@@ -87,6 +87,35 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 7  -->
+	<h4><b>Entry 7: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 23rd </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 11:45pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 2 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Came up with a new game plan for getting something working for the demo on Friday. I am going to leave the memory attached to the CPU emulator so that I can just test front panel to CPU emulator communication without needing the bus transactions to fetch instructions/data. After brainstorming for a bit on how to accomplish this, I broke this plan down into two phases. Phase 1 is getting the CPU emulator running in a “run mode” on the microcontroller. When flashed, the emulator will just begin cycling through instructions preloaded into RAM and provide debugging info to the terminal. Phase 2 is writing the main loop for interchange (front panel software), then being able to control the CPU emulator with the buttons on the front panel (choose between single-step and run mode).
+			<br><br>
+			Starting phase 1, I made sure that the CPU emulator was ready to flash to the microcontroller. The package would build, but I had removed much of the debugging functionality, so I had to re-implement it in an embedded-friendly way to work with probe-rs. This involved changing any println!() calls to info!() calls, and changing the way I was handling displaying the CPU state. Instead of using fmt::Display, I had to write a function called show_state() as part of the CPU struct implementation. This function shows the same info as the old implementation, but using info!() calls. The code can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_7.1.png" alt="code" width="600"></img>
+			<br><br>
+			I added a call to this function in the main loop so that every time the emulator executes an instruction, the updated CPU state would be put on the terminal.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_7.2.png" alt="code" width="600"></img>
+			<br><br>
+			After verifying that the package builds, I started moving it to a Windows environment, since I have been working in a WSL environment, which I have not been able to get working with flashing code. I tried binding the USB device to WSL in the past using PowerShell commands, but to no avail. I had to install Rust and probe-rs on my local machine, then set up a GitHub SSH key to clone the rs repository. After doing this, I tried to run cargo run –bin emu (which should flash the emulator to the test harness), and I got a bunch of errors when trying to compile all the libraries. The fix to this was just copying the Cargo.toml file from a different, working package, which resolved the issue. After fixing that, which took much longer than it should have to figure out, I was able to flash and run the emulator. I preloaded RAM with a single HLT instruction, and the debugging output I got can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_7.3.png" alt="code" width="600"></img>
+			<br><br>
+			After verifying that the emulator would run on the micro, I started moving on to phase 2 of the plan, which was writing and testing the front panel main loop. I was able to get the code to flash to our test harness, but I was getting a panic() error with the I2C lines. After unplugging and replugging in the I2C wires, the code would run as intended but the switches weren’t doing anything. After working with Seth to figure this out, we found that the pull was wrong in the software (they were pulled low instead of high, as we had previously been testing on the actual front panel board where the pull is high). The change in code was changing the 0x00s to 0xFFs, the updated code can be seen below:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_7.4.png" alt="code" width="600"></img>
+			<br><br>
+			After fixing this, the loop ran as intended, and the debugger would log the current state of the switches to the terminal
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_7.5.png" alt="code" width="600"></img>
+			<br><br>
+			The goal tomorrow is to get my simplified version of our project fully working, then spend whatever time we have left trying to figure out bus transactions with accurate timing. Steps for tomorrow include writing the main loop for interchange, updating the main loop in the cpu emulator to handle GPIO signals from front panel, and testing everything with different programs preloaded into RAM. Integration is coming along, I am confident we can get stuff working by our demo on Friday. 
+			<br><br><br><br>
 	<!--  Week 15, Entry 6  -->
 	<h4><b>Entry 6: -----------------------------------------------------------------</b></h4>
            <b>Date: April 23rd </b><br> <!--the date the project meeting or work was performed)-->
