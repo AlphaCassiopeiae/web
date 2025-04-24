@@ -87,6 +87,53 @@ contact course staff.
 		<div id="content">
             <h2>Project Journal for Caleb Shinkle</h2>
 			<h2>===============   Week 15: =================</h2>
+	<!--  Week 15, Entry 8  -->
+	<h4><b>Entry 8: -----------------------------------------------------------------</b></h4>
+           <b>Date: April 24th </b><br> <!--the date the project meeting or work was performed)-->
+            <b>Start Time: 1:45pm </b><br> <!--the time you began the meeting/work for this entry-->
+            <b>Duration: 1.75 hours </b><br><br> <!--how long the meeting/work lasted rounded to nearest quarter hour-->
+			Talked with Brian for a bit about how the front panel buttons work, and realized that the spreadsheet of our GPIO pin mappings wasn’t completely accurate. According to the old spreadsheet, the buttons were just directly connected to the bus, but they actually need to go through the microcontroller on the front panel first. Referencing our schematic and PCB layout for the front panel, I updated the spreadsheet to reflect this, which will help me when writing the main front panel loop.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.1.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.2.png" alt="code" width="600"></img>
+			<br><br>
+			Spent some time experimenting with the skeleton code that Seth wrote for the front panel, trying mainly to figure out whether the buttons were pulled high or low (to determine low or high active reset, etc.). Running the program, I determined that pressing the buttons on the test harness changed the value from 1 to 0, indicating that the buttons are in fact pulled high when not active. When the button is pressed, the corresponding bit in the log drops from 1 to 0, which can be seen by the group of 4 bits dropping from 0xF to 0xE
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.3.png" alt="code" width="600"></img>
+			<br><br>
+			This is different from the PCB, where the buttons are high-active, so I will need to handle that at some point. In order to detect button presses, I will have to extract individual bits from the I2C’s GPIOA and GPIOB banks, which are 8 bits each. To begin, I had to look at the schematic to determine how each button was polled and where the result is stored
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.4.png" alt="code" width="600"></img>
+			<br><br>
+			I noticed that the test harness has the buttons and switches mapped differently, so I will not be able to use the test harness to test the front panel software. Instead, I will have to wait for Brian to solder a working backplane and front panel card, since the only working front panel card we have is in the machine shop right now. Using the schematic, I started rewriting the code that Seth set up to reflect the front panel PCB, cleaning up some naming stuff along the way to make it understandable. 
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.5.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.6.png" alt="code" width="600"></img>
+			<br><br>
+			I also started writing helper functions to extract each bit from the 8-bit I2C outputs so that I can detect individual button presses later. For instance, the RESET signal comes from bit 6 of the first I/O expander’s GPIOB bank, so I wrote a function to return the value present on that bit
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.7.png" alt="code" width="600"></img>
+			<br><br>
+			Inside the main loop, I will check the value on the reset button and assert the bus RESET signal if it is asserted. This will be repeated for all buttons on the front panel, but the logic will look something like this:
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.8.png" alt="code" width="600"></img>
+			<br><br>
+			I want to just test pressing the RESET button to make sure that this framework is gonna work, but I’ll need to wait on Brian to finish soldering first as previously mentioned. In the meantime, I set up functions for extracting all the other button presses, very similar logic to get_reset() just with a different bit position.
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.9.png" alt="code" width="600"></img>
+			<br><br>
+			<img src="Team/journal/img - member3/week15/W15_8.10.png" alt="code" width="600"></img>
+			<br><br>
+			The last thing I did before grabbing dinner was rewatch the Altair 8800 front panel programing video I watched earlier this semester (linked below). The better I can understand the front panel, the easier it will be to implement its functionality in software.
+			<br><br>
+			<a href="https://www.youtube.com/watch?v=EV1ki6LiEmg&list=PLB3mwSROoJ4KLWM8KwK0cD1dhX35wILBj&index=2">Altair 8800 Front Panel Programming Tutorial</a>
+			<br><br>
+			Here’s a summary of what I learned regarding deposit and deposit next: when the reset button is pressed, the front panel resets to address 0x0000. The first 8 address switches also act as the data line switches, so putting an opcode on the first 8 switches and pressing deposit will put that opcode at address 0x0000. Putting a new opcode on the switches and pressing deposit next will put that opcode at address 0x0001. Repeating this process will put an opcode at address 0x0002, and so on. Pressing single-step will then perform one fetch from memory. If the opcode requires 2 additional bytes of data, 2 more single-step presses will be required to finish the instruction. However, I may simplify this functionality for our design, and just have single-step execute a full instruction (automating the additional fetches).
+			<br><br>
+			Once Brian is done soldering, my next steps are testing what I currently have for front panel software, then continuing to write the main loop.
+			<br><br><br><br>
 	<!--  Week 15, Entry 7  -->
 	<h4><b>Entry 7: -----------------------------------------------------------------</b></h4>
            <b>Date: April 23rd </b><br> <!--the date the project meeting or work was performed)-->
