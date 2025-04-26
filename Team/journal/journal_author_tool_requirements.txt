@@ -1,0 +1,2 @@
+Pillow
+markdown-it-py
