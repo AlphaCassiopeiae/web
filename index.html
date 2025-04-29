@@ -85,7 +85,12 @@ This website was based upon a number of source materials, which are elaborated u
 				<div id="menu"></div>
 
 				<!-- Slideshow -->
-				<div id="slideshow"></div>
+				<!-- <div id="slideshow"></div> -->
+				<div class="camera_wrap" style="display: block; height: 400px;">
+					<div data-src="img/slideshow/teamPhoto.jpg"></div>
+					<div data-src="img/slideshow/frontPanel.jpg"></div>
+					<div data-src="img/slideshow/finalProject.jpg"></div>
+				</div>
 
 				<!-- Main Content -->
 				<div id="content">
@@ -851,7 +856,7 @@ This website was based upon a number of source materials, which are elaborated u
 			$(document).ready(function () {
 				$("#header").load("header.html");
 				$("#menu").load("navbar.html");
-				$("#slideshow").load("slideshow.html");
+				// $("#slideshow").load("slideshow.html");
 				$("#footer").load("footer.html");
 			});
 		</script>
@@ -871,6 +876,13 @@ This website was based upon a number of source materials, which are elaborated u
 			$("#slideshow").load("slideshow.html");
 			//$("#content").load("about.html");
 			$("#footer").load("footer.html");
+		});
+	</script>
+
+	<script src="js/camera.js"></script>
+	<script>
+		$(document).ready(function(){
+			jQuery('.camera_wrap').camera();
 		});
 	</script>
 
