@@ -115,7 +115,9 @@ contact course staff.
           <li>
             <a href="Team/journal/journal1.html#sec-week15">WEEK 15</a>
             <ul>
-              <li><a href="Team/journal/journal1.html#sec-week15-e1">ENTRY 2</a></li>
+              <li><a href="Team/journal/journal1.html#sec-week15-e4">ENTRY 4</a></li>
+              <li><a href="Team/journal/journal1.html#sec-week15-e3">ENTRY 3</a></li>
+              <li><a href="Team/journal/journal1.html#sec-week15-e2">ENTRY 2</a></li>
               <li><a href="Team/journal/journal1.html#sec-week15-e1">ENTRY 1</a></li>
             </ul>
           </li>
@@ -220,10 +222,469 @@ contact course staff.
 
         <div class="week-content">
           <h2 id="sec-week13">=============== Week 13: =================</h2>
+
+          <h4 id="sec-week13-e4">
+            <b>Entry 4: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 10, 2025</p>
+            <p><b>Start Time:</b> 12:44 AM</p>
+            <p><b>Duration:</b> 3.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>Seth complained about the fact that the probe-rs toolchain was unable to set up GDB in a way that we
+                would know the current line number of the file, and the current location of the current breakpoint. This
+                meant that we were essentially hitting breakpoints and single-stepping blindly, which isn't ideal for
+                debugging. Instead of using the probe-rs debugger, I set up a new VS code build environment that used
+                the generic <a href="https://github.com/Marus/cortex-debug">Cortex M Debug</a> extension with the
+                generic <a href="https://developer.arm.com/downloads/-/gnu-rm">ARM GCC/GDB Toolchain</a> (specifically
+                the latest gcc-arm-none-eabi toolchain), and a new build of the latest version of <a
+                  href="https://github.com/raspberrypi/openocd">the Raspberry Pi fork of OpenOCD</a>.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>With a <a
+                          href="https://github.com/AlphaCassiopeiae/8800/blob/main/rs/.vscode/launch.json">launch
+                          configuration</a> that configured OpenOCD to flash the firmware, then launch the ARM version
+                        of GDB, it seems that both line numbers and breakpoints were working correctly!</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/4.1.png">
+                    <img src="Team/journal/img - member1/week13/4.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>In order for debug messages to work correctly, we needed to get the rust defmt library's binary
+                        messages to be decoded into ASCII, which required passing RTT messages through a filter. I <a
+                          href="https://github.com/Marus/cortex-debug/pull/880#issuecomment-2791819271">wrote a
+                          program</a> that used the Cortex debugger's advanced processor feature to pass the RTT data
+                        through the rust <code>defmt-print</code> binary to convert the data such taht it could be
+                        printed correctly.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/4.3.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>With this new working debugger, it should now be easier for Seth to understand what's going on when
+                we're configuring peripherals and working on asynchronous stuff in embassy. I'll communicate to him how
+                this new tool I put together works the next time we're in lab together.</p>
+            </div>
+          </div>
+
+          <h4 id="sec-week13-e3">
+            <b>Entry 3: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 8, 2025</p>
+            <p><b>Start Time:</b> 12:00 AM</p>
+            <p><b>Duration:</b> 8.5 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>I spent some time today to try to figure out why the firmware was not flashing. Since communication
+                between our computer, the probe, and the MCU through SWD seemed to be working correctly, I decided a
+                good point to debug would be the connection between the MCU and its QSPI NOR flash on the card.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>I connected the logic analyzer's pins up to the NOR flash chip, connecting GND, then Clock to
+                        probe 1, Data 0, 1, 2, 3, to probes 2, 3, 4, and 5, and CS to probe 6.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>I got a clean clock and chip select signal, but the readings from the data lines were very very
+                        noisy, which I can tell from the fact that the logic analyzer sees &quot;switching&quot; far
+                        faster than the actual QSPI clock frequency.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.1.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>After thinking through some of the possiblities, I decided to look through the card schematic,
+                        where I came to a terrible realization: the data lines between the MCU and chip were reversed,
+                        so the connection was garbled, and never able to upgrade from normal SPI to QSPI, explaning the
+                        shape of some of the logic analyzer signals. Since the schematic design of the front panel was
+                        copied from the card, this error was also on the front panel schematic.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.3.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>4.</h4>
+                      <p>Using an MHP30 mini hot plate, I heated up the card PCB, and pulled off only the NOR flash
+                        chip. I decided to try to find a way to try to rework our boards to make the flash chips work,
+                        because otherwise we'd basically have no working boards at all.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.4.png">
+                    <img src="Team/journal/img - member1/week13/3.5.png">
+                    <img src="Team/journal/img - member1/week13/3.6.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>5.</h4>
+                      <p>For the data pins that were affected, I straightened the pins using a pair of needle-node
+                        plies, and then too a pair to tweezers to bend the data pins upwards, such that all the other
+                        pins on the package were unaffected.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.7.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>6.</h4>
+                      <p>I then took copper enameled speaker wire, and soldered the wire onto the pins that were bent
+                        up. After I soldered wire to all 4 affected pins, I tried to loop the wire around under the pins
+                        into their new locations. Unfortunately, the enameled wire was too thick and stiff, and trying
+                        to bend the wire into place snapped off one of the legs on the chip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.8.png">
+                    <img src="Team/journal/img - member1/week13/3.9.png">
+                    <img src="Team/journal/img - member1/week13/3.10.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>7.</h4>
+                      <p>I then repeasted the process with another NOR flash chip I'd taken off of another card PCB,
+                        bending its legs to be straight, and then bending the entire leg to be pointed slightly upwards.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.11.png">
+                    <img src="Team/journal/img - member1/week13/3.12.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>8.</h4>
+                      <p>I then decided to swap out the wire I was using for an even thinner wire gauge (labelled wire
+                        wrapping wire) with plastic insulation that could be easily burnt off. This wire was
+                        significantly more flexible, and I didn't break off any pins this time.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.13.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>9.</h4>
+                      <p>I then manually resoldered the new modified package onto the card PCB. taking care to swap the
+                        pins that the wire wrapping wire was connected to. I did this by first soldering down the other
+                        end of the wires, then placing the package down, and soldering the rest of the unaffected pins
+                        on the package to secure it.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.14.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>10.</h4>
+                      <p>Probing the new configuration of the package, the logic analyzer waves look a lot more
+                        consistent, and the flash process with probe-rs shows a succesful verification!</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.15.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>11.</h4>
+                      <p>Seth put together an LED blinking program, and we were able to verify that the card could blink
+                        on LED on the front panel.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.16.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>12.</h4>
+                      <p>Testing however revealed another series of problems. I modified the programm to light up all
+                        LEDs on the front panel from the card, and it turns out that a very significant number of
+                        signals were not making their way from the card to the front panel; their LEDs remained unlit.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.17.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>13.</h4>
+                      <p>I decided to take this oppotunity to rework the front panel PCB. I again fired up the MHP30 hot
+                        plate and tried to remove the NOR flash chip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.18.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>14.</h4>
+                      <p>This time however, I was too eager to pull off the chip before the solder had fully started to
+                        flow, and in the process I'd ripped off the chip select pad on the board. I repaired the pad by
+                        setting down a piece of bodge wire where the pad once was, connected to the circuits on either
+                        side of where the pad was.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.19.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>15.</h4>
+                      <p>I then performed the same bodge operation, but this time, I tried to put the wired onto the PCB
+                        first, then put the chip on top of it, looping the wires that were on the PCB up to the bent
+                        pins on the chip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.20.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>16.</h4>
+                      <p>This bodge was complete, and it actually went much faster than last time, so I'm going to
+                        continue to do these changes by placing the wire wrapping wire onto the PCB first, instead of
+                        starting on the chip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.21.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>17.</h4>
+                      <p>I also took the oppotunity to reflow all of the connections on the LED sink driver ICs on the
+                        front panel, and I modified the program to test if the offending LEDs could be lit. They were,
+                        which was good.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.22.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>18.</h4>
+                      <p>Here's the program which light up all LEDs at the same time, showing that the card had no issue
+                        communicating to the front panel.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/3.23.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>This time in lab, I uncovered a really big design issue that would've been absolutely devastating if I
+                hadn't put together that bodge wire procedure. I'm going to have to reapply this bodge to the 3 other
+                front panel PCBs, and 13 other repairable card PCBs later, but I'm going to focus on seeing if we can
+                get bus software running when i recuperate my findings with Seth.</p>
+            </div>
+          </div>
+
+          <h4 id="sec-week13-e2">
+            <b>Entry 2: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 7, 2025</p>
+            <p><b>Start Time:</b> 5:11 PM</p>
+            <p><b>Duration:</b> 2.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>Seth and I came together in lab to try to flash some test firmware onto the PCBs.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>I created a wire harness by crimping a ribbon cable to two 3-pin JST XT connectors I got from
+                        the ECE Shop, and crimping Dupont connectors onto the other side, such that we could plug the
+                        SWD connector from the card to the debug probe we were using for the stamp XLs, with SWD data
+                        and clock connected to the same GPIO 4 and 5 on the probe.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/2.1.png">
+                    <img src="Team/journal/img - member1/week13/2.2.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>We could connect to the cards using both probe-rs and OpenOCD, but attemping to program the cards
+                really did not work out. None of the times we programmed it did the verification of the written data
+                work, on either probe-rs or OpenOCD. When we tried to run the MCU anyway and reset it, the program we
+                flashed did not run. I'll need to investigate what's going on later.</p>
+            </div>
+          </div>
+
+          <h4 id="sec-week13-e1">
+            <b>Entry 1: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 6, 2025</p>
+            <p><b>Start Time:</b> 4:15 AM</p>
+            <p><b>Duration:</b> 7.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>Another PCB that we need to bring online is the front panel PCB. The most annoying part of the PCB to
+                assemble is the vertical USB connector in the middle of the board, so I'll go ahead and try to assemble
+                that first.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>I spent over an hour trying to get the USB connector onto the board. <a
+                          href="https://www.digikey.com/en/products/detail/gct/USB4235-03-C/25577698">USB4235-03-C</a>
+                        is honestly a really poor choice of connector for manual soldering, since all the electrical
+                        pads are <em>underneath</em> the footprint, with no easy way to reach them with an iron. In the
+                        end, I relented, and only soldered in the shielding tabs, so the actual electrical pads are just
+                        pressed against the PCB pads without solder. Regardless, plugging in a USB-C connector shows
+                        that 3.3V shows up on the linear regulator.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.1.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>I looked at the <a href="https://www.vishay.com/docs/81778/vlrk31r1s2.pdf">datasheet for the
+                          VLRK31Q1R2-GS08</a> which showed that the side of the package with the lens on it has a
+                        triangle cut-out which indicates the cathode. I'll line this up with the cathode dots that we
+                        have on the front panel PCB silkscreen.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>I then brought 36 LEDs over to the Weller WX2 lab bench, and soldered each LED on, solding on
+                        one pad, making sure the LED is centered, and then soldering on the other tab. Visually, it
+                        doesn't seem like any LEDs appear to be off-center.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.3.png">
+                    <img src="Team/journal/img - member1/week13/1.4.png">
+                    <img src="Team/journal/img - member1/week13/1.5.png">
+                    <img src="Team/journal/img - member1/week13/1.6.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>4.</h4>
+                      <p>I noted that the RP2350 shows up as a USB bootdrive on my computer when I press my hand against
+                        the USB connector when I have it plugged in. This is a consequence of the UF2 bootloader on the
+                        RP2350's ROM, and the fact that we don't have firmware flashed on these devices yet.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.7.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>5.</h4>
+                      <p>Removing the pick-and-place kapton tape from the front panel, the jumper cable seat well into
+                        the pre-assembled flat flex connector.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.8.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>6.</h4>
+                      <p>Next, in order to power the front-panel normally from the backplane, I needed to attach the
+                        flat flex receptacle onto the newly soldered backplane. I'm going to try to re-use the connector
+                        I desoldered last-time, but that connector has a bunch of solder bridges on it, even after
+                        removal. I went and removed the solder bridges from the connector by using solder wick in
+                        combination with the Weller WX2's chisel tip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.9.png">
+                    <img src="Team/journal/img - member1/week13/1.10.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>7.</h4>
+                      <p>I then installed the cleaned up connector onto the backplane, and made sure that the front
+                        panel could also power itself up using the backplane power.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.11.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>8.</h4>
+                      <p>I then installed three more DIMM slots onto the working backplane, completing it.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.12.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>9.</h4>
+                      <p>I tried to put together the USB connector and the USB power section for the card PCB, to test
+                        if we could power the card PCBs from USB as well. It did not go as well as the front panel PCB.
+                        As you can see, the tantalum capacitor at the 5V side exploded, as in a little charred. Since
+                        it's not necesary, I'll refrain from assembling the USB section on these cards for now.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week13/1.13.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>Once I get another card onto this setup, we should have all the electrical hardware necesary to put
+                together the final product, which I'm really excited about. I still need to work with Seth later this
+                week to figure out how to properly flash firmware to these devices.</p>
+            </div>
+          </div>
         </div>
 
         <div class="week-content">
           <h2 id="sec-week12">=============== Week 12: =================</h2>
+
+          <h4 id="sec-week12-e3">
+            <b>Entry 3: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 2, 2025</p>
+            <p><b>Start Time:</b> 10:00 AM</p>
+            <p><b>Duration:</b> 1.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>After discussing with Shivam and showing him the various solder bridges we had on our current board, we
+                came to the conclusion that it would be more time-effective to desolder all the connectors on the board
+                we put together. He also mentioned that he purchased a finer pitch Chipquik solder paste for us to use,
+                which we could set up inside of the senior design lab, instead of using the ECE shop materials.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>I turned on both pre-heaters on the hot plate, but we only needed to use the first heater at
+                        280 degrees Celsius. We manipulated the boards using pliers. Firstly, I placed the board we had
+                        already assembled, and waited for the whole thing to heat up and for the solder to liquify, and
+                        then one by one pulled off each of the DIMM connectors and the flat flex connector, then slid it
+                        over to the cold plate. Next we also pasted and assembled a new board with the new refrigerated
+                        paste we had, and heated that board on the same plate.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week12/3.1.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>We still found some solder bridges on the second board we assembled that needed to be
+                        corrected, so it still wasn't usable, but for the board where we pulled all of the connectors
+                        off, all the solder bridges had been removed, so there were no longer shorts between ground and
+                        3.3V. Plugging the device in showed a good and stable 3.3V on our buck convertor's output lines,
+                        fulfilling our power PSDR.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week12/3.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>We came to the conclusion that trying to put down all of the connectors on each backplane
+                        one-by-one was too risky, and that it would be better to install each DIMM connector by hand,
+                        one-by-one, verifying the solder connections as each one is installed. Here I installed the
+                        first DIMM by dabbing in a bit of solder with the soldering iron on each pad individually, and
+                        it tested well. The card is powered properly, and it enumerates on probe-rs using the
+                        <code>probe-rs</code> info command.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week12/3.3.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>With the power supply working, we were able to show our 3.3V measurement to Setsuna, and got our
+                prelimenary power PSDR checked off. Next steps that I want to get to is continue the assembly of the
+                backplanes, and make sure that the cards are programmable. I really want to get two cards to be able to
+                talk to each other on real hardware as soon as we can.</p>
+            </div>
+          </div>
 
           <h4 id="sec-week12-e2">
             <b>Entry 2: -----------------------------------------------------------------</b>
@@ -235,28 +696,36 @@ contact course staff.
           </div>
           <div class="entry-content">
             <div class="section">
-<p>As it's recommended to assemble PCBs in pair teams, Nathan and I agreed on this morning today to work together to put together a backplane PCB. We decided to do it in the morning because when the ECE shop would be available.</p>
+              <p>As it's recommended to assemble PCBs in pair teams, Nathan and I agreed on this morning today to work
+                together to put together a backplane PCB. We decided to do it in the morning because when the ECE shop
+                would be available.</p>
 
               <div class="image-section">
                 <div class="grid">
                   <figure class="grid-item">
                     <figcaption>
                       <h4>1.</h4>
-<p>I measured some of the scrap boards from the senior design lab using a pair a calipers, and picked the boards that had 1.6mm thick substrates. I then brought these boards and the SMD stencil over to the ECE shop, and set down the backplane PCB on the table. taping down scrap PCBs around it, such that the stencil can be taped on top of the scrap PCBs. In this way, I put together a makeshift stencil jig.</p>
+                      <p>I measured some of the scrap boards from the senior design lab using a pair a calipers, and
+                        picked the boards that had 1.6mm thick substrates. I then brought these boards and the SMD
+                        stencil over to the ECE shop, and set down the backplane PCB on the table. taping down scrap
+                        PCBs around it, such that the stencil can be taped on top of the scrap PCBs. In this way, I put
+                        together a makeshift stencil jig.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.1.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>2.</h4>
-<p>The stencil is taped on one side such that we can install and remove backplane PCBs for solder paste printing.</p>
+                      <p>The stencil is taped on one side such that we can install and remove backplane PCBs for solder
+                        paste printing.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.2.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>3.</h4>
-<p>Using a spreader card, we used the ECE shop's solder paste on the stencil to print the solder paste pattern onto the backplane board.</p>
+                      <p>Using a spreader card, we used the ECE shop's solder paste on the stencil to print the solder
+                        paste pattern onto the backplane board.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.3.png">
                     <img src="Team/journal/img - member1/week12/2.4.png">
@@ -264,35 +733,51 @@ contact course staff.
                   <figure class="grid-item">
                     <figcaption>
                       <h4>4.</h4>
-<p>Then after pasting, I started the process of manually placing components onto the board. The DIMM slots came in a nicely packaged box, which I found out after I cut open the vacuum seal bag for it.</p>
+                      <p>Then after pasting, I started the process of manually placing components onto the board. The
+                        DIMM slots came in a nicely packaged box, which I found out after I cut open the vacuum seal bag
+                        for it.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.5.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>5.</h4>
-<p>Is it very difficult to see, but for a component like this 0402 diode, there is a very small lasered line on it that represents the cathode side (This can also be confirmed using the <a href="https://www.vishay.com/docs/86187/bas16l.pdf">BAS16L datasheet</a>).</p>
+                      <p>Is it very difficult to see, but for a component like this 0402 diode, there is a very small
+                        lasered line on it that represents the cathode side (This can also be confirmed using the <a
+                          href="https://www.vishay.com/docs/86187/bas16l.pdf">BAS16L datasheet</a>).</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.6.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>6.</h4>
-<p>I placed components in the order of ascending size, so 0402-sized components went first. Here is an image of all the 0402 components placed.</p>
+                      <p>I placed components in the order of ascending size, so 0402-sized components went first. Here
+                        is an image of all the 0402 components placed.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.7.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>7.</h4>
-<p>I tried to use the radiative preheater at the ECE shop to reflow the board, but I think it delivered too much power, and it started smoking the whole board and toasting the DIMM slots a little. Additionally, the heating was very uneven; while the middle got very very hot, the outer edges of the board still did not have reflowing solder paste. The reason I wanted to try using the radiative pre-heater was because the mechanical anchors on the slots extend below our PCB substrate, making it difficult to reflow on a hot plate.</p>
+                      <p>I tried to use the radiative preheater at the ECE shop to reflow the board, but I think it
+                        delivered too much power, and it started smoking the whole board and toasting the DIMM slots a
+                        little. Additionally, the heating was very uneven; while the middle got very very hot, the outer
+                        edges of the board still did not have reflowing solder paste. The reason I wanted to try using
+                        the radiative pre-heater was because the mechanical anchors on the slots extend below our PCB
+                        substrate, making it difficult to reflow on a hot plate.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.8.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>8.</h4>
-<p>Because it was difficult to use the soldeing tools at the ECE shop, we went back to the senior design lab. I tried to use the reflow oven, choosing a profile based on the SMD291 series of ChipQuik that we used from the ECE shop. I wanted to try using the reflow oven because the oven tray had holes in it that I could use to poke the mechanical anchors of the slots through, instead of just resting on the base. After reflow, the slots came out even toastier, and I observed a lot of solder bridges between the connections on both the DIMM and flex connectors.</p>
+                      <p>Because it was difficult to use the soldeing tools at the ECE shop, we went back to the senior
+                        design lab. I tried to use the reflow oven, choosing a profile based on the SMD291 series of
+                        ChipQuik that we used from the ECE shop. I wanted to try using the reflow oven because the oven
+                        tray had holes in it that I could use to poke the mechanical anchors of the slots through,
+                        instead of just resting on the base. After reflow, the slots came out even toastier, and I
+                        observed a lot of solder bridges between the connections on both the DIMM and flex connectors.
+                      </p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.9.png">
                     <img src="Team/journal/img - member1/week12/2.10.png">
@@ -300,21 +785,25 @@ contact course staff.
                   <figure class="grid-item">
                     <figcaption>
                       <h4>9.</h4>
-<p>Additionally, it also seemed like many of the solder joins on the board were either cold or overflowing with way too much flux. I decided to rework all of the components that did not look good. To rework an 0402 component, I first remove the component.</p>
+                      <p>Additionally, it also seemed like many of the solder joins on the board were either cold or
+                        overflowing with way too much flux. I decided to rework all of the components that did not look
+                        good. To rework an 0402 component, I first remove the component.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.12.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>10.</h4>
-<p>I fill the area with flux, and tack one side of the part onto the board first, setting the part into the right position, then tack on the other side.</p>
+                      <p>I fill the area with flux, and tack one side of the part onto the board first, setting the part
+                        into the right position, then tack on the other side.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.13.png">
                   </figure>
                   <figure class="grid-item">
                     <figcaption>
                       <h4>11.</h4>
-<p>I repeat this process with the other offending part, a current-limiting resistor for a heartbeat LED.</p>
+                      <p>I repeat this process with the other offending part, a current-limiting resistor for a
+                        heartbeat LED.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.14.png">
                     <img src="Team/journal/img - member1/week12/2.15.png">
@@ -322,14 +811,17 @@ contact course staff.
                   <figure class="grid-item">
                     <figcaption>
                       <h4>12.</h4>
-<p>Here's what the fully assembled board looks like, but it looks like we need significant amounts to rework to remove the solder bridges present on the connectors.</p>
+                      <p>Here's what the fully assembled board looks like, but it looks like we need significant amounts
+                        to rework to remove the solder bridges present on the connectors.</p>
                     </figcaption>
                     <img src="Team/journal/img - member1/week12/2.16.png">
                   </figure>
                 </div>
               </div>
 
-<p>It's really nice seeing this backplane PCB come together, and it looks really nice! It's a shame though that there's so many solder bridges, and it can't really be tested right now, since even 3.3V and Ground are bridged together, so even the power supply wouldn't work.</p>
+              <p>It's really nice seeing this backplane PCB come together, and it looks really nice! It's a shame though
+                that there's so many solder bridges, and it can't really be tested right now, since even 3.3V and Ground
+                are bridged together, so even the power supply wouldn't work.</p>
             </div>
           </div>
 
