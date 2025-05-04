@@ -31,8 +31,7 @@ contact course staff.
 
   <!--Reconfigurable base tag; used to modify the site root location for root-relative links-->
   <!--<base href="https://engineering.purdue.edu/ece477/StudentWebTemplate/" />-->
-  <!-- <base href="https://engineering.purdue.edu/477grp15/" /> -->
-  <base href="../.." />
+  <base href="https://engineering.purdue.edu/477grp15/" />
   <!-- Replace the N with your team number-->
 
   <!--Content-->
@@ -214,10 +213,746 @@ contact course staff.
 
         <div class="week-content">
           <h2 id="sec-week15">=============== Week 15: =================</h2>
+
+          <h4 id="sec-week15-e4">
+            <b>Entry 4: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 25, 2025</p>
+            <p><b>Start Time:</b> 12:30 PM</p>
+            <p><b>Duration:</b> 7.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>When I came back to lab, we had both a CPU emulator program, as well as a bus transaction routine that
+                was working, but we were having issues integrating the two systems together. This seemed to be related
+                to a certain RAII ownership issue in the Rust Emassry SDK for the RP2350, where it would drop the
+                configuration for a state machine, even if there was a state machine still loaded in memory.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>Seth had a test program loaded on this system that would pulse read and write transactions
+                        between the two cards and log their behavior which seemed to be working correctly, but that's
+                        all it did.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/4.1.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>Additionally, the older front panel started to flicker erratically, even though the data signal
+                        were very stable. I assumed that this was because the sink drivers had started to fail, so I
+                        replaced the sink driver chip. This seemed to resolve the issue, but I'll need to investigate
+                        later exactly why our sink drivers are failing.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/4.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>I also decided to complete the rework job on this front panel's sink driver from last time,
+                        such that we would have an additional working front panel to test code with.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/4.3.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>After hitting our project presentation time, we were still unable to integrate the system together. The
+                course staff gave us a chance to demonstrate our PSDRs again at a later time, so Seth and I hunkered
+                together to debug the issue. One thing he mentioned is that while passing the state machine objects into
+                a struct caused them to drop their configuration, keeping them inside of a closure would allow them to
+                still work correctly. Theorhetically, passing in the closure into the struct should allow the system to
+                work. I decided to try to implement this experiment on my own branch. Because our code was asynchronous,
+                and more specifically, required passing asynchronous closures, I needed to switch to Rust Nightly.
+                Specifically I switched to the April 25th, 2025 version of Rust Nightly, which was only released a
+                couple hours prior. This allowed me to enabled the <code>unboxed_closures</code>,
+                <code>async_trait_bounds</code>, <code>async_fn_traits</code>, and <code>fn_traits</code> nightly
+                features, which allowed me to write <a
+                  href="https://github.com/AlphaCassiopeiae/8800/commit/3711e42a142e3967c85b67704be7afe9de1a9676">a
+                  patchset</a> that succesfully integrated the CPU with the RAM read and write transactions. Merging in
+                this code allowed Seth to complete the integration with the RUN/STOP buttons, and we were able to pass
+                all 5 of our PSDRs.</p>
+            </div>
+          </div>
+
+
+          <h4 id="sec-week15-e3">
+            <b>Entry 3: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 24, 2025</p>
+            <p><b>Start Time:</b> 2:00 PM</p>
+            <p><b>Duration:</b> 16.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>First things first, I'kk focus on finding the short that Seth was complaining about between signal
+                lines. I'll check every circuit on the backplane to see if there's an issue.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>I've narrowed down the short to be between two pins, which is a piece of metal that is stuck
+                        between pins, and has been embedded into the plastic body of the connector. I can't rework this,
+                        so I'll have to replace the connector.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.3.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>I heated up that section of the board using the MHP30 hot plate, and remove the connector.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.4.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>Then, I cleared out the existing soldering by adding flux and using copper braid.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.5.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>4.</h4>
+                      <p>I then installed and soldered on a fresh flat flex receptacle onto the board.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.7.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>5.</h4>
+                      <p>Additionally, this other front panel board does not have the fixes with the button bridges to
+                        ground yet, so I will modify it by removing the buttons that don't work, and snipping off the
+                        pin 1 of each button.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.8.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>6.</h4>
+                      <p>In the process of cutting of the pin for this button, the pin popped loose with the pad, so
+                        there's no longer a pad connected to ground on this footprint. I'll need to bring the ground
+                        line in from a neighboring footprint.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.9.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>7.</h4>
+                      <p>Here's the other (older) front panel board, also reworked with the new button ground signals.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.10.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>8.</h4>
+                      <p>The front panel tests well, and the buttons show up correctly! Some lights dont light up, but
+                        we confirmed that the microcontroller was getting the correct signals, so it should just be a
+                        display issue with the sink drivers.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.11.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>9.</h4>
+                      <p>For the other front panels that aren't fully assembled yet, I'd like to first do the flash chpi
+                        bodge on them, before we install any other parts to make it easier to do.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.12.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>10.</h4>
+                      <p>For both front panels, I first removed the flash chip using the WX2 tweezers.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.13.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>11.</h4>
+                      <p>Then, I looped 10 loops of wire around the nylon brush, cut it, and removed the insulation on
+                        the ends. I also bent the correct pins on the flash chip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.15.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>12.</h4>
+                      <p>Next, I soldered the bodge wires onto the PCB first.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.16.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>13.</h4>
+                      <p>Then, I attached the chip, and looped the wires onto the correct bent pins on the chip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.17.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>14.</h4>
+                      <p>Here's the two front panels with that reworking done.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.18.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>15.</h4>
+                      <p>I decided to check over all the sink drivers on the front panels, and I noticed that one of the
+                        sink drivers (U3) had all of its data pads missing. I asked Nathan about it, and it seems he had
+                        the heat on too high for this part.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.19.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>16.</h4>
+                      <p>In order to try to fix this, I first removed the solder mask from the vias of the data lines.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.20.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>17.</h4>
+                      <p>I then covered the area in flux.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.21.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>18.</h4>
+                      <p>Then, I plated each via with a small ball of solder.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.22.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>19.</h4>
+                      <p>Then I attached small copper speaker wire to both the pin and the ball on the via. This seems
+                        like it will be a good strategy to rework this board.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/3.23.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>I spent a really long time in lab, so my body is telling me to rest. With our project demonstration in
+                a handful of hours, I'll come back very soon. Seth seems confident that he can get the software for the
+                whole system integrated with Caleb's emulator in time.</p>
+            </div>
+          </div>
+
+          <h4 id="sec-week15-e2">
+            <b>Entry 2: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 23, 2025</p>
+            <p><b>Start Time:</b> 12:30 AM</p>
+            <p><b>Duration:</b> 4.5 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>A supplemental order of parts, where I ordered 10-100 more of each of the "jelly-beam" parts we had
+                (like 0402 resistors and capacitors) arrived, to supplement the parts that we had lost.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>I brought the Mouser shipment over from my apartment to the lab.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/2.1.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>Seth was there, and I took the time to organize the debugging wires into wire groups so that
+                        they were easier to work with, and less likely to short each other.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/2.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>I worked with Seth on trying to finish the memory read transaction. In particular one issue is
+                        that the memory read line is located on the upper bank of GPIO signals (GPIO 16-47) instead of
+                        the lower bank (GPIO 0-31), where the data and address lines, and many other signals were.
+                        Because of this, we needed to launch a second state machine mapped to the upper bank to take
+                        care of this, and listen to a PIO IRQ supplied by the "main" state machine. However, what we
+                        didn't realize was that bank assignments were destermined by PIO block, not by state machine, so
+                        all four (4) state machines in a PIO block would actually have the same pin mapping. This is
+                        corroborated in the datasheet, as GPIOBASE is a PIO-level register, not a state-machine-level
+                        register. This means that we'll need to coordinate the sending and receiving of the MEMR signal
+                        inter-PIO not intra-PIO.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/2.3.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>The software debugging took a really long time, and it being 5 in the morning, I needed to go to bed.
+                There was more hardware I needed to get to, and Seth noted that there might be other shorts between
+                signal lines that is causing erratic behavior, which I'll get to next time.</p>
+            </div>
+          </div>
+
+          <h4 id="sec-week15-e1">
+            <b>Entry 1: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 21, 2025</p>
+            <p><b>Start Time:</b> 6:30 PM</p>
+            <p><b>Duration:</b> 5.5 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>Seth wanted to be able to more easily connect the osciloscope's logic analyzer to the backplane, in
+                order to view the timing of signals.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>On the right side of our backplane design, there's a large number of vias that are meant to
+                        allow for the attachment of wires for debugging.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.1.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>However, even though we specified for our vias to be untented, because of a combination of the
+                        fact that they were designed with a very small annular ring, and because our solder mask
+                        clearance for tented vias was very small, they all ended up getting covered in solder mask
+                        anyway.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>I used a sharp needle scraper to first remove decent amount of solder mask off of each of the
+                        vias in order to expose the copper underneath.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.3.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>4.</h4>
+                      <p>Then I filled the entire area of all the vias with flux.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.4.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>5.</h4>
+                      <p>Then I applied solder across each of the exposed vias to plate them, repeating the process
+                        until the solder was properly flowed onto the vias.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.5.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>6.</h4>
+                      <p>I prepared about 50 jumper wires in the same manner as before but this time, looping around the
+                        solder sucker tube, in order to get wires of longer length.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.6.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>7.</h4>
+                      <p>I then straightened and removed the insulation at the ends using the WX2 tweezers.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.7.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>8.</h4>
+                      <p>Then, one by one, I soldered on each of the wires onto the backplane PCB.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.8.png">
+                    <img src="Team/journal/img - member1/week15/1.9.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>9.</h4>
+                      <p>The test setup works.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week15/1.10.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>I needed to leave lab for a bit to rest, but Seth now has additional debug tools to work with to get
+                bus transactions working.</p>
+            </div>
+          </div>
+
         </div>
 
         <div class="week-content">
           <h2 id="sec-week14">=============== Week 14: =================</h2>
+
+          <h4 id="sec-week14-e3">
+            <b>Entry 3: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 17, 2025</p>
+            <p><b>Start Time:</b> 2:30 AM</p>
+            <p><b>Duration:</b> 10.5 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>I'm back after a break. First things first, Seth in lab, while debugging using the SWD ribbon cable
+                that I put together before, needed to plug and replug the cable into different cards repeatedly. This
+                eventually caused the connector the shear off of the wire. I decided to create a replacement using
+                silicone insulated wire, which is more flexible.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>Here's the debug harness made from silicone wire. It has the same connectors as before, JST XT
+                        on one side, Dupont on the other. This time, since the wires are separate instead of part of a
+                        ribbon, I spaced out heat shrink along the cable, to make sure the wires dont splay out, and to
+                        reduce strain near the connector ends.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.1.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>And here's the harness connected to the front panel. It works. I think it also looks cleaner.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>Thee newly assembled front panel from yesterday seems so also have some LED issues. I'm
+                        guessing this has to do with not enough solder being on the LED sink driver pads, so I'll reflow
+                        those.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.3.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>4.</h4>
+                      <p>I reflowed the board at the Weller station using the chisel tip, and then also assembled a
+                        second wire harness, so that we can build and debug two boards at the same time.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.4.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>5.</h4>
+                      <p>Trying the board again, all the LEDs light up correctly from the front panel, but trying to
+                        light up the LEDs from the card shows the middle LEDs not lighting up. This I think is an issue
+                        with needing additional solder on the backplane flex connector again, so I went ad added and
+                        drag soldered it some more. After doing that, the issue was resolved.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.7.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>6.</h4>
+                      <p>With all the LEDs on at the same time, after a while, our 3.3V power line started cutting out
+                        intermitently. Here's an image of the 3.3V line on the scope. Notice the gaps to 0V that show up
+                        every so often. After trying a few things, I found out that this was the thermal shutdown
+                        feature on the buck converter. Pushing ~2 amps through the regulator when we have all LEDs on
+                        meant that the device got very very hot to the touch, enough to burn. If i repeatedly blow on
+                        the regulator very quickly, the power dropouts actually dissapear! We decided not to pursue a
+                        fix for this, since we decided it was unlikely for all LEDs to be on for such an extended period
+                        of time during normal usage.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.8.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>7.</h4>
+                      <p>With the front panel, backplane, and card supposedly working, I went back to assemble and
+                        finish the bodging of the rest of the 12 cards.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.9.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>8.</h4>
+                      <p>In order to get all the wires I needed at the right length, I looped the wire wrapping wire
+                        around the handle of this nylon brush a little over 48 times, to get 48 loops of wire. I then
+                        use the iron to melt the insulation at one end together so the coil would come out in one piece.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.10.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>9.</h4>
+                      <p>Then, with the coil out, I used a pair of wire cutters to snip the coil along the melted line,
+                        giving me over 50 equally-sized lengths of wire.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.11.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>10.</h4>
+                      <p>I then straighted each length of wire, and using the WX2's tweezer tool, burnt the insulation
+                        off the ends of the straightened wire.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.12.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>11.</h4>
+                      <p>Here's the pile of equal-length wire with exposed ends.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.13.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>12.</h4>
+                      <p>Then, for each PCB, I soldered one end of the wire I prepared to the offending pads on each
+                        PCB.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.14.png">
+                    <img src="Team/journal/img - member1/week14/3.15.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>13.</h4>
+                      <p>I then attached the chips to each PCB by soldering on all the non-bent pins of each chip back
+                        to the board.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.16.png">
+                    <img src="Team/journal/img - member1/week14/3.17.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>14.</h4>
+                      <p>Then, to complete the process, I added a small bit of solder to the pins that were bend on,
+                        along with a bit of flux, and then soldered on the other end of the bodge wires to the correct
+                        pins on each flash chip.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.18.png">
+                    <img src="Team/journal/img - member1/week14/3.19.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>15.</h4>
+                      <p>Everyone has left lab now, but I want to test a second card. I soldered on a second DIMM slot
+                        onto this backplane we're currently using, since from what I can tell, it currently has no
+                        issues.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.20.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>16.</h4>
+                      <p>With both cards attached, the test program enumerating through every LED from the new card slot
+                        seems to work!</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.21.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>17.</h4>
+                      <p>However, I did encounter an issue where A2 and A3 seemed to be bridged signals, which was
+                        confirmed by a trip to the ECE shop's X-ray machine.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/3.22.png">
+                    <img src="Team/journal/img - member1/week14/3.23.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>Now with two cards, a backplane, and a front panel, we should have enough hardware theorhetically, to
+                fulfill all of our PSDRs, software notwithstanding (which is still a big line item).</p>
+            </div>
+          </div>
+
+          <h4 id="sec-week14-e2">
+            <b>Entry 2: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 16, 2025</p>
+            <p><b>Start Time:</b> 2:45 AM</p>
+            <p><b>Duration:</b> 8.5 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>Nathan came over in lab and showed me the new backplane PCB he assembled, using our new method of
+                stencilling in all the solder paste, but only placing the parts for the buck converter and the USB
+                connector.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>Overall, the board looks good, and the connections on the USB port and buck convertor look
+                        solid.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/2.1.png">
+                    <img src="Team/journal/img - member1/week14/2.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>Nathan did however mention that he had deposited too much solder paste on a second pass with
+                        the scraper, so the solder on the DIMM slots and flat flex connector started to ball up
+                        together. I cleaned off the solder on all of these pads by adding flux and using copper braid.
+                      </p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/2.3.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>I then installed the flat flex connector by securing it using the two large solder pads on
+                        either end of the connector, and drag soldering the rest of the pins.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/2.4.png">
+                    <img src="Team/journal/img - member1/week14/2.5.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>4.</h4>
+                      <p>Nathan said that he should be able to put together the DIMM slots on the backplane, so while
+                        he's doing that, and Seth is working on our first assembled front panel, I'm putting together a
+                        second front panel with all of my learning from assembling the first one. Because the front
+                        panel also suffers from the flash pin issue, I put together the same bodge fix on this front
+                        panel as the others.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/2.6.png">
+                    <img src="Team/journal/img - member1/week14/2.7.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>5.</h4>
+                      <p>Then, I cut off and removed Pin 1 for each of the buttons on the PCB, leaving the ground
+                        circuit unconnected to the buttons.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/2.8.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>6.</h4>
+                      <p>Then, in order to connect the ground circuit to the other side of the buttons, I used the same
+                        wire wrapping wire that I used for the chip bodge, but removed all of the insulation from the
+                        wire for convenience. I then bridge the ground circuit using the wire to the opposite side of
+                        the buttons to complete the bodge.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/2.9.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>7.</h4>
+                      <p>With these changes the front panel PCB should now work correctly.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/2.10.png">
+                    <img src="Team/journal/img - member1/week14/2.11.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>I did additional work in lab today, helping rework the backplane, and put together a front panel PCB
+                thet <em><strong>should</strong></em> be fully functional. There's still a lot of rework to do, like
+                fininshing up the rework for those 12 card PCBs.</p>
+            </div>
+          </div>
+
+          <h4 id="sec-week14-e1">
+            <b>Entry 1: -----------------------------------------------------------------</b>
+          </h4>
+          <div class="entry-metadata">
+            <p><b>Date:</b> April 15, 2025</p>
+            <p><b>Start Time:</b> 8:01 PM</p>
+            <p><b>Duration:</b> 7.0 hours</p>
+          </div>
+          <div class="entry-content">
+            <div class="section">
+              <p>I'm going to try to finish the significant amount of rework we need to do get the NOR flash chips
+                bodged to work on all of the card PCBs. With 1 board scrapped and 2 boards already reworked, I have 12
+                boards that I need to go through in a sort of assembly line to get all the chips redone. I'll do this by
+                first removing all of the chips, bending the chip legs, cleaning the excess solder on the boards,
+                cutting out all 48 bodge wires, straightening those bodge wires, attaching the wires to the PCBs,
+                attaching the chips to the PCBs, and finally attaching the wires to the chips.</p>
+
+              <div class="image-section">
+                <div class="grid">
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>1.</h4>
+                      <p>Here is the stack of 12 cards that I'm working with.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/1.2.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>2.</h4>
+                      <p>I'm using the Weller WX2's plier tool to heat up the legs on both sides of the chips.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/1.3.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>3.</h4>
+                      <p>Using the WX2, I removed all 12 chips from the card PCBs.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/1.4.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>4.</h4>
+                      <p>I then used the WX's chisel tip to clean up all the solder pads.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/1.5.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>5.</h4>
+                      <p>I then bent the leads for each chip under the microscope, using the same needle-noce plier +
+                        tweezer method as before.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/1.7.png">
+                    <img src="Team/journal/img - member1/week14/1.8.png">
+                    <img src="Team/journal/img - member1/week14/1.9.png">
+                  </figure>
+                  <figure class="grid-item">
+                    <figcaption>
+                      <h4>6.</h4>
+                      <p>Seth noted that there was some weird behavior with the bus connections between the card and the
+                        front panel, and after examining the flex connector on the backplane using a microscope, I found
+                        that two signal pins on the board were bridged together. Reworking the connector by adding a lot
+                        of flux and dragging the chisel tip across the board seemed to resolve the issue.</p>
+                    </figcaption>
+                    <img src="Team/journal/img - member1/week14/1.10.png">
+                  </figure>
+                </div>
+              </div>
+
+              <p>Gradual progress in reworking the boards so far. On the cards, I managed to get all the chips off and
+                bend them, but I still need to attach the bodge wires and put the chips back on. I also found some
+                additional issues with the backplanes and front panel that will also need rework later, but nothing
+                seems impossible The current plane is to cut off pin 1 on each of the buttons, and manually bridge GND
+                over to the opposite &quot;3,4&quot; circuit.</p>
+            </div>
+          </div>
         </div>
 
         <div class="week-content">
